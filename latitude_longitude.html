@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html style="height:100%">
+  <head>
+    <title>Marker draggable en Google Maps</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+      #divMap {
+        height: 500px;
+        width: 800px;
+        border-radius: 15px;
+        margin: 100px auto;
+      }
+    </style>
+    <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8VDnPOhFpQiCLmBzHmi1byVuSoE2hcTs&callback=initMap&libraries=&v=weekly">
+    </script>
+    <script type="text/javascript">
+      var latitude1 = 0;
+      var longitude1 = 0;
+
+        function getLocation() {
+        if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+        }
+
+        function showPosition(position) {
+             latitude1 = position.coords.latitude;
+             longitude1 = position.coords.longitude;
+
+            console.log("latitude "+latitude1)
+            console.log("longitude "+ longitude1)
+
+
+            var mapProp = {
+          center: new google.maps.LatLng(latitude1,longitude1 ),
+          zoom: 20,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        // Agregando el mapa al tag de id divMap
+        var map = new google.maps.Map(document.getElementById("divMap"), mapProp);
+
+
+        const image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+
+
+        // Creando un marker en el mapa
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(latitude1,longitude1),
+          map: map,
+          title: 'Hello World!',
+          icon: image,
+          draggable: true //que el marcador se pueda arrastrar
+        });
+
+        // Registrando el evento drag, en este caso imprime
+        // en consola la latitud y longitud
+        google.maps.event.addListener(marker,'drag',function(event) {
+          console.log(event.latLng.lat());
+          document.getElementById("textLatitude").innerHTML = event.latLng.lat();
+          document.getElementById("textLongitude").innerHTML = event.latLng.lng();
+        });
+        }
+      
+        
+      
+      function initialize() {
+        
+        getLocation()
+        
+        console.log("latitude 2 "+latitude1)
+        console.log("longitude 2 "+ longitude1)
+
+        //latitude1 = 3.419790480782989
+        //longitude1 = -76.53127670288087
+        // Configuración del mapa
+     
+
+      }
+
+      // Inicializando el mapa cuando se carga la página
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="divMap"></div>
+    <center>
+      <h2>Coordenadas</h2>
+      <h3>Latitude</h3>
+      <p id="textLatitude">Latitude</p>
+      <h3>Longitude</h3>
+      <p id="textLongitude">Longitude</p>
+    </center>
+  </body>
+</html>
