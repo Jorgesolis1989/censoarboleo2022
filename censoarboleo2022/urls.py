@@ -17,5 +17,9 @@ from django.urls import path
 from formulario import views
 
 urlpatterns = [
-    path('', views.formulario_view, name='formulario'),
+    path('', views.formulario_view_1, name='formulario_1'),
+    path('formulario2', views.formulario_view_2, name='formulario_2'),
+    path('formulario3', views.formulario_view_3, name='formulario_3'),
+    path('formulario4', views.formulario_view_4, name='formulario_4'),
+
 ]

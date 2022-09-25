@@ -1,0 +1,284 @@
+{% extends "baseformulario.html" %}
+
+{% block formulario %}
+<form class="needs-validation" method="post" action="from2.html">
+
+  <div class="row g-12">
+    <div class="col-sm-12 pb-3">
+      <label for="firstName" class="form-label">Vitalidad</label>
+      <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+      <div class="invalid-feedback">
+        Esta Accion es requerida
+      </div>
+      
+    </div>
+    <div class="container">
+          
+
+        <table class="table table-striped" border="5">
+          <thead>
+            <tr>
+              <th scope="col">Tipos de Afectacion</th>
+              <th scope="col">Si</th>
+              <th scope="col">No</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Quemaduras</th>
+              <td><input type="radio" name="fisica" value="si"></td>
+              <td><input type="radio" name="fisica" value="no"></td>
+            </tr>
+            <tr>
+              <th scope="row">Necrosis</th>
+              <td><input type="radio" name="emocional" value="si"></td>
+              <td><input type="radio" name="emocional" value="no"></td>
+            </tr>
+            <tr>
+              <th scope="row">Poda antitécnica</th>
+              <td><input type="radio" name="mental" value="si"></td>
+              <td><input type="radio" name="mental" value="no"></td>
+            </tr>
+            <tr>
+              <th scope="row">Acumulación escombros</th>
+              <td><input type="radio" name="social" value="si"></td>
+              <td><input type="radio" name="social" value="no"></td>
+            </tr>
+          </tbody>
+    
+       </table>
+
+       
+       <table class="table table-striped" border="5">
+        <thead>
+          <tr>
+            <th scope="col">Fuste</th>
+            <th scope="col">Si</th>
+            <th scope="col">No</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Heridas/Golpes</th>
+            <td><input type="radio" name="fisica" value="si"></td>
+            <td><input type="radio" name="fisica" value="no"></td>
+          </tr>
+          <tr>
+            <th scope="row">Anillado</th>
+            <td><input type="radio" name="emocional" value="si"></td>
+            <td><input type="radio" name="emocional" value="no"></td>
+          </tr>
+          <tr>
+            <th scope="row">Heridas/Golpes</th>
+            <td><input type="radio" name="mental" value="si"></td>
+            <td><input type="radio" name="mental" value="no"></td>
+          </tr>
+          <tr>
+            <th scope="row">Quemaduras</th>
+            <td><input type="radio" name="social" value="si"></td>
+            <td><input type="radio" name="social" value="no"></td>
+          </tr>
+          <tr>
+            <th scope="row">Perforado/Barrenado</th>
+            <td><input type="radio" name="social" value="si"></td>
+            <td><input type="radio" name="social" value="no"></td>
+          </tr>
+          <tr>
+            <th scope="row">Necrosis</th>
+            <td><input type="radio" name="social" value="si"></td>
+            <td><input type="radio" name="social" value="no"></td>
+          </tr>
+          <tr>
+            <th scope="row">Descortezado</th>
+            <td><input type="radio" name="social" value="si"></td>
+            <td><input type="radio" name="social" value="no"></td>
+          </tr>
+          <tr>
+            <th scope="row">Tumores / Agallas</th>
+            <td><input type="radio" name="social" value="si"></td>
+            <td><input type="radio" name="social" value="no"></td>
+          </tr>
+          <tr>
+            <th scope="row">Poda antitécnica</th>
+            <td><input type="radio" name="social" value="si"></td>
+            <td><input type="radio" name="social" value="no"></td>
+          </tr>
+          <tr>
+            <th scope="row">Acumulación</th>
+            <td><input type="radio" name="social" value="si"></td>
+            <td><input type="radio" name="social" value="no"></td>
+          </tr>
+        </tbody>
+  
+     </table>
+     <table class="table table-striped" border="5">
+      <thead>
+        <tr>
+          <th scope="col">TABLA 3</th>
+          <th scope="col">Si</th>
+          <th scope="col">No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Heridas/Golpes</th>
+          <td><input type="radio" name="fisica" value="si"></td>
+          <td><input type="radio" name="fisica" value="no"></td>
+        </tr>
+        <tr>
+          <th scope="row">Anillado</th>
+          <td><input type="radio" name="emocional" value="si"></td>
+          <td><input type="radio" name="emocional" value="no"></td>
+        </tr>
+        <tr>
+          <th scope="row">Heridas/Golpes</th>
+          <td><input type="radio" name="mental" value="si"></td>
+          <td><input type="radio" name="mental" value="no"></td>
+        </tr>
+        <tr>
+          <th scope="row">Quemaduras</th>
+          <td><input type="radio" name="social" value="si"></td>
+          <td><input type="radio" name="social" value="no"></td>
+        </tr>
+        <tr>
+          <th scope="row">Perforado/Barrenado</th>
+          <td><input type="radio" name="social" value="si"></td>
+          <td><input type="radio" name="social" value="no"></td>
+        </tr>
+        <tr>
+          <th scope="row">Necrosis</th>
+          <td><input type="radio" name="social" value="si"></td>
+          <td><input type="radio" name="social" value="no"></td>
+        </tr>
+        <tr>
+          <th scope="row">Descortezado</th>
+          <td><input type="radio" name="social" value="si"></td>
+          <td><input type="radio" name="social" value="no"></td>
+        </tr>
+        <tr>
+          <th scope="row">Tumores / Agallas</th>
+          <td><input type="radio" name="social" value="si"></td>
+          <td><input type="radio" name="social" value="no"></td>
+        </tr>
+        <tr>
+          <th scope="row">Poda antitécnica</th>
+          <td><input type="radio" name="social" value="si"></td>
+          <td><input type="radio" name="social" value="no"></td>
+        </tr>
+        <tr>
+          <th scope="row">Acumulación</th>
+          <td><input type="radio" name="social" value="si"></td>
+          <td><input type="radio" name="social" value="no"></td>
+        </tr>
+      </tbody>
+
+   </table>
+   <table class="table table-striped" border="5">
+    <thead>
+      <tr>
+        <th scope="col">TABLA 4</th>
+        <th scope="col">Si</th>
+        <th scope="col">No</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Heridas/Golpes</th>
+        <td><input type="radio" name="fisica" value="si"></td>
+        <td><input type="radio" name="fisica" value="no"></td>
+      </tr>
+      <tr>
+        <th scope="row">Anillado</th>
+        <td><input type="radio" name="emocional" value="si"></td>
+        <td><input type="radio" name="emocional" value="no"></td>
+      </tr>
+      <tr>
+        <th scope="row">Heridas/Golpes</th>
+        <td><input type="radio" name="mental" value="si"></td>
+        <td><input type="radio" name="mental" value="no"></td>
+      </tr>
+      <tr>
+        <th scope="row">Quemaduras</th>
+        <td><input type="radio" name="social" value="si"></td>
+        <td><input type="radio" name="social" value="no"></td>
+      </tr>
+      <tr>
+        <th scope="row">Perforado/Barrenado</th>
+        <td><input type="radio" name="social" value="si"></td>
+        <td><input type="radio" name="social" value="no"></td>
+      </tr>
+      <tr>
+        <th scope="row">Necrosis</th>
+        <td><input type="radio" name="social" value="si"></td>
+        <td><input type="radio" name="social" value="no"></td>
+      </tr>
+      <tr>
+        <th scope="row">Descortezado</th>
+        <td><input type="radio" name="social" value="si"></td>
+        <td><input type="radio" name="social" value="no"></td>
+      </tr>
+      <tr>
+        <th scope="row">Tumores / Agallas</th>
+        <td><input type="radio" name="social" value="si"></td>
+        <td><input type="radio" name="social" value="no"></td>
+      </tr>
+      <tr>
+        <th scope="row">Poda antitécnica</th>
+        <td><input type="radio" name="social" value="si"></td>
+        <td><input type="radio" name="social" value="no"></td>
+      </tr>
+      <tr>
+        <th scope="row">Acumulación</th>
+        <td><input type="radio" name="social" value="si"></td>
+        <td><input type="radio" name="social" value="no"></td>
+      </tr>
+    </tbody>
+
+ </table>
+
+       
+    
+        
+  <hr class="my-4">
+
+  <div class="col-12">
+    <label for="username" class="form-label">Personas</label>
+    <div class="input-group has-validation">
+
+      <input type="text" class="form-control" id="username" placeholder="Transito o flujo peatonal" required>
+    <div class="invalid-feedback">
+        La Direccion es requerida
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <label for="email" class="form-label">Vehículos </label>
+    <input type="text" class="form-control" id="email" placeholder="Transito o flujo vehícular">
+    <div class="invalid-feedback">
+        Transito o flujo vehícular
+    </div>
+  </div>
+  <hr class="my-4">
+
+  <div class="col-12">
+    <label for="username" class="form-label">Construcciones</label>
+    <div class="input-group has-validation">
+
+      <input type="text" class="form-control" id="username" placeholder="Existencia de construcciones afectables por caida de fuste o ramas" required>
+    <div class="invalid-feedback">
+        La Direccion es requerida
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <label for="email" class="form-label">Redes aéreas</label>
+    <input type="text" class="form-control" id="email" placeholder="">
+    <div class="invalid-feedback">
+      Please enter a valid email address for shipping updates.
+    </div>
+  </div>
+
+</form>
+{% endblock formulario %}

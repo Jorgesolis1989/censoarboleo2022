@@ -3,9 +3,25 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
 
 # Create your views here.
-def formulario_view(request):
+def formulario_view_1(request):
+    if request.method == "GET":
+        print("Metodo get")
     mensaje = ""
     return render(request, 'tables1.html')
+
+def formulario_view_2(request):
+    if request.method == 'GET':
+        print("Metodo get formulario 2")
+    mensaje = "" 
+    return render(request, 'tables2.html')
+
+def formulario_view_3(request):
+    mensaje = ""
+    return render(request, 'tables3.html')
+    
+def formulario_view_4(request):
+    mensaje = "" 
+    return render(request, 'tables4.html')
 
     #if request.user.is_authenticated() and not request.user.is_superuser:
     #    usuario = Usuario.objects.get(username=request.user.username)

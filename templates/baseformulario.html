@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title> Censo Arboleo de Cali 2022</title>
 
     <!-- Custom fonts for this template -->
     <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -380,144 +380,39 @@
 
                                     <!------------------------------------------------------------------------------------------------------------------------ ---
                           /------------------------------------------------------------------------------------------------------------------------ ---
-                                                                  FURMULARIO 1 
+                                                                  FORMULARIO 1 
 
                           -------------------------------------------------------------------------------------------------------------------------- ---
                           /------------------------------------------------------------------------------------------------------------------------ --->
-                                    <form>
-                                        <div class="col-md-12 col-lg-12">
-                                            <label for="Placa Antigua">Placa Antigua:</label>
-                                            <input type="text" id="Placa Antigua" class="form-control">
-                                        </div>
-                                        <div class="container">
+                      
+                          {% block formulario %}
+                          
+                          
+                          {% endblock formulario %}
+                   
 
-                                            <div class="w-auto" id="divMap"></div>
-                                            <div class="py-5 text-center">
-
-                                                <h5 style="color: black;">Ubicación Geográfica:</h5>
-                                                <div class="row">
-                                                    <div class="col">Latitud (GD)
-                                                        <p id="textLatitude" class="form-control"
-                                                            placeholder="Latitud"></p>
-                                                 
-
-                                                    </div>
-                                                    <div class="col">Longitud (GD)
-                                                        <p id="textLongitude" class="form-control"
-                                                            placeholder="Longitud"></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="container">
-
-
-                                                <div class="row">
-                                                    <div class="col">Barrio
-                                                        <select name="barrio" id="barrio" class="form-control">
-                                                            <option value="">Selecioanar...</option>
-                                                            <option value="">Hola mundo</option>
-                                                            <option value="">Hola mundo</option>
-                                                            <option value="">Hola mundo</option>
-                                                            <option value="">Hola mundo</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col">Comuna
-                                                        <select name="comuna" id="comuna" class="form-control">
-                                                            <option value="">01</option>
-                                                            <option value="">02</option>
-                                                            <option value="">03</option>
-                                                            <option value="">04</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <br>
-
-                                                <div class="form-group d-flex flex-column mx-auto">
-                                                    <label for="Placa Antigua">Dirección:</label>
-                                                    <input type="text" id="direccion" name="direccion"
-                                                        class="form-control">
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col">Nombre común
-                                                        <select name="comun" id="comun" class="form-control">
-                                                            <option value="">Selecioanar...</option>
-                                                            <option value="">Hola mundo</option>
-                                                            <option value="">Hola mundo</option>
-                                                            <option value="">Hola mundo</option>
-                                                            <option value="">Hola mundo</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col">Nombre científico
-                                                        <select name="cientifico" id="cientifico" class="form-control">
-                                                            <option value="">Selecioanar...</option>
-                                                            <option value="">01</option>
-                                                            <option value="">02</option>
-                                                            <option value="">03</option>
-                                                            <option value="">04</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col">Familia
-                                                        <input type="text" class="form-control" placeholder=""
-                                                            aria-label="Genero" disabled>
-                                                    </div>
-                                                    <div class="col">Genero
-                                                        <input type="text" class="form-control" placeholder=""
-                                                            aria-label="Genero" disabled>
-                                                    </div>
-                                                </div>
-                                                <br>
-
-                                                <div class="row">
-                                                    <div class="col">Estado de Madurez
-                                                        <select name="madurez" id="madurez" class="form-control">
-                                                            <option value="">Juvenil</option>
-                                                            <option value="">Maduro</option>
-                                                            <option value="">Longevo</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col">Estado del registro
-                                                        <select name="registro" id="registro" class="form-control">
-
-                                                            <option value="">Nuevo</option>
-                                                            <option value="">Antiguo</option>
-                                                            <option value="">Revisión</option>
-                                                            <option value="">Eliminado</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <br>
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination justify-content-center">
-                                                        <li class="page-item disabled">
-                                                            <a class="page-link">Anterior</a>
-                                                        </li>
-                                                        <li class="page-item disabled"><a class="page-link"
-                                                                href="tables1.html">1</a></li>
-                                                        <li class="page-item"><a class="page-link"
-                                                                href="tables2.html">2</a></li>
-                                                        <li class="page-item"><a class="page-link"
-                                                                href="tables3.html">3</a></li>
-                                                        <li class="page-item"><a class="page-link"
-                                                                href="table4.html">4</a></li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="tables2.html">Siguiente</a>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
-
-                                            </div>
-                                    </form>
+                <br>
+                <br>              
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link">Anterior</a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                        href="{% url 'formulario_1' %}">1</a></li>
+                    <li class="page-item"><a class="page-link"
+                            href="{% url 'formulario_2' %}">2</a></li>
+                    <li class="page-item"><a class="page-link"
+                            href="{% url 'formulario_3' %}">3</a></li>
+                    <li class="page-item"><a class="page-link"
+                            href="{% url 'formulario_4' %}">4</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="{% url 'formulario_2' %}">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
+     
+                                           
                                 </div>
 
                             </div>

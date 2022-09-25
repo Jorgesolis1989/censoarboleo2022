@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS ARBOL (
 	foto4 TEXT ,
 	observaciones TEXT, 
 	estado TEXT NOT NULL, 
-	fecha_creado TIME NOT NULL,
+	fecha_creado DATE NOT NULL,
 	modificadopor TEXT NOT NULL,
 	actualizado  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	version_fecha DATE NOT NULL
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS DASOMETRIA (
 	tipocopa TEXT NOT NULL,
 	diametro_ramas TEXT NOT NULL,
 	comentarios TEXT, 
-	fecha_creado TIME NOT NULL,
+	fecha_creado DATE NOT NULL,
 	modificadopor TEXT NOT NULL,
 	actualizado  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	version_fecha DATE NOT NULL
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS VULNERABILIDAD (
 	construcciones INT NOT NULL,
 	redes_aereas INT NOT NULL,
 	comentarios TEXT,
-	fecha_creado TIME NOT NULL,
+	fecha_creado DATE NOT NULL,
 	modificadopor TEXT NOT NULL,
 	actualizado  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	version_fecha DATE NOT NULL
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS INTERVENCIONES(
 	eliminar_pisoduro INT NOT NULL,
 	porque_tala TEXT NOT NULL,
 	comentarios TEXT,
-	fecha_creado TIME NOT NULL,
+	fecha_creado DATE NOT NULL,
 	modificadopor TEXT NOT NULL,
 	actualizado  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	version_fecha DATE NOT NULL
