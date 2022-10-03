@@ -11,10 +11,15 @@ def formulario_view_1(request):
     
     if request.method == 'POST':
         form = Formulario_1(request.POST)
+        #latitude = form.cleaned_data["latitude"]
         if form.is_valid():
             placaAntigua = form.cleaned_data["placaAntigua"]
             longitude = form.cleaned_data["longitude"] 
             latitude = form.cleaned_data["latitude"]
+            comuna = request.POST["comuna"]
+            barrio = request.POST["barrio"]
+            direccion = request.POST["direccion"]
+
            
 
 
@@ -22,19 +27,28 @@ def formulario_view_1(request):
             arbol_nuevo.placa = placaAntigua
             arbol_nuevo.longitud = longitude
             arbol_nuevo.latitud = latitude
+            arbol_nuevo.comuna = comuna
+            arbol_nuevo.barrio = barrio
+            arbol_nuevo.direccion = direccion
+
+            #try:
+            #    arbol_nuevo.save()
+            #except:
+                
 
 
-
-            form = Formulario_1()
+            #form = Formulario_1()
             print("placaAntigua "+placaAntigua)
             print("longitude "+longitude)
+            print("comuna "+comuna)
+            print("barrio "+barrio)
         else:
             print("No es valido")
 
     else:
         form = Formulario_1()
 
-    return render(request, 'tables1.html', {'form': form})
+    return render(request, 'formulario.html', {'form': form})
 
 def formulario_view_2(request):
     if request.method == 'GET':

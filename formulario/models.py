@@ -8,6 +8,7 @@ class Arbol(models.Model):
     placa = models.TextField(null=False)
     qrcode = models.CharField(max_length=100)
     barrio = models.TextField(null=False)
+    direccion = models.TextField(null=False)
     comuna = models.CharField(null=False, max_length=2)
     latitud = models.FloatField(null=False)
     longitud = models.FloatField(null=False)
