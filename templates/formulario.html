@@ -255,136 +255,39 @@
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <label for="">Nombre científico</label>
-                                    <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" disabled>
+                                    <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <label for="">Familia</label>
-                                    <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" disabled>
+                                    <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <label for="">Genero</label>
-                                    <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" disabled>
+                                    <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <label for="">Estado de Madurez</label>
-                                    <select name="madurez" id="madurez" class="form-control">
-                                        <option value="">Juvenil</option>
-                                        <option value="">Maduro</option>
-                                        <option value="">Longevo</option>
+                                    <select name="estado_madurez" id="estado_madurez" class="form-control">
+                                        <option value="Plantón" selected>Planton</option>
+                                        <option value="Juvenil">Juvenil</option>
+                                        <option value="Maduro">Maduro</option>
+                                        <option value="Longevo">Longevo</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <label for="">Estado del registro</label>
-                                    <select name="registro" id="registro" class="form-control">
-                                        <option value="">Nuevo</option>
-                                        <option value="">Antiguo</option>
-                                        <option value="">Revisión</option>
-                                        <option value="">Eliminado</option>
+                                    <select name="estado_registro" id="estado_registro" class="form-control">
+                                        <option value="Nuevo" selected>Nuevo</option>
+                                        <option value="Antiguo">Antiguo</option>
+                                        <option value="Revisión">Revisión</option>
+                                        <option value="Eliminado">Eliminado</option>
                                     </select>
                                 </div>
                             </div>
                           </div>
+                         
                             <!--FORMULARIO 2-->
                           <div id="form2" style="display: none;">
-                            <div class="row">
-                              
-                              <div class="row" id="form2">
-                                  <div class="col-md-12 col-lg-12 mb-2">
-                                      <label for="Placa Antigua">Forma del Tronco:</label>
-                                      <input type="text" id="Placa Antigua" class="form-control">
-                                  </div>
-
-                                  <div class="col-md-12 col-lg-12 mb-2">
-                                      <label for="Placa Antigua">Orientacion</label>
-                                      <select type="text" id="orientacion" name="orientacion" class="form-control">
-                                        <option value="">Hacia la construcción</option>
-                                        <option value="">Hacia la vía</option>
-                                        <option value="">En dirección de la vía</option>
-                                        <option value="">Ninguna</option>
-                                        <option value="">Otra</option>
-                                      </select>
-                                  </div>
-                                  <div class="col-md-12 col-lg-12 mb-2">
-                                    <label for="Placa Antigua">Orientacion</label>
-                                    <select type="text" id="inclinacion" name="inclinacion" class="form-control">
-                                      <option value="">Baja</option>
-                                      <option value="">Media</option>
-                                      <option value="">Alta</option>
-                                      <option value="">Ninguna</option>
-                                    </select>
-                                </div>
-                                  <div class="col-md-12 col-lg-12 text-center py-3">
-                                      <h6 style="color: black;">Alturas (metros) :</h6>
-                                  </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">Comercial (Fuste)</label>
-                                      <input type="number" name="comercial" id="comercial" class="form-control"
-                                          placeholder="Hc (m)">
-                                  </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">Total del árbol</label>
-                                      <input type="number" name="totalarbol" id="totalarbol" class="form-control"
-                                          placeholder="Ht (m)">
-                                  </div>
-
-                                  <div class="col-md-12 col-lg-12 mb-2">
-                                      <label for="Placa Antigua">Circunferencia fuste (centímetros) :</label>
-                                      <input type="number" id="cfc" name="cfc" class="form-control" placeholder="CAP (m)">
-                                  </div>
-                                  <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
-                                      <h6 style="color: black;">Diámetro copa (metros) :</h6>
-                                  </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">Eje mayor</label>
-                                      <input type="number" name="ejemayor" id="ejemayor" class="form-control">
-                                  </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">Eje menor</label>
-                                      <input type="number" id="ejemenor" class="form-control">
-                                  </div>
-                                  <div class="col-md-12 col-lg-12 mb-2">
-                                      <label for="Placa Antigua">Exposición de la copa a la luz</label>
-                                      <select type="number" id="cfc" name="cfc" class="form-control"
-                                          placeholder="CAP (m)">
-                                          <option value="">No recibe luz</option>
-                                          <option value="">Una cara</option>
-                                          <option value="">Dos (2) caras</option>
-                                          <option value="">Tres (3) caras</option>
-                                          <option value="">Cuatro (4) caras</option>
-                                          <option value="">4 cara más superior</option>
-                                      </select>
-                                  </div>
-                                  <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
-                                      <h6>Copa viva</h6>
-                                  </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">Altura (m)</label>
-                                      <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero">
-                                  </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">% copa ausente</label>
-                                      <input type="number" class="form-control" placeholder="(%)" aria-label="Genero">
-                                  </div>
-                                  <div class="col-md-12 col-lg-12 mb-2 ">
-                                      <label for="Placa Antigua">Diámetro medio de ramas</label>
-                                      <select type="text" id="cfc" name="cfc" class="form-control" placeholder="CAP (m)">
-                                        <option value=""> &lt; 0.05m </option>
-                                        <option value=""> &le; 0.05m </option>
-                                      </select> 
-                                  </div>
-                                  <div class="col-md-12 col-lg-12 mb-2 ">
-                                      <label for="Placa Antigua">Sistema Radicular</label>
-                                      <select type="number" id="sistemaradicular" name="sistemaradicular" class="form-control" placeholder="CAP (m)">
-                                        <option value=""> Subterráneo </option>
-                                        <option value=""> Aéreo </option>
-                                        <option value=""> Superficial </option>
-                                      </select>  
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
-                            <!--FORMULARIO 3-->
-                          <div id="form3" style="display: none;">
                             <div  class="row">
                                 <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="Placa Antigua">Digite el codigo QR:</label>
@@ -393,36 +296,34 @@
 
 
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <label for="Placa Antigua">Cobertura</label>
-                                    <select type="text" id="direccion" name="direccion" class="form-control">
-                                        <option value="">Selecionar..</option>
-                                        <option value="">Césped</option>
-                                        <option value="">Jardín</option>
-                                        <option value="">Piso Duro</option>
-                                        <option value="">Vegetacion Ermegente</option>
-                                        <option value="">Tierra descubierta/arena</option>
-                                        <option value="">otro</option>
+                                    <label for="P">Cobertura</label>
+                                    <select type="text" id="cobertura" name="cobertura" class="form-control">
+                                        <option selected value="Césped">Césped </option>
+                                        <option value="Jardín">Jardín</option>
+                                        <option value="Piso Duro">Piso Duro</option>
+                                        <option value="Vegetacion Ermegente">Vegetacion Ermegente</option>
+                                        <option value="Tierra descubierta/arena">Tierra descubierta/arena</option>
+                                        <option value="Otro">Otro</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <label for="Placa Antigua">Emplazamiento</label>
-                                    <select type="text" id="direccion" name="direccion" class="form-control">
-                                        <option value="">Selecionar..</option>
-                                        <option value="">Bulevares</option>
-                                        <option value="">Corredor ferreo</option>
-                                        <option value="">Paseos</option>
+                                    <label for="emplazamiento">Emplazamiento</label>
+                                    <select type="text" id="emplazamiento" name="emplazamiento" class="form-control">
+                                        <option value="Bulevares">Bulevares</option>
+                                        <option value="Corredor férreo">Corredor férreo</option>
+                                        <option value="Paseos">Paseos</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <label for="Placa Antigua">Confinamiento</label>
+                                    <label for="confinamiento">Confinamiento</label>
                                 </div>
                                 
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <input onclick="formView()" type="radio" class="form-check-input" name="optradio">
+                                    <input onclick="formView()" type="radio" class="form-check-input" name="optradio" value="1">
                                     <label for="" >Si</label>
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <input onclick="formNone()" type="radio" class="form-check-input" name="optradio">
+                                    <input onclick="formNone()" type="radio" class="form-check-input" name="optradio" value="0">
                                     <label for="">No</label>
                                 </div>
                                 <div id="formView" style="display: none;" class="col-md-12 col-lg-12 mb-2">
@@ -486,6 +387,107 @@
                                 </div>
                             </div>
                           </div>
+
+                             <!--FORMULARIO 3-->
+                             <div id="form3" style="display: none;">
+                              <div class="row">
+                                
+                                <div class="row" id="form2">
+                                    <div class="col-md-12 col-lg-12 mb-2">
+                                        <label for="Placa Antigua">Forma del Tronco:</label>
+                                        <input type="text" id="Placa Antigua" class="form-control">
+                                    </div>
+  
+                                    <div class="col-md-12 col-lg-12 mb-2">
+                                        <label for="Placa Antigua">Orientacion</label>
+                                        <select type="text" id="orientacion" name="orientacion" class="form-control">
+                                          <option value="">Hacia la construcción</option>
+                                          <option value="">Hacia la vía</option>
+                                          <option value="">En dirección de la vía</option>
+                                          <option value="">Ninguna</option>
+                                          <option value="">Otra</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 mb-2">
+                                      <label for="Placa Antigua">Orientacion</label>
+                                      <select type="text" id="inclinacion" name="inclinacion" class="form-control">
+                                        <option value="">Baja</option>
+                                        <option value="">Media</option>
+                                        <option value="">Alta</option>
+                                        <option value="">Ninguna</option>
+                                      </select>
+                                  </div>
+                                    <div class="col-md-12 col-lg-12 text-center py-3">
+                                        <h6 style="color: black;">Alturas (metros) :</h6>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 mb-2">
+                                        <label for="">Comercial (Fuste)</label>
+                                        <input type="number" name="comercial" id="comercial" class="form-control"
+                                            placeholder="Hc (m)">
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 mb-2">
+                                        <label for="">Total del árbol</label>
+                                        <input type="number" name="totalarbol" id="totalarbol" class="form-control"
+                                            placeholder="Ht (m)">
+                                    </div>
+  
+                                    <div class="col-md-12 col-lg-12 mb-2">
+                                        <label for="Placa Antigua">Circunferencia fuste (centímetros) :</label>
+                                        <input type="number" id="cfc" name="cfc" class="form-control" placeholder="CAP (m)">
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
+                                        <h6 style="color: black;">Diámetro copa (metros) :</h6>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 mb-2">
+                                        <label for="">Eje mayor</label>
+                                        <input type="number" name="ejemayor" id="ejemayor" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 mb-2">
+                                        <label for="">Eje menor</label>
+                                        <input type="number" id="ejemenor" class="form-control">
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 mb-2">
+                                        <label for="Placa Antigua">Exposición de la copa a la luz</label>
+                                        <select type="number" id="cfc" name="cfc" class="form-control"
+                                            placeholder="CAP (m)">
+                                            <option value="">No recibe luz</option>
+                                            <option value="">Una cara</option>
+                                            <option value="">Dos (2) caras</option>
+                                            <option value="">Tres (3) caras</option>
+                                            <option value="">Cuatro (4) caras</option>
+                                            <option value="">4 cara más superior</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
+                                        <h6>Copa viva</h6>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 mb-2">
+                                        <label for="">Altura (m)</label>
+                                        <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero">
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 mb-2">
+                                        <label for="">% copa ausente</label>
+                                        <input type="number" class="form-control" placeholder="(%)" aria-label="Genero">
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 mb-2 ">
+                                        <label for="Placa Antigua">Diámetro medio de ramas</label>
+                                        <select type="text" id="cfc" name="cfc" class="form-control" placeholder="CAP (m)">
+                                          <option value=""> &lt; 0.05m </option>
+                                          <option value=""> &le; 0.05m </option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 mb-2 ">
+                                        <label for="Placa Antigua">Sistema Radicular</label>
+                                        <select type="number" id="sistemaradicular" name="sistemaradicular" class="form-control" placeholder="CAP (m)">
+                                          <option value=""> Subterráneo </option>
+                                          <option value=""> Aéreo </option>
+                                          <option value=""> Superficial </option>
+                                        </select>  
+                                    </div>
+                                </div>
+                              </div>
+                          </div>
+
                            <!--FORMULARIO 4-->
                           <div id="form4" style="display: none;">
                             <div class="row">
@@ -1112,10 +1114,10 @@
                           <nav aria-label="Page navigation example" id="boton3" style="display: none;">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item disabled">
-                                  <button class="btn btn-outline-secondary" onclick="show3()" >Anterior</button>
+                                  <button type="button" class="btn btn-outline-secondary" onclick="show3()" >Anterior</button>
                                 </li>
                                 <li class="page-item">
-                                    <button class="btn btn-outline-primary" onclick="formshidde3()" >Siguiente</button>
+                                    <button type="button"  class="btn btn-outline-primary" onclick="formshidde3()" >Siguiente</button>
                                 </li>
                             </ul>
                         </nav>
@@ -1124,10 +1126,10 @@
                         <nav aria-label="Page navigation example" id="boton4" style="display: none;">
                           <ul class="pagination justify-content-center">
                               <li class="page-item disabled">
-                                <button class="btn btn-outline-secondary" onclick="boton4()" >Anterior</button>
+                                <button type="button"  class="btn btn-outline-secondary" onclick="boton4()" >Anterior</button>
                               </li>
                               <li class="page-item">
-                                  <button class="btn btn-outline-primary" onclick="hidde4()" >Siguiente</button>
+                                  <button type="button"  class="btn btn-outline-primary" onclick="hidde4()" >Siguiente</button>
                               </li>
                           </ul>
                       </nav>

@@ -19,7 +19,21 @@ def formulario_view_1(request):
             comuna = request.POST["comuna"]
             barrio = request.POST["barrio"]
             direccion = request.POST["direccion"]
+            
+            nombre_comun = request.POST["nombre_comun"]
+            nombre_cientifico = request.POST.get('nombre_cientifico', False);
+            familia = request.POST.get('familia', False);
+            genero = request.POST.get('genero', False);
 
+            estado_madurez = request.POST["estado_madurez"]
+            estado_registro = request.POST["estado_registro"]
+            
+            # Falta especie
+
+            codigo_qr = request.POST["qr"]
+            cobertura = request.POST["cobertura"]
+
+            print("nombre_cientifico "+nombre_cientifico)
            
 
 
@@ -30,7 +44,16 @@ def formulario_view_1(request):
             arbol_nuevo.comuna = comuna
             arbol_nuevo.barrio = barrio
             arbol_nuevo.direccion = direccion
-
+            arbol_nuevo.familia = familia
+            arbol_nuevo.nombre_comun = nombre_comun
+            arbol_nuevo.nombre_cientifico = nombre_cientifico
+            arbol_nuevo.genero = genero
+            arbol_nuevo.estado_madurez = estado_madurez
+            arbol_nuevo.estado_registro = estado_registro
+            
+            arbol_nuevo.especie = ""
+            arbol_nuevo.qrcode = codigo_qr
+           # arbol_nuevo.cobertura = 
             #try:
             #    arbol_nuevo.save()
             #except:
@@ -38,10 +61,10 @@ def formulario_view_1(request):
 
 
             #form = Formulario_1()
-            print("placaAntigua "+placaAntigua)
-            print("longitude "+longitude)
-            print("comuna "+comuna)
-            print("barrio "+barrio)
+            #print("placaAntigua "+placaAntigua)
+            #print("longitude "+longitude)
+            #print("comuna "+comuna)
+            #print("barrio "+barrio)
         else:
             print("No es valido")
 

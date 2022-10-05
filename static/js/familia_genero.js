@@ -7,7 +7,6 @@ function asignar_nombre_comun(){
     var nombre_comun;
     nombre_comun = document.getElementById("nombre_comun")[document.getElementById("nombre_comun").selectedIndex].value
     
-
     // Familia
     document.getElementById("familia").value=datos_json[nombre_comun][0]
 

@@ -15,11 +15,15 @@ class Arbol(models.Model):
     norte = models.FloatField(null=False)
     este = models.FloatField(null=False)
     nombre_comun = models.TextField(null=False)
+    nombre_cientifico = models.TextField(null=False)
     familia = models.TextField(null=False)
     genero = models.TextField(null=False)
+    estado_madurez = models.TextField(null=False)
+    estado_registro = models.TextField(null=False)
+
     especie = models.TextField(null=False)
     tipo_vegetacion = models.TextField(null=False)
-    madurez = models.TextField(null=False)
+    
     area = models.FloatField(null=False)
     perimetro = models.FloatField(null=False)
     hito = models.TextField(null=False)
