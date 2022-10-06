@@ -13,3 +13,4 @@ class Formulario_1(forms.Form):
     longitude = forms.CharField(
         widget=forms.TextInput(attrs={'readonly':'readonly' , 'name':'textLongitude', 'id':'textLongitude', 'class':'form-control text-center', 'placeholder':'Esperando calcular longitude'}))
 #  <input type="text" name="textLatitude" id="textLatitude" class="form-control" placeholder="Esperando calcular latitud" disabled></p>
+    foto1 = forms.ImageField(label="Escoja la foto del candidato", required=False, widget=forms.FileInput(attrs={'class':'form-control', 'accept':".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|images/*"}))

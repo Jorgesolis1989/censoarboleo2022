@@ -169,7 +169,7 @@
 
                           -------------------------------------------------------------------------------------------------------------------------- ---
                           /------------------------------------------------------------------------------------------------------------------------ --->
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                           {% csrf_token %}
                           <!--FORMULARIO 1-->
                           <div  id="form1" style="display: block;">
@@ -319,15 +319,15 @@
                                 </div>
                                 
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <input onclick="formView()" type="radio" class="form-check-input" name="optradio" value="1">
+                                    <input onclick="formView()" type="radio" class="form-check-input" name="confinamiento" id="radio1" value="Si">
                                     <label for="" >Si</label>
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <input onclick="formNone()" type="radio" class="form-check-input" name="optradio" value="0">
+                                    <input onclick="formNone()" type="radio" class="form-check-input" name="confinamiento" id="radio2" value="No" checked>
                                     <label for="">No</label>
                                 </div>
                                 <div id="formView" style="display: none;" class="col-md-12 col-lg-12 mb-2">
-                                    <input type="text" class="form-control">
+                                    <input value = 0 name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <div class="col-md-12 col-lg-12 mb-2 text-center">
@@ -338,7 +338,7 @@
                                         </label>
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
-                                        <input type="file" class="form-control" placeholder="First name"
+                                        <input type="file" class="form-control" placeholder="Primera foto"
                                         aria-label="First name" id="avatar" name="avatar">
                                     </div>
 
@@ -353,8 +353,7 @@
                                         </label>
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
-                                        <input type="file" class="form-control" placeholder="First name"
-                                        aria-label="First name" id="avatar2" name="avatar2">
+                                        <input type="file" class="form-control" placeholder="Segunda name"    aria-label="First name" id="avatar2" name="avatar2" >
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
@@ -366,8 +365,8 @@
                                         </label>
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
-                                        <input type="file" class="form-control" placeholder="First name"
-                                        aria-label="First name" id="avatar3" name="avatar3">
+                                        <input type="file" class="form-control" placeholder="Segunda Foto"
+                                        aria-label="Tercera Foto" id="avatar3" name="avatar3">
                                     </div>
 
         
@@ -381,8 +380,8 @@
                                         </label>
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
-                                        <input type="file" class="form-control" placeholder="First name"
-                                        aria-label="First name" id="avatar4" name="avatar4">
+                                        <input type="file" class="form-control" placeholder="Foto 4"
+                                        aria-label="Cuarta name" id="avatar4" name="avatar4">
                                     </div>
                                 </div>
                             </div>

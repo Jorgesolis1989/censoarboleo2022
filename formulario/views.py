@@ -32,8 +32,14 @@ def formulario_view_1(request):
 
             codigo_qr = request.POST["qr"]
             cobertura = request.POST["cobertura"]
+            emplazamiento = request.POST["emplazamiento"]
+            confinamiento = request.POST.get('confinamiento');
 
-            print("nombre_cientifico "+nombre_cientifico)
+            
+
+            dist_confinamiento = request.POST["dist_confinamiento"]
+
+            print("confinamiento "+str(confinamiento))
            
 
 
@@ -53,11 +59,77 @@ def formulario_view_1(request):
             
             arbol_nuevo.especie = ""
             arbol_nuevo.qrcode = codigo_qr
-           # arbol_nuevo.cobertura = 
-            #try:
-            #    arbol_nuevo.save()
-            #except:
+            arbol_nuevo.cobertura = cobertura
+
+            if confinamiento== "Si":
+                arbol_nuevo.confinamiento = True
+            else:
+                arbol_nuevo.confinamiento = False
+
+            arbol_nuevo.dist_confinamiento = dist_confinamiento
+            arbol_nuevo.emplazamiento = emplazamiento
+
+            #arbol_nuevo.dist_confinamiento = 0
+
+            # Foto del candidato
+            if request.FILES['avatar']:
+                arbol_nuevo.foto1 = request.FILES['avatar']
+            else:
+                arbol_nuevo.foto1 = None
+
+            #print("arbol nuevo 1 " +arbol_nuevo.foto1)    
+            
+            
                 
+                
+
+            if request.FILES['avatar2']:
+                arbol_nuevo.foto2 = request.FILES['avatar2']
+            else:
+                arbol_nuevo.foto2 = None
+
+            print("arbol nuevo 2 " +str(arbol_nuevo.foto2))    
+
+
+            if 'avatar3' in request.POST: 
+                arbol_nuevo.foto3 = None
+            
+            else:
+                if request.FILES['avatar3']:   
+                    arbol_nuevo.foto3 = request.FILES['avatar3']    
+                else:
+                    arbol_nuevo.foto3 = None
+
+
+            
+            if 'avatar4' in request.POST: 
+                arbol_nuevo.foto4 = None
+            
+            else:
+                if request.FILES['avatar4']:   
+                    arbol_nuevo.foto4 = request.FILES['avatar4']    
+                else:
+                    arbol_nuevo.foto4 = None
+
+#            if request.FILES['avatar4']:
+#                arbol_nuevo.foto4 = request.FILES['avatar4']
+#           else:
+#                arbol_nuevo.foto4 = None
+            
+            
+            #Pendientes de definir
+            arbol_nuevo.arbolid = 0
+            arbol_nuevo.norte = 0.0
+            arbol_nuevo.este = 0.0
+            arbol_nuevo.area = 0.0
+            arbol_nuevo.perimetro =0.0
+            arbol_nuevo.hito = 0.0
+            
+            try:
+                arbol_nuevo.save()
+
+            except Exception as e:
+                print(e)
 
 
             #form = Formulario_1()
