@@ -128,10 +128,7 @@
                     </a>
             
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                      <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-                      <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
-                      <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
-                      <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
+                      Censo Arbólea Santiago de Cali 2022
                     </ul>
             
             
@@ -175,13 +172,14 @@
                           <div  id="form1" style="display: block;">
                             <div  class="row">
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <label for="Placa Antigua">Placa Antigua:</label>
-                                    {{form.placaAntigua}}
+                                  <label for="validationCustom01">Placa Antigua:</label>
+                                  <button type="button" class="btn" data-bs-toggle="popover" title="Ingresar Números" data-bs-content="Número correspondiente a un arbol">
+                                    ?
+                                  </button>
+                                  <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control " required>
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="popover"
-                                        title="Popover Header" data-bs-content="Some content inside the popover">Toggle
-                                        popover</button>
+                                   
                                 </div>
 
                                 <div class="col-md-12 col-lg-12 mb-2">
@@ -206,7 +204,8 @@
                                 
                                   <label for="">Comuna</label>
                                   <select name="comuna" id="comuna" class="form-control" onchange="cambia_barrios()">
-                                    <option value="1" selected>01</option>
+                                   
+                                    <option value="1">01</option>
                                     <option value="2">02</option>
                                     <option value="3">03</option>
                                     <option value="4">04</option>
@@ -250,7 +249,7 @@
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <label for="">Nombre común</label>
                                     <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-control">
-                                  
+                                      <option value="" selected>Seleccionar..</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
@@ -268,7 +267,8 @@
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <label for="">Estado de Madurez</label>
                                     <select name="estado_madurez" id="estado_madurez" class="form-control">
-                                        <option value="Plantón" selected>Planton</option>
+                                        <option value="">Seleccionar</option>
+                                        <option value="Plantón">Plantón</option>
                                         <option value="Juvenil">Juvenil</option>
                                         <option value="Maduro">Maduro</option>
                                         <option value="Longevo">Longevo</option>
@@ -277,7 +277,8 @@
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <label for="">Estado del registro</label>
                                     <select name="estado_registro" id="estado_registro" class="form-control">
-                                        <option value="Nuevo" selected>Nuevo</option>
+                                      <option value="">Seleccionar..</option>
+                                        <option value="Nuevo" >Nuevo</option>
                                         <option value="Antiguo">Antiguo</option>
                                         <option value="Revisión">Revisión</option>
                                         <option value="Eliminado">Eliminado</option>
@@ -298,6 +299,7 @@
                                 <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="P">Cobertura</label>
                                     <select type="text" id="cobertura" name="cobertura" class="form-control">
+                                      <option value="">Seleccionar..</option>
                                         <option selected value="Césped">Césped </option>
                                         <option value="Jardín">Jardín</option>
                                         <option value="Piso Duro">Piso Duro</option>
@@ -309,6 +311,7 @@
                                 <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="emplazamiento">Emplazamiento</label>
                                     <select type="text" id="emplazamiento" name="emplazamiento" class="form-control">
+                                      <option value="">Seleccionar..</option>
                                         <option value="Bulevares">Bulevares</option>
                                         <option value="Corredor férreo">Corredor férreo</option>
                                         <option value="Paseos">Paseos</option>
@@ -327,7 +330,7 @@
                                     <label for="">No</label>
                                 </div>
                                 <div id="formView" style="display: none;" class="col-md-12 col-lg-12 mb-2">
-                                    <input value = 0 name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">
+                                    <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <div class="col-md-12 col-lg-12 mb-2 text-center">
@@ -392,28 +395,65 @@
                               <div class="row">
                                 
                                 <div class="row" id="form2">
-                                    <div class="col-md-12 col-lg-12 mb-2">
+
+                                      <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Placa Antigua">Forma del Tronco:</label>
-                                        <input type="text" id="Placa Antigua" class="form-control">
+                                        <div class="form-check form-check-inline">
+                                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" onclick="formfuste()">
+                                          <label class="form-check-label" for="inlineRadio1">Fuste Unico</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" onclick="Nonefuste()">
+                                          <label class="form-check-label" for="inlineRadio2">Fuste polifurcardo</label>
+                                        </div>
+                                        
                                     </div>
   
+                                  <div style="display: none;" class="col-md-12 col-lg-12 mb-2" id="formView2">
+                                    <div class="col-md-3 col-lg-3 mb-2">
+  
+                                      <label for="Placa Antigua">Capa 1 (m)</label>
+                                      <input type="text" id="unico" name="unico" class="form-control">  
+                                  </div>
+                                    <div class="col-md-3 col-lg-3 mb-2">
+                                      <label for="Placa Antigua">Capa 2 (m)</label>
+                                      <input type="text" id="unico2" name="unico2" class="form-control">  
+                                  </div>
+                                    <div class="col-md-3 col-lg-3 mb-2">
+                                      <label for="Placa Antigua">Capa 3 (m)</label>
+                                      <input type="text" id="unico3" name="unico3" class="form-control">  
+                                  </div>
+                                    <div class="col-md-3 col-lg-3 mb-2">
+                                      <label for="Placa Antigua">Capa 4 (m)</label>
+                                      <input type="text" id="unico4" name="unico4" class="form-control">  
+                                  </div>
+                                    <div class="col-md-3 col-lg-3 mb-2">
+                                      <label for="Placa Antigua">Capa 5 (m)</label>
+                                      <input type="text" id="unico5" name="unico5" class="form-control">  
+                                  </div>
+                                </div> 
+
+                                   
+
                                     <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Placa Antigua">Orientacion</label>
                                         <select type="text" id="orientacion" name="orientacion" class="form-control">
-                                          <option value="">Hacia la construcción</option>
-                                          <option value="">Hacia la vía</option>
-                                          <option value="">En dirección de la vía</option>
-                                          <option value="">Ninguna</option>
-                                          <option value="">Otra</option>
+                                          <option value="">Seleccionar..</option>
+                                          <option value="01">Hacia la construcción</option>
+                                          <option value="02">Hacia la vía</option>
+                                          <option value="03">En dirección de la vía</option>
+                                          <option value="04">Ninguna</option>
+                                          <option value="05">Otra</option>
                                         </select>
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
-                                      <label for="Placa Antigua">Orientacion</label>
+                                      <label for="Placa Antigua">Inclinación</label>
                                       <select type="text" id="inclinacion" name="inclinacion" class="form-control">
-                                        <option value="">Baja</option>
-                                        <option value="">Media</option>
-                                        <option value="">Alta</option>
-                                        <option value="">Ninguna</option>
+                                        <option value="">Seleccionar..</option>
+                                        <option value="01">Baja</option>
+                                        <option value="02">Media</option>
+                                        <option value="03">Alta</option>
+                                        <option value="04">Ninguna</option>
                                       </select>
                                   </div>
                                     <div class="col-md-12 col-lg-12 text-center py-3">
@@ -449,12 +489,13 @@
                                         <label for="Placa Antigua">Exposición de la copa a la luz</label>
                                         <select type="number" id="cfc" name="cfc" class="form-control"
                                             placeholder="CAP (m)">
-                                            <option value="">No recibe luz</option>
-                                            <option value="">Una cara</option>
-                                            <option value="">Dos (2) caras</option>
-                                            <option value="">Tres (3) caras</option>
-                                            <option value="">Cuatro (4) caras</option>
-                                            <option value="">4 cara más superior</option>
+                                            <option value="">Seleccionar..</option>
+                                            <option value="01">No recibe luz</option>
+                                            <option value="02">Una cara</option>
+                                            <option value="03">Dos (2) caras</option>
+                                            <option value="04">Tres (3) caras</option>
+                                            <option value="05">Cuatro (4) caras</option>
+                                            <option value="06">4 cara más superior</option>
                                         </select>
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
@@ -462,25 +503,27 @@
                                     </div>
                                     <div class="col-md-6 col-lg-6 mb-2">
                                         <label for="">Altura (m)</label>
-                                        <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero">
+                                        <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero" id="altura">
                                     </div>
                                     <div class="col-md-6 col-lg-6 mb-2">
                                         <label for="">% copa ausente</label>
-                                        <input type="number" class="form-control" placeholder="(%)" aria-label="Genero">
+                                        <input type="number" class="form-control" placeholder="(%)" aria-label="Genero" id="copaau">
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2 ">
                                         <label for="Placa Antigua">Diámetro medio de ramas</label>
-                                        <select type="text" id="cfc" name="cfc" class="form-control" placeholder="CAP (m)">
-                                          <option value=""> &lt; 0.05m </option>
-                                          <option value=""> &le; 0.05m </option>
+                                        <select type="text" id="diametro" name="diametro" class="form-control" placeholder="CAP (m)">
+                                          <option value="">Seleccionar..</option>
+                                          <option value="01"> &lt; 0.05m </option>
+                                          <option value="02"> &le; 0.05m </option>
                                         </select> 
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2 ">
                                         <label for="Placa Antigua">Sistema Radicular</label>
                                         <select type="number" id="sistemaradicular" name="sistemaradicular" class="form-control" placeholder="CAP (m)">
-                                          <option value=""> Subterráneo </option>
-                                          <option value=""> Aéreo </option>
-                                          <option value=""> Superficial </option>
+                                          <option value="">Seleccionar..</option>
+                                          <option value="01"> Subterráneo </option>
+                                          <option value="02"> Aéreo </option>
+                                          <option value="03"> Superficial </option>
                                         </select>  
                                     </div>
                                 </div>
@@ -493,6 +536,7 @@
                                 <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="firstName" class="form-label">Vitalidad</label>
                                     <select name="seleccion" id="vitalidad" onchange="ocultar();" class="form-control">
+                                      <option value="">Seleccionar..</option>
                                       <option value="1">Buena (Sano)</option>
                                       <option value="1">Regular (Enfermo)</option>
                                       <option value="2">Mala (Seco/Muerto)</option>
@@ -501,14 +545,19 @@
                                 </div>
 
                               <div id="ocultar" style="display: block;">
-                                Hola mundo
+                           
                              
 
                                 <div class="col-md-12 col-lg-12 mb-2 ">
                                     <table class="table table-hover shadow ">
                                         <thead class="table-success">
                                           <tr>
+                                          
                                             <th style="width: 90%;" class="text-center">Raices</th>
+                                            <th> 
+                                              <button type="button" class="btn" data-bs-toggle="popover" title="Ingresar Números" data-bs-content="Número correspondiente a un arbol">
+                                              ?
+                                            </button></th>
                                             <th class="text-center">NO/SI</th>
                                           </tr>
                                         </thead>
@@ -874,7 +923,7 @@
                                 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         
-                                          <input type="text" class="form-control" id="username" placeholder="Existencia de construcciones afectables por caida de fuste o ramas">   <!--TABLA 4-->
+                                          <input type="text" class="form-control" id="username" placeholder="Existencia de construcciones afectables por caida de fuste o ramas" style="display: none;">   <!--TABLA 4-->
                                       </div>
                               
                               </div>
@@ -1087,7 +1136,7 @@
                            <!-- BOTON 1-->
                             <nav aria-label="Page navigation example" id="boton1" style="display: block;">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled"> 
+                                    <li class="page-item disabled px-3"> 
                                       <button class="btn btn-outline-secondary" disabled >Anterior</button>
                                     </li>
                                     <li class="page-item">
@@ -1099,7 +1148,7 @@
                             <!-- BOTON 2-->
                             <nav aria-label="Page navigation example" id="boton2" style="display: none;">
                               <ul class="pagination justify-content-center">
-                                  <li class="page-item disabled">
+                                  <li class="page-item disabled px-3">
                                     <button type="button" class="btn btn-outline-secondary" onclick="showanterior()" >Anterior</button>
                                   </li>
                                   <li class="page-item">
@@ -1112,7 +1161,7 @@
                            <!-- BOTON 3-->
                           <nav aria-label="Page navigation example" id="boton3" style="display: none;">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
+                                <li class="page-item disabled px-3">
                                   <button type="button" class="btn btn-outline-secondary" onclick="show3()" >Anterior</button>
                                 </li>
                                 <li class="page-item">
@@ -1124,7 +1173,7 @@
                         <!-- BOTON 4-->
                         <nav aria-label="Page navigation example" id="boton4" style="display: none;">
                           <ul class="pagination justify-content-center">
-                              <li class="page-item disabled">
+                              <li class="page-item disabled px-3">
                                 <button type="button"  class="btn btn-outline-secondary" onclick="boton4()" >Anterior</button>
                               </li>
                               <li class="page-item">
@@ -1137,7 +1186,7 @@
                       <!-- BOTON 5-->
                       <nav aria-label="Page navigation example" id="boton5" style="display: none;">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
+                            <li class="page-item disabled px-3">
                               <button class="btn btn-outline-secondary" onclick="boton5()" >Anterior</button>
                             </li>
                             <li class="page-item">
