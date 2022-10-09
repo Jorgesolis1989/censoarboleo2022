@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-bi#tt$@ak$9^m(c*9ch$ps9hxcq2fizj=tz+9h9%=gr4x3u+%a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['52.54.119.84', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'censoarboleo2022.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'CENSOARBOLEO2022',
+    'NAME': 'CENSOARBOREO2022',
     'USER': 'postgres',
     'PASSWORD': 'admin123',
     'HOST': '127.0.0.1',

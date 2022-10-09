@@ -18,9 +18,8 @@ function asignar_nombre_comun(){
 
 
    /// document.getElementById("familia").options[i].text=datos_json["nombre_comun"][0]
+   document.getElementById("familia").options[0].selected = true 
+   document.getElementById("genero").options[0].selected = true 
+   document.getElementById("nombre_cientifico").options[0].selected = true 
 
-    
-
-    
   }
-

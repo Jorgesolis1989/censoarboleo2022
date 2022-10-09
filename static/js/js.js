@@ -35,14 +35,18 @@ function formNone(){
     table.style.display = "none";
 }
 
-function formfuste(){
-    var table = document.getElementById("formView2");
-    table.style.display = "block";
-}
-function Nonefuste(){
-    var table = document.getElementById("formView2");
+function formFusteUnico(){
+    var table = document.getElementById("formViewUnico");
     table.style.display = "none";
 }
+
+
+function formFusteFolicurcado(){
+
+    var table = document.getElementById("formViewUnico");
+    table.style.display = "block";
+}
+
 
 function formshidde(){
    
@@ -53,11 +57,11 @@ function formshidde(){
     const estado_registro = document.getElementById('estado_registro').value;
     const estado_madurez = document.getElementById('estado_madurez').value;
    
-    if( !(/^\d{1,15}$/.test(PlacaAntigua)) ){
+///    if( !(/^\d{1,15}$/.test(PlacaAntigua)) ){
 
-        alert('Error, debe llenar el campo Placa Antigua')
-        return 0
-    }
+///        alert('Error, debe llenar el campo Placa Antigua')
+///        return 0
+///    }
 
     if( comuna === '' ){
 
@@ -67,19 +71,19 @@ function formshidde(){
 
     if( direccion === '' ){
 
-        alert('Error, debe llenar el campo direccion')
+        alert('Error, debe llenar el campo Direccion')
         return false
     }
 
     if( nombre_comun === '' ){
 
-        alert('Error, debe llenar el campo nombre_comun')
+        alert('Error, debe llenar el campo Nombre Comun')
         return false
     }
 
     if( estado_registro === '' ){
 
-        alert('Error, debe llenar el campo estado registro')
+        alert('Error, debe llenar el campo Estado Registro')
         return false
     }
 
@@ -191,28 +195,16 @@ function formshidde3(){
 
     const orientacion = document.getElementById('orientacion').value;
     const inclinacion = document.getElementById('inclinacion').value;
-    const comercial = document.getElementById('comercial').value;
+    const comercial = document.getElementById('comercial_fuste').value;
     const totalarbol = document.getElementById('totalarbol').value;
     const ejemayor = document.getElementById('ejemayor').value;
     const ejemenor = document.getElementById('ejemenor').value;
-    const altura = document.getElementById('altura').value;
-    const cfc = document.getElementById('cfc').value;
-    const copaau = document.getElementById('copaau').value;
+    const copa_viva = document.getElementById('copa_viva').value;
+    const circunferencia = document.getElementById('circunferencia').value;
+    const copa_ausente = document.getElementById('copa_ausente').value;
     const sistemaradicular = document.getElementById('sistemaradicular').value;
     const diametro = document.getElementById('diametro').value;
 
-
-    if( !(/^\d{1,15}$/.test(ejemayor)) ){
-
-        alert('Error, debe llenar el campo ejemayor')
-        return 0
-    }
-
-    if( !(/^\d{1,15}$/.test(ejemenor)) ){
-
-        alert('Error, debe llenar el campo ejemenor')
-        return 0
-    }
 
     if( orientacion === '' ){
 
@@ -234,21 +226,35 @@ function formshidde3(){
 
     if( totalarbol === '' ){
 
-        alert('Error, debe llenar el campo estado totalarbol')
+        alert('Error, debe llenar el campo estado Total Árbol')
         return false
     }
 
-    if (cfc === ''){
+    if (circunferencia === ''){
         alert('Error, debe llenar el campo  Circuferencía')
         return false
     }
+
     
-    if (altura === ''){
-        alert('Error, debe llenar el campo  altura')
+    if( !(/^\d{1,15}$/.test(ejemayor)) ){
+
+        alert('Error, debe llenar el campo Eje Mayor')
+        return 0
+    }
+
+    if( !(/^\d{1,15}$/.test(ejemenor)) ){
+
+        alert('Error, debe llenar el campo Eje Menor')
+        return 0
+    }
+
+
+    if (copa_viva === ''){
+        alert('Error, debe llenar el campo  Altura Copa Viva')
         return false
     }
-    if (copaau === ''){
-        alert('Error, debe llenar el campo  copaau')
+    if (copa_ausente === ''){
+        alert('Error, debe llenar el campo  Copa Ausente')
         return false
     }
     
