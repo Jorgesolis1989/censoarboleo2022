@@ -15,12 +15,11 @@ function tablehidden() {
 function ocultar() {
     var optionhidden = document.getElementById("vitalidad");
     optionhidden = optionhidden.options[optionhidden.selectedIndex].value;
-    if (optionhidden == "2") {
-        document.getElementById("ocultar").style.display = "none";
-    }
-    if (optionhidden == "1") {
+    if (optionhidden == "Buena"     || optionhidden == "Regular" ) {
         document.getElementById("ocultar").style.display = "block";
-    }
+    } else if (optionhidden == "Mala") {
+        document.getElementById("ocultar").style.display = "none";
+    } 
 
 }
 

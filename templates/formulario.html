@@ -517,7 +517,7 @@
                                     <div class="col-md-12 col-lg-12 mb-2 ">
                                         <label for="Placa Antigua">Sistema Radicular</label>
                                         <select type="number" id="sistemaradicular" name="sistemaradicular" class="form-control" placeholder="CAP (m)">
-                                          <option value="01"> Subterráneo </option>
+                                          <option value="01" selected> Subterráneo </option>
                                           <option value="02"> Aéreo </option>
                                           <option value="03"> Superficial </option>
                                         </select>  
@@ -531,10 +531,10 @@
                             <div class="row">
                                 <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="firstName" class="form-label">Vitalidad</label>
-                                    <select name="seleccion" id="vitalidad" onchange="ocultar();" class="form-control">
-                                      <option value="1">Buena (Sano)</option>
-                                      <option value="1">Regular (Enfermo)</option>
-                                      <option value="2">Mala (Seco/Muerto)</option>
+                                    <select  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-control">
+                                      <option value="Buena" selected>Buena (Sano)</option>
+                                      <option value="Regular">Regular (Enfermo)</option>
+                                      <option value="Mala">Mala (Seco/Muerto)</option>
                     
                                     </select>
                                 </div>
@@ -562,7 +562,7 @@
                                             <div class="" data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="mecanica_r_heridas" name="mecanica_r_heridas" >
                                                 </div>
                                               </td>
                                             </div>
@@ -572,7 +572,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input class="form-check-input" type="checkbox" role="switch" id="mecanica_r_quemaduras" name="mecanica_r_quemaduras" >
                                                   </div>
                                                 </td>
                                               </div>
@@ -582,7 +582,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="biologica_r_necrosis" name="biologica_r_necrosis" >
                                                   </div>
                                                 </td>
                                               </div>
@@ -592,17 +592,17 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input " type="checkbox" role="switch" id="antropica_r_poda" name="antropica_r_poda" >
                                                   </div>
                                                 </td>
                                               </div>
                                           </tr>
                                           <tr class="">
-                                            <th scope="row" class="text-dark">Heridas/Golpes</th>
+                                            <th scope="row" class="text-dark">Productos Tóxicos</th>
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input " type="checkbox" role="switch" id="antropica_r_prd_toxicos" name="antropica_r_prd_toxicos" >
                                                   </div>
                                                 </td>
                                               </div>
@@ -612,7 +612,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="antropica_r_escombro" name="antropica_r_escombro" >
                                                   </div>
                                                 </td>
                                               </div>
@@ -632,7 +632,7 @@
                                             <div class="" data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="mecanica_f_anillado" name="mecanica_f_anillado">
                                                 </div>
                                               </td>
                                             </div>
@@ -642,7 +642,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input class="form-check-input" type="checkbox" role="switch" id="mecanica_f_heridas"   name="mecanica_f_heridas">
                                                   </div>
                                                 </td>
                                               </div>
@@ -652,7 +652,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="mecanica_f_quemaduras" name="mecanica_f_quemaduras">
                                                   </div>
                                                 </td>
                                               </div>
@@ -662,7 +662,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input " type="checkbox" role="switch" id="biologia_f_perfobarrenado" name="biologia_f_perfobarrenado" >
                                                   </div>
                                                 </td>
                                               </div>
@@ -672,7 +672,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input " type="checkbox" role="switch" id="biologica_f_necrosis" name="biologica_f_necrosis">
                                                   </div>
                                                 </td>
                                               </div>
@@ -682,7 +682,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="biologica_f_descortezado" name="biologica_f_descortezado" >
                                                   </div>
                                                 </td>
                                               </div>
@@ -692,7 +692,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="biologica_f_tumores" name="biologica_f_tumores">
                                                   </div>
                                                 </td>
                                               </div>
@@ -702,7 +702,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="antropica_f_poda" name="antropica_f_poda">
                                                   </div>
                                                 </td>
                                               </div>
@@ -712,7 +712,17 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="antropica_f_escombros"  name="antropica_f_escombros">
+                                                  </div>
+                                                </td>
+                                              </div>
+                                          </tr>
+                                          <tr class="">
+                                            <th scope="row" class="text-dark">Pintura</th>
+                                            <div class="btn-group " data-toggle="buttons">
+                                                <td class="">
+                                                  <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="antropica_f_pintura"  name="antropica_f_pintura">
                                                   </div>
                                                 </td>
                                               </div>
@@ -733,7 +743,7 @@
                                           <div class="" data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                  <input class="form-check-input" type="checkbox" role="switch" id="mecanica_c_heridas" name="mecanica_c_heridas" >
                                               </div>
                                             </td>
                                           </div>
@@ -743,7 +753,7 @@
                                           <div class="btn-group " data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="mecanica_c_quemaduras" name="mecanica_c_quemaduras" >
                                                 </div>
                                               </td>
                                             </div>
@@ -753,7 +763,7 @@
                                           <div class="btn-group " data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input  class="form-check-input" type="checkbox" role="switch" id="biologica_c_defoliacion" name="biologica_c_defoliacion" >
                                                 </div>
                                               </td>
                                             </div>
@@ -763,17 +773,17 @@
                                           <div class="btn-group " data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input  class="form-check-input " type="checkbox" role="switch" id="biologica_c_clorosis" name="biologica_c_clorosis" >
                                                 </div>
                                               </td>
                                             </div>
                                         </tr>
                                         <tr class="">
-                                          <th scope="row" class="text-dark">Minado / enroscamiento</th>
+                                          <th scope="row" class="text-dark">Minado / Enroscamiento</th>
                                           <div class="btn-group " data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input  class="form-check-input " type="checkbox" role="switch" id="biologica_c_minado" name="biologica_c_minado" >
                                                 </div>
                                               </td>
                                             </div>
@@ -783,7 +793,7 @@
                                           <div class="btn-group " data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input  class="form-check-input" type="checkbox" role="switch" id="biologica_c_necrosis"name="biologica_c_necrosis" >
                                                 </div>
                                               </td>
                                             </div>
@@ -793,7 +803,7 @@
                                           <div class="btn-group " data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input  class="form-check-input" type="checkbox" role="switch" id="biologica_c_parasitas" name="biologica_c_parasitas" >
                                                 </div>
                                               </td>
                                             </div>
@@ -803,7 +813,7 @@
                                           <div class="btn-group " data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input  class="form-check-input" type="checkbox" role="switch" id="antropica_c_poda" name="antropica_c_poda" >
                                                 </div>
                                               </td>
                                             </div>
@@ -813,7 +823,7 @@
                                           <div class="btn-group " data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input  class="form-check-input" type="checkbox" role="switch" id="antropica_c_contamatmosferica" name="antropica_c_contamatmosferica">
                                                 </div>
                                               </td>
                                             </div>
@@ -833,7 +843,7 @@
                                             <div class="" data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="general_r_sano" name="general_r_sano" >
                                                 </div>
                                               </td>
                                             </div>
@@ -843,7 +853,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input class="form-check-input" type="checkbox" role="switch" id="general_f_sano" name="general_f_sano" >
                                                   </div>
                                                 </td>
                                               </div>
@@ -853,7 +863,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="general_c_sano" name="general_c_sano" >
                                                   </div>
                                                 </td>
                                               </div>
@@ -951,7 +961,7 @@
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
                                             </div>
                                           </td>
                                         </div>
@@ -1423,11 +1433,18 @@ $(document).on('ready',function (){
          }); // close each()
      }); // close getJSON()
 
-     
-    $.getJSON('/static/js/lista_genero_arboles.json', function(json) { datos_json = json; });
- 
+
+     // Valores iniciales-
+    // Familia
+    document.getElementById("familia").value=datos_json["Acacia rubinia"][0]
+
+    // Género
+    document.getElementById("genero").value=datos_json["Acacia rubinia"][1]
+
+    // Nombre Científico
+    document.getElementById("nombre_cientifico").value=datos_json["Acacia rubinia"][2]
+    
  });
- asignar_nombre_comun();
 </script>
 
 

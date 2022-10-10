@@ -88,7 +88,73 @@ class Dasometria(models.Model):
     expcopaluz = models.TextField(null=False)
     diametro_ramas = models.TextField(null=True)
   
-
     class Meta:
         ordering = ["id"]
         db_table = 'dasometria'
+
+
+
+class EstadoFitosanitario(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    arbol_id = models.ForeignKey(Arbol, on_delete=models.CASCADE)
+    vitalidad = models.TextField(null=False)
+
+ #   tiposafectacion = models.TextField(null=True)
+    mecanica_fuste = models.BooleanField(null=False)
+    mecanica_copa = models.BooleanField(null=False)
+    mecanica_raiz = models.BooleanField(null=False)
+    
+    biologica_fuste = models.BooleanField(null=False)
+    biologica_copa = models.BooleanField(null=False)
+    biologica_raiz = models.BooleanField(null=False)
+
+    antropologica_fuste = models.BooleanField(null=False)
+    antropologica_copa = models.BooleanField(null=False)
+    antropologica_raiz = models.BooleanField(null=False)
+    
+    # Afectación de fuste
+    mecanica_f_heridas  = models.BooleanField(null=False)
+    mecanica_f_anillado  = models.BooleanField(null=False)
+    mecanica_f_quemaduras  = models.BooleanField(null=False)
+    biologica_f_perfobarrenado  = models.BooleanField(null=False)
+    biologica_f_necrosis  = models.BooleanField(null=False)
+    biologica_f_descortezado = models.BooleanField(null=False)
+    biologica_f_tumores = models.BooleanField(null=False)
+    antropica_f_poda = models.BooleanField(null=False)
+    antropica_f_escombros = models.BooleanField(null=False)
+    antropica_f_pintura = models.BooleanField(null=False)
+
+    # Afectación de Copa
+    mecanica_c_heridas  = models.BooleanField(null=False)
+    mecanica_c_quemaduras = models.BooleanField(null=False)
+    biologica_c_defoliacion = models.BooleanField(null=False)
+    biologica_c_clorosis = models.BooleanField(null=False)
+    biologica_c_minado = models.BooleanField(null=False)
+    biologica_c_necrosis = models.BooleanField(null=False)
+    biologica_c_parasitas = models.BooleanField(null=False)
+    antropica_c_poda = models.BooleanField(null=False)
+    antropica_c_contamatmosferica = models.BooleanField(null=False)
+
+    # Afectaciones de raices
+    mecanica_r_heridas  = models.BooleanField(null=False)
+    mecanica_r_quemaduras  = models.BooleanField(null=False)
+    biologica_r_necrosis = models.BooleanField(null=False)
+    antropica_r_poda = models.BooleanField(null=False)
+    antropica_r_escombro = models.BooleanField(null=False)
+    antropica_r_prd_toxicos = models.BooleanField(null=False)
+
+
+    # 
+    general_f_sano  = models.BooleanField(null=False)
+    general_c_sano = models.BooleanField(null=False)
+    general_r_sano = models.BooleanField(null=False)
+
+
+    comentarios = models.TextField(null=True)
+    modificadopor = models.TextField(null=True)
+    actualizado = models.DateTimeField(null=True)
+    version = models.DateField(null=True)
+
+    class Meta:
+        ordering = ["id"]
+        db_table = 'estadoFitosanitario'

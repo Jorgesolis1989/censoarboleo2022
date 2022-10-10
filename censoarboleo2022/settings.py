@@ -14,7 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import os
-from django.urls import reverse
+#from django.urls import reverse
 
 #from django.core.urlresolvers import reverse_lazy
 
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'censoarboleo2022.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'CENSOARBOREO2022',
+    'NAME': 'CENSOARBOLEO2022',
     'USER': 'postgres',
     'PASSWORD': 'admin123',
     'HOST': '127.0.0.1',
