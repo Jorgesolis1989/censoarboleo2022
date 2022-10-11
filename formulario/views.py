@@ -182,8 +182,7 @@ def formulario_view_1(request):
             dasometria_nuevo.fuste = fuste
 
             if fuste == "Fuste Único":
-                cap = request.POST["capa1"]
-                dasometria_nuevo.cap = cap
+                cap = request.POST["cap"]
             else:
                 cap1 = request.POST["capa1"]
                 cap2 = request.POST["capa2"]
@@ -201,7 +200,6 @@ def formulario_view_1(request):
 
             altura_fuste =  request.POST["comercial_fuste"]
             altura_arbol = request.POST["totalarbol"]
-            circunferencia = request.POST["circunferencia"]
 
             orientacion = request.POST["orientacion"]
             inclinacion = request.POST["inclinacion"]
@@ -212,7 +210,7 @@ def formulario_view_1(request):
             dasometria_nuevo.inclinacion = inclinacion
             
             # Circunferencia
-            dasometria_nuevo.circunferencia = circunferencia
+            dasometria_nuevo.circunferencia = 0
 
 
             diacopa_mayor = request.POST["ejemayor"]
@@ -477,10 +475,8 @@ def formulario_view_1(request):
             estadofitosanitario_nuevo.general_r_sano = general_r_sano
 
             estadofitosanitario_nuevo.arbol_id = arbol_nuevo
-            print(estadofitosanitario_nuevo.__str__)
 
             try:
-                print(estadofitosanitario_nuevo.__str__)
                 estadofitosanitario_nuevo.save()
             except Exception as e:
                 print(e)

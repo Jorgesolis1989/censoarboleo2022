@@ -35,15 +35,28 @@ function formNone(){
 }
 
 function formFusteUnico(){
+
+
     var table = document.getElementById("formViewUnico");
-    table.style.display = "none";
+    table.style.display = "block";
+
+    var table1 = document.getElementById("formViewPolifurcado");
+    table1.style.display = "none";
+
 }
 
 
 function formFusteFolicurcado(){
 
     var table = document.getElementById("formViewUnico");
+    table.style.display = "none";
+
+    var table = document.getElementById("formViewPolifurcado");
     table.style.display = "block";
+
+    
+  
+    
 }
 
 
@@ -199,7 +212,6 @@ function formshidde3(){
     const ejemayor = document.getElementById('ejemayor').value;
     const ejemenor = document.getElementById('ejemenor').value;
     const copa_viva = document.getElementById('copa_viva').value;
-    const circunferencia = document.getElementById('circunferencia').value;
     const copa_ausente = document.getElementById('copa_ausente').value;
     const sistemaradicular = document.getElementById('sistemaradicular').value;
     const diametro = document.getElementById('diametro').value;
@@ -226,11 +238,6 @@ function formshidde3(){
     if( totalarbol === '' ){
 
         alert('Error, debe llenar el campo estado Total Árbol')
-        return false
-    }
-
-    if (circunferencia === ''){
-        alert('Error, debe llenar el campo  Circuferencía')
         return false
     }
 
