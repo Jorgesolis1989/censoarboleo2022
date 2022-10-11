@@ -10,7 +10,8 @@
     <meta name="author" content="">
 
     <title>Censo Arbóreo Santiago de Cali 2022</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
     <!-- Custom fonts for this template -->
     <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -1438,6 +1439,7 @@ $(document).on('ready',function (){
          }); // close each()
      }); // close getJSON()
 
+     $.getJSON('/static/js/lista_genero_arboles.json', function(json) { datos_json = json; });
 
      // Valores iniciales-
     // Familia
