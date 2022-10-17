@@ -1,17 +1,24 @@
 from distutils.log import FATAL
+from fnmatch import translate
+from pickle import FALSE
 import re
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
-from formulario.models import EstadoFitosanitario , Dasometria, Arbol
+from formulario.models import EstadoFitosanitario , Dasometria, Arbol, Vulnerabilidad, Recomendacion_e_Intervencion
+from django.utils import timezone
+from django.conf import settings
+
+
 #from censoarboleo2022.formulario import forms
 from formulario.forms import Formulario_1
 # Create your views here.
 
+timezone.activate(settings.TIME_ZONE)
 
 def formulario_view_1(request):
     
-    if request.method == 'POST':
+    if request.method == 'POST' and 'btnFinalizar' in request.POST:
         form = Formulario_1(request.POST)
         #latitude = form.cleaned_data["latitude"] 
         if form.is_valid():
@@ -191,6 +198,9 @@ def formulario_view_1(request):
                 cap5 = request.POST["capa5"]
                 numtallos = request.POST["numero_tallos"]
 
+
+
+                dasometria_nuevo.cap = cap
                 dasometria_nuevo.cap1 = cap1
                 dasometria_nuevo.cap2 = cap2
                 dasometria_nuevo.cap3 = cap3
@@ -228,9 +238,12 @@ def formulario_view_1(request):
             dasometria_nuevo.copaviva = copaviva
             dasometria_nuevo.copausente = copa_ausente
 
-            diametro = request.POST["diametro"]
+            diametro_ramas = request.POST["diametro"]
 
-            dasometria_nuevo.diametro_ramas = diametro
+            dasometria_nuevo.diametro_ramas = diametro_ramas
+
+            sistemaradicular = request.POST["sistemaradicular"]
+            dasometria_nuevo.tiporaiz = sistemaradicular
 
             dasometria_nuevo.arbol_id = arbol_nuevo
 
@@ -243,250 +256,393 @@ def formulario_view_1(request):
 
             estadofitosanitario_nuevo = EstadoFitosanitario()
             #
-            
-            
-            print("vitalidad")
 
             vitalidad = request.POST["vitalidad"]
 
-
-            ############################################### Afectacion Fuste. 
-            mecanica_fuste = False
-            mecanica_f_heridas = False
-            mecanica_f_anillado = False
-            mecanica_f_quemaduras = False
-            
-            biologica_fuste = False
-            biologia_f_perfobarrenado = False
-            biologica_f_necrosis = False
-            biologica_f_descortezado = False
-            biologica_f_tumores = False
-            
-            antropologica_fuste = False
-            antropica_f_poda = False
-            antropica_f_escombros = False
-            antropica_f_pintura = False
-
-            
-            if "mecanica_f_heridas" in request.POST:
-                mecanica_f_heridas = True
-            
-            if "mecanica_f_quemaduras" in request.POST:
-                mecanica_f_quemaduras = True
-            
-            if "mecanica_f_anillado" in request.POST:
-                mecanica_f_anillado = True
-
-            if "biologia_f_perfobarrenado" in request.POST:
-                biologia_f_perfobarrenado = True
-
-            if "biologica_f_necrosis" in request.POST:
-                biologica_f_necrosis = True
-
-            if "biologica_f_descortezado" in request.POST:
-                biologica_f_descortezado = True
-
-            if "biologica_f_tumores" in request.POST:
-                biologica_f_tumores = True
-
-            if "antropica_f_poda" in request.POST:
-                antropica_f_poda = True
-
-            if "antropica_f_escombros" in request.POST:
-                antropica_f_escombros = True
-
-            if "antropica_f_pintura" in request.POST:
-                antropica_f_pintura = True
-
-            if(mecanica_f_heridas or  mecanica_f_quemaduras or  mecanica_f_anillado):
-                mecanica_fuste= True
-
-            if(biologica_f_necrosis or  biologica_f_descortezado or biologica_f_tumores or biologia_f_perfobarrenado):
-                biologica_fuste = True
-
-            if(antropica_f_poda or antropica_f_escombros or antropica_f_pintura):
-                antropologica_fuste = True
-
-            
-            
             estadofitosanitario_nuevo.vitalidad = vitalidad
-            estadofitosanitario_nuevo.mecanica_f_heridas = mecanica_f_heridas
-            estadofitosanitario_nuevo.mecanica_f_anillado = mecanica_f_anillado
-            estadofitosanitario_nuevo.mecanica_f_quemaduras = mecanica_f_quemaduras
-            estadofitosanitario_nuevo.mecanica_fuste = mecanica_fuste
-            
-            estadofitosanitario_nuevo.biologica_f_perfobarrenado =  biologia_f_perfobarrenado
-            estadofitosanitario_nuevo.biologica_f_necrosis = biologica_f_necrosis
-            estadofitosanitario_nuevo.biologica_f_descortezado = biologica_f_descortezado
-            estadofitosanitario_nuevo.biologica_f_tumores = biologica_f_tumores
-            estadofitosanitario_nuevo.biologica_fuste = biologica_fuste
-
-            estadofitosanitario_nuevo.antropica_f_escombros = antropica_f_escombros
-            estadofitosanitario_nuevo.antropica_f_poda = antropica_f_poda
-            estadofitosanitario_nuevo.antropica_f_pintura = antropica_f_pintura
-            estadofitosanitario_nuevo.antropologica_fuste = antropologica_fuste
-
-
-            ############################################### Afectacion Copa. 
-
-            mecanica_copa = False
-            mecanica_c_heridas = False
-            mecanica_c_quemaduras = False
-            
-            biologica_copa = False
-            biologica_c_defoliacion = False
-            biologica_c_clorosis = False
-            biologica_c_minado = False
-            biologica_c_necrosis = False
-            biologica_c_parasitas = False
-            
-            
-            antropologica_copa = False
-            antropica_c_poda = False
-            antropica_c_contamatmosferica = False
-
-            
-            if "mecanica_c_heridas" in request.POST:
-                mecanica_c_heridas = True
-            
-            if "mecanica_c_quemaduras" in request.POST:
-                mecanica_c_quemaduras = True
-            
-            if "biologica_c_defoliacion" in request.POST:
-                biologica_c_defoliacion = True
-
-            if "biologica_c_clorosis" in request.POST:
-                biologica_c_clorosis = True
-
-            if "biologica_c_minado" in request.POST:
-                biologica_c_minado = True
-
-            if "biologica_c_necrosis" in request.POST:
-                biologica_c_necrosis = True
-
-            if "biologica_c_parasitas" in request.POST:
-                biologica_c_parasitas = True
-
-            if "antropica_c_contamatmosferica" in request.POST:
-                antropica_c_contamatmosferica = True
-
-            if "antropica_c_poda" in request.POST:
-                antropica_c_poda = True
-
-
-            if(mecanica_c_heridas or  mecanica_c_quemaduras):
-                mecanica_copa= True
-
-            if(biologica_c_defoliacion or  biologica_c_clorosis or biologica_c_minado or biologica_c_necrosis or biologica_c_parasitas):
-                biologica_copa = True
-
-            if(antropica_c_contamatmosferica or antropica_c_poda):
-                antropologica_copa = True
-
-            
-            #Asignamos 
-            estadofitosanitario_nuevo.mecanica_c_heridas = mecanica_c_heridas
-            estadofitosanitario_nuevo.mecanica_c_quemaduras = mecanica_c_quemaduras
-            estadofitosanitario_nuevo.mecanica_copa = mecanica_copa
-            
-            estadofitosanitario_nuevo.biologica_c_defoliacion =  biologica_c_defoliacion
-            estadofitosanitario_nuevo.biologica_c_clorosis = biologica_c_clorosis
-            estadofitosanitario_nuevo.biologica_c_minado = biologica_c_minado
-            estadofitosanitario_nuevo.biologica_c_necrosis = biologica_c_necrosis
-            estadofitosanitario_nuevo.biologica_c_parasitas = biologica_c_parasitas
-            estadofitosanitario_nuevo.biologica_copa = biologica_copa
-
-            estadofitosanitario_nuevo.antropica_c_contamatmosferica = antropica_c_contamatmosferica
-            estadofitosanitario_nuevo.antropica_c_poda = antropica_c_poda
-            estadofitosanitario_nuevo.antropologica_copa = antropologica_copa
-        
-
-############################################### Afectacion  Raices. 
-            mecanica_raiz = False
-            mecanica_r_heridas  = False
-            mecanica_r_quemaduras  = False
-
-            biologica_r_necrosis = False
-            biologica_raiz = False
-            
-            antropica_r_poda = False
-            antropica_r_escombro =False
-            antropica_r_prd_toxicos = False
-            antropica_raiz = False
-
-            if "mecanica_r_heridas" in request.POST:
-                mecanica_r_heridas = True
-            
-            if "mecanica_r_quemaduras" in request.POST:
-                mecanica_r_quemaduras = True
-            
-            if "biologica_r_necrosis" in request.POST:
-                biologica_r_necrosis = True
-                        
-            if "antropica_r_poda" in request.POST:
-                antropica_r_poda = True
-                
-            if "antropica_r_escombro" in request.POST:
-                antropica_r_escombro = True
-                            
-            if "antropica_r_prd_toxicos" in request.POST:
-                antropica_r_prd_toxicos = True
-
-            if(mecanica_r_heridas or  mecanica_r_quemaduras):
-                mecanica_raiz = True
-
-            if(biologica_r_necrosis):
-                biologica_raiz = True
-
-            if(antropica_r_poda or antropica_r_escombro or antropica_r_prd_toxicos ):
-                antropica_raiz = True
-
-
-            #Asignamos 
-            estadofitosanitario_nuevo.mecanica_r_heridas = mecanica_r_heridas
-            estadofitosanitario_nuevo.mecanica_r_quemaduras = mecanica_r_quemaduras
-            estadofitosanitario_nuevo.mecanica_raiz = mecanica_raiz
-            
-            estadofitosanitario_nuevo.biologica_r_necrosis =  biologica_r_necrosis
-            estadofitosanitario_nuevo.biologica_raiz = biologica_raiz
-
-            estadofitosanitario_nuevo.antropica_r_poda = antropica_r_poda
-            estadofitosanitario_nuevo.antropica_r_escombro = antropica_r_escombro
-            estadofitosanitario_nuevo.antropica_r_prd_toxicos = antropica_r_prd_toxicos
-            estadofitosanitario_nuevo.antropologica_raiz = antropica_raiz
-
-################################################Estado general
-
-            general_f_sano = False
-            general_c_sano = False
-            general_r_sano = False
-
-            if "general_f_sano" in request.POST:
-                general_f_sano = True
-
-            if "general_c_sano" in request.POST:
-                general_c_sano = True
-
-            if "general_r_sano" in request.POST:
-                general_r_sano = True
-
-            estadofitosanitario_nuevo.general_f_sano =general_f_sano
-            estadofitosanitario_nuevo.general_c_sano = general_c_sano
-            estadofitosanitario_nuevo.general_r_sano = general_r_sano
-
             estadofitosanitario_nuevo.arbol_id = arbol_nuevo
 
+            estadofitosanitario_nuevo = crear_EstadoFitosanitario(estadofitosanitario_nuevo, request)
+
+        
             try:
                 estadofitosanitario_nuevo.save()
             except Exception as e:
                 print(e)
 
-     
+############################################################# Tabla Vulnerabilidad
+
+            vulnerabilidad = Vulnerabilidad()
+
+            vulnerabilidad.arbol_id = arbol_nuevo
+
+            personas = False
+            construcciones = False
+            redes_aereas = False
+            vehiculos = False
+
+
+
+            if "personas" in request.POST:
+                personas = True
+
+            if "construcciones" in request.POST:
+                construcciones = True
+
+            if "redes_aereas" in request.POST:
+                redes_aereas = True
+            
+            if "vehiculos" in request.POST:
+                vehiculos = True
+
+            vulnerabilidad.personas = personas
+            vulnerabilidad.construcciones = construcciones
+            vulnerabilidad.redes_aereas = redes_aereas
+            vulnerabilidad.vehiculos = vehiculos
+
+            try:
+                vulnerabilidad.save()
+            except Exception as e:
+                print(e)
+
+############################################################# Tabla Recomendaciones e Intervención
+
+            recomendacion_e_intervencion = Recomendacion_e_Intervencion()
+
+            erradicacion = False
+            poda_aclareo = False
+            poda_equilibrio = False
+            poda_formacion = False
+            poda_limpieza = False
+            poda_ramas_laterales = False
+            poda_ramas_secas  = False
+            poda_sanitaria = False
+            poda_reduccion_altura = False
+            poda_redes_secundarias = False
+            poda_limpieza_parasitas = False
+            poda_despeje_redes = False
+            poda_reduccion_altura = False
+            transplante = False
+            eliminar_piso_duro = False
+
+
+            if "erradicacion" in request.POST:
+                erradicacion = True
+
+            if "poda_aclareo" in request.POST:
+                poda_aclareo = True
+
+            if "poda_equilibrio" in request.POST:
+                poda_equilibrio = True
+
+            if "poda_formacion" in request.POST:
+                poda_formacion = True
+
+            if "poda_limpieza" in request.POST:
+                poda_limpieza = True
+
+            if "poda_ramas_laterales" in request.POST:
+                poda_ramas_laterales = True
+
+            if "poda_ramas_secas" in request.POST:
+                poda_ramas_secas = True
+
+            if "poda_sanitaria" in request.POST:
+                poda_sanitaria = True
+
+            if "poda_redes_secundarias" in request.POST:
+                poda_redes_secundarias = True
+
+            if "poda_reduccion_altura" in request.POST:
+                poda_reduccion_altura = True
+
+            if "poda_despeje_redes" in request.POST:
+                poda_despeje_redes = True
+
+            if "transplante" in request.POST:
+                transplante = True
+
+            if "eliminar_piso_duro" in request.POST:
+                eliminar_piso_duro = True
+
+        
+            recomendacion_e_intervencion.erradicacion = erradicacion
+            recomendacion_e_intervencion.poda_aclareo = poda_aclareo
+            recomendacion_e_intervencion.poda_equilibrio = poda_equilibrio
+            recomendacion_e_intervencion.poda_formacion = poda_formacion
+            recomendacion_e_intervencion.poda_limpieza = poda_limpieza
+            recomendacion_e_intervencion.poda_ramas_laterales = poda_ramas_laterales
+            recomendacion_e_intervencion.poda_ramas_secas = poda_ramas_secas
+            recomendacion_e_intervencion.poda_sanitaria = poda_sanitaria
+            recomendacion_e_intervencion.poda_reduccion_altura = poda_reduccion_altura
+            recomendacion_e_intervencion.poda_redes_secundarias = poda_redes_secundarias
+            recomendacion_e_intervencion.poda_despeje_redes = poda_despeje_redes
+            recomendacion_e_intervencion.transplante = transplante
+            recomendacion_e_intervencion.eliminar_piso_duro = eliminar_piso_duro
+
+
+
+#################### pendiente 
+#               poda_limpieza_parasitas
+#               control fitosanitario
+
+            recomendacion_e_intervencion.arbol_id = arbol_nuevo
+            recomendacion_e_intervencion.poda_limpieza_parasitas = poda_limpieza_parasitas
+            recomendacion_e_intervencion.control_fitosanitario = False
+
+
+            try:
+                recomendacion_e_intervencion.save()
+            except Exception as e:
+                print(e)
+
+
         else:
             print("No es valido")
+
+
+
+
+
 
     else:
         form = Formulario_1()
 
     return render(request, 'formulario.html', {'form': form})
+
+
+
+def crear_EstadoFitosanitario(estadofitosanitario_nuevo, request):
+
+    mecanica_fuste = False
+    mecanica_f_heridas = False
+    mecanica_f_anillado = False
+    mecanica_f_quemaduras = False
+    
+    biologica_fuste = False
+    biologia_f_perfobarrenado = False
+    biologica_f_necrosis = False
+    biologica_f_descortezado = False
+    biologica_f_tumores = False
+    
+    antropologica_fuste = False
+    antropica_f_poda = False
+    antropica_f_escombros = False
+    antropica_f_pintura = False
+
+    mecanica_copa = False
+    mecanica_c_heridas = False
+    mecanica_c_quemaduras = False
+    
+    biologica_copa = False
+    biologica_c_defoliacion = False
+    biologica_c_clorosis = False
+    biologica_c_minado = False
+    biologica_c_necrosis = False
+    biologica_c_parasitas = False
+    
+    
+    antropologica_copa = False
+    antropica_c_poda = False
+    antropica_c_contamatmosferica = False
+
+    mecanica_raiz = False
+    mecanica_r_heridas  = False
+    mecanica_r_quemaduras  = False
+
+    biologica_r_necrosis = False
+    biologica_raiz = False
+    
+    antropica_r_poda = False
+    antropica_r_escombro =False
+    antropica_r_prd_toxicos = False
+    antropica_raiz = False
+
+    general_f_sano = False
+    general_c_sano = False
+    general_r_sano = False
+
+    if estadofitosanitario_nuevo.vitalidad == "Regular":
+
+    ############################################### Afectacion Fuste. 
+
+        if "mecanica_f_heridas" in request.POST:
+            mecanica_f_heridas = True
+        
+        if "mecanica_f_quemaduras" in request.POST:
+            mecanica_f_quemaduras = True
+        
+        if "mecanica_f_anillado" in request.POST:
+            mecanica_f_anillado = True
+
+        if "biologia_f_perfobarrenado" in request.POST:
+            biologia_f_perfobarrenado = True
+
+        if "biologica_f_necrosis" in request.POST:
+            biologica_f_necrosis = True
+
+        if "biologica_f_descortezado" in request.POST:
+            biologica_f_descortezado = True
+
+        if "biologica_f_tumores" in request.POST:
+            biologica_f_tumores = True
+
+        if "antropica_f_poda" in request.POST:
+            antropica_f_poda = True
+
+        if "antropica_f_escombros" in request.POST:
+            antropica_f_escombros = True
+
+        if "antropica_f_pintura" in request.POST:
+            antropica_f_pintura = True
+
+        if(mecanica_f_heridas or  mecanica_f_quemaduras or  mecanica_f_anillado):
+            mecanica_fuste= True
+
+        if(biologica_f_necrosis or  biologica_f_descortezado or biologica_f_tumores or biologia_f_perfobarrenado):
+            biologica_fuste = True
+
+        if(antropica_f_poda or antropica_f_escombros or antropica_f_pintura):
+            antropologica_fuste = True
+
+    
+    
+
+
+    ############################################### Afectacion Copa. 
+
+        
+        if "mecanica_c_heridas" in request.POST:
+            mecanica_c_heridas = True
+        
+        if "mecanica_c_quemaduras" in request.POST:
+            mecanica_c_quemaduras = True
+        
+        if "biologica_c_defoliacion" in request.POST:
+            biologica_c_defoliacion = True
+
+        if "biologica_c_clorosis" in request.POST:
+            biologica_c_clorosis = True
+
+        if "biologica_c_minado" in request.POST:
+            biologica_c_minado = True
+
+        if "biologica_c_necrosis" in request.POST:
+            biologica_c_necrosis = True
+
+        if "biologica_c_parasitas" in request.POST:
+            biologica_c_parasitas = True
+
+        if "antropica_c_contamatmosferica" in request.POST:
+            antropica_c_contamatmosferica = True
+
+        if "antropica_c_poda" in request.POST:
+            antropica_c_poda = True
+
+
+        if(mecanica_c_heridas or  mecanica_c_quemaduras):
+            mecanica_copa= True
+
+        if(biologica_c_defoliacion or  biologica_c_clorosis or biologica_c_minado or biologica_c_necrosis or biologica_c_parasitas):
+            biologica_copa = True
+
+        if(antropica_c_contamatmosferica or antropica_c_poda):
+            antropologica_copa = True
+
+    
+
+############################################### Afectacion  Raices. 
+
+
+        if "mecanica_r_heridas" in request.POST:
+            mecanica_r_heridas = True
+        
+        if "mecanica_r_quemaduras" in request.POST:
+            mecanica_r_quemaduras = True
+        
+        if "biologica_r_necrosis" in request.POST:
+            biologica_r_necrosis = True
+                    
+        if "antropica_r_poda" in request.POST:
+            antropica_r_poda = True
+            
+        if "antropica_r_escombro" in request.POST:
+            antropica_r_escombro = True
+                        
+        if "antropica_r_prd_toxicos" in request.POST:
+            antropica_r_prd_toxicos = True
+
+        if(mecanica_r_heridas or  mecanica_r_quemaduras):
+            mecanica_raiz = True
+
+        if(biologica_r_necrosis):
+            biologica_raiz = True
+
+        if(antropica_r_poda or antropica_r_escombro or antropica_r_prd_toxicos ):
+            antropica_raiz = True
+
+
+################################################Estado general
+
+        if "general_f_sano" in request.POST:
+            general_f_sano = True
+
+        if "general_c_sano" in request.POST:
+            general_c_sano = True
+
+        if "general_r_sano" in request.POST:
+            general_r_sano = True
+
+    
+    #Asignamos 
+    estadofitosanitario_nuevo.mecanica_c_heridas = mecanica_c_heridas
+    estadofitosanitario_nuevo.mecanica_c_quemaduras = mecanica_c_quemaduras
+    estadofitosanitario_nuevo.mecanica_copa = mecanica_copa
+    
+    estadofitosanitario_nuevo.biologica_c_defoliacion =  biologica_c_defoliacion
+    estadofitosanitario_nuevo.biologica_c_clorosis = biologica_c_clorosis
+    estadofitosanitario_nuevo.biologica_c_minado = biologica_c_minado
+    estadofitosanitario_nuevo.biologica_c_necrosis = biologica_c_necrosis
+    estadofitosanitario_nuevo.biologica_c_parasitas = biologica_c_parasitas
+    estadofitosanitario_nuevo.biologica_copa = biologica_copa
+
+    estadofitosanitario_nuevo.antropica_c_contamatmosferica = antropica_c_contamatmosferica
+    estadofitosanitario_nuevo.antropica_c_poda = antropica_c_poda
+    estadofitosanitario_nuevo.antropologica_copa = antropologica_copa
+
+    #Asignamos 
+    estadofitosanitario_nuevo.mecanica_r_heridas = mecanica_r_heridas
+    estadofitosanitario_nuevo.mecanica_r_quemaduras = mecanica_r_quemaduras
+    estadofitosanitario_nuevo.mecanica_raiz = mecanica_raiz
+    
+    estadofitosanitario_nuevo.biologica_r_necrosis =  biologica_r_necrosis
+    estadofitosanitario_nuevo.biologica_raiz = biologica_raiz
+
+    estadofitosanitario_nuevo.antropica_r_poda = antropica_r_poda
+    estadofitosanitario_nuevo.antropica_r_escombro = antropica_r_escombro
+    estadofitosanitario_nuevo.antropica_r_prd_toxicos = antropica_r_prd_toxicos
+    estadofitosanitario_nuevo.antropologica_raiz = antropica_raiz    
+    
+    estadofitosanitario_nuevo.mecanica_f_heridas = mecanica_f_heridas
+    estadofitosanitario_nuevo.mecanica_f_anillado = mecanica_f_anillado
+    estadofitosanitario_nuevo.mecanica_f_quemaduras = mecanica_f_quemaduras
+    estadofitosanitario_nuevo.mecanica_fuste = mecanica_fuste
+    
+    estadofitosanitario_nuevo.biologica_f_perfobarrenado =  biologia_f_perfobarrenado
+    estadofitosanitario_nuevo.biologica_f_necrosis = biologica_f_necrosis
+    estadofitosanitario_nuevo.biologica_f_descortezado = biologica_f_descortezado
+    estadofitosanitario_nuevo.biologica_f_tumores = biologica_f_tumores
+    estadofitosanitario_nuevo.biologica_fuste = biologica_fuste
+
+    estadofitosanitario_nuevo.antropica_f_escombros = antropica_f_escombros
+    estadofitosanitario_nuevo.antropica_f_poda = antropica_f_poda
+    estadofitosanitario_nuevo.antropica_f_pintura = antropica_f_pintura
+    estadofitosanitario_nuevo.antropologica_fuste = antropologica_fuste
+
+    estadofitosanitario_nuevo.general_f_sano =general_f_sano
+    estadofitosanitario_nuevo.general_c_sano = general_c_sano
+    estadofitosanitario_nuevo.general_r_sano = general_r_sano
+
+    
+    return estadofitosanitario_nuevo
 
