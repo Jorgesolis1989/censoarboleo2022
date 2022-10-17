@@ -13,16 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+from django.urls import path, re_path
 import django.views.static 
-from django.conf.urls import include,url
+from django.conf.urls import include
 from formulario import views
 import os
 from formulario.views import formulario_view_1 
 
 urlpatterns = [
     path('', views.formulario_view_1, name='formulario_1'),
-	path(r'^censoarboleo2022/media/(.*)$', django.views.static.serve, {'document_root' : os.path.join(os.path.dirname(__file__), 'media')}),
-
+	re_path(r'^censoarboleo2022/media/(.*)$', django.views.static.serve, {'document_root' : os.path.join(os.path.dirname(__file__), 'media')}),
 
 ]

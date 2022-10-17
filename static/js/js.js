@@ -62,7 +62,7 @@ function formFusteFolicurcado(){
 
 function formshidde(){
    
-    const direccion = document.getElementById('direccion').value;
+///  const direccion = document.getElementById('direccion').value;
     const PlacaAntigua = document.getElementById('PlacaAntigua').value;
     const comuna = document.getElementById('comuna').value;
     const nombre_comun = document.getElementById('nombre_comun').value;
@@ -78,12 +78,6 @@ function formshidde(){
     if( comuna === '' ){
 
         alert('Error, debe llenar el campo comuna')
-        return false
-    }
-
-    if( direccion === '' ){
-
-        alert('Error, debe llenar el campo Direccion')
         return false
     }
 
