@@ -268,7 +268,7 @@
                                     <select name="estado_madurez" id="estado_madurez" class="form-control">
                                         <option value="Plantón">Plantón</option>
                                         <option value="Juvenil">Juvenil</option>
-                                        <option value="Maduro">Maduro</option>
+                                        <option value="Adulto">Adulto</option>
                                         <option value="Longevo">Longevo</option>
                                     </select>
                                 </div>
@@ -307,9 +307,19 @@
                                 <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="emplazamiento">Emplazamiento</label>
                                     <select type="text" id="emplazamiento" name="emplazamiento" class="form-control">
+                                      <option value="Bahía de estacionamiento">Bahía de estacionamiento</option>
                                         <option value="Bulevares">Bulevares</option>
                                         <option value="Corredor férreo">Corredor férreo</option>
+                                        <option value="Escenario deportivo y/o cultural">Escenario deportivo y/o cultural</option>
+                                        <option value="Glorieta">Glorieta</option>
+                                        <option value="Institución Educativa">Institución Educativa</option>
+                                        <option value="Parque Urbano">Parque Urbano</option>
                                         <option value="Paseos">Paseos</option>
+                                        <option value="Plazas">Plazas</option>
+                                        <option value="Plazoleta">Plazoleta</option>  
+                                        <option value="Rondas de canales">Rondas de canales</option>
+                                        <option value="Rondas de ríos">Rondas de ríos</option>
+                                        <option value="Separador vial">Separador vial</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
@@ -337,7 +347,7 @@
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                         <input type="file" class="form-control" placeholder="Primera foto"
-                                        aria-label="First name" id="avatar" name="avatar">
+                                        aria-label="First name" id="avatar" name="avatar" accept="image/*">
                                     </div>
 
         
@@ -351,7 +361,7 @@
                                         </label>
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
-                                        <input type="file" class="form-control" placeholder="Segunda name"    aria-label="First name" id="avatar2" name="avatar2" >
+                                        <input type="file" class="form-control" placeholder="Segunda name"    aria-label="First name" id="avatar2" name="avatar2"  accept="image/*">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
@@ -364,7 +374,7 @@
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                         <input type="file" class="form-control" placeholder="Segunda Foto"
-                                        aria-label="Tercera Foto" id="avatar3" name="avatar3">
+                                        aria-label="Tercera Foto" id="avatar3" name="avatar3" accept="image/*">
                                     </div>
 
         
@@ -379,7 +389,7 @@
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                         <input type="file" class="form-control" placeholder="Foto 4"
-                                        aria-label="Cuarta name" id="avatar4" name="avatar4">
+                                        aria-label="Cuarta name" id="avatar4" name="avatar4" accept="image/*">
                                     </div>
                                 </div>
                             </div>
@@ -407,8 +417,8 @@
                                     
                                     <div style="display: block;" class="col-md-3 col-lg-3 mb-2" id="formViewUnico" name="formViewUnico">
   
-                                      <label for="CAP 1">CAP</label>
-                                      <input type="number" id="cap" name="cap" class="form-control">  
+                                      <label for="CAP 1">CAP (cm)</label>
+                                      <input type="number" id="cap" name="cap"   placeholder=" Valor en cm" class="form-control">  
                                   </div>
 
 
@@ -416,31 +426,31 @@
 
                                   <div class="col-md-3 col-lg-3 mb-2">
   
-                                    <label for="CAP 1">CAP 1(m)</label>
-                                    <input type="number" id="capa1" name="capa1" class="form-control">  
+                                    <label for="CAP 1">CAP 1(cm)</label>
+                                    <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control">  
                                 </div>
 
                                     <div class="col-md-3 col-lg-3 mb-2">
-                                      <label for="Capa 2">CAP 2(m)</label>
-                                      <input type="number" id="capa2" name="capa2" class="form-control">  
+                                      <label for="Capa 2">CAP 2(cm)</label>
+                                      <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control">  
                                   </div>
                                     <div class="col-md-3 col-lg-3 mb-2">
-                                      <label for="Capa 3">CAP 3(m)</label>
-                                      <input type="text" id="capa3" name="capa3" class="form-control">  
+                                      <label for="Capa 3">CAP 3(cm)</label>
+                                      <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control">  
                                   </div>
                                     <div class="col-md-3 col-lg-3 mb-2">
-                                      <label for="Placa Antigua">CAP 4(m)</label>
-                                      <input type="text" id="capa4" name="capa4" class="form-control">  
+                                      <label for="Placa Antigua">CAP 4(cm)</label>
+                                      <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control">  
                                   </div>
                                     <div class="col-md-3 col-lg-3 mb-2">
-                                      <label for="Placa Antigua">CAP 5(m)</label>
-                                      <input type="text" id="capa5" name="capa5" class="form-control">  
+                                      <label for="Placa Antigua">CAP 5(cm)</label>
+                                      <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control">  
                                   </div>
 
                                   <div class="col-md-3 col-lg-3 mb-2">
   
                                     <label for="Tallos">No de Tallos</label>
-                                    <input type="number" id="numero_tallos" name="numero_tallos" class="form-control">  
+                                    <input type="number" id="numero_tallos" name="numero_tallos" class="form-control" placeholder=" Valor en número entero">  
                                 </div>
 
                                 </div> 
@@ -459,10 +469,8 @@
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Placa Antigua">Inclinación</label>
                                       <select type="text" id="inclinacion" name="inclinacion" class="form-control">
-                                        <option value="Baja" selected>Baja</option>
-                                        <option value="Media">Media</option>
-                                        <option value="Alta">Alta</option>
-                                        <option value="Ninguna">Ninguna</option>
+                                        <option value="&lt;30" selected>&lt;30</option>
+                                        <option value="&gt;30">&gt;30</option>
                                       </select>
                                   </div>
                                     <div class="col-md-12 col-lg-12 text-center py-3">
@@ -491,7 +499,7 @@
                                         <input type="number" id="ejemenor"name="ejemenor"  class="form-control">
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
-                                        <label for="Placa Antigua">Exposición de la copa a la luz</label>
+                                        <label>Exposición de la copa a la luz</label>
                                         <select type="number" id="exposicionluz" name="exposicionluz" class="form-control"
                                             placeholder="CAP (m)">
                                             <option value="01">No recibe luz</option>
@@ -516,8 +524,8 @@
                                     <div class="col-md-12 col-lg-12 mb-2 ">
                                         <label for="Placa Antigua">Diámetro medio de ramas</label>
                                         <select type="text" id="diametro" name="diametro" class="form-control" placeholder="CAP (m)">
-                                          <option value="01"> &lt; 0.05m </option>
-                                          <option value="02"> &gt;= 0.05m </option>
+                                          <option value="&lt;0.05m"> &lt;0.05m </option>
+                                          <option value=">0.05"> &gt;=0.05m </option>
                                         </select> 
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2 ">
@@ -556,9 +564,6 @@
                                           
                                             <th style="width: 90%;" class="text-center">Raices</th>
                                             
-                                              <button type="button" class="btn" data-bs-toggle="popover" title="Ingresar Números" data-bs-content="Número correspondiente a un arbol">
-                                              ?
-                                            </button>
                                             <th class="text-center">NO/SI</th>
                                           </tr>
                                         </thead>
@@ -604,7 +609,7 @@
                                               </div>
                                           </tr>
                                           <tr class="">
-                                            <th scope="row" class="text-dark">Productos Tóxicos</th>
+                                            <th scope="row" class="text-dark">Productos tóxicos</th>
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
@@ -614,7 +619,7 @@
                                               </div>
                                           </tr>
                                           <tr class="">
-                                            <th scope="row" class="text-dark">Acumulación escombros</th>
+                                            <th scope="row" class="text-dark">Acumulación de escombros</th>
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
@@ -885,7 +890,7 @@
                                           <table class="table table-hover shadow ">
                                             <thead class="table-success">
                                               <tr>
-                                                <th style="width: 90%;" class="text-center">VULNERABILIDAD</th>
+                                                <th style="width: 90%;" class="text-center">Vulnerabilidad</th>
                                                 <th class="text-center">NO/SI</th>
                                               </tr>
                                             </thead>
@@ -895,7 +900,7 @@
                                                 <div class="" data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" placeholder="Transito o flujo peatonal" >
+                                                        <input class="form-check-input" type="checkbox" role="switch" name="personas" id="personas" placeholder="Transito o flujo peatonal" >
                                                     </div>
                                                   </td>
                                                 </div>
@@ -905,7 +910,7 @@
                                                 <div class="btn-group " data-toggle="buttons">
                                                     <td class="">
                                                       <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" placeholder="Transito o flujo vehicular" >
+                                                          <input class="form-check-input" type="checkbox" role="switch" name="vehiculos" id="vehiculos"  placeholder="Transito o flujo vehicular" >
                                                       </div>
                                                     </td>
                                                   </div>
@@ -915,7 +920,7 @@
                                                 <div class="btn-group " data-toggle="buttons">
                                                     <td class="">
                                                       <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                          <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"  placeholder="Existencia de construcciones afectables por caida de fuste o ramas" >
+                                                          <input  class="form-check-input" type="checkbox" role="switch" name="construcciones" id="construcciones" placeholder="Existencia de construcciones afectables por caida de fuste o ramas" >
                                                       </div>
                                                     </td>
                                                   </div>
@@ -925,7 +930,7 @@
                                                 <div class="btn-group " data-toggle="buttons">
                                                     <td class="">
                                                       <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                          <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked"  placeholder="" >
+                                                          <input  class="form-check-input " type="checkbox" role="switch" name="redes_aereas" id="redes_aereas"  placeholder="Existencoa" >
                                                       </div>
                                                     </td>
                                                   </div>
@@ -950,87 +955,69 @@
                               <table class="table table-hover shadow ">
                                   <thead class="table-success">
                                     <tr>
-                                      <th style="width: 90%;" class="text-center">Recomendaciones de Intervención</th>
+                                      <th style="width: 90%;" class="text-center">Recomendaciones de intervención</th>
                                       <th class="text-center">NO/SI</th>
                                     </tr>
                                   </thead>
                                   <tbody class="">
+                                   
                                     <tr class="">
-                                      <th scope="row" class="">Control Fitosanitario</th>
-                                      <div class="" data-toggle="buttons">
-                                        <td class="">
-                                          <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-                                          </div>
-                                        </td>
-                                      </div>
-                                    </tr>
-                                    <tr class="">
-                                      <th scope="row" class="text-dark">Erradicación o Tala</th>
+                                      <th scope="row" class="text-dark">Erradicación o tala</th>
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="erradicacion" name="erradicacion">
                                             </div>
                                           </td>
                                         </div>
                                     </tr>
                                     <tr class="">
-                                      <th scope="row" class="text-dark">Poda Aclareo - PA</th>
+                                      <th scope="row" class="text-dark">Poda aclareo - PA</th>
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="poda_aclareo" name="poda_aclareo">
+                                            </div>
+                                          </td>
+                                        </div>
+                                    </tr>
+                                   
+                                    <tr class="">
+                                      <th scope="row" class="text-dark">Poda equilibrio - PE</th>
+                                      <div class="btn-group " data-toggle="buttons">
+                                          <td class="">
+                                            <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                                <input  class="form-check-input " type="checkbox" role="switch" id="poda_equilibrio" name="poda_equilibrio" >
                                             </div>
                                           </td>
                                         </div>
                                     </tr>
                                     <tr class="">
-                                      <th scope="row" class="">Poda Control - PC</th>
-                                      <div class="" data-toggle="buttons">
-                                        <td class="">
-                                          <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-                                          </div>
-                                        </td>
-                                      </div>
-                                    </tr>
-                                    <tr class="">
-                                      <th scope="row" class="text-dark">Poda Equilibrio - PE</th>
+                                      <th scope="row" class="text-dark">Poda formación - PF</th>
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input " type="checkbox" role="switch" id="poda_formacion" name="poda_formacion" >
                                             </div>
                                           </td>
                                         </div>
                                     </tr>
                                     <tr class="">
-                                      <th scope="row" class="text-dark">Poda Formación - PF</th>
+                                      <th scope="row" class="text-dark">Poda limpieza - PL</th>
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input " type="checkbox" role="switch" id="poda_limpieza" name="poda_limpieza" >
                                             </div>
                                           </td>
                                         </div>
                                     </tr>
                                     <tr class="">
-                                      <th scope="row" class="text-dark">Poda Limpieza - PL</th>
+                                      <th scope="row" class="text-dark">Poda de realce - PRE</th>
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-                                            </div>
-                                          </td>
-                                        </div>
-                                    </tr>
-                                    <tr class="">
-                                      <th scope="row" class="text-dark">Poda de Realce - PRE</th>
-                                      <div class="btn-group " data-toggle="buttons">
-                                          <td class="">
-                                            <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input " type="checkbox" role="switch" id="poda_realce" name="poda_realce" >
                                             </div>
                                           </td>
                                         </div>
@@ -1040,7 +1027,7 @@
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="poda_ramas_laterales" name="poda_ramas_laterales" >
                                             </div>
                                           </td>
                                         </div>
@@ -1050,47 +1037,49 @@
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="poda_ramas_secas" name="poda_ramas_secas" >
                                             </div>
                                           </td>
                                         </div>
                                     </tr>
                                     <tr class="">
-                                      <th scope="row" class="text-dark">Poda Sanitaria - PS</th>
+                                      <th scope="row" class="text-dark">Poda sanitaria - PS</th>
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="poda_sanitaria" name="poda_sanitaria" >
                                             </div>
                                           </td>
                                         </div>
                                     </tr>
+                                    <tr class="">
+                                      <th scope="row" class="text-dark">Poda redes secundarias - PRS</th>
+                                      <div class="btn-group " data-toggle="buttons">
+                                          <td class="">
+                                            <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="poda_redes_secundarias" name="poda_redes_secundarias">
+                                            </div>
+                                          </td>
+                                        </div>
+                                    </tr>
+                                   
                                     <tr class="">
                                       <th scope="row" class="text-dark">Reducción de altura - PRA</th>
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="poda_reduccion_altura" name="poda_reduccion_altura" >
                                             </div>
                                           </td>
                                         </div>
                                     </tr>
-                                    <tr class="">
-                                      <th scope="row" class="text-dark">Árbol energizado - PAE</th>
-                                      <div class="btn-group " data-toggle="buttons">
-                                          <td class="">
-                                            <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-                                            </div>
-                                          </td>
-                                        </div>
-                                    </tr>
+                                 
                                     <tr class="">
                                       <th scope="row" class="text-dark">Despeje de redes - PCDR</th>
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="poda_despeje_redes" name="poda_despeje_redes">
                                             </div>
                                           </td>
                                         </div>
@@ -1100,7 +1089,7 @@
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="transplante" name="transplante" >
                                             </div>
                                           </td>
                                         </div>
@@ -1110,33 +1099,62 @@
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="eliminar_piso_duro" name="eliminar_piso_duro" >
                                             </div>
                                           </td>
                                         </div>
                                     </tr>
-                                    <tr class="">
-                                      <th scope="row" class="text-dark">Poda Limpieza - PL</th>
-                                      <div class="btn-group " data-toggle="buttons">
-                                          <td class="">
-                                            <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-                                            </div>
-                                          </td>
-                                        </div>
-                                    </tr>
-                                    <tr class="">
-                                      <th scope="row" class="text-dark">Poda Limpieza - PL</th>
-                                      <div class="btn-group " data-toggle="buttons">
-                                          <td class="">
-                                            <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-                                            </div>
-                                          </td>
-                                        </div>
-                                    </tr>
+                                 
                                   </tbody>
                                 </table>
+                            </div>
+
+                            <div class="col-md-12 col-lg-12 mb-2 ">
+                            <table class="table table-hover shadow ">
+                                <thead class="table-success">
+                                  <tr>
+                                    <th style="width: 90%;" class="text-center">Intervención fitosanitario</th>
+                                    <th class="text-center">NO/SI</th>
+                                  </tr>
+                                </thead>
+                                <tr class="">
+                                  <th scope="row" class="">Control Fitosanitario</th>
+                                  <div class="" data-toggle="buttons">
+                                    <td class="">
+                                      <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                      </div>
+                                    </td>
+                                  </div>
+                                </tr>
+
+                                <tr class="">
+                                  <th scope="row" class="text-dark">Limpieza parásitas - LP</th>
+                                  <div class="btn-group " data-toggle="buttons">
+                                      <td class="">
+                                        <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                            <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                        </div>
+                                      </td>
+                                    </div>
+                                </tr>
+
+                                <tr class="">
+                                  <th scope="row" class="text-dark">Otros</th>
+                                  <div class="btn-group " data-toggle="buttons">
+                                      <td class="">
+                                        <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                            <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                                        </div>
+                                      </td>
+                                    </div>
+                                </tr>
+
+
+                                <tbody>
+
+                                </tbody>
+                            </table>
                             </div>
 
                               <div class="form-floating">
@@ -1205,7 +1223,7 @@
                             </li>
                             <li class="page-item">
                  <!--               <button class="btn btn-outline-warning"type="submit">Finalizar</button>--> 
-                 <button name="btnload" type="submit" class="finish btn btn-warning">Finalizar</button>
+                 <button name="btnFinalizar" type="submit" class="finish btn btn-warning">Finalizar</button>
                             </li>
                         </ul>
                     </nav>

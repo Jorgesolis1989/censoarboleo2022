@@ -2,6 +2,24 @@ from email.policy import default
 from pyexpat import model
 from time import timezone
 from django.db import models
+import os
+
+
+
+def path_and_rename(instance, filename):
+    upload_to = 'photos'
+    ext = filename.split('.')[-1]
+    # get filename
+    if instance.pk:
+        filename = '{}.{}'.format(instance.pk, ext)
+    else:
+        # set filename as random string
+        filename = '{}.{}'.format(uuid4().hex, ext)
+    # return the whole path to the file
+    return os.path.join(upload_to, filename)
+
+
+
 
 # Create your models here.
 class Arbol(models.Model):
@@ -41,17 +59,17 @@ class Arbol(models.Model):
     dist_confinamiento = models.IntegerField(null=True)
 
     
-    foto1 =  models.ImageField(upload_to='fotos_arboles/')
-    foto2 = models.ImageField(upload_to='fotos_arboles/')
+    foto1 =  models.ImageField(upload_to='fotos_arboles/' )
+    foto2 = models.ImageField(upload_to='fotos_arboles/' )
     foto3 = models.ImageField(upload_to='fotos_arboles/')
     foto4 = models.ImageField(upload_to='fotos_arboles/')
     
     observaciones = models.TextField(null=True)
     estado = models.TextField(null=True)
-    fecha_creado = models.DateTimeField(auto_now_add=True, blank=True)
-    modificadopor = models.TextField(null=True)
+    creado = models.DateTimeField(auto_now_add=True, blank=True)
+    modificado_por = models.TextField(null=True)
     actualizado =  models.DateTimeField(auto_now_add=True, blank=True)
-    version_fecha = models.DateField(auto_now_add=True, blank=True)
+    version = models.DateField(auto_now_add=True, blank=True)
 
     
     class Meta:
@@ -86,7 +104,15 @@ class Dasometria(models.Model):
     copaviva = models.FloatField(null=True) #Altura
     copausente = models.FloatField(null=True)
     expcopaluz = models.TextField(null=False)
+    tiporaiz = models.TextField(null=False)
     diametro_ramas = models.TextField(null=True)
+
+
+    comentarios = models.TextField(null=True)
+    modificadopor = models.TextField(null=True)
+    actualizado = models.DateTimeField(null=True)
+    version = models.DateField(null=True)
+
   
     class Meta:
         ordering = ["id"]
@@ -158,3 +184,56 @@ class EstadoFitosanitario(models.Model):
     class Meta:
         ordering = ["id"]
         db_table = 'estadoFitosanitario'
+
+
+class Vulnerabilidad(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    arbol_id = models.ForeignKey(Arbol, on_delete=models.CASCADE)
+    personas = models.BooleanField(null=False)
+    vehiculos =models.BooleanField(null=False)
+    construcciones =models.BooleanField(null=False)
+    redes_aereas =models.BooleanField(null=False)
+    
+    comentarios = models.TextField(null=True)
+    creado = models.DateField(auto_now_add=True, blank=True)
+    modificadopor = models.TextField(null=True)
+    actualizado = models.DateTimeField(null=True)
+    version = models.DateField(null=True)
+
+    class Meta:
+        ordering = ["id"]
+        db_table = 'vulnerabilidad'
+
+
+class Recomendacion_e_Intervencion(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    arbol_id = models.ForeignKey(Arbol, on_delete=models.CASCADE)
+    control_fitosanitario = models.BooleanField(null=False)
+    erradicacion =models.BooleanField(null=False)
+    poda_aclareo =models.BooleanField(null=False)
+    poda_equilibrio =models.BooleanField(null=False)
+    poda_formacion =models.BooleanField(null=False)
+    poda_limpieza =models.BooleanField(null=False) 
+    poda_ramas_laterales = models.BooleanField(null=False) 
+    poda_ramas_secas = models.BooleanField(null=False) 
+    poda_realce = models.BooleanField(null=False)
+    poda_sanitaria = models.BooleanField(null=False) 
+    poda_reduccion_altura = models.BooleanField(null=False)
+ 
+    poda_redes_secundarias = models.BooleanField(null=False)
+    poda_limpieza_parasitas =  models.BooleanField(null=False)
+    poda_despeje_redes =  models.BooleanField(null=False)
+    poda_reduccion_altura   =  models.BooleanField(null=False)
+    transplante = models.BooleanField(null=False)
+    eliminar_piso_duro = models.BooleanField(null=False)
+
+    comentarios = models.TextField(null=True)
+    creado = models.DateField(auto_now_add=True, blank=True)
+    modificadopor = models.TextField(null=True)
+    actualizado = models.DateTimeField(null=True)
+    version = models.DateField(null=True)
+
+    class Meta:
+        ordering = ["id"]
+        db_table = 'Recomendacion_e_intervencion'
+
