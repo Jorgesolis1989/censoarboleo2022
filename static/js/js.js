@@ -19,7 +19,20 @@ function ocultar() {
         document.getElementById("ocultar").style.display = "none";
     } else if (optionhidden == "Regular") {
         document.getElementById("ocultar").style.display = "block";
-    } 
+    }
+
+    if (optionhidden == "Buena" || optionhidden == "Regular"){
+        document.getElementById("controlfitosanitario_div").style.display = "block";
+        document.getElementById("intervencion").style.display = "block";
+        document.getElementById("talamuerto").style.display = "none";
+    }else if(optionhidden == "Mala")
+    {
+        document.getElementById("controlfitosanitario_div").style.display = "none";
+        document.getElementById("intervencion").style.display = "none";
+        document.getElementById("talamuerto").style.display = "block";
+    }
+
+
 
 }
 
@@ -54,8 +67,6 @@ function formFusteFolicurcado(){
     var table = document.getElementById("formViewPolifurcado");
     table.style.display = "block";
 
-    
-  
     
 }
 
@@ -341,3 +352,15 @@ function boton5(){
     
 }
 
+function tipoVitalidad(){
+
+    var valorvitalidad = document.getElementById("talamuerto");
+    valorvitalidad.
+    if 
+
+    var table = document.getElementById("talamuerto");
+    table.style.display = "block"; 
+
+
+
+}

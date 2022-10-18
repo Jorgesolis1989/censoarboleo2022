@@ -183,7 +183,7 @@ def formulario_view_1(request):
             cap3= 0
             cap4= 0
             cap5= 0
-            numtallos = 0
+            numtallos = 1
 
 
             dasometria_nuevo.fuste = fuste
@@ -206,7 +206,9 @@ def formulario_view_1(request):
                 dasometria_nuevo.cap3 = cap3
                 dasometria_nuevo.cap4 = cap4
                 dasometria_nuevo.cap5 = cap5
-                dasometria_nuevo.numtallos = numtallos
+            
+            
+            dasometria_nuevo.numtallos = numtallos
 
             altura_fuste =  request.POST["comercial_fuste"]
             altura_arbol = request.POST["totalarbol"]
@@ -324,6 +326,9 @@ def formulario_view_1(request):
             poda_reduccion_altura = False
             transplante = False
             eliminar_piso_duro = False
+            controlfitosanitario = False
+            otros_control_fitosanitario = False
+            porque_tala = ""
 
 
             if "erradicacion" in request.POST:
@@ -365,6 +370,21 @@ def formulario_view_1(request):
             if "eliminar_piso_duro" in request.POST:
                 eliminar_piso_duro = True
 
+            if "limpieza_parasistas" in request.POST:
+                poda_limpieza_parasitas = True
+
+            if "controlfitosanitario" in request.POST:
+                controlfitosanitario = True
+            
+            if "otros_control_fitosanitario" in request.POST:
+                otros_control_fitosanitario = True
+            
+            if estadofitosanitario_nuevo.vitalidad == "Mala":
+                erradicacion = True
+
+                if "porquetala" in request.POST:
+                    porque_tala = request.POST["porquetala"]
+
         
             recomendacion_e_intervencion.erradicacion = erradicacion
             recomendacion_e_intervencion.poda_aclareo = poda_aclareo
@@ -379,18 +399,12 @@ def formulario_view_1(request):
             recomendacion_e_intervencion.poda_despeje_redes = poda_despeje_redes
             recomendacion_e_intervencion.transplante = transplante
             recomendacion_e_intervencion.eliminar_piso_duro = eliminar_piso_duro
-
-
-
-#################### pendiente 
-#               poda_limpieza_parasitas
-#               control fitosanitario
-
             recomendacion_e_intervencion.arbol_id = arbol_nuevo
             recomendacion_e_intervencion.poda_limpieza_parasitas = poda_limpieza_parasitas
-            recomendacion_e_intervencion.control_fitosanitario = False
-
-
+            recomendacion_e_intervencion.control_fitosanitario = controlfitosanitario
+            recomendacion_e_intervencion.otros_control_fitosanitario = otros_control_fitosanitario
+            recomendacion_e_intervencion.porque_tala = porque_tala
+            
             try:
                 recomendacion_e_intervencion.save()
             except Exception as e:

@@ -216,7 +216,6 @@ class Recomendacion_e_Intervencion(models.Model):
     poda_limpieza =models.BooleanField(null=False) 
     poda_ramas_laterales = models.BooleanField(null=False) 
     poda_ramas_secas = models.BooleanField(null=False) 
-    poda_realce = models.BooleanField(null=False)
     poda_sanitaria = models.BooleanField(null=False) 
     poda_reduccion_altura = models.BooleanField(null=False)
  
@@ -226,7 +225,8 @@ class Recomendacion_e_Intervencion(models.Model):
     poda_reduccion_altura   =  models.BooleanField(null=False)
     transplante = models.BooleanField(null=False)
     eliminar_piso_duro = models.BooleanField(null=False)
-
+    otros_control_fitosanitario = models.BooleanField(null=False)
+    porque_tala= models.TextField(null=True)
     comentarios = models.TextField(null=True)
     creado = models.DateField(auto_now_add=True, blank=True)
     modificadopor = models.TextField(null=True)

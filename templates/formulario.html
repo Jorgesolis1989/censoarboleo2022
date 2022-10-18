@@ -301,7 +301,6 @@
                                         <option value="Piso Duro">Piso Duro</option>
                                         <option value="Vegetacion Ermegente">Vegetacion Ermegente</option>
                                         <option value="Tierra descubierta/arena">Tierra descubierta/arena</option>
-                                        <option value="Otro">Otro</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
@@ -456,23 +455,7 @@
                                 </div> 
 
 
-                                    <div class="col-md-12 col-lg-12 mb-2">
-                                        <label for="Orientación">Orientación</label>
-                                        <select type="text" id="orientacion" name="orientacion" class="form-control">
-                                          <option value="Hacia la construcción" selected>Hacia la construcción</option>
-                                          <option value="Hacia la vía">Hacia la vía</option>
-                                          <option value="En dirección de la vía">En dirección de la vía</option>
-                                          <option value="Ninguna">Ninguna</option>
-                                          <option value="Otra">Otra</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12 col-lg-12 mb-2">
-                                      <label for="Placa Antigua">Inclinación</label>
-                                      <select type="text" id="inclinacion" name="inclinacion" class="form-control">
-                                        <option value="&lt;30" selected>&lt;30</option>
-                                        <option value="&gt;30">&gt;30</option>
-                                      </select>
-                                  </div>
+                                  
                                     <div class="col-md-12 col-lg-12 text-center py-3">
                                         <h6 style="color: black;">Alturas (metros) :</h6>
                                     </div>
@@ -498,6 +481,25 @@
                                         <label for="">Eje menor</label>
                                         <input type="number" id="ejemenor"name="ejemenor"  class="form-control">
                                     </div>
+
+                                    <div class="col-md-12 col-lg-12 mb-2">
+                                      <label for="Orientación">Orientación</label>
+                                      <select type="text" id="orientacion" name="orientacion" class="form-control">
+                                        <option value="Hacia la construcción" selected>Hacia la construcción</option>
+                                        <option value="Hacia la vía">Hacia la vía</option>
+                                        <option value="En dirección de la vía">En dirección de la vía</option>
+                                        <option value="Ninguna">Ninguna</option>
+                                        <option value="Otra">Otra</option>  
+                                      </select>
+                                  </div>
+                                  <div class="col-md-12 col-lg-12 mb-2">
+                                    <label for="Placa Antigua">Inclinación</label>
+                                    <select type="text" id="inclinacion" name="inclinacion" class="form-control">
+                                      <option value="&lt;30" selected>&lt;30</option>
+                                      <option value="&gt;30">&gt;30</option>
+                                    </select>
+                                </div>
+
                                     <div class="col-md-12 col-lg-12 mb-2">
                                         <label>Exposición de la copa a la luz</label>
                                         <select type="number" id="exposicionluz" name="exposicionluz" class="form-control"
@@ -544,7 +546,7 @@
                           <div id="form4" style="display: none;">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <label for="firstName" class="form-label">Vitalidad</label>
+                                    <label for="vitalidad" class="form-label">Vitalidad</label>
                                     <select  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-control">
                                       <option value="Buena" selected>Buena (Sano)</option>
                                       <option value="Regular">Regular (Enfermo)</option>
@@ -950,8 +952,58 @@
                             </div>
                           </div>
 
-                          <div id="form5" style="display: none;">
-                            <div class="col-md-12 col-lg-12 mb-2 ">
+                          <div id="form5" style="display: none;" >
+
+                            <div class="col-md-12 col-lg-12 mb-2 " id="controlfitosanitario_div" style="display: block;">
+                              <table class="table table-hover shadow ">
+                                  <thead class="table-success">
+                                    <tr>
+                                      <th style="width: 90%;" class="text-center">Intervención fitosanitaria</th>
+                                      <th class="text-center">NO/SI</th>
+                                    </tr>
+                                  </thead>
+                                  <tr class="">
+                                    <th scope="row" class="">Control Fitosanitario</th>
+                                    <div class="" data-toggle="buttons">
+                                      <td class="">
+                                        <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="controlfitosanitario" name="controlfitosanitario" >
+                                        </div>
+                                      </td>
+                                    </div>
+                                  </tr>
+                                  <div id="fitosanitario">
+                                  <tr class="">
+                                    <th scope="row" class="text-dark">Limpieza parásitas - LP</th>
+                                    <div class="btn-group " data-toggle="buttons">
+                                        <td class="">
+                                          <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                              <input  class="form-check-input" type="checkbox" role="switch" id="limpieza_parasistas" name="limpieza_parasistas" >
+                                          </div>
+                                        </td>
+                                      </div>
+                                  </tr>
+  
+                                  <tr class="">
+                                    <th scope="row" class="text-dark">Otros</th>
+                                    <div class="btn-group " data-toggle="buttons">
+                                        <td class="">
+                                          <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                              <input  class="form-check-input" type="checkbox" role="switch" id="otros_control_fitosanitario" name="otros_control_fitosanitario" >
+                                          </div>
+                                        </td>
+                                      </div>
+                                  </tr>
+                                </div>
+  
+  
+                                  <tbody>
+  
+                                  </tbody>
+                              </table>
+                              </div>
+
+                            <div class="col-md-12 col-lg-12 mb-2 " id="intervencion" style="display: block;">
                               <table class="table table-hover shadow ">
                                   <thead class="table-success">
                                     <tr>
@@ -1109,60 +1161,47 @@
                                 </table>
                             </div>
 
-                            <div class="col-md-12 col-lg-12 mb-2 ">
-                            <table class="table table-hover shadow ">
-                                <thead class="table-success">
-                                  <tr>
-                                    <th style="width: 90%;" class="text-center">Intervención fitosanitario</th>
-                                    <th class="text-center">NO/SI</th>
+                            
+                            <div class="col-md-12 col-lg-12 mb-2 "  id="talamuerto" style="display: none;">
+                              <table class="table table-hover shadow ">
+                                  <thead class="table-success">
+                                    <tr>
+                                      <th style="width: 90%;" class="text-center">Recomendaciones de intervención</th>
+                                      <th class="text-center">NO/SI</th>
+                                    </tr>
+                                  </thead>
+                                  <tr class="">
+                                    <th scope="row" class="">Erradicación o tala</th>
+                                    <div class="" data-toggle="buttons">
+                                      <td class="">
+                                        <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                            <input class="form-check-input" disabled checked  type="checkbox" role="switch" id="erradicacion_tala_muerto" name="erradicacion_tala_muerto"  >
+                                        </div>
+                                      </td>
+                                    </div>
                                   </tr>
-                                </thead>
-                                <tr class="">
-                                  <th scope="row" class="">Control Fitosanitario</th>
-                                  <div class="" data-toggle="buttons">
-                                    <td class="">
-                                      <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-                                      </div>
-                                    </td>
-                                  </div>
-                                </tr>
-
-                                <tr class="">
-                                  <th scope="row" class="text-dark">Limpieza parásitas - LP</th>
-                                  <div class="btn-group " data-toggle="buttons">
-                                      <td class="">
-                                        <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                            <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-                                        </div>
-                                      </td>
-                                    </div>
-                                </tr>
-
-                                <tr class="">
-                                  <th scope="row" class="text-dark">Otros</th>
-                                  <div class="btn-group " data-toggle="buttons">
-                                      <td class="">
-                                        <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                            <input  class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-                                        </div>
-                                      </td>
-                                    </div>
-                                </tr>
-
-
-                                <tbody>
-
-                                </tbody>
-                            </table>
+                                  
+                            
+                                  <tbody>
+  
+                                  </tbody>
+                              </table>
+                            
+                               
+                              <div class="form-floating">
+                                <h6>¿Porqué tala?</h6>
+                              <textarea class="form-control"  placeholder="Leave a comment here" id="porquetala" name="porquetala" style="height: 100px"></textarea>
                             </div>
+                          </div>
+
 
                               <div class="form-floating">
                                 <h4>Comentarios en general</h4>
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                <textarea class="form-control" placeholder="Leave a comment here" id="comentarios_en_general" name="comentarios_en_general"  style="height: 100px"></textarea>
                                 
                               </div>
-
+                              <br>
+                              <br>
                           </div>
 
                            <!-- BOTON 1-->
