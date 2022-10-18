@@ -73,41 +73,24 @@ function formFusteFolicurcado(){
 
 function formshidde(){
    
-///  const direccion = document.getElementById('direccion').value;
-    const PlacaAntigua = document.getElementById('PlacaAntigua').value;
-    const comuna = document.getElementById('comuna').value;
-    const nombre_comun = document.getElementById('nombre_comun').value;
-    const estado_registro = document.getElementById('estado_registro').value;
-    const estado_madurez = document.getElementById('estado_madurez').value;
+
+    const PlacaAntigua = document.getElementById('PlacaAntigua');
+    const delet = document.getElementById('delet');
    
-///    if( !(/^\d{1,15}$/.test(PlacaAntigua)) ){
+    /*   Agregue una condicional para validar el formulario  Placa antigua solo se pueden digitar 10 numeros   */
 
-///        alert('Error, debe llenar el campo Placa Antigua')
-///        return 0
-///    }
-
-    if( comuna === '' ){
-
-        alert('Error, debe llenar el campo comuna')
-        return false
+    if( !(/^\d{10}$/.test(PlacaAntigua.value)) ) {
+        PlacaAntigua.className+=' is-invalid ';
+        return false;
+    }else{
+        //PlacaAntigua.(PlacaAntigua.value);
+      delet.remove('delet');
+      PlacaAntigua.classList.remove('is-invalid');
+     
     }
+    
+        
 
-    if( nombre_comun === '' ){
-
-        alert('Error, debe llenar el campo Nombre Comun')
-        return false
-    }
-
-    if( estado_registro === '' ){
-
-        alert('Error, debe llenar el campo Estado Registro')
-        return false
-    }
-
-    if (estado_madurez === ''){
-        alert('Error, debe llenar el campo estado madurez')
-        return false
-    }
 
         var table = document.getElementById("form1");
         table.style.display = "none";
@@ -122,7 +105,7 @@ function formshidde(){
         var table = document.getElementById("boton2");
         table.style.display = "block";
     
-       
+     
 
 }
 // Boton 2
