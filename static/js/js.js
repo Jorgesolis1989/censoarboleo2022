@@ -83,9 +83,10 @@ function formshidde(){
         PlacaAntigua.className+=' is-invalid ';
         return false;
     }else{
-        //PlacaAntigua.(PlacaAntigua.value);
-      delet.remove('delet');
+    
+      delet.classList.remove('delet');
       PlacaAntigua.classList.remove('is-invalid');
+      PlacaAntigua.className+=' is-valid ';
      
     }
     
@@ -130,28 +131,40 @@ function showanterior(){
 
 function formshidde2(){
 
-    const qr = document.getElementById('qr').value;
-    const cobertura = document.getElementById('cobertura').value;
-    const emplazamiento = document.getElementById('emplazamiento').value;
+    const qr = document.getElementById('qr');
+    const avatar = document.getElementById('avatar');
+    const avatar2 = document.getElementById('avatar2');
+    const delet = document.getElementById('delet');
 
-    if( !(/^\d{1,15}$/.test(qr)) ){
-
-        alert('Error, debe llenar el campo qr')
-        return 0
+    if( !(/^\d{1,15}$/.test(qr.value)) ){
+        qr.className+=' is-invalid ';
+        return false;
+    }else{
+    
+      delet.classList.remove('delet');
+      qr.classList.remove('is-invalid');
+      qr.className+=' is-valid ';
+     
     }
-
-    if( cobertura === '' ){
-
-        alert('Error, debe llenar el campo cobertura')
+    
+    if( avatar.value === '' ){
+        avatar.className+=' is-invalid ';
         return false
+    }else{
+    
+      avatar.classList.remove('is-invalid');
+      avatar.className+=' is-valid ';
     }
 
-    if( emplazamiento === '' ){
-
-        alert('Error, debe llenar el campo emplazamiento')
+    if( avatar2.value === '' ){
+        avatar2.className+=' is-invalid ';
         return false
+    }else{
+    
+      avatar2.classList.remove('is-invalid');
+      avatar2.className+=' is-valid ';
     }
-
+    
     
     var table = document.getElementById("form2");
     table.style.display = "none";
@@ -190,21 +203,23 @@ function show3(){
 
 }
 
+/* Validaciones terminadas, De momento solicito con exactitud, que necesitan los campos, de cuantos numneros y sus condicionales */
 
+/*  Boton de Validacion 3  */
 function formshidde3(){
 
     const orientacion = document.getElementById('orientacion').value;
     const inclinacion = document.getElementById('inclinacion').value;
-    const comercial = document.getElementById('comercial_fuste').value;
-    const totalarbol = document.getElementById('totalarbol').value;
-    const ejemayor = document.getElementById('ejemayor').value;
-    const ejemenor = document.getElementById('ejemenor').value;
-    const copa_viva = document.getElementById('copa_viva').value;
-    const copa_ausente = document.getElementById('copa_ausente').value;
+    const comercial = document.getElementById('comercial_fuste');
+    const totalarbol = document.getElementById('totalarbol');
+    const ejemayor = document.getElementById('ejemayor');
+    const ejemenor = document.getElementById('ejemenor');
+    const copa_viva = document.getElementById('copa_viva');
+    const copa_ausente = document.getElementById('copa_ausente');
     const sistemaradicular = document.getElementById('sistemaradicular').value;
     const diametro = document.getElementById('diametro').value;
 
-
+   
     if( orientacion === '' ){
 
         alert('Error, debe llenar el campo orientacion')
@@ -217,39 +232,60 @@ function formshidde3(){
         return false
     }
 
-    if( comercial === '' ){
-
-        alert('Error, debe llenar el campo comercial')
-        return false
+    if( !(/^\d{2,8}$/.test(comercial.value)) ){
+        comercial.className+=' is-invalid ';
+        return false;
+    }else{
+        comercial.classList.remove('is-invalid');
+        comercial.className+=' is-valid ';
+     
     }
 
-    if( totalarbol === '' ){
-
-        alert('Error, debe llenar el campo estado Total Árbol')
-        return false
+    if( !(/^\d{2,8}$/.test(totalarbol.value)) ){
+        totalarbol.className+=' is-invalid ';
+        return false;
+    }else{
+        totalarbol.classList.remove('is-invalid');
+        totalarbol.className+=' is-valid ';
+     
     }
 
     
-    if( !(/^\d{1,15}$/.test(ejemayor)) ){
-
-        alert('Error, debe llenar el campo Eje Mayor')
-        return 0
+    if( !(/^\d{2,8}$/.test(ejemayor.value)) ){
+        ejemayor.className+=' is-invalid ';
+        return false;
+    }else{
+        ejemayor.classList.remove('is-invalid');
+        ejemayor.className+=' is-valid ';
+     
     }
 
-    if( !(/^\d{1,15}$/.test(ejemenor)) ){
-
-        alert('Error, debe llenar el campo Eje Menor')
-        return 0
+    if( !(/^\d{2,8}$/.test(ejemenor.value)) ){
+        ejemenor.className+=' is-invalid ';
+        return false;
+    }else{
+        ejemenor.classList.remove('is-invalid');
+        ejemenor.className+=' is-valid ';
+     
     }
 
 
-    if (copa_viva === ''){
-        alert('Error, debe llenar el campo  Altura Copa Viva')
-        return false
+    if( !(/^\d{2,8}$/.test(copa_viva.value)) ){
+        copa_viva.className+=' is-invalid ';
+        return false;
+    }else{
+        copa_viva.classList.remove('is-invalid');
+        copa_viva.className+=' is-valid ';
+     
     }
-    if (copa_ausente === ''){
-        alert('Error, debe llenar el campo  Copa Ausente')
-        return false
+
+    if( !(/^\d{2,8}$/.test(copa_ausente.value)) ){
+        copa_ausente.className+=' is-invalid ';
+        return false;
+    }else{
+        copa_ausente.classList.remove('is-invalid');
+        copa_ausente.className+=' is-valid ';
+     
     }
     
     if (sistemaradicular === ''){
