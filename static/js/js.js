@@ -132,8 +132,10 @@ function showanterior(){
 function formshidde2(){
 
     const qr = document.getElementById('qr');
+    const dist_confinamiento = document.getElementById('dist_confinamiento');
     const avatar = document.getElementById('avatar');
     const avatar2 = document.getElementById('avatar2');
+   // const radio2 = document.getElementById('radio2').value;
     const delet = document.getElementById('delet');
 
     if( !(/^\d{1,15}$/.test(qr.value)) ){
@@ -146,6 +148,21 @@ function formshidde2(){
       qr.className+=' is-valid ';
      
     }
+  /*  if(radio2 === ''){
+
+        if( !(/^\d{1,15}$/.test(dist_confinamiento.value)) ){
+            dist_confinamiento.className+=' is-invalid ';
+            return false;
+        }else{
+            dist_confinamiento.classList.remove('is-invalid');
+            dist_confinamiento.className+=' is-valid ';
+         
+        } 
+    }else{
+        return false;
+    }
+    
+    */
     
     if( avatar.value === '' ){
         avatar.className+=' is-invalid ';
@@ -218,7 +235,7 @@ function formshidde3(){
     const copa_ausente = document.getElementById('copa_ausente');
     const sistemaradicular = document.getElementById('sistemaradicular').value;
     const diametro = document.getElementById('diametro').value;
-
+    
    
     if( orientacion === '' ){
 
