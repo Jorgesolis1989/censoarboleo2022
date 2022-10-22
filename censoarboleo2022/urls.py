@@ -21,7 +21,9 @@ import os
 from formulario.views import formulario_view_1 
 
 urlpatterns = [
-    path('', views.formulario_view_1, name='formulario_1'),
+    path('', views.formulario_view_login, name='formulario_1'),
+    path('registro_usuario', views.formulario_view_registro_usuario, name='registro_usuario'),
+    path('formulario', views.formulario_view_1, name='formulario_2'),
 	re_path(r'^censoarboleo2022/media/(.*)$', django.views.static.serve, {'document_root' : os.path.join(os.path.dirname(__file__), 'media')}),
 
 ]

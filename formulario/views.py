@@ -16,6 +16,23 @@ from formulario.forms import Formulario_1
 
 timezone.activate(settings.TIME_ZONE)
 
+def formulario_view_login(request):
+    
+      return render(request, 'login.html')
+  
+#    return render(request, 'login.html', {'form': form})
+
+
+def formulario_view_registro_usuario(request):
+    
+      return render(request, 'register.html')
+  
+#    return render(request, 'login.html', {'form': form})
+    
+
+
+
+
 def formulario_view_1(request):
     
     if request.method == 'POST' and 'btnFinalizar' in request.POST:
