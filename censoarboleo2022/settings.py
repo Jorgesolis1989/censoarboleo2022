@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'formulario.apps.FormularioConfig',
+    'usuarios.apps.UsuariosConfig',
     'sslserver'
 
 ]

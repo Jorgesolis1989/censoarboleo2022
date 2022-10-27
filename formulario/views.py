@@ -3,11 +3,13 @@ from fnmatch import translate
 from pickle import FALSE
 import re
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+
 from django.shortcuts import redirect, render
 from formulario.models import EstadoFitosanitario , Dasometria, Arbol, Vulnerabilidad, Recomendacion_e_Intervencion
 from django.utils import timezone
 from django.conf import settings
+from usuarios.models import Usuario
+
 
 
 #from censoarboleo2022.formulario import forms
@@ -15,21 +17,6 @@ from formulario.forms import Formulario_1
 # Create your views here.
 
 timezone.activate(settings.TIME_ZONE)
-
-def formulario_view_login(request):
-    
-      return render(request, 'login.html')
-  
-#    return render(request, 'login.html', {'form': form})
-
-
-def formulario_view_registro_usuario(request):
-    
-      return render(request, 'register.html')
-  
-#    return render(request, 'login.html', {'form': form})
-    
-
 
 
 
