@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render
 from formulario.models import EstadoFitosanitario , Dasometria, Arbol, Vulnerabilidad, Recomendacion_e_Intervencion
 from django.utils import timezone
 from django.conf import settings
-from usuarios.models import Usuario
+#from usuarios.models import Usuario
 
 
 

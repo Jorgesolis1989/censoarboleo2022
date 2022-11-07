@@ -71,16 +71,19 @@ function formFusteFolicurcado(){
 }
 
 
+
+
 function formshidde(){
    
 
     const PlacaAntigua = document.getElementById('PlacaAntigua');
     const delet = document.getElementById('delet');
-   
+
     /*   Agregue una condicional para validar el formulario  Placa antigua solo se pueden digitar 10 numeros   */
 
     if( !(/^\d{10}$/.test(PlacaAntigua.value)) ) {
         PlacaAntigua.className+=' is-invalid ';
+
         return false;
     }else{
     

@@ -16,15 +16,15 @@ Including another URLconf
 from django.urls import path, re_path
 import django.views.static 
 from django.conf.urls import include
-from usuarios import *
+#from usuarios import *
 import os
-from usuarios.views import registro_usuario_view , login_view
+from usuarios.views import  login_view, registro_usuario_view
 from formulario.views import formulario_view_1 
 
 urlpatterns = [
-    path('', login_view, name='login'),
+ #   path('', login_view, name='login'),
     path('registro_usuario', registro_usuario_view, name='registro_usuario'),
-    path('formulario', formulario_view_1, name='formulario_1'),
+    path('', formulario_view_1, name='formulario_1'),
 	re_path(r'^censoarboleo2022/media/(.*)$', django.views.static.serve, {'document_root' : os.path.join(os.path.dirname(__file__), 'media')}),
 
 ]
