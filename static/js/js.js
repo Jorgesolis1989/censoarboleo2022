@@ -76,14 +76,14 @@ function formFusteFolicurcado(){
 function formshidde(){
    
 
-    const PlacaAntigua = document.getElementById('PlacaAntigua');
+  /*  const PlacaAntigua = document.getElementById('PlacaAntigua');
     const delet = document.getElementById('delet');
 
     /*   Agregue una condicional para validar el formulario  Placa antigua solo se pueden digitar 10 numeros   */
 
-    if( !(/^\d{10}$/.test(PlacaAntigua.value)) ) {
+   /* if( PlacaAntigua.value.length < 1 || PlacaAntigua.value.length > 12) {
+        
         PlacaAntigua.className+=' is-invalid ';
-
         return false;
     }else{
     
@@ -92,7 +92,7 @@ function formshidde(){
       PlacaAntigua.className+=' is-valid ';
      
     }
-    
+    */
         
 
 
@@ -135,13 +135,13 @@ function showanterior(){
 function formshidde2(){
 
     const qr = document.getElementById('qr');
-    const dist_confinamiento = document.getElementById('dist_confinamiento');
+    //const radio2 = document.getElementById('radio2');
+    //const dist_confinamiento = document.getElementById('dist_confinamiento').value;
     const avatar = document.getElementById('avatar');
     const avatar2 = document.getElementById('avatar2');
-   // const radio2 = document.getElementById('radio2').value;
     const delet = document.getElementById('delet');
 
-    if( !(/^\d{1,15}$/.test(qr.value)) ){
+    if( qr.value.length < 0 || qr.value.length > 12 ){
         qr.className+=' is-invalid ';
         return false;
     }else{
@@ -151,27 +151,19 @@ function formshidde2(){
       qr.className+=' is-valid ';
      
     }
-  /*  if(radio2 === ''){
 
-        if( !(/^\d{1,15}$/.test(dist_confinamiento.value)) ){
-            dist_confinamiento.className+=' is-invalid ';
-            return false;
-        }else{
-            dist_confinamiento.classList.remove('is-invalid');
-            dist_confinamiento.className+=' is-valid ';
-         
-        } 
-    }else{
-        return false;
+   /* if(radio2.value === '1'){
+        alert('Error, debe llenar el campo inclinacion')
+       return false
     }
-    
-    */
+*/    
+
     
     if( avatar.value === '' ){
         avatar.className+=' is-invalid ';
         return false
     }else{
-    
+      delet.classList.remove('delet');
       avatar.classList.remove('is-invalid');
       avatar.className+=' is-valid ';
     }
@@ -180,7 +172,7 @@ function formshidde2(){
         avatar2.className+=' is-invalid ';
         return false
     }else{
-    
+      delet.classList.remove('delet');
       avatar2.classList.remove('is-invalid');
       avatar2.className+=' is-valid ';
     }
@@ -238,7 +230,7 @@ function formshidde3(){
     const copa_ausente = document.getElementById('copa_ausente');
     const sistemaradicular = document.getElementById('sistemaradicular').value;
     const diametro = document.getElementById('diametro').value;
-    
+    const delet = document.getElementById('delet');
    
     if( orientacion === '' ){
 
@@ -269,25 +261,30 @@ function formshidde3(){
         totalarbol.className+=' is-valid ';
      
     }
-
-    
-    if( !(/^\d{2,8}$/.test(ejemayor.value)) ){
-        ejemayor.className+=' is-invalid ';
-        return false;
-    }else{
-        ejemayor.classList.remove('is-invalid');
-        ejemayor.className+=' is-valid ';
-     
-    }
-
-    if( !(/^\d{2,8}$/.test(ejemenor.value)) ){
+    // Validacion de ejemenor y ejemayor
+    if( ejemenor.value.length >= 2){
         ejemenor.className+=' is-invalid ';
         return false;
     }else{
-        ejemenor.classList.remove('is-invalid');
-        ejemenor.className+=' is-valid ';
+    
+      delet.classList.remove('delet');
+      ejemenor.classList.remove('is-invalid');
+      ejemenor.className+=' is-valid ';
      
     }
+    
+    if( ejemayor.value.length > 2 || ejemayor.value.length < ejemenor.value.length){
+        ejemayor.className+=' is-invalid ';
+        return false;
+    }else{
+    
+      delet.classList.remove('delet');
+      ejemayor.classList.remove('is-invalid');
+      ejemayor.className+=' is-valid ';
+     
+    }
+
+    
 
 
     if( !(/^\d{2,8}$/.test(copa_viva.value)) ){
