@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import os
 #from django.urls import reverse
@@ -30,7 +31,7 @@ SECRET_KEY = 'django-insecure-bi#tt$@ak$9^m(c*9ch$ps9hxcq2fizj=tz+9h9%=gr4x3u+%a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['52.54.119.84', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -149,6 +150,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = 'censoarboleo2022/media/'
 MEDIA_URL = 'http://localhost:80/censoarboleo2022/media/'
 
-#LOGIN_URL = reverse('login')
-#LOGIN_REDIRECT_URL = reverse('home')
-#LOGOUT_URL = reverse('login')
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL  = '/'

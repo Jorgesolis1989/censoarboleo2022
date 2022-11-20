@@ -6,7 +6,7 @@ class Usuario(User):
 
 	class Meta:
 		ordering = ["first_name"]
-		verbose_name_plural = "Usuarios_Sivore"
+		verbose_name_plural = "Usuarios"
 		permissions = (("Administrador" , "Permisos de Administrador"),
 					   ("Censista" , "Permisos de Censista"),
 					   ("Supervisor" , "Permisos de Supervisor"),)

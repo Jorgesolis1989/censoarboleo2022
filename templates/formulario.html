@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -141,7 +141,7 @@
                         <li><a class="dropdown-item" href="#">{{ request.user.get_full_name }}</a></li>
                         <li><a class="dropdown-item" href="#">Cambiar Contraseña</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Salir</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Salir</a></li>
                       </ul>
                     </div>
                   </div>
