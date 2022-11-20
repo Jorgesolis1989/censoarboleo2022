@@ -166,7 +166,7 @@
 
                           -------------------------------------------------------------------------------------------------------------------------- ---
                           /------------------------------------------------------------------------------------------------------------------------ --->
-                        <form method="post" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data" class="needs-validation">
                           {% csrf_token %}
                           <!--FORMULARIO 1-->
                           <div  id="form1" style="display: block;" needs-validation>
@@ -177,10 +177,10 @@
                                     ?
                                   </button>
                                   <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control">
-                                 
                                   <div class="invalid-feedback" id="delet">
-                                    Ingresa Números del 1 al 10
+                                    Ingresa como minimo 1 digito y maximo 12 digitos
                                   </div>
+                                  
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
                                    
@@ -297,7 +297,7 @@
                                     <label for="Codigo QR">Digite el codigo QR:</label>
                                     <input type="number" id="qr" name="qr" class="form-control">
                                     <div class="invalid-feedback" id="delet">
-                                      Ingresa Números del 1 al 11
+                                      Ingresa un número
                                     </div>
                                 </div>
 
@@ -335,15 +335,16 @@
                                 </div>
                                 
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <input onclick="formView()" type="radio" class="form-check-input" name="confinamiento" id="radio1" value="">
+                                    <input onclick="formView()" type="radio" class="form-check-input" name="confinamiento" id="radio2" value="1">
                                     <label for="" >Si</label>
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <input onclick="formNone()" type="radio" class="form-check-input" name="confinamiento" id="radio2" value="No" checked>
+                                    <input onclick="formNone()" type="radio" class="form-check-input" name="confinamiento" id="radio2" value="2">
                                     <label for="">No</label>
                                 </div>
                                 <div id="formView" style="display: none;" class="col-md-12 col-lg-12 mb-2">
                                     <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">
+                                    
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
                                     <div class="col-md-12 col-lg-12 mb-2 text-center">
@@ -355,6 +356,9 @@
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                         <input type="file" class="form-control" placeholder="Primera foto" aria-label="First name" id="avatar" name="avatar" accept="image/*">
+                                        <div class="invalid-feedback" id="delet">
+                                          Debes ingresar una imagen
+                                        </div>
                                     </div>
 
         
@@ -369,6 +373,9 @@
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                         <input type="file" class="form-control" placeholder="Segunda name"    aria-label="First name" id="avatar2" name="avatar2"  accept="image/*">
+                                        <div class="invalid-feedback" id="delet">
+                                          Debes ingresar una imagen
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6 mb-2">
@@ -412,10 +419,16 @@
                                         <label for="Placa Antigua">Forma del Tronco:</label>
                                         <div class="form-check form-check-inline">
                                           <input class="form-check-input" type="radio" name="tipofuste" id="inlineRadio1" value="Fuste Único" onclick="formFusteUnico()" checked>
+                                          <div class="invalid-feedback" id="delet">
+                                            Ingresa un número
+                                          </div>
                                           <label class="form-check-label" for="inlineRadio1">Fuste Único</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                           <input class="form-check-input" type="radio" name="tipofuste" id="inlineRadio2" value="Fuste Polifurcardo" onclick="formFusteFolicurcado()">
+                                          <div class="invalid-feedback" id="delet">
+                                            Ingresa un número
+                                          </div>
                                           <label class="form-check-label" for="inlineRadio2">Fuste Polifurcardo</label>
                                         </div>
                                         
@@ -425,7 +438,10 @@
                                     <div style="display: block;" class="col-md-3 col-lg-3 mb-2" id="formViewUnico" name="formViewUnico">
   
                                       <label for="CAP 1">CAP (cm)</label>
-                                      <input type="number" id="cap" name="cap"   placeholder=" Valor en cm" class="form-control">  
+                                      <input type="number" id="cap" name="cap"   placeholder=" Valor en cm" class="form-control">
+                                      <div class="invalid-feedback" id="delet">
+                                        Ingresa un número
+                                      </div>  
                                   </div>
 
 
@@ -434,30 +450,48 @@
                                   <div class="col-md-12 col-lg-12 mb-2">
   
                                     <label for="CAP 1">CAP 1(cm)</label>
-                                    <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control">  
+                                    <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control">
+                                    <div class="invalid-feedback" id="delet">
+                                      Ingresa un número
+                                    </div>  
                                 </div>
 
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Capa 2">CAP 2(cm)</label>
-                                      <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control">  
+                                      <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control">
+                                      <div class="invalid-feedback" id="delet">
+                                        Ingresa un número
+                                      </div>  
                                   </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Capa 3">CAP 3(cm)</label>
-                                      <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control">  
+                                      <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control"> 
+                                      <div class="invalid-feedback" id="delet">
+                                        Ingresa un número
+                                      </div> 
                                   </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Placa Antigua">CAP 4(cm)</label>
-                                      <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control">  
+                                      <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control">
+                                      <div class="invalid-feedback" id="delet">
+                                        Ingresa un número
+                                      </div>  
                                   </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Placa Antigua">CAP 5(cm)</label>
-                                      <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control">  
+                                      <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control">
+                                      <div class="invalid-feedback" id="delet">
+                                        Ingresa un número
+                                      </div>  
                                   </div>
 
                                   <div class="col-md-12 col-lg-12 mb-2">
   
                                     <label for="Tallos">No de Tallos</label>
-                                    <input type="number" id="numero_tallos" name="numero_tallos" class="form-control" placeholder=" Valor en número entero">  
+                                    <input type="number" id="numero_tallos" name="numero_tallos" class="form-control" placeholder=" Valor en número entero">
+                                    <div class="invalid-feedback" id="delet">
+                                      Ingresa un número
+                                    </div>  
                                 </div>
 
                                 </div> 
@@ -471,11 +505,17 @@
                                         <label for="">Comercial (Fuste)</label>
                                         <input type="number" name="comercial_fuste" id="comercial_fuste" class="form-control"
                                             placeholder="Hc (m)">
+                                            <div class="invalid-feedback" id="delet">
+                                              Ingresa un número
+                                            </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 mb-2">
                                         <label for="">Total del árbol</label>
                                         <input type="number" name="totalarbol" id="totalarbol" class="form-control"
                                             placeholder="Ht (m)">
+                                            <div class="invalid-feedback" id="delet">
+                                              Ingresa un número
+                                            </div>
                                     </div>
   
                                     <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
@@ -484,10 +524,16 @@
                                     <div class="col-md-6 col-lg-6 mb-2">
                                         <label for="">Eje mayor</label>
                                         <input type="number" name="ejemayor" id="ejemayor" class="form-control">
+                                        <div class="invalid-feedback" id="delet">
+                                          Ingresa un número
+                                        </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 mb-2">
                                         <label for="">Eje menor</label>
                                         <input type="number" id="ejemenor"name="ejemenor"  class="form-control">
+                                        <div class="invalid-feedback" id="delet">
+                                          Ingresa un número
+                                        </div>
                                     </div>
 
                                     <div class="col-md-12 col-lg-12 mb-2">
@@ -526,10 +572,16 @@
                                     <div class="col-md-6 col-lg-6 mb-2">
                                         <label for="">Altura (m)</label>
                                         <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero" id="copa_viva" name="copa_viva">
+                                        <div class="invalid-feedback" id="delet">
+                                          Ingresa un número
+                                        </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 mb-2">
                                         <label for="">% copa ausente</label>
                                         <input type="number" class="form-control" placeholder="(%)" aria-label="Genero" id="copa_ausente" name="copa_ausente">
+                                        <div class="invalid-feedback" id="delet">
+                                          Ingresa un número
+                                        </div>
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2 ">
                                         <label for="Placa Antigua">Diámetro medio de ramas</label>
