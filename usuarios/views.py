@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from usuarios.forms import FormularioLogin, FormularioRegistroUsuario
 from formulario.views import formulario_view_1
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.template.context import RequestContext
 
@@ -87,36 +88,36 @@ def registro_usuario_view(request):
         #Si el formulario es valido y tiene datos
         if form.is_valid():
             #Capture la cedula del usuario
-            cedula_usuario = form.cleaned_data["cedula_usuario"]
+            cedula_usuario = form.cleaned_data["usuario"]
+            print("cedula usuario " + str(cedula_usuario))
 
-            try:
-                #Consultando el usuario en la base de datos.
-                usuario = Usuario.objects.get(cedula_usuario=cedula_usuario)
-
-                if not usuario.is_active:
-                    crear_usuario(usuario, form)
-                    mensaje = "El usuario se guardo correctamente, la contraseña se envío al correo " + usuario.email
-                    llamarMensaje = "exito_usuario"
-
-                # Si el usuario ya existe en la BD y esta activo
-                else:
-                    mensaje = "El usuario " + str(cedula_usuario)  + " ya esta registrado"
-                    llamarMensaje = "fracaso_usuario"
-
-            #Si el usuario no existe, lo crea
-            except Usuario.DoesNotExist:
-                # Creando el usuario
+            
+            #Consultando el usuario en la base de datos.            
+            existe_usuario = Usuario.objects.filter(username=cedula_usuario).exists()
+            #print("existe el usuario" + str(usuario))
+            #print(usuario)
+            if not existe_usuario:
                 usuario = Usuario()
+                print("creando usuario " + str(cedula_usuario))
                 crear_usuario(usuario, form)
-                # Borrando los datos del formulario y enviando el mensaje de sactisfacion
-
-                mensaje = "El usuario se guardo correctamente, la contraseña se envío al correo " + usuario.email
+                mensaje = "El usuario se guardo correctamente"
                 llamarMensaje = "exito_usuario"
-               
 
-                request.session['llamarMensaje'] = llamarMensaje
-                request.session['mensaje'] = mensaje
-                return redirect("login_usuario")
+            # Si el usuario ya existe en la BD y esta activo
+            else:
+                
+                mensaje = "El usuario " + str(cedula_usuario)  + " ya esta registrado"
+                print(mensaje)
+                llamarMensaje = "fracaso_usuario"
+
+        
+
+            request.session['llamarMensaje'] = llamarMensaje
+            request.session['mensaje'] = mensaje
+            return redirect("login")
+            
+        else:
+            print("No valido  formulario de registro")
 
         #si no es valido el formulario crear
             
@@ -131,15 +132,19 @@ def custom_logout(request):
     return redirect("login")
 
 def crear_usuario(usuario, form):
-    usuario.cedula_usuario = form.cleaned_data["cedula_usuario"]
-    usuario.first_name = form.cleaned_data["nombre_usuario"]
-    usuario.last_name = form.cleaned_data["apellido_usuario"]
-    usuario.email = form.cleaned_data["email"]
-    usuario.username = form.cleaned_data["cedula_usuario"]
+    usuario.cedula_usuario = form.cleaned_data["usuario"]
+    usuario.first_name = form.cleaned_data["nombres"]
+    usuario.last_name = form.cleaned_data["apellidos"]
+    usuario.email = form.cleaned_data["correo"]
+    usuario.username = form.cleaned_data["usuario"]
     usuario.is_active = True
     #generando el password aleatorio.
-    password = User.objects.make_random_password()
+    password = form.cleaned_data["password"]
     usuario.set_password(password)
+
+    print("creando 1")
+
+ #   usuario.user_permissions.add(Permission.objects.get("Censista"))
 
     # Enviando contraseña al correo electronico registrado.
     mensaje = "Señor(a) ", usuario.first_name , "\nSu usuario de acceso es: ", usuario.cedula_usuario , "\n Contraseña: ", usuario.password
@@ -148,8 +153,22 @@ def crear_usuario(usuario, form):
     #Crea el usuario en la BD s i hay excepcion
     try:
         usuario.save()
+        print("creando usuarii")
     except Exception as e:
         print(e)
 
+    print(mensaje)
+
+    
+    content_type = ContentType.objects.get_for_model(Usuario)
+    permission = Permission.objects.get(
+        codename='Censista',
+        content_type=content_type,
+    )
+    usuario.user_permissions.add(permission)
+
+
+
     # Colocandole permisos al usuario
-    usuario.user_permissions.add(Permission.objects.get(codename=form.cleaned_data["rol"]))
+    #usuario.user_permissions.add(Permission.objects.get(codename=form.cleaned_data["rol"]))
+
