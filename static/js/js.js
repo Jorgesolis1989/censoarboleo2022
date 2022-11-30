@@ -1,4 +1,4 @@
-
+/* -----------FUNCION OCULTAR CAMPOS------------- */
 function tablehidden() {
     var optionhidden = document.getElementById("barrio");
     optionhidden = optionhidden.options[optionhidden.selectedIndex].value;
@@ -10,7 +10,6 @@ function tablehidden() {
     }
 
 }
-
 
 function ocultar() {
     var optionhidden = document.getElementById("vitalidad");
@@ -35,7 +34,7 @@ function ocultar() {
 
 
 }
-
+/* --------------------------------------- */
 
 function formView(){
     var table = document.getElementById("formView");
@@ -72,7 +71,6 @@ function formFusteFolicurcado(){
 
 
 
-
 function formshidde(){
    
 
@@ -94,8 +92,6 @@ function formshidde(){
     }
     */
         
-
-
         var table = document.getElementById("form1");
         table.style.display = "none";
     
@@ -135,11 +131,24 @@ function showanterior(){
 function formshidde2(){
 
     const qr = document.getElementById('qr');
-    //const radio2 = document.getElementById('radio2');
-    //const dist_confinamiento = document.getElementById('dist_confinamiento').value;
+    //const confinamiento-radio = document.getElementById('radio2');
+    
     const avatar = document.getElementById('avatar');
     const avatar2 = document.getElementById('avatar2');
     const delet = document.getElementById('delet');
+    const confinamientoRadio = document.getElementById('confinamiento-radio');
+    const distConfinamiento = document.getElementById('dist_confinamiento');
+
+    if (confinamientoRadio.checked){
+        if(distConfinamiento.value.length < 1){
+            alert ('Falta rellenar campo')
+            return false
+        }
+        
+    }else{
+        alert('Falta un campo')
+        return false
+    }
 
     if( qr.value.length < 0 || qr.value.length > 12 ){
         qr.className+=' is-invalid ';
@@ -152,13 +161,6 @@ function formshidde2(){
      
     }
 
-   /* if(radio2.value === '1'){
-        alert('Error, debe llenar el campo inclinacion')
-       return false
-    }
-*/    
-
-    
     if( avatar.value === '' ){
         avatar.className+=' is-invalid ';
         return false
