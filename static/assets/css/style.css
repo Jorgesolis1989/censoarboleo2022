@@ -63,7 +63,7 @@ h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: #017001;
 }
 
 /*--------------------------------------------------------------
@@ -252,7 +252,7 @@ h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #012970;
+  color: #004d08;
   font-family: "Poppins", sans-serif;
 }
 
@@ -700,7 +700,7 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #024818;
   transition: 0.3;
   background: #f6f9ff;
   padding: 10px 15px;
@@ -714,7 +714,7 @@ h6 {
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
+  color: #4154f1;
   background: #fff;
 }
 
