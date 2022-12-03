@@ -138,17 +138,33 @@ function formshidde2(){
     const delet = document.getElementById('delet');
     const confinamientoRadio = document.getElementById('confinamiento-radio');
     const distConfinamiento = document.getElementById('dist_confinamiento');
+    const confinamientoRadio2 = document.getElementById('confinamiento-radio2');
 
-    if (confinamientoRadio.checked){
-        if(distConfinamiento.value.length < 1){
-            alert ('Falta rellenar campo')
+    /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
+    
+    if (confinamientoRadio2.checked){
+
+    }else{
+        if (confinamientoRadio.checked){
+            if(distConfinamiento.value.length < 1){
+                distConfinamiento.className+= ' is-invalid';
+                alert ('Falta rellenar campo')
+                return false
+            }else{
+                delet.classList.remove('delet');
+                distConfinamiento.classList.remove('is-invalid');
+                distConfinamiento.className+=' is-valid ';          
+            }   
+        }else{
+            
+            alert('Falta un campo')
             return false
         }
-        
-    }else{
-        alert('Falta un campo')
-        return false
     }
+
+    
+
+    /* -------------------------------------------------- ----------------*/
 
     if( qr.value.length < 0 || qr.value.length > 12 ){
         qr.className+=' is-invalid ';
@@ -222,29 +238,31 @@ function show3(){
 /*  Boton de Validacion 3  */
 function formshidde3(){
 
-    const orientacion = document.getElementById('orientacion').value;
-    const inclinacion = document.getElementById('inclinacion').value;
+    
+    
     const comercial = document.getElementById('comercial_fuste');
     const totalarbol = document.getElementById('totalarbol');
     const ejemayor = document.getElementById('ejemayor');
     const ejemenor = document.getElementById('ejemenor');
     const copa_viva = document.getElementById('copa_viva');
     const copa_ausente = document.getElementById('copa_ausente');
-    const sistemaradicular = document.getElementById('sistemaradicular').value;
-    const diametro = document.getElementById('diametro').value;
     const delet = document.getElementById('delet');
+    const fusteUnico = document.getElementById('fuste_unico');
+
+    /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
+    if (fusteUnico.checked){
+        alert("Esta chekeado")
+    }else{
+        alert ('No esta chekeado')
+        return false
+    }
+
+
+
+
    
-    if( orientacion === '' ){
+    /* ----------------------------------------------------------- */
 
-        alert('Error, debe llenar el campo orientacion')
-        return false
-    }
-
-    if( inclinacion === '' ){
-
-        alert('Error, debe llenar el campo inclinacion')
-        return false
-    }
 
     if( !(/^\d{2,8}$/.test(comercial.value)) ){
         comercial.className+=' is-invalid ';
@@ -275,7 +293,7 @@ function formshidde3(){
      
     }
     
-    if( ejemayor.value.length > 2 || ejemayor.value.length < ejemenor.value.length){
+    if( ejemayor.value.length > 2 || ejemayor.value.length > ejemenor.value.length){
         ejemayor.className+=' is-invalid ';
         return false;
     }else{
@@ -307,15 +325,9 @@ function formshidde3(){
      
     }
     
-    if (sistemaradicular === ''){
-        alert('Error, debe llenar el campo  sistemaradicular')
-        return false
-    }
+    
 
-    if (diametro === ''){
-        alert('Error, debe llenar el campo  diametro')
-        return false
-    }
+   
     
 
     var table = document.getElementById("form3");
