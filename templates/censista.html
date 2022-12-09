@@ -21,9 +21,12 @@
       <div class="card-body">
         <h5 class="card-title">Usuarios</h5>
 
-        <button type="button" class="btn btn-success mb-2">
-          Cambiar contraseña  <span class="badge bg-white text-primary"></span>
-        </button>
+<!--        <button type="button" class="btn btn-success mb-2" onsubmit="cambiar_contrasena">         </button> -->
+<a href="{% url 'cambiar_contrasena' %}" > <button type="button" id="btnFormulario" name="btnFormulario" class="btn btn-success mb-2"> Cambiar contraseña  <span class="badge bg-white text-primary"></span> </button> </a>
+  <!--           <a href="{% url 'cambiar_contrasena' %}" class="btn btn-secondary btn-lg disabled" role="button"></a> Cambiar contraseña  <span class="badge bg-white text-primary"> </span> </a> -->
+
+   
+
       </div>
     </div><!-- End Button Badges -->
 

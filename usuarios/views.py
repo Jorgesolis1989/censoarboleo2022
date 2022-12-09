@@ -12,17 +12,69 @@ from django.template.context import RequestContext
 
 
 # Create your views here.
-
-
 def retornar_vista(request, usuario):
     if usuario.has_perm("usuarios.Administrador"):
         return administrador_home(request, usuario)
     elif usuario.has_perm("usuarios.Censista"):
         return censista_home(request, usuario)
-#    elif usuario.has_perm("usuarios.Superior"):
-#        return superior_home(request, usuario)
+    elif usuario.has_perm("usuarios.Supervisor"):
+      return supervisor_home(request, usuario)
+    elif usuario.has_perm("usuarios.SuperForestal"):
+      return supervisor_forestal_home(request, usuario)
     return render(request, 'formulario.html', {'usuario': usuario})
 
+@login_required
+def cambiar_contrasena(request):
+    usuario = Usuario.objects.get(username=request.user.username)
+    mensaje = ""
+    llamarMensaje = ""
+
+    # Cambiar contraseña
+    if request.method == 'POST' and "btnCambiarContrasena" in request.POST:
+        contrasenaAntigua = request.POST["password"]
+        contrasenaNueva = request.POST["newpassword"]
+        contrasenaNuevaIgual = request.POST["renewpassword"]
+        
+        if not usuario.check_password(contrasenaAntigua):
+            mensaje = "La contraseña antigua no es igual a la registrada en el sistema"
+            llamarMensaje = "exito_usuario"
+
+        elif contrasenaNueva != contrasenaNuevaIgual:
+            mensaje = "La contraseña son iguales las contraseñas insertadas"
+            llamarMensaje = "exito_usuario"
+        
+        else:
+            usuario.set_password(contrasenaNueva)
+            try:
+                usuario.save()
+                #print("creando usuarii")
+            except Exception as e:
+                print(e)
+            user = authenticate(username=usuario.username, password=contrasenaNueva)
+            login(request, user)
+        
+            mensaje = "Se registro el cambio sactisfactoriamente"
+            llamarMensaje = "exito_usuario"
+    elif request.method == 'POST' and "btnCambiarPerfil" in request.POST:
+        #Implementar mañana viernes
+        usuario.first_name =  request.POST["nombre"] 
+        usuario.last_name =  request.POST["apellidos"]
+        usuario.direccion = request.POST["address"]
+        usuario.telefono = request.POST["phone"]
+        usuario.email = request.POST["email"]
+        
+        try:
+            usuario.save()
+       #print("creando usuarii")
+        except Exception as e:
+            print(e)
+        
+        mensaje = "Se actualizaron los datos sactisfactoriamente"
+        llamarMensaje = "exito_usuario"
+
+
+                         
+    return render(request, 'cambiar_contrasena.html', {'usuario': usuario, "mensaje": mensaje,  "llamarMensaje": llamarMensaje})
 
 
 
@@ -37,7 +89,6 @@ def administrador_home(request , usuario):
 def censista_home(request , usuario):
     if request.method == 'POST' and "btnFormulario" in request.POST:
         return redirect("formulario")
-
     return render(request, 'censista.html', {'usuario': usuario})
 
 
@@ -48,6 +99,12 @@ def supervisor_home(request , usuario):
     return render(request, 'supervisor.html', {'usuario': usuario})
 
 
+# Pagina principal para usuario Supervisor Forestal
+@permission_required("usuarios.SuperForestal" , login_url="/")
+def supervisor_forestal_home(request , usuario):
+    return render(request, 'supervisor_forestal.html', {'usuario': usuario})
+
+#Página de la vista de usuario
 def login_view(request):
     mensaje = ""
     if request.user.is_authenticated and not request.user.is_superuser:
@@ -137,6 +194,9 @@ def crear_usuario(usuario, form):
     usuario.last_name = form.cleaned_data["apellidos"]
     usuario.email = form.cleaned_data["correo"]
     usuario.username = form.cleaned_data["usuario"]
+    usuario.direccion = ""
+    usuario.telefono = 0
+    
     usuario.is_active = True
     #generando el password aleatorio.
     password = form.cleaned_data["password"]
