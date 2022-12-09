@@ -23,11 +23,15 @@ def retornar_vista(request, usuario):
       return supervisor_forestal_home(request, usuario)
     return render(request, 'formulario.html', {'usuario': usuario})
 
+
+
 @login_required
 def cambiar_contrasena(request):
     usuario = Usuario.objects.get(username=request.user.username)
     mensaje = ""
     llamarMensaje = ""
+
+    retornarvista_segun_rol = "cambiar_contrasena_"+ usuario.rol + ".html"
 
     # Cambiar contraseña
     if request.method == 'POST' and "btnCambiarContrasena" in request.POST:
@@ -72,9 +76,11 @@ def cambiar_contrasena(request):
         mensaje = "Se actualizaron los datos sactisfactoriamente"
         llamarMensaje = "exito_usuario"
 
+        
 
-                         
-    return render(request, 'cambiar_contrasena.html', {'usuario': usuario, "mensaje": mensaje,  "llamarMensaje": llamarMensaje})
+    
+
+    return render(request, retornarvista_segun_rol, {'usuario': usuario, "mensaje": mensaje,  "llamarMensaje": llamarMensaje})
 
 
 

@@ -65,7 +65,14 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 os.path.join(BASE_DIR, 'formulario', 'templates', 'formulario'),
+                os.path.join(BASE_DIR, 'templates/censista'),
+                os.path.join(BASE_DIR, 'templates/supervisor'),
+                os.path.join(BASE_DIR, 'templates/administrador'),
+                os.path.join(BASE_DIR, 'templates/supervisor_forestal'),
+                
+                os.path.join(BASE_DIR, 'formulario', 'templates', 'formulario'),
+                os.path.join(BASE_DIR, 'usuarios', 'templates', 'usuarios'),
+                os.path.join(BASE_DIR, 'usuarios', 'templates/censista'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

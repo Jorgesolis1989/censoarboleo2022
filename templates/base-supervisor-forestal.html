@@ -230,11 +230,9 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
-           
-
+          
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'cambiar_contrasena' %}">
                 <i class="bi bi-question-circle"></i>
                 <span>Cambiar Contraseña</span>
               </a>
@@ -282,15 +280,11 @@
             </a>
           </li>
           <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Crear Usuarios</span>
+            <a href="{% url 'cambiar_contrasena' %}">
+              <i class="bi bi-circle"></i><span>Cambiar contraseña</span>
             </a>
           </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Eliminar Usuarios</span>
-            </a>
-          </li>
+          
                 </ul>
       </li><!-- End Components Nav -->
 

@@ -120,7 +120,7 @@ def formulario_view_1(request):
                 if request.FILES['avatar']:
                     arbol_nuevo.foto1 = request.FILES['avatar']
                 else:
-                    arbol_nuevo.foto1 = None
+                    arbol_nuevo.foto1 = None    
             
 
             if 'avatar2' in request.POST: 

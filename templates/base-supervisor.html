@@ -234,7 +234,7 @@
            
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'cambiar_contrasena' %}">
                 <i class="bi bi-question-circle"></i>
                 <span>Cambiar Contraseña</span>
               </a>
@@ -282,8 +282,8 @@
             </a>
           </li>
           <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Crear Usuarios</span>
+            <a href="{% url 'cambiar_contrasena' %}">
+              <i class="bi bi-circle"></i><span>Cambiar contraseña</span>
             </a>
           </li>
           <li>
@@ -353,8 +353,8 @@
       <h1>Supervisor</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item"><a href="#">{% block seccion %}{% endblock seccion %}</a></li>
+          <li class="breadcrumb-item active">{% block subseccion %}{% endblock subseccion %}</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
