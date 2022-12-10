@@ -74,23 +74,21 @@ function formFusteFolicurcado(){
 function formshidde(){
    
 
-  /*  const PlacaAntigua = document.getElementById('PlacaAntigua');
+    const PlacaAntigua = document.getElementById('PlacaAntigua');
     const delet = document.getElementById('delet');
-
+   /* var RE = /^\d*(\.\d{1})?\d{0,1}$/
     /*   Agregue una condicional para validar el formulario  Placa antigua solo se pueden digitar 10 numeros   */
 
-   /* if( PlacaAntigua.value.length < 1 || PlacaAntigua.value.length > 12) {
-        
+    if( !(/^\d+(\.\d{1,10})*\d{0,9}$/.test(PlacaAntigua.value)) ){
         PlacaAntigua.className+=' is-invalid ';
+        swal('Placa Antigua','Debe ingresar Minimo 1 Digito','error')
         return false;
     }else{
+        PlacaAntigua.classList.remove('is-invalid');
+        PlacaAntigua.className+=' is-valid ';   
+        delet.classList.remove('delet');
+    }  
     
-      delet.classList.remove('delet');
-      PlacaAntigua.classList.remove('is-invalid');
-      PlacaAntigua.className+=' is-valid ';
-     
-    }
-    */
         
         var table = document.getElementById("form1");
         table.style.display = "none";
@@ -143,12 +141,12 @@ function formshidde2(){
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     
     if (confinamientoRadio2.checked){
-
+        document.getElementById("dist_confinamiento").value = "";
     }else{
         if (confinamientoRadio.checked){
             if(distConfinamiento.value.length < 1){
                 distConfinamiento.className+= ' is-invalid';
-                alert ('Falta rellenar campo')
+                swal('Ingresa un numero valido','','error')
                 return false
             }else{
                 delet.classList.remove('delet');
@@ -157,7 +155,7 @@ function formshidde2(){
             }   
         }else{
             
-            alert('Falta un campo')
+            swal('Debe seleccionar Confinamiento','','error')
             return false
         }
     }
@@ -248,13 +246,81 @@ function formshidde3(){
     const copa_ausente = document.getElementById('copa_ausente');
     const delet = document.getElementById('delet');
     const fusteUnico = document.getElementById('fuste_unico');
+    const poliPolifurcado = document.getElementById('poli_polifurcado');
+    const Cap = document.getElementById('cap');
+    const Cap1 = document.getElementById('capa1');
+    const Cap2 = document.getElementById('capa2');
+    const Cap3 = document.getElementById('capa3');
+    const Cap4 = document.getElementById('capa4');
+    const Cap5 = document.getElementById('capa5');
+   
 
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     if (fusteUnico.checked){
-        alert("Esta chekeado")
+       
+
+            if(Cap.value.length < 1){
+                Cap.className += 'is-invalid';
+                swal('Ingresa un numero valido','','error')
+                return false
+            }else{
+                delet.classList.remove('delet');
+                Cap.classList.remove('is-invalid');
+                Cap.className+=' is-valid '; 
+            }
+       
     }else{
-        alert ('No esta chekeado')
-        return false
+        if(poliPolifurcado.checked){
+                if(Cap1.value.length < 1){
+                    Cap1.className += 'is-invalid';
+                    swal('Ingresa un numero valido','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap1.classList.remove('is-invalid');
+                    Cap1.className+=' is-valid ';  
+                }
+                if(Cap2.value.length < 1){
+                    Cap2.className += 'is-invalid';
+                    swal('Ingresa un numero valido','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap2.classList.remove('is-invalid');
+                    Cap2.className+=' is-valid ';  
+                }
+                if(Cap3.value.length < 1){
+                    Cap3.className += 'is-invalid';
+                    swal('Ingresa un numero valido','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap3.classList.remove('is-invalid');
+                    Cap3.className+=' is-valid ';  
+                }
+                if(Cap4.value.length < 1){
+                    Cap4.className += 'is-invalid';
+                    swal('Ingresa un numero valido','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap4.classList.remove('is-invalid');
+                    Cap4.className+=' is-valid ';  
+                }
+                if(Cap5.value.length < 1){
+                    Cap5.className += 'is-invalid';
+                    swal('Ingresa un numero valido','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap5.classList.remove('is-invalid');
+                    Cap5.className+=' is-valid ';  
+                }
+        }else{
+            swal('Ingresa fuste Unico','','warning')
+            return false
+        }
+        
     }
 
 
@@ -264,7 +330,7 @@ function formshidde3(){
     /* ----------------------------------------------------------- */
 
 
-    if( !(/^\d{2,8}$/.test(comercial.value)) ){
+    if( !(/^\d{2,8}$/.test(comercial.value)) ){ 
         comercial.className+=' is-invalid ';
         return false;
     }else{
