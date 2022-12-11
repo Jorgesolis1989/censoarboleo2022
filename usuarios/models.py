@@ -7,6 +7,7 @@ class Usuario(User):
 	direccion =  models.TextField()
 	telefono = models.BigIntegerField()
 	rol= models.TextField()
+	Grupo = models.TextField(null=True)
 
 	class Meta:
 		ordering = ["first_name"]

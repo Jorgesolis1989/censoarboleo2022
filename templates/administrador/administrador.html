@@ -1,5 +1,11 @@
 {% extends "base-admin.html" %}
 {% block title %}Administador -{% endblock title  %}
+{% block seccion %}
+ <ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="{% url 'login' %}"></a>Usuarios</li>
+  <li class="breadcrumb-item active">Dashboard</li>
+  
+</ol>{% endblock seccion %}
 {% block content %}
   <!-- Left side columns -->
   <div class="row">

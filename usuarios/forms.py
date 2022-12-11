@@ -42,3 +42,8 @@ class FormularioRegistroUsuario(forms.Form):
         if cedula != int:
             raise forms.ValidationError("La cedula debe de ser enteros")
         return cedula
+
+
+#def FormularioEditarUsuario(forms.Form):
+#    username = 
+

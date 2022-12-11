@@ -11,6 +11,34 @@ from django.contrib.auth.models import User
 from django.template.context import RequestContext
 
 
+# Metodo para editar usuario por parte del administrador y(/)
+@permission_required("usuarios.Administrador" , login_url="/")
+def editar_usuario(request , username=None):
+    usuario = Usuario.objects.get(username=request.user.username)
+    llamarMensaje ="fracaso_usuario"
+    mensaje = ""
+
+    try:
+        usuario_editar = Usuario.objects.get(username=username)
+    except Usuario.DoesNotExist:
+        llamarMensaje ="fracaso_usuario"
+        mensaje = "El usuario "+str(username)+" No existe en el sistema"
+        request.session["llamarMensaje"] = llamarMensaje
+        request.session["mensaje"] = mensaje
+        return redirect("listar_usuario")
+
+
+    if request.method == 'POST' and 'btnactivarUsuario' in 'POST':
+        #Implementar mañana viernes
+        
+        try:
+            usuario_editar.save()
+       #print("creando usuarii")
+        except Exception as e:
+            print(e)
+
+    return render(request, 'editar_usuario_Administrador.html', {'usuario_editar':usuario_editar,'usuario': usuario,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
+
 # Create your views here.
 def retornar_vista(request, usuario):
     if usuario.has_perm("usuarios.Administrador"):
@@ -77,9 +105,6 @@ def cambiar_contrasena(request):
         llamarMensaje = "exito_usuario"
 
         
-
-    
-
     return render(request, retornarvista_segun_rol, {'usuario': usuario, "mensaje": mensaje,  "llamarMensaje": llamarMensaje})
 
 
@@ -233,6 +258,15 @@ def crear_usuario(usuario, form):
     )
     usuario.user_permissions.add(permission)
 
+
+
+@permission_required("usuarios.Administrador", login_url="/")
+def listar_usuarios(request):
+    usuario = Usuario.objects.get(username=request.user.username)
+    usuarios = Usuario.objects.filter()
+    llamarMensaje = "exito_usuario"
+    mensaje = "Se listan los usuarios activos"
+    return render(request, 'listar_usuarios.html', {'usuario': usuario, 'usuarios': usuarios,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
 
 
     # Colocandole permisos al usuario

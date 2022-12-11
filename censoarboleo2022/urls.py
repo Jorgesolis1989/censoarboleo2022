@@ -27,6 +27,9 @@ urlpatterns = [
     path('registro_usuario', registro_usuario_view, name='registro_usuario'),
     path('cambiar_contrasena', cambiar_contrasena, name='cambiar_contrasena'),
     path('formulario', formulario_view_1, name='formulario'),
+    path('listar_usuarios', listar_usuarios, name='listar_usuarios'),
+    path('editar/<username>/', editar_usuario, name='editar_usuario'),
+#    path('usuarios/editar/', login_view, name='login'),
 	re_path(r'^censoarboleo2022/media/(.*)$', django.views.static.serve, {'document_root' : os.path.join(os.path.dirname(__file__), 'media')}),
 
 ]
