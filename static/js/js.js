@@ -319,7 +319,7 @@ function formshidde3(){
                     Cap5.classList.remove('is-invalid');
                     Cap5.className+=' is-valid ';  
                 }
-                if(numeroTallos.value < 1){
+                if(numeroTallos.value <= 1 || numeroTallos.value > 50){
                     numeroTallos.className += 'is-invalid';
                     swal('Ingresa un numero valido','','error')
                     return false
