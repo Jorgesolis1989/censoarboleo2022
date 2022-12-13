@@ -74,19 +74,21 @@ function formFusteFolicurcado(){
 function formshidde(){
    
 
-    const PlacaAntigua = document.getElementById('PlacaAntigua');
+    var PlacaAntigua = document.getElementById('PlacaAntigua');
     const delet = document.getElementById('delet');
+    
    /* var RE = /^\d*(\.\d{1})?\d{0,1}$/
     /*   Agregue una condicional para validar el formulario  Placa antigua solo se pueden digitar 10 numeros   */
 
-    if( !(/^\d+(\.\d{1,10})*\d{0,9}$/.test(PlacaAntigua.value)) ){
-        PlacaAntigua.className+=' is-invalid ';
+    if( PlacaAntigua.value < 1 || PlacaAntigua.value > 50 ) {
+        PlacaAntigua.className+= ' is-invalid ';
         swal('Placa Antigua','Debe ingresar Minimo 1 Digito','error')
         return false;
     }else{
+        delet.classList.remove('delet');
         PlacaAntigua.classList.remove('is-invalid');
         PlacaAntigua.className+=' is-valid ';   
-        delet.classList.remove('delet');
+        
     }  
     
         
@@ -164,7 +166,7 @@ function formshidde2(){
 
     /* -------------------------------------------------- ----------------*/
 
-    if( qr.value.length < 0 || qr.value.length > 12 ){
+    if( qr.value < 1 || qr.value > 12 ){
         qr.className+=' is-invalid ';
         return false;
     }else{
@@ -253,13 +255,14 @@ function formshidde3(){
     const Cap3 = document.getElementById('capa3');
     const Cap4 = document.getElementById('capa4');
     const Cap5 = document.getElementById('capa5');
+    const numeroTallos = document.getElementById('numero_tallos');
    
 
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     if (fusteUnico.checked){
        
 
-            if(Cap.value.length < 1){
+            if(Cap.value < 1){
                 Cap.className += 'is-invalid';
                 swal('Ingresa un numero valido','','error')
                 return false
@@ -271,7 +274,7 @@ function formshidde3(){
        
     }else{
         if(poliPolifurcado.checked){
-                if(Cap1.value.length < 1){
+                if(Cap1.value < 1){
                     Cap1.className += 'is-invalid';
                     swal('Ingresa un numero valido','','error')
                     return false
@@ -280,7 +283,7 @@ function formshidde3(){
                     Cap1.classList.remove('is-invalid');
                     Cap1.className+=' is-valid ';  
                 }
-                if(Cap2.value.length < 1){
+                if(Cap2.value < 1){
                     Cap2.className += 'is-invalid';
                     swal('Ingresa un numero valido','','error')
                     return false
@@ -289,7 +292,7 @@ function formshidde3(){
                     Cap2.classList.remove('is-invalid');
                     Cap2.className+=' is-valid ';  
                 }
-                if(Cap3.value.length < 1){
+                if(Cap3.value < 1){
                     Cap3.className += 'is-invalid';
                     swal('Ingresa un numero valido','','error')
                     return false
@@ -298,7 +301,7 @@ function formshidde3(){
                     Cap3.classList.remove('is-invalid');
                     Cap3.className+=' is-valid ';  
                 }
-                if(Cap4.value.length < 1){
+                if(Cap4.value < 1){
                     Cap4.className += 'is-invalid';
                     swal('Ingresa un numero valido','','error')
                     return false
@@ -307,7 +310,7 @@ function formshidde3(){
                     Cap4.classList.remove('is-invalid');
                     Cap4.className+=' is-valid ';  
                 }
-                if(Cap5.value.length < 1){
+                if(Cap5.value < 1){
                     Cap5.className += 'is-invalid';
                     swal('Ingresa un numero valido','','error')
                     return false
@@ -315,6 +318,15 @@ function formshidde3(){
                     delet.classList.remove('delet');
                     Cap5.classList.remove('is-invalid');
                     Cap5.className+=' is-valid ';  
+                }
+                if(numeroTallos.value < 1){
+                    numeroTallos.className += 'is-invalid';
+                    swal('Ingresa un numero valido','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    numeroTallos.classList.remove('is-invalid');
+                    numeroTallos.className+=' is-valid ';  
                 }
         }else{
             swal('Ingresa fuste Unico','','warning')
@@ -324,9 +336,6 @@ function formshidde3(){
     }
 
 
-
-
-   
     /* ----------------------------------------------------------- */
 
 
@@ -348,18 +357,9 @@ function formshidde3(){
      
     }
     // Validacion de ejemenor y ejemayor
-    if( ejemenor.value.length >= 2){
-        ejemenor.className+=' is-invalid ';
-        return false;
-    }else{
     
-      delet.classList.remove('delet');
-      ejemenor.classList.remove('is-invalid');
-      ejemenor.className+=' is-valid ';
-     
-    }
-    
-    if( ejemayor.value.length > 2 || ejemayor.value.length > ejemenor.value.length){
+    /********************************************************************************************************** */
+    if( ejemayor.value < 1 || ejemayor.value > 50 ){
         ejemayor.className+=' is-invalid ';
         return false;
     }else{
@@ -370,8 +370,32 @@ function formshidde3(){
      
     }
 
+    if( ejemenor.value < 1 || ejemenor.value > 50 ){
+        ejemenor.className+=' is-invalid ';
+        return false;
+    }else{
     
+      delet.classList.remove('delet');
+      ejemenor.classList.remove('is-invalid');
+      ejemenor.className+=' is-valid ';
+     
+    }
 
+    if( ejemayor.value <= ejemenor.value ){
+        ejemayor.className+=' is-invalid ';
+        ejemenor.className+=' is-invalid ';
+        return false;
+    }else{
+    
+      delet.classList.remove('delet');
+      ejemayor.classList.remove('is-invalid');
+      ejemayor.className+=' is-valid ';
+      ejemenor.classList.remove('is-invalid');
+      ejemenor.className+=' is-valid ';
+     
+    }
+    
+    /********************************************************************************************************** */
 
     if( !(/^\d{2,8}$/.test(copa_viva.value)) ){
         copa_viva.className+=' is-invalid ';
@@ -480,3 +504,4 @@ function tipoVitalidad(){
 
 
 }
+
