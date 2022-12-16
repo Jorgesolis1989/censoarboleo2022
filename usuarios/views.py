@@ -28,14 +28,28 @@ def editar_usuario(request , username=None):
         return redirect("listar_usuario")
 
 
-    if request.method == 'POST' and 'btnactivarUsuario' in 'POST':
-        #Implementar mañana viernes
+    if request.method == 'POST' and 'btnactivarUsuario' in request.POST:
+        
+        print("activando usuario")
+        rol = request.POST["rol"]
+        grupo = request.POST["grupo"]
+
+        usuario_editar.rol = rol    
+        activo = False
+        if "usuario_active" in request.POST:
+            activo = True
+
+        usuario_editar.is_active = activo
+        usuario_editar.Grupo = grupo
         
         try:
             usuario_editar.save()
        #print("creando usuarii")
         except Exception as e:
             print(e)
+        llamarMensaje ="exito_usuario"
+        mensaje = "El usuario se cambió con exito"
+
 
     return render(request, 'editar_usuario_Administrador.html', {'usuario_editar':usuario_editar,'usuario': usuario,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
 
