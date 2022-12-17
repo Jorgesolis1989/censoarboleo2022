@@ -4,7 +4,8 @@ __pycache__/
 *$py.class
 
 /formulario/migrations/
-/media/
+censoarboleo2022/media/
+censoarboleo2022/__pycache__/
 
 # C extensions
 *.so

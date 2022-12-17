@@ -32,7 +32,7 @@ class Usuario(User):
 		return os.path.join(ruta, nombre_archivo)
 
 
-	foto = models.ImageField(upload_to=_generar_ruta_imagen )
+	foto = models.ImageField(upload_to=_generar_ruta_imagen, default='fotos_usuarios/image-default.png' )
 	direccion =  models.TextField()
 	telefono = models.BigIntegerField()
 	rol= models.TextField()

@@ -267,6 +267,7 @@ def crear_usuario(usuario, form):
     usuario.username = form.cleaned_data["usuario"]
     usuario.direccion = ""
     usuario.telefono = 0
+ 
     
     usuario.is_active = True
     #generando el password aleatorio.
