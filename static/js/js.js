@@ -79,7 +79,7 @@ function formshidde(){
     
    /* var RE = /^\d*(\.\d{1})?\d{0,1}$/
     /*   Agregue una condicional para validar el formulario  Placa antigua solo se pueden digitar 10 numeros   */
-
+/*
     if( PlacaAntigua.value < 1 || PlacaAntigua.value > 50 ) {
         PlacaAntigua.className+= ' is-invalid ';
         swal('Placa Antigua','Debe ingresar Minimo 1 Digito','error')
@@ -91,7 +91,7 @@ function formshidde(){
         
     }  
     
-        
+    */    
         var table = document.getElementById("form1");
         table.style.display = "none";
     
@@ -168,6 +168,7 @@ function formshidde2(){
 
     if( qr.value < 1 || qr.value > 12 ){
         qr.className+=' is-invalid ';
+        swal('Qr','Debe ingresar un digito del 1 al 12','error')
         return false;
     }else{
     
@@ -178,6 +179,7 @@ function formshidde2(){
     }
 
     if( avatar.value === '' ){
+        swal('IMAGEN 1','Seleccione una imagen','error')
         avatar.className+=' is-invalid ';
         return false
     }else{
@@ -187,6 +189,7 @@ function formshidde2(){
     }
 
     if( avatar2.value === '' ){
+        swal('IMAGEN 2','Seleccione una imagen','error')
         avatar2.className+=' is-invalid ';
         return false
     }else{
@@ -260,7 +263,7 @@ function formshidde3(){
 
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     if (fusteUnico.checked){
-       
+        document.getElementById('poli_polifurcado').value = "";
 
             if(Cap.value < 1){
                 Cap.className += 'is-invalid';
@@ -274,9 +277,10 @@ function formshidde3(){
        
     }else{
         if(poliPolifurcado.checked){
+            document.getElementById('fuste_unico').value = "";
                 if(Cap1.value < 1){
                     Cap1.className += 'is-invalid';
-                    swal('Ingresa un numero valido','','error')
+                    
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -285,7 +289,7 @@ function formshidde3(){
                 }
                 if(Cap2.value < 1){
                     Cap2.className += 'is-invalid';
-                    swal('Ingresa un numero valido','','error')
+                    
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -294,7 +298,7 @@ function formshidde3(){
                 }
                 if(Cap3.value < 1){
                     Cap3.className += 'is-invalid';
-                    swal('Ingresa un numero valido','','error')
+                   
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -303,7 +307,7 @@ function formshidde3(){
                 }
                 if(Cap4.value < 1){
                     Cap4.className += 'is-invalid';
-                    swal('Ingresa un numero valido','','error')
+                    
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -312,7 +316,7 @@ function formshidde3(){
                 }
                 if(Cap5.value < 1){
                     Cap5.className += 'is-invalid';
-                    swal('Ingresa un numero valido','','error')
+                    
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -321,7 +325,7 @@ function formshidde3(){
                 }
                 if(numeroTallos.value <= 1 || numeroTallos.value > 50){
                     numeroTallos.className += 'is-invalid';
-                    swal('Ingresa un numero valido','','error')
+                  
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -360,6 +364,7 @@ function formshidde3(){
     
     /********************************************************************************************************** */
     if( ejemayor.value < 1 || ejemayor.value > 50 ){
+        swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
         ejemayor.className+=' is-invalid ';
         return false;
     }else{
@@ -371,6 +376,7 @@ function formshidde3(){
     }
 
     if( ejemenor.value < 1 || ejemenor.value > 50 ){
+        swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
         ejemenor.className+=' is-invalid ';
         return false;
     }else{
@@ -382,6 +388,7 @@ function formshidde3(){
     }
 
     if( ejemayor.value <= ejemenor.value ){
+        swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
         ejemayor.className+=' is-invalid ';
         ejemenor.className+=' is-invalid ';
         return false;

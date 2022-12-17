@@ -12,7 +12,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="static/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <img src="static/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" id="img">
               <h2>{{usuario.get_full_name}}</h2>
               <h3>{{usuario.rol}}</h3>
               
@@ -87,11 +87,11 @@
                   <form  method="post">
                     {% csrf_token %}
                     <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Imagen de perfil</label>
+                      <label for="perfil_image" class="col-md-4 col-lg-3 col-form-label">Imagen de perfil</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="static/assets/img/profile-img.jpg" alt="Profile">
+                        <img src="static/assets/img/profile-img.jpg" alt="Profile" id="img">
                         <div class="pt-2">
-                          <input  href="#" type="file"  accept="image/*"  class="btn btn-primary btn-sm bi bi-upload" title="Upload new profile image"></input>
+                          <input  href="#" type="file"  accept="image/*"  class="btn btn-success btn-sm bi bi-upload" title="Upload new profile image" id="perfil_image"> </input>
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
                         </div>
                       </div>
@@ -142,7 +142,7 @@
 
                    
                     <div class="text-center">
-                      <button type="submit" name="btnCambiarPerfil" class="btn btn-primary">Guardar Cambios</button>
+                      <button type="submit" name="btnCambiarPerfil" class="btn btn-success">Guardar Cambios</button>
                     </div>
                   </form><!-- End Profile Edit Form -->
 
@@ -175,7 +175,7 @@
                     </div>
 
                     <div class="text-center">
-                      <button type="submit" name="btnCambiarContrasena" class="btn btn-primary">Cambiar contraseña</button>
+                      <button type="submit" name="btnCambiarContrasena" class="btn btn-success">Cambiar contraseña</button>
                     </div>
                   </form><!-- End Change Password Form -->
 
@@ -189,6 +189,21 @@
         </div>
       </div>
     </section>
+ 
+    <script>
+      let perfilImage = document.getElementById('perfil_image');
+      let img = document.querySelector('label[for=perfil_image] img');
+
+      perfilImage.onchange = async (e) => {
+        
+        img.classList.add('preview');
+        img.src = URL.createObjectURL(e.target.files[0]);  
+        
+        await console.log(img.offsetHeight, img.offsetWidth)
+        
+      }
+    
+  </script>
     <script>
       window.onload = function() {
       llamarMensajes( '{{ llamarMensaje }}' , '{{ mensaje }}');
