@@ -3,7 +3,7 @@ from pyexpat import model
 from time import timezone
 from django.db import models
 import os
-
+from uuid import uuid4
 
 
 def path_and_rename(instance, filename):
@@ -59,17 +59,6 @@ class Arbol(models.Model):
     dist_confinamiento = models.IntegerField(null=True)
 
     
-    foto1 =  models.ImageField(upload_to='fotos_arboles/' )
-    foto2 = models.ImageField(upload_to='fotos_arboles/' )
-    foto3 = models.ImageField(upload_to='fotos_arboles/')
-    foto4 = models.ImageField(upload_to='fotos_arboles/')
-    
-    observaciones = models.TextField(null=True)
-    estado = models.TextField(null=True)
-    creado = models.DateTimeField(auto_now_add=True, blank=True)
-    modificado_por = models.TextField(null=True)
-    actualizado =  models.DateTimeField(auto_now_add=True, blank=True)
-    version = models.DateField(auto_now_add=True, blank=True)
 
     
     class Meta:
@@ -77,6 +66,87 @@ class Arbol(models.Model):
         db_table = 'arbol'
 
 
+    def _generar_ruta_imagen_1(instance, filename):
+        # El primer paso es extraer la extension de la imagen del
+        # archivo original
+        extension = os.path.splitext(filename)[1][1:]
+
+        # Generamos la ruta relativa a MEDIA_ROOT donde almacenar
+        # el archivo, usando la fecha actual (año/mes)
+        ruta = os.path.join('fotos_arboles/', str(instance.id))
+
+        # Generamos el nombre del archivo con un identificador
+        # aleatorio, y la extension del archivo original.
+        nombre_archivo = '{}.{}'.format(str(instance.id)+"_foto1", extension)
+
+        # Devolvermos la ruta completa
+        return os.path.join(ruta, nombre_archivo)
+
+
+    def _generar_ruta_imagen_2(instance, filename):
+        # El primer paso es extraer la extension de la imagen del
+        # archivo original
+        extension = os.path.splitext(filename)[1][1:]
+
+        # Generamos la ruta relativa a MEDIA_ROOT donde almacenar
+        # el archivo, usando la fecha actual (año/mes)
+        ruta = os.path.join('fotos_arboles/', str(instance.id))
+
+        # Generamos el nombre del archivo con un identificador
+        # aleatorio, y la extension del archivo original.
+        nombre_archivo = '{}.{}'.format(str(instance.id)+"_foto2", extension)
+
+        # Devolvermos la ruta completa
+        return os.path.join(ruta, nombre_archivo)
+
+
+    def _generar_ruta_imagen_3(instance, filename):
+        # El primer paso es extraer la extension de la imagen del
+        # archivo original
+        extension = os.path.splitext(filename)[1][1:]
+
+        # Generamos la ruta relativa a MEDIA_ROOT donde almacenar
+        # el archivo, usando la fecha actual (año/mes)
+        ruta = os.path.join('fotos_arboles/', str(instance.id))
+
+        # Generamos el nombre del archivo con un identificador
+        # aleatorio, y la extension del archivo original.
+        nombre_archivo = '{}.{}'.format(str(instance.id)+"_foto3", extension)
+
+        # Devolvermos la ruta completa
+        return os.path.join(ruta, nombre_archivo)
+
+
+    def _generar_ruta_imagen_4(instance, filename):
+        # El primer paso es extraer la extension de la imagen del
+        # archivo original
+        extension = os.path.splitext(filename)[1][1:]
+
+        # Generamos la ruta relativa a MEDIA_ROOT donde almacenar
+        # el archivo, usando la fecha actual (año/mes)
+        ruta = os.path.join('fotos_arboles/', str(instance.id))
+
+        # Generamos el nombre del archivo con un identificador
+        # aleatorio, y la extension del archivo original.
+        nombre_archivo = '{}.{}'.format(str(instance.id)+"_foto4", extension)
+
+        # Devolvermos la ruta completa
+        return os.path.join(ruta, nombre_archivo)
+
+
+
+    foto1 =  models.ImageField(upload_to=_generar_ruta_imagen_1 )
+    foto2 =  models.ImageField(upload_to=_generar_ruta_imagen_2 )
+    foto3 =  models.ImageField(upload_to=_generar_ruta_imagen_3 )
+    foto4 =  models.ImageField(upload_to=_generar_ruta_imagen_4 )
+
+
+    observaciones = models.TextField(null=True)
+    estado = models.TextField(null=True)
+    creado = models.DateTimeField(auto_now_add=True, blank=True)
+    modificado_por = models.TextField(null=True)
+    actualizado =  models.DateTimeField(auto_now_add=True, blank=True)
+    version = models.DateField(auto_now_add=True, blank=True)
 
 
 ################################################################# Tabla Dasometría
@@ -236,4 +306,7 @@ class Recomendacion_e_Intervencion(models.Model):
     class Meta:
         ordering = ["id"]
         db_table = 'Recomendacion_e_intervencion'
+
+
+
 

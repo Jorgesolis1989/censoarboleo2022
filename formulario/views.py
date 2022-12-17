@@ -110,6 +110,12 @@ def formulario_view_1(request):
             # E
             arbol_nuevo.emplazamiento = emplazamiento
 
+            try:
+                arbol_nuevo.save()
+
+            except Exception as e:
+                print(e)
+            
 
             # Imágenes de los árboles
 

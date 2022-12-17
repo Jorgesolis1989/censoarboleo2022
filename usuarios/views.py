@@ -2,13 +2,25 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import Permission
 from django.contrib.auth.decorators import permission_required
 from usuarios.models import Usuario
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from usuarios.forms import FormularioLogin, FormularioRegistroUsuario
 from formulario.views import formulario_view_1
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
-from django.template.context import RequestContext
+
+
+##################################################################
+# Script Name: views.py
+# Description: Renombra las fotos de una carpeta según el día que
+#              se tomaron (sólo formato *.jpg)
+# Args: N/A
+# Creation/Update: 2022/12/15 
+# Author: Jorge Leonardo Solis - Yordan Moncayo                                                
+# Email: jorgesolis1989@gmail.com                                 
+##################################################################
+
 
 
 # Metodo para editar usuario por parte del administrador y(/)
@@ -101,6 +113,8 @@ def cambiar_contrasena(request):
         
             mensaje = "Se registro el cambio sactisfactoriamente"
             llamarMensaje = "exito_usuario"
+
+# Cambiar datos personales de los usuarios 
     elif request.method == 'POST' and "btnCambiarPerfil" in request.POST:
         #Implementar mañana viernes
         usuario.first_name =  request.POST["nombre"] 
@@ -108,6 +122,18 @@ def cambiar_contrasena(request):
         usuario.direccion = request.POST["address"]
         usuario.telefono = request.POST["phone"]
         usuario.email = request.POST["email"]
+        
+        if 'imagenperfil' in request.POST:
+            print("imagen antigua") 
+
+        else: 
+            if request.FILES['imagenperfil']:
+                usuario.foto = request.FILES['imagenperfil']
+            else:
+                print("imagen antigua") 
+            
+        usuario.email = request.POST["email"]
+        
         
         try:
             usuario.save()

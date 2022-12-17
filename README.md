@@ -29,6 +29,8 @@ sslserver: pip install django-sslserver
 
 boostrap3: pip install django-bootstrap3
 
+exif: pip install exif
+
 ## Uso
 
 Despues de la instalación correr los comandos:
