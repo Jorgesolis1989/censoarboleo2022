@@ -1,3 +1,9 @@
+function alerts(){
+    
+
+
+    alerts('Hola mundo')
+    }
 /* -----------FUNCION OCULTAR CAMPOS------------- */
 function tablehidden() {
     var optionhidden = document.getElementById("barrio");
@@ -79,10 +85,10 @@ function formshidde(){
     
    /* var RE = /^\d*(\.\d{1})?\d{0,1}$/
     /*   Agregue una condicional para validar el formulario  Placa antigua solo se pueden digitar 10 numeros   */
-/*
+
     if( PlacaAntigua.value < 1 || PlacaAntigua.value > 50 ) {
         PlacaAntigua.className+= ' is-invalid ';
-        swal('Placa Antigua','Debe ingresar Minimo 1 Digito','error')
+        swal('Placa Antigua','Debe ingresar Minimo 1 Digito','info')
         return false;
     }else{
         delet.classList.remove('delet');
@@ -91,7 +97,7 @@ function formshidde(){
         
     }  
     
-    */    
+    
         var table = document.getElementById("form1");
         table.style.display = "none";
     
@@ -149,6 +155,7 @@ function formshidde2(){
             if(distConfinamiento.value.length < 1){
                 distConfinamiento.className+= ' is-invalid';
                 swal('Ingresa un numero valido','','error')
+                
                 return false
             }else{
                 delet.classList.remove('delet');

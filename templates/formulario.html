@@ -174,12 +174,12 @@
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="validationCustom01">Placa Antigua:</label>
-                                    <button type="button" class="btn" data-bs-toggle="popover" title="Ingresar Números" data-bs-content="Número correspondiente a un arbol">
-                                      ?
-                                    </button>
+                                    <input type="button" class="btn" id="popov" name="popov" onclick="alerts()" value="?">
+                                      
+                                  
                                     <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control">
                                     <div class="invalid-feedback" id="delet">
-                                      Ingresa como minimo 1 digito y maximo 12 digitos
+                                      Ingresa como minimo 1 digito y maximo 12 digitos  
                                     </div>
                                     
                                   </div>
@@ -1388,12 +1388,7 @@
       </div>
 
       <!-- Bootstrap core JavaScript-->
-      <script>
-          var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-          var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-              return new bootstrap.Popover(popoverTriggerEl)
-          })
-      </script>
+      
       <script>
           let avatarInput = document.getElementById('avatar');
           let img = document.querySelector('label[for=avatar] img');
@@ -1443,8 +1438,12 @@
             
           }
 
+      
           </script>
-        <script src="static/js/js.js"></script>
+      <!-- Sweetalerts 2-->
+      <script src="static/js/sweetalerts.js" </script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="static/js/js.js"></script>
       <!-- Core plugin JavaScript-->
       <!-- Custom scripts for all pages-->
       <script src="static/js/sb-admin-2.min.js"></script>
