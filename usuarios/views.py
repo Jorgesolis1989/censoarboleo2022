@@ -27,7 +27,7 @@ from django.contrib.auth.models import User
 @permission_required("usuarios.Administrador" , login_url="/")
 def editar_usuario(request , username=None):
     usuario = Usuario.objects.get(username=request.user.username)
-    llamarMensaje ="fracaso_usuario"
+    llamarMensaje = ""
     mensaje = ""
 
     try:
@@ -37,30 +37,39 @@ def editar_usuario(request , username=None):
         mensaje = "El usuario "+str(username)+" No existe en el sistema"
         request.session["llamarMensaje"] = llamarMensaje
         request.session["mensaje"] = mensaje
-        return redirect("listar_usuario")
+        return redirect("listar_usuarios")
 
 
     if request.method == 'POST' and 'btnactivarUsuario' in request.POST:
-        
-        print("activando usuario")
-        rol = request.POST["rol"]
-        grupo = request.POST["grupo"]
 
-        usuario_editar.rol = rol    
-        activo = False
-        if "usuario_active" in request.POST:
-            activo = True
+        if request.POST["rol"] == "NoAsignado":
 
-        usuario_editar.is_active = activo
-        usuario_editar.Grupo = grupo
-        
-        try:
-            usuario_editar.save()
-       #print("creando usuarii")
-        except Exception as e:
-            print(e)
-        llamarMensaje ="exito_usuario"
-        mensaje = "El usuario se cambió con exito"
+            llamarMensaje ="fracaso_usuario"
+            mensaje = "No asignado Rol al Usuario"
+            request.session["llamarMensaje"] = llamarMensaje
+            request.session["mensaje"] = mensaje
+ 
+        else:
+
+            rol = request.POST["rol"]
+            grupo = request.POST["grupo"]
+            activo = False
+            if "usuario_active" in request.POST:
+                activo = True
+
+            usuario_editar.rol = rol    
+            usuario_editar.is_staff = activo
+            usuario_editar.Grupo = grupo
+            
+            try:
+                usuario_editar.save()
+            except Exception as e:
+                print(e)
+            llamarMensaje ="exito_usuario"
+            mensaje = "El usuario se cambió con exito"
+            request.session["llamarMensaje"] = llamarMensaje
+            request.session["mensaje"] = mensaje
+            return redirect("listar_usuarios")
 
 
     return render(request, 'editar_usuario_Administrador.html', {'usuario_editar':usuario_editar,'usuario': usuario,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
@@ -177,31 +186,49 @@ def supervisor_forestal_home(request , usuario):
 
 #Página de la vista de usuario
 def login_view(request):
-    mensaje = ""
+
+    mensaje = request.session["mensaje"]
+    llamarMensaje = request.session["llamarMensaje"]
+
     if request.user.is_authenticated and not request.user.is_superuser:
         usuario = Usuario.objects.get(username=request.user.username)
 
         return retornar_vista(request, usuario)
 
-    elif request.method == 'POST':
+
+    # Cuando se presiona el Botón autenticar desde la ventana login
+    elif request.method == 'POST' and 'btnlogin' in request.POST:
+        print("btn in post")
         form = FormularioLogin(request.POST)
         if form.is_valid():
+
             cd = form.cleaned_data
-            usuario = authenticate(username=cd['usuario'], password=cd['password'])
-            if usuario is not None:
-                if usuario.is_active:
-                    login(request, usuario)
-                    #Redireccionar
-                    return retornar_vista(request, usuario)
+            
+            # Verificando que el usuario exista
+            if User.objects.filter(username=cd['usuario']).exists():
+                usuario = authenticate(username=cd['usuario'], password=cd['password']) 
+                if usuario is not None:
+                    if usuario.is_staff:
+                        login(request, usuario)
+                        #Redireccionar
+                        return retornar_vista(request, usuario)
+                    else:
+        
+                        mensaje = "Usuario no activado, comuniquese con el Administrador"
+                        llamarMensaje = "fracaso_usuario"
                 else:
-                   mensaje = "Usuario no activado"
+
+                        mensaje = "Contraseña incorrecta"
+                        llamarMensaje = "fracaso_usuario"
             else:
-                   mensaje = "Datos erróneos. Por favor, inténtelo otra vez.    "
+                   mensaje = "El usuario "+ str(cd['usuario'])+ " no existe"
+                   llamarMensaje = "fracaso_usuario"
     
-    
+    print(mensaje)
     form = FormularioLogin()
     
-    return render(request, 'login.html', {'mensaje': mensaje, 'form': form })
+
+    return render(request, 'login.html', {'mensaje': mensaje, 'form': form, 'llamarMensaje': llamarMensaje})
 
 
 def registro_usuario_view(request):
@@ -228,8 +255,11 @@ def registro_usuario_view(request):
                 usuario = Usuario()
                 print("creando usuario " + str(cedula_usuario))
                 crear_usuario(usuario, form)
-                mensaje = "El usuario se guardo correctamente"
-                llamarMensaje = "exito_usuario"
+                mensaje = "El usuario se guardo correctamente, debe esperar su activación por parte del administrador"
+                llamarMensaje = "info_usuario"
+                request.session["llamarMensaje"] = llamarMensaje
+                request.session["mensaje"] = mensaje
+                return redirect('login')
 
             # Si el usuario ya existe en la BD y esta activo
             else:
@@ -237,12 +267,13 @@ def registro_usuario_view(request):
                 mensaje = "El usuario " + str(cedula_usuario)  + " ya esta registrado"
                 print(mensaje)
                 llamarMensaje = "fracaso_usuario"
+                form = FormularioRegistroUsuario()
+
+                return render(request, 'registro_usuario.html',{'mensaje': mensaje, 'form': form, 'llamarMensaje': llamarMensaje})
 
         
 
-            request.session['llamarMensaje'] = llamarMensaje
-            request.session['mensaje'] = mensaje
-            return redirect("login")
+
             
         else:
             print("No valido  formulario de registro")
@@ -270,11 +301,12 @@ def crear_usuario(usuario, form):
  
     
     usuario.is_active = True
+    usuario.is_staff = False
     #generando el password aleatorio.
     password = form.cleaned_data["password"]
     usuario.set_password(password)
 
-    print("creando 1")
+
 
  #   usuario.user_permissions.add(Permission.objects.get("Censista"))
 
@@ -285,28 +317,21 @@ def crear_usuario(usuario, form):
     #Crea el usuario en la BD s i hay excepcion
     try:
         usuario.save()
-        print("creando usuarii")
+        print("creando usuariio" + usuario.first_name)
     except Exception as e:
         print(e)
 
     print(mensaje)
 
     
-    content_type = ContentType.objects.get_for_model(Usuario)
-    permission = Permission.objects.get(
-        codename='Censista',
-        content_type=content_type,
-    )
-    usuario.user_permissions.add(permission)
-
 
 
 @permission_required("usuarios.Administrador", login_url="/")
 def listar_usuarios(request):
     usuario = Usuario.objects.get(username=request.user.username)
     usuarios = Usuario.objects.filter()
-    llamarMensaje = "exito_usuario"
-    mensaje = "Se listan los usuarios activos"
+    llamarMensaje = request.session["llamarMensaje"]
+    mensaje =  request.session["mensaje"]
     return render(request, 'listar_usuarios.html', {'usuario': usuario, 'usuarios': usuarios,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
 
 

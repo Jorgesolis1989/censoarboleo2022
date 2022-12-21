@@ -10,10 +10,17 @@ function llamarMensajes	(llamada, mensaje){
 
 	/// CARGAR MENSAJES DE  REGISTRO USUARIOS
 
-	if(  "exito_usuario".localeCompare(llamada) == 0 ){
+	if("exito_usuario".localeCompare(llamada) == 0 ){
 
-			alert(""+mensaje);
+		swal('Censo Arboreo 2022',''+mensaje,'success')
 
+	}else if("fracaso_usuario".localeCompare(llamada) == 0 )
+	{
+		swal('Censo Arboreo 2022',''+mensaje,'error')
+	}
+	else if("info_usuario".localeCompare(llamada) == 0 )
+	{
+		swal('Censo Arboreo 2022',''+mensaje,'info')
 	}
 
 }
