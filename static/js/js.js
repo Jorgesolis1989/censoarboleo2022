@@ -350,7 +350,8 @@ function formshidde3(){
     /* ----------------------------------------------------------- */
 
 
-    if( !(/^\d{2,8}$/.test(comercial.value)) ){ 
+    if( !(/^\d{2,8}$/.test(comercial.value)) ){
+        swal('Ingresa un numero valido','','error') 
         comercial.className+=' is-invalid ';
         return false;
     }else{
@@ -360,6 +361,7 @@ function formshidde3(){
     }
 
     if( !(/^\d{2,8}$/.test(totalarbol.value)) ){
+        swal('Ingresa un numero valido','','error')
         totalarbol.className+=' is-invalid ';
         return false;
     }else{
@@ -412,6 +414,7 @@ function formshidde3(){
     /********************************************************************************************************** */
 
     if( !(/^\d{2,8}$/.test(copa_viva.value)) ){
+        swal('Ingresa un numero valido','','error')
         copa_viva.className+=' is-invalid ';
         return false;
     }else{
@@ -421,6 +424,7 @@ function formshidde3(){
     }
 
     if( !(/^\d{2,8}$/.test(copa_ausente.value)) ){
+        swal('Ingresa un numero valido','','error')
         copa_ausente.className+=' is-invalid ';
         return false;
     }else{
