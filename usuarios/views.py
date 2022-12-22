@@ -37,7 +37,8 @@ def editar_usuario(request , username=None):
         mensaje = "El usuario "+str(username)+" No existe en el sistema"
         request.session["llamarMensaje"] = llamarMensaje
         request.session["mensaje"] = mensaje
-        return redirect("listar_usuarios")
+        request.session["funcion_llamada"] = "editar_usuario"
+        return redirect("listar_usuarios_administrador")
 
 
     if request.method == 'POST' and 'btnactivarUsuario' in request.POST:
@@ -46,8 +47,7 @@ def editar_usuario(request , username=None):
 
             llamarMensaje ="fracaso_usuario"
             mensaje = "No asignado Rol al Usuario"
-            request.session["llamarMensaje"] = llamarMensaje
-            request.session["mensaje"] = mensaje
+
  
         else:
 
@@ -57,19 +57,31 @@ def editar_usuario(request , username=None):
             if "usuario_active" in request.POST:
                 activo = True
 
-            usuario_editar.rol = rol    
+                
             usuario_editar.is_staff = activo
             usuario_editar.Grupo = grupo
             
+            usuario_editar.user_permissions.clear()
+
+            # Modificando los roles de usuario
+            usuario_editar.rol = rol
+            content_type = ContentType.objects.get_for_model(Usuario)
+            permission = Permission.objects.get(
+            codename=rol,
+            content_type=content_type,)
+            usuario_editar.user_permissions.add(permission)
+
+
             try:
                 usuario_editar.save()
             except Exception as e:
                 print(e)
             llamarMensaje ="exito_usuario"
-            mensaje = "El usuario se cambió con exito"
+            mensaje = "El usuario "+str(usuario_editar.first_name) +" se cambió con exito"
             request.session["llamarMensaje"] = llamarMensaje
             request.session["mensaje"] = mensaje
-            return redirect("listar_usuarios")
+            request.session["funcion_llamada"] = "editar_usuario"
+            return redirect("listar_usuarios_administrador")
 
 
     return render(request, 'editar_usuario_Administrador.html', {'usuario_editar':usuario_editar,'usuario': usuario,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
@@ -95,6 +107,8 @@ def cambiar_contrasena(request):
     llamarMensaje = ""
 
     retornarvista_segun_rol = "cambiar_contrasena_"+ usuario.rol + ".html"
+    print("entre cambiar contraseña")
+    print(str(retornarvista_segun_rol))
 
     # Cambiar contraseña
     if request.method == 'POST' and "btnCambiarContrasena" in request.POST:
@@ -153,7 +167,7 @@ def cambiar_contrasena(request):
         mensaje = "Se actualizaron los datos sactisfactoriamente"
         llamarMensaje = "exito_usuario"
 
-        
+    print(retornarvista_segun_rol)   
     return render(request, retornarvista_segun_rol, {'usuario': usuario, "mensaje": mensaje,  "llamarMensaje": llamarMensaje})
 
 
@@ -187,8 +201,12 @@ def supervisor_forestal_home(request , usuario):
 #Página de la vista de usuario
 def login_view(request):
 
-    mensaje = request.session["mensaje"]
-    llamarMensaje = request.session["llamarMensaje"]
+    try:
+        mensaje = request.session["mensaje"]
+        llamarMensaje = request.session["llamarMensaje"]
+    except Exception as e:
+        mensaje = ""
+        llamarMensaje = ""
 
     if request.user.is_authenticated and not request.user.is_superuser:
         usuario = Usuario.objects.get(username=request.user.username)
@@ -325,14 +343,36 @@ def crear_usuario(usuario, form):
 
     
 
+@permission_required("usuarios.Supervisor", login_url="/")
+def listar_censistas_supervisor(request):
+    usuario = Usuario.objects.get(username=request.user.username)
+    censistas = Usuario.objects.filter(rol="Censista", Grupo=usuario.Grupo)
+    
+    llamarMensaje = ""
+    mensaje = ""
+
+    return render(request, 'listar_censistas_supervisor.html', {'usuario': usuario, 'usuarios': censistas,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
+    
+
 
 @permission_required("usuarios.Administrador", login_url="/")
-def listar_usuarios(request):
+def listar_usuarios_administrador(request):
     usuario = Usuario.objects.get(username=request.user.username)
     usuarios = Usuario.objects.filter()
-    llamarMensaje = request.session["llamarMensaje"]
-    mensaje =  request.session["mensaje"]
-    return render(request, 'listar_usuarios.html', {'usuario': usuario, 'usuarios': usuarios,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
+
+    llamarMensaje = ""
+    mensaje = ""
+    
+    funcion_llamada = request.session.get('funcion_llamada', 'No')
+    print(funcion_llamada)
+
+    if funcion_llamada == "editar_usuario":
+        print("funcion llamada")
+        llamarMensaje = request.session["llamarMensaje"] 
+        mensaje = request.session["mensaje"]
+        del request.session['funcion_llamada']
+
+    return render(request, 'listar_usuarios_administrador.html', {'usuario': usuario, 'usuarios': usuarios,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
 
 
     # Colocandole permisos al usuario

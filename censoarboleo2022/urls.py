@@ -19,7 +19,7 @@ from django.conf.urls import include
 #from usuarios import *
 import os
 from usuarios.views import  *
-from formulario.views import formulario_view_1 
+from formulario.views import formulario_view_1, editar_formulario, listar_formularios
 
 urlpatterns = [
     path('', login_view, name='login'),
@@ -27,8 +27,11 @@ urlpatterns = [
     path('registro_usuario', registro_usuario_view, name='registro_usuario'),
     path('cambiar_contrasena', cambiar_contrasena, name='cambiar_contrasena'),
     path('formulario', formulario_view_1, name='formulario'),
-    path('listar_usuarios', listar_usuarios, name='listar_usuarios'),
+    path('listar_usuarios_administrador', listar_usuarios_administrador, name='listar_usuarios_administrador'),
+    path('listar_censistas_supervisor', listar_censistas_supervisor, name='listar_censistas_supervisor'),
+    path('listar_formularios', listar_formularios, name='listar_formularios'),
     path('editar/<username>/', editar_usuario, name='editar_usuario'),
+    path('editar_formulario/<id_arbol>/', editar_formulario, name='editar_formulario'),
 #    path('usuarios/editar/', login_view, name='login'),
 	re_path(r'^censoarboleo2022/media/(.*)$', django.views.static.serve, {'document_root' : os.path.join(os.path.dirname(__file__), 'media')}),
 

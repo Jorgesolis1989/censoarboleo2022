@@ -177,7 +177,7 @@
                                   <button type="button" class="btn" data-bs-toggle="popover" title="Ingresar Números" data-bs-content="Número correspondiente a un arbol">
                                     ?
                                   </button>
-                                  <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control">
+                                  <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control" value="{{arbol.Placa_ant}}">
                                   <div class="invalid-feedback" id="delet">
                                     Ingresa como minimo 1 digito y maximo 12 digitos
                                   </div>
@@ -197,11 +197,11 @@
                                         </div>
                                         <div class="col-md-6 text-center">
                                             <label for="" class="text-center">Latitud (GD)</label>
-                                            {{form.latitude}}
+                                            {{arbol.latitude}}
                                         </div>
                                         <div class="col-md-6 text-center">
                                             <label for="" class="text-center">Longitud (GD)</label>
-                                          {{form.longitude}}
+                                          {{arbol.longitude}}
                                         </div>
                                     </div>
                                 </div>
@@ -1508,13 +1508,13 @@ $(document).on('ready',function (){
 
      // Valores iniciales-
     // Familia
-    document.getElementById("familia").value=datos_json["Acacia rubinia"][0]
+    document.getElementById("familia").value=datos_json["{{arbol.nombre_comun}}"][0]
 
     // Género
-    document.getElementById("genero").value=datos_json["Acacia rubinia"][1]
+    document.getElementById("genero").value=datos_json["{{arbol.nombre_comun}}"][1]
 
     // Nombre Científico
-    document.getElementById("nombre_cientifico").value=datos_json["Acacia rubinia"][2]
+    document.getElementById("nombre_cientifico").value=datos_json["{{arbol.nombre_comun}}"][2]
     
  });
 </script>

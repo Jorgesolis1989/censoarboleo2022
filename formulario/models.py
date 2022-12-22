@@ -143,6 +143,7 @@ class Arbol(models.Model):
 
     observaciones = models.TextField(null=True)
     estado = models.TextField(null=True)
+    creado_por = models.TextField(null=True)
     creado = models.DateTimeField(auto_now_add=True, blank=True)
     modificado_por = models.TextField(null=True)
     actualizado =  models.DateTimeField(auto_now_add=True, blank=True)

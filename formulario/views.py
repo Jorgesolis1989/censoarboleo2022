@@ -8,20 +8,65 @@ from django.shortcuts import redirect, render
 from formulario.models import EstadoFitosanitario , Dasometria, Arbol, Vulnerabilidad, Recomendacion_e_Intervencion
 from django.utils import timezone
 from django.conf import settings
-#from usuarios.models import Usuario
+from usuarios.models import Usuario
 
 
 
 #from censoarboleo2022.formulario import forms
 from formulario.forms import Formulario_1
 # Create your views here.
-
+from django.contrib.auth.decorators import login_required
 timezone.activate(settings.TIME_ZONE)
 
 
+@login_required
+def listar_formularios(request):
+    
+    usuario = Usuario.objects.get(username=request.user.username)
+    arboles = None
+    base_template = ""
+    if usuario.rol == "Administrador":
+        base_template = "base-admin.html"
+        arboles = Arbol.objects.filter()
+    elif usuario.rol == "Censista":
+        base_template = "base-censista.html"
+        arboles = Arbol.objects.filter(creado_por=usuario.username)
+    elif usuario.rol == "Supervisor":
+        base_template = "base-supervisor.html"
 
+        # programar cuando sea supervisor
+
+    else:
+        base_template = "base-supervisor-forestal.html"
+
+    # Consultas de los formularios
+    
+
+
+    return render(request, 'listar_formularios.html',{'usuario': usuario, 'arboles': arboles, "base_template":base_template})
+
+
+@login_required
+def editar_formulario(request , id_arbol=None):
+    arbol = Arbol.objects.filter(id=id_arbol)
+
+    
+
+    dasometria = Dasometria.objects.filter(arbol_id_id=id_arbol)
+
+    estado_fitosanitario = EstadoFitosanitario.objects.filter(arbol_id_id=id_arbol)
+
+    recomendacion_e_intervencion = Recomendacion_e_Intervencion.objects.filter(arbol_id_id=id_arbol)
+
+    usuario = Usuario.objects.get(username=request.user.username)
+
+    return render(request, 'edit-formulario.html', {'usuario': usuario, 'arbol': arbol, "dasometria":dasometria,"estado_fitosanitario":estado_fitosanitario,
+    "recomendacion_e_intervencion":recomendacion_e_intervencion, })
+
+@login_required
 def formulario_view_1(request):
     
+
     if request.method == 'POST' and 'btnFinalizar' in request.POST:
         form = Formulario_1(request.POST)
         #latitude = form.cleaned_data["latitude"] 
@@ -170,7 +215,9 @@ def formulario_view_1(request):
             arbol_nuevo.perimetro =0.0
             arbol_nuevo.hito = 0.0
             arbol_nuevo.observaciones = ""
-            
+
+            arbol_nuevo.creado_por = request.user.username
+
 
 
             try:

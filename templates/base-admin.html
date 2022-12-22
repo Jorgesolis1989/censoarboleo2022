@@ -215,8 +215,8 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{% url 'listar_usuarios' %}">
-              <i class="bi bi-circle"></i><span>Activar Usuarios</span>
+            <a href="{% url 'listar_usuarios_administrador' %}">
+              <i class="bi bi-circle"></i><span>Activar y/o Listar Usuarios</span>
             </a>
           </li>
           <li>
@@ -234,12 +234,12 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a  href="{% url 'formulario' %}">
               <i class="bi bi-circle"></i><span>Crear formulario</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a  href="{% url 'listar_formularios' %}">
               <i class="bi bi-circle"></i><span>Editar formulario</span>
             </a>
           </li>
