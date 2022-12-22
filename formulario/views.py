@@ -48,20 +48,38 @@ def listar_formularios(request):
 
 @login_required
 def editar_formulario(request , id_arbol=None):
-    arbol = Arbol.objects.filter(id=id_arbol)
+    arbol = Arbol.objects.get(id=id_arbol)
 
-    
+    dasometria = Dasometria.objects.get(arbol_id_id=id_arbol)
 
-    dasometria = Dasometria.objects.filter(arbol_id_id=id_arbol)
+    estado_fitosanitario = EstadoFitosanitario.objects.get(arbol_id_id=id_arbol)
 
-    estado_fitosanitario = EstadoFitosanitario.objects.filter(arbol_id_id=id_arbol)
-
-    recomendacion_e_intervencion = Recomendacion_e_Intervencion.objects.filter(arbol_id_id=id_arbol)
+    recomendacion_e_intervencion = Recomendacion_e_Intervencion.objects.get(arbol_id_id=id_arbol)
 
     usuario = Usuario.objects.get(username=request.user.username)
+    
+    
+    base_template = ""
+    if usuario.rol == "Administrador":
+        base_template = "base-admin.html"
+    elif usuario.rol == "Censista":
+        base_template = "base-censista.html"
+    elif usuario.rol == "Supervisor":
+        base_template = "base-supervisor.html"
+
+        # programar cuando sea supervisor
+
+    else:
+        base_template = "base-supervisor-forestal.html"
+
+    # Consultas de los formularios
+    
+
+    print(str(arbol.Placa_ant))
+
 
     return render(request, 'edit-formulario.html', {'usuario': usuario, 'arbol': arbol, "dasometria":dasometria,"estado_fitosanitario":estado_fitosanitario,
-    "recomendacion_e_intervencion":recomendacion_e_intervencion, })
+    "recomendacion_e_intervencion":recomendacion_e_intervencion, 'base_template':base_template})
 
 @login_required
 def formulario_view_1(request):

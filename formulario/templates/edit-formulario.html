@@ -2,7 +2,7 @@
   <html lang="es">
 
   <head>
-
+    {% load static %}
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,17 +10,17 @@
       <meta name="author" content="">
 
       <title >Censo Arbóreo Santiago de Cali 2022</title>
-      <link rel="icon" type="image/x-icon" href="static/img/funa.ico">
+      <link rel="icon" type="image/x-icon" href="{% static '/img/funa.ico' %}">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
       <!-- Custom fonts for this template -->
-      <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+      <link href="{% static '/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
       <link 
           href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-      <script type="text/javascript" src="/static/js/familia_genero.js"></script>
+      <script type="text/javascript" src="{% static '/js/familia_genero.js' %} "></script>
         <!-- Custom styles for this page -->
 
       <!--Funcionalidad del mapa-->
@@ -66,7 +66,7 @@
               var map = new google.maps.Map(document.getElementById("divMap"), mapProp);
 
 
-              const image = "static/img/arbol(1).png";
+              const image = "{% static '/img/arbol(1).png' %}";
 
 
               // Creando un marker en el mapa
@@ -125,7 +125,7 @@
                   <div class="container">
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                        <img src="/static/img/funa.png" class="rounded mx-auto d-block bi me-2" width="40" height="32"  alt="">
+                        <img src="{% static '/img/funa.png' %}" class="rounded mx-auto d-block bi me-2" width="40" height="32"  alt="">
                       </a>
               
                       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -159,7 +159,7 @@
                     
                       <div
                           class="grid-form col-12 col-md-8 col-sm-12 col-lg-12 pb-5 px-5 rounded rounded-lg shadow-lg  aling-items-center">
-                        <img src="/static/img/funa.png" class="rounded mx-auto d-block"
+                        <img src="{% static '/img/funa.png' %}" class="rounded mx-auto d-block"
                               style="max-width: 150px; max-height: 150px;">
                           <!------------------------------------------------------------------------------------------------------------------------ ---
                             /------------------------------------------------------------------------------------------------------------------------ ---
@@ -174,10 +174,10 @@
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="validationCustom01">Placa Antigua:</label>
-                                    <input type="button" class="btn" id="popov" name="popov" onclick="alerts()" value="?">
+                                    <input type="button" class="btn" id="popov" name="popov" onclick="alerts()" >
                                       
                                   
-                                    <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control">
+                                    <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control" value="{{arbol.Placa_ant}}">
                                     <div class="invalid-feedback" id="delet">
                                       Ingresa como minimo 1 digito y maximo 12 digitos  
                                     </div>
@@ -247,7 +247,7 @@
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <div class="form-group d-flex flex-column mx-auto">
                                           <label for="Dirección">Dirección:</label>
-                                          <input type="text" id="direccion" name="direccion" class="form-control">
+                                          <input type="text" id="direccion" name="direccion" class="form-control" value="{{arbol.direccion}}">
                                           <div class="valid-feedback" id="validaciondireccion">
                                                 Ingresar dirección válida
                                           </div>
@@ -1270,7 +1270,7 @@
 
 
                         <!-- BOTON 5-->
-                        <nav aria-label="Page navigation example" id="boton5" style="display: none;">
+                        <nav aria-label="Page navigation example" id="boton5" >
                           <ul class="pagination justify-content-center">
                               <li class="page-item disabled px-3">
                                 <button type="button"   class="btn btn-outline-secondary" onclick="boton5()" >Anterior</button>
@@ -1312,7 +1312,7 @@
       <footer class="sticky-footer bg-white">
           <div class="container my-auto">
               <div class="copyright text-center my-auto">
-                  <img src="static/img/footer.png" alt="">
+                  <img src="{% static '/img/footer.png' %}" alt="">
                   <br>
                   <span style="text-align: end;"> Santiago de Cali, Colombia
                       Dirección: Carrera 26 #7-08 of. 204 Teléfono: +57 (318) 3983729
@@ -1397,20 +1397,20 @@
       
           </script>
       <!-- Sweetalerts 2-->
-      <script src="static/js/sweetalerts.js"> </script>
+
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      <script src="static/js/js.js"></script>
+      <script src="{% static '/js/js.js' %}"></script>
       <!-- Core plugin JavaScript-->
       <!-- Custom scripts for all pages-->
-      <script src="static/js/sb-admin-2.min.js"></script>
+      <script src="{% static '/js/sb-admin-2.min.js' %}"></script>
       <!--Alerts-->
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <!-- Page level plugins -->
-      <script src="static/vendor/datatables/jquery.dataTables.min.js"></script>
-      <script src="static/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+      <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+      <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
       <!-- Page level custom scripts -->
-      <script src="static/js/demo/datatables-demo.js"></script>
+      <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
 
   </body>
 
@@ -1508,13 +1508,13 @@
   <script type="text/javascript">
   $(document).on('ready',function (){
       
-      $.getJSON('/static/js/lista_familia_arboles.json', function(data) {
+      $.getJSON('../../static/js/lista_familia_arboles.json', function(data) {
           $.each(data, function(key, value) {
               $("#nombre_comun").append('<option name="' + key + '">' + value + '</option>');
           }); // close each()
       }); // close getJSON()
 
-      $.getJSON('/static/js/lista_genero_arboles.json', function(json) { datos_json = json; });
+      $.getJSON('../../static/js/lista_genero_arboles.json', function(json) { datos_json = json; });
 
       // Valores iniciales-
       // Familia
