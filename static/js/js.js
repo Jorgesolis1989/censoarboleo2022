@@ -270,7 +270,7 @@ function formshidde3(){
 
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     if (fusteUnico.checked){
-        document.getElementById('poli_polifurcado').value = "";
+        
 
             if(Cap.value < 1){
                 Cap.className += 'is-invalid';
@@ -284,7 +284,7 @@ function formshidde3(){
        
     }else{
         if(poliPolifurcado.checked){
-            document.getElementById('fuste_unico').value = "";
+           
                 if(Cap1.value < 1){
                     Cap1.className += 'is-invalid';
                     
