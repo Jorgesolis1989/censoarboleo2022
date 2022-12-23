@@ -38,5 +38,9 @@ class Usuario(User):
 	rol= models.TextField()
 	Grupo = models.TextField(null=True)
 	
+
+
+
 	def __str__(self):
 		return '%s - %s  - %s' %(self.cedula_usuario,   self.first_name, self.last_name	)
+		

@@ -1,8 +1,7 @@
 {% extends "base-supervisor.html" %}
-{% block seccion %}Usuarios{% endblock seccion %}
-{% block subseccion %}Cambiar Contraseña{% endblock subseccion %}
-{% block title %}Supervisor{% endblock title  %}
+{% block title %}Supervisor -{% endblock title  %}
 {% block content %}
+
 
 
     <section class="section profile">
@@ -12,7 +11,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="static/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <img src="{{ MEDIA_URL }}{{usuario.foto.url}}"  alt="Profile" class="rounded-circle">
               <h2>{{usuario.get_full_name}}</h2>
               <h3>{{usuario.rol}}</h3>
               
@@ -84,18 +83,31 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form  method="post">
+                  <form  method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Imagen de perfil</label>
-                      <div class="col-md-8 col-lg-9">
-                        <img src="static/assets/img/profile-img.jpg" alt="Profile">
-                        <div class="pt-2">
-                          <input  href="#" type="file"  accept="image/*"  class="btn btn-primary btn-sm bi bi-upload" title="Upload new profile image"></input>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+
+                        
+                      <div class="col-md-6 col-lg-6 mb-2">
+                        <div class="col-md-12 col-lg-12 mb-2 text-center">
+                            <label for="imagenperfil">
+                                <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
+                                    <img class="w-full object-cover" src="{{ MEDIA_URL }}{{usuario.foto.url}}" height="96" id="img"/>
+                                </div>                                          
+                            </label>
+                        </div>
+                        <div class="col-md-12 col-lg-12 mb-2">
+                            <input type="file" class="form-control" placeholder="Primera foto" aria-label="First name" id="imagenperfil" name="imagenperfil" accept="image/*">
+                            <div class="invalid-feedback" id="delet">
+                              Debes ingresar una imagen
+                            </div>
                         </div>
                       </div>
+
                     </div>
+
+
 
                     <div class="row mb-3">
                       <label for="nombre" class="col-md-4 col-lg-3 col-form-label">Nombre </label>
@@ -194,6 +206,21 @@
       llamarMensajes( '{{ llamarMensaje }}' , '{{ mensaje }}');
   };
   
+  </script>
+
+  <script>
+let avatarInput = document.getElementById('imagenperfil');
+  let img = document.querySelector('label[for=imagenperfil] img');
+
+  avatarInput.onchange = async (e) => {
+    
+    img.classList.add('preview');
+    img.src = URL.createObjectURL(e.target.files[0]);  
+    
+    await console.log(img.offsetHeight, img.offsetWidth)
+    
+  }
+
   </script>
 
   {% endblock content  %}
