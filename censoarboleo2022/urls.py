@@ -19,14 +19,14 @@ from django.conf.urls import include
 #from usuarios import *
 import os
 from usuarios.views import  *
-from formulario.views import formulario_view_1, editar_formulario, listar_formularios
+from formulario.views import crear_formulario_view, editar_formulario, listar_formularios
 
 urlpatterns = [
     path('', login_view, name='login'),
     path('logout', custom_logout, name='logout'),
     path('registro_usuario', registro_usuario_view, name='registro_usuario'),
     path('cambiar_contrasena', cambiar_contrasena, name='cambiar_contrasena'),
-    path('formulario', formulario_view_1, name='formulario'),
+    path('formulario', crear_formulario_view, name='formulario'),
     path('listar_usuarios_administrador', listar_usuarios_administrador, name='listar_usuarios_administrador'),
     path('listar_censistas_supervisor', listar_censistas_supervisor, name='listar_censistas_supervisor'),
     path('listar_formularios', listar_formularios, name='listar_formularios'),

@@ -36,7 +36,7 @@
                       <td>
                           <!--acciones - boton editar y eliminar-->
                    
-                          <a id="{{ usuario.username}}" name="btnusuario"  data-toggle="tooltip" href="editar_formulario/{{arbol.id}}" data-original-title="Editar" data-container="body"><i class="btn btn-primary rounded-pill">Editar</i></a>
+                          <a id="{{ arbol.id}}" name="btnusuario"  data-toggle="tooltip" href="editar_formulario/{{arbol.id}}" data-original-title="Editar" data-container="body"><i class="btn btn-primary rounded-pill">Editar</i></a>
                       </td>
                   </tr>
               {% endfor %}
@@ -48,6 +48,9 @@
     <script>
       window.onload = function() {
       llamarMensajes( '{{ llamarMensaje }}' , '{{ mensaje }}');
+      $('#example').DataTable({
+        order: [[0, 'desc']],
+    });
   };
   
   </script>
