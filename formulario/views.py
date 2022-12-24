@@ -37,7 +37,7 @@ def listar_formularios(request):
         base_template = "base-supervisor.html"
         
         # Filtrar los árboles del supervisor
-        arboles = Arbol.objects.filter()
+        arboles = Arbol.objects.filter().order_by('-id')
 
 
         # programar cuando sea supervisor
@@ -61,8 +61,6 @@ def listar_formularios(request):
 
 @login_required
 def editar_formulario(request , id_arbol=None):
-
-  
 
 
 
@@ -120,7 +118,7 @@ def editar_formulario(request , id_arbol=None):
 
 @login_required
 def crear_formulario_view(request):
-    
+    usuario = Usuario.objects.get(username=request.user.username)
     mensaje = ""
     llamarMensaje = ""
 
@@ -139,7 +137,7 @@ def crear_formulario_view(request):
 
 
       
-    return render(request, 'formulario.html', {'mensaje': mensaje, 'llamarMensaje': llamarMensaje})
+    return render(request, 'formulario.html', {'mensaje': mensaje, 'llamarMensaje': llamarMensaje, "usuario":usuario})
 
 
 

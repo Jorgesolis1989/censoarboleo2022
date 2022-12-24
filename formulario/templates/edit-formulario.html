@@ -64,7 +64,7 @@
                       <div class="dropdown text-end">
                         
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                          {{ request.user.get_full_name }} <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                          {{ request.user.get_full_name }} <img src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="mdo" width="32" height="32" class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu text-small">
                           <li><a class="dropdown-item" href="{% url 'login' %}">Dashboard</a></li>
@@ -356,7 +356,7 @@
                                           </div>
 
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="tipofuste" id="poli_polifurcado" onclick="formFusteFolicurcado()"value="Fuste Polifurcado">
+                                            <input class="form-check-input" type="radio" name="tipofuste" id="poli_polifurcado" onclick="formFusteFolicurcado()" value="Fuste Polifurcado">
                                             <label class="form-check-label" for="inlineRadio2">Fuste Polifurcado</label>
                                           </div>
                                           

@@ -224,11 +224,12 @@ def login_view(request):
             
             # Verificando que el usuario exista
             if User.objects.filter(username=cd['usuario']).exists():
-                usuario = authenticate(username=cd['usuario'], password=cd['password']) 
-                if usuario is not None:
-                    if usuario.is_staff:
-                        login(request, usuario)
+                user = authenticate(username=cd['usuario'], password=cd['password']) 
+                if user is not None:
+                    if user.is_staff:
+                        login(request, user)
                         #Redireccionar
+                        usuario =  Usuario.objects.get(username=request.user.username)
                         return retornar_vista(request, usuario)
                     else:
         

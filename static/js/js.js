@@ -86,9 +86,9 @@ function formshidde(){
    /* var RE = /^\d*(\.\d{1})?\d{0,1}$/
     /*   Agregue una condicional para validar el formulario  Placa antigua solo se pueden digitar 10 numeros   */
 
-    if( PlacaAntigua.value < 1 || PlacaAntigua.value > 50 ) {
+    if( PlacaAntigua.value < 0 ) {
         PlacaAntigua.className+= ' is-invalid ';
-        swal('Placa Antigua','Debe ingresar Minimo 1 Digito','info')
+        swal('Placa Antigua','Debe ingresar un dígito de placa antigua, cero si no tiene','info')
         return false;
     }else{
         delet.classList.remove('delet');
@@ -154,7 +154,7 @@ function formshidde2(){
         if (confinamientoRadio.checked){
             if(distConfinamiento.value.length < 1){
                 distConfinamiento.className+= ' is-invalid';
-                swal('Ingresa un numero valido','','error')
+                swal('Ingresa un número de confinamiento válido','','error')
                 
                 return false
             }else{
@@ -173,9 +173,9 @@ function formshidde2(){
 
     /* -------------------------------------------------- ----------------*/
 
-    if( qr.value < 1 || qr.value > 12 ){
+    if( qr.value < 1 ){
         qr.className+=' is-invalid ';
-        swal('Qr','Debe ingresar un digito del 1 al 12','error')
+        swal('Qr','Debe ingresar un dígito de QR válido','error')
         return false;
     }else{
     
@@ -186,7 +186,7 @@ function formshidde2(){
     }
 
     if( avatar.value === '' ){
-        swal('IMAGEN 1','Seleccione una imagen','error')
+        swal('IMAGEN 1','Seleccione de ingresar una imagen del árbol','error')
         avatar.className+=' is-invalid ';
         return false
     }else{
@@ -196,7 +196,7 @@ function formshidde2(){
     }
 
     if( avatar2.value === '' ){
-        swal('IMAGEN 2','Seleccione una imagen','error')
+        swal('IMAGEN 2','Seleccione de ingresar una imagen del árbol','error')
         avatar2.className+=' is-invalid ';
         return false
     }else{
@@ -340,7 +340,7 @@ function formshidde3(){
                     numeroTallos.className+=' is-valid ';  
                 }
         }else{
-            swal('Ingresa fuste Unico','','warning')
+            swal('Ingresa tipo de tronco','','warning')
             return false
         }
         
@@ -350,8 +350,8 @@ function formshidde3(){
     /* ----------------------------------------------------------- */
 
 
-    if( !(/^\d{2,8}$/.test(comercial.value)) ){
-        swal('Ingresa un numero valido','','error') 
+    if( !(/^\d{1,8}$/.test(comercial.value)) ){
+        swal('Ingresa un número válido para comercial fuste','','error') 
         comercial.className+=' is-invalid ';
         return false;
     }else{
@@ -360,8 +360,8 @@ function formshidde3(){
      
     }
 
-    if( !(/^\d{2,8}$/.test(totalarbol.value)) ){
-        swal('Ingresa un numero valido','','error')
+    if( !(/^\d{1,8}$/.test(totalarbol.value)) ){
+        swal('Ingresa un número válido para el total árbol','','error')
         totalarbol.className+=' is-invalid ';
         return false;
     }else{
