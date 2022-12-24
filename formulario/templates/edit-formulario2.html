@@ -1,164 +1,165 @@
-<!DOCTYPE html>
-<html lang="es">
+  <!DOCTYPE html>
+  <html lang="es">
 
-<head>
+  <head>
+    {% load static %}
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+      <title>Censo Arbóreo Santiago de Cali 2022</title>
+      <link rel="icon" type="image/x-icon" href="static/img/funa.ico">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-    <title >Censo Arbóreo Santiago de Cali 2022</title>
-    <link rel="icon" type="image/x-icon" href="static/img/funa.ico">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+      <!-- Custom fonts for this template -->
+      <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+      <link 
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+      <script type="text/javascript" src="/static/js/familia_genero.js"></script>
+        <!-- Custom styles for this page -->
 
-    <!-- Custom fonts for this template -->
-    <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link 
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="/static/js/familia_genero.js"></script>
-      <!-- Custom styles for this page -->
+        <!-- Custom styles for this page -->
 
-    <!--Funcionalidad del mapa-->
-    <style type="text/css">
-        #divMap {
-            height: 400px;
-            width: 1200px;
-            border-radius: 15px;
-            margin: 50px auto;
-        }
-    </style>
-    <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8VDnPOhFpQiCLmBzHmi1byVuSoE2hcTs&callback=initMap&libraries=&v=weekly">
-    </script>
-    <script type="text/javascript">
-        var latitude1 = 0;
-        var longitude1 = 0;
+      <!--Funcionalidad del mapa-->
+      <style type="text/css">
+          #divMap {
+              height: 400px;
+              width: 1200px;
+              border-radius: 15px;
+              margin: 50px auto;
+          }
+      </style>
+      <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8VDnPOhFpQiCLmBzHmi1byVuSoE2hcTs&callback=initMap&libraries=&v=weekly">
+      </script>
+      <script type="text/javascript">
+          var latitude1 = 0;
+          var longitude1 = 0;
 
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
+          function getLocation() {
+              if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(showPosition);
+              } else {
+                  x.innerHTML = "Geolocation is not supported by this browser.";
+              }
+          }
 
-        function showPosition(position) {
-            latitude1 = position.coords.latitude;
-            longitude1 = position.coords.longitude;
-
-
-            console.log("latitude " + latitude1)
-            console.log("longitude " + longitude1)
-            document.getElementById("textLatitude").value  = latitude1;
-            document.getElementById("textLongitude").value = longitude1;
-
-            var mapProp = {
-                center: new google.maps.LatLng(latitude1, longitude1),
-                zoom: 20,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            // Agregando el mapa al tag de id divMap
-            var map = new google.maps.Map(document.getElementById("divMap"), mapProp);
+          function showPosition(position) {
+              latitude1 = position.coords.latitude;
+              longitude1 = position.coords.longitude;
 
 
-            const image = "static/img/arbol(1).png";
+              console.log("latitude " + latitude1)
+              console.log("longitude " + longitude1)
+              document.getElementById("textLatitude").value  = latitude1;
+              document.getElementById("textLongitude").value = longitude1;
+
+              var mapProp = {
+                  center: new google.maps.LatLng(latitude1, longitude1),
+                  zoom: 20,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+              // Agregando el mapa al tag de id divMap
+              var map = new google.maps.Map(document.getElementById("divMap"), mapProp);
 
 
-            // Creando un marker en el mapa
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(latitude1, longitude1),
-                map: map,
-                title: 'Hello World!',
-                icon: image,
-                draggable: true //que el marcador se pueda arrastrar
-            });
-
-            // Registrando el evento drag, en este caso imprime
-            // en consola la latitud y longitud
-            google.maps.event.addListener(marker, 'drag', function (event) {
-                console.log(event.latLng.lat());
-                
-                document.getElementById("textLatitude").value  = event.latLng.lat();
-                document.getElementById("textLongitude").value = event.latLng.lng();
-            });
-        }
+              const image = "static/img/arbol(1).png";
 
 
+              // Creando un marker en el mapa
+              var marker = new google.maps.Marker({
+                  position: new google.maps.LatLng(latitude1, longitude1),
+                  map: map,
+                  title: 'Hello World!',
+                  icon: image,
+                  draggable: true //que el marcador se pueda arrastrar
+              });
 
-        function initialize() {
+              // Registrando el evento drag, en este caso imprime
+              // en consola la latitud y longitud
+              google.maps.event.addListener(marker, 'drag', function (event) {
+                  console.log(event.latLng.lat());
+                  
+                  document.getElementById("textLatitude").value  = event.latLng.lat();
+                  document.getElementById("textLongitude").value = event.latLng.lng();
+              });
+          }
 
-            getLocation()
-
-            console.log("latitude 2 " + latitude1)
-            console.log("longitude 2 " + longitude1)
-
-            //latitude1 = 3.419790480782989
-            //longitude1 = -76.53127670288087
-            // Configuración del mapa
 
 
-        }
+          function initialize() {
 
-        // Inicializando el mapa cuando se carga la página
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+              getLocation()
 
-</head>
+              console.log("latitude 2 " + latitude1)
+              console.log("longitude 2 " + longitude1)
 
-<body id="page-top">
+              //latitude1 = 3.419790480782989
+              //longitude1 = -76.53127670288087
+              // Configuración del mapa
 
-    <!-- Page Wrapper -->
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column ">
+          }
 
-        <!-- Main Content -->
-        <div id="content">
+          // Inicializando el mapa cuando se carga la página
+          google.maps.event.addDomListener(window, 'load', initialize);
+      </script>
 
-            <!-- Topbar -->
-            <header class="p-3 mb-3 border-bottom">
-                <div class="container">
-                  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                      <img src="/static/img/funa.png" class="rounded mx-auto d-block bi me-2" width="40" height="32"  alt="">
-                    </a>
-            
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                      Censo Arbóreo Santiago de Cali 2022
-                    </ul>
-            
-            
-                    <div class="dropdown text-end">
-                      
-                      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ request.user.get_full_name }} <img src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="mdo" width="32" height="32" class="rounded-circle">
+  </head>
+
+  <body id="page-top">
+
+      <!-- Page Wrapper -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column ">
+
+          <!-- Main Content -->
+          <div id="content">
+
+              <!-- Topbar -->
+              <header class="p-3 mb-3 border-bottom">
+                  <div class="container">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                        <img src="/static/img/funa.png" class="rounded mx-auto d-block bi me-2" width="40" height="32"  alt="">
                       </a>
-                      <ul class="dropdown-menu text-small">
-                        <li><a class="dropdown-item" href="{% url 'login' %}">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="{% url 'cambiar_contrasena' %}">Cambiar Contraseña</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Salir</a></li>
+              
+                      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        Censo Arbóreo Santiago de Cali 2022
                       </ul>
+              
+              
+                      <div class="dropdown text-end">
+                        
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{ request.user.get_full_name }} <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                          <li><a class="dropdown-item" href="{% url 'login' %}">{{ request.user.get_full_name }}</a></li>
+                          <li><a class="dropdown-item" href="{% url 'cambiar_contrasena' %}">Cambiar Contraseña</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="{% url 'logout' %}">Salir</a></li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </header>
-            <!-- End of Topbar -->
+                </header>
+              <!-- End of Topbar -->  
 
-            <!-- Tablas Ejempos -->
+              <!-- Tablas Ejempos -->
 
-            <main class="container-fluid">
+              <main class="container-fluid">
 
-                
-                <div class="wrapper d-flex col-md-12 justify-content-center  rounded p-4 form">
                   
-                    <div
-                        class="grid-form col-12 col-md-8 col-sm-12 col-lg-12 pb-5 px-5 rounded rounded-lg shadow-lg  aling-items-center">
+                  <div class="wrapper d-flex col-md-12 justify-content-center  rounded p-4 form">
+                    
+                    <div class="grid-form col-12 col-md-8 col-sm-12 col-lg-12 pb-5 px-5 rounded rounded-lg shadow-lg  aling-items-center">
                       <img src="/static/img/funa.png" class="rounded mx-auto d-block"
                             style="max-width: 150px; max-height: 150px;">
                         <!------------------------------------------------------------------------------------------------------------------------ ---
@@ -174,17 +175,17 @@
                             <div  class="row">
                                 <div class="col-md-12 col-lg-12 mb-2">
                                   <label for="validationCustom01">Placa Antigua:</label>
-                                  <input type="button" class="btn" id="popov" name="popov" onclick="alerts()" value="?">
-                                    
-                                
-                                  <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control">
+                                  <button type="button" class="btn" data-bs-toggle="popover" title="Ingresar Números" data-bs-content="Número correspondiente a un arbol">
+                                    ?
+                                  </button>
+                                  <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control" value="{{arbol.Placa_ant}}">
                                   <div class="invalid-feedback" id="delet">
-                                    Ingresa como mínimo 1 digito
+                                    Ingresa como minimo 1 digito y maximo 12 digitos
                                   </div>
                                   
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                  
+                                   
                                 </div>
 
                                 <div class="col-md-12 col-lg-12 mb-2">
@@ -197,19 +198,57 @@
                                         </div>
                                         <div class="col-md-6 text-center">
                                             <label for="" class="text-center">Latitud (GD)</label>
-                                            <input  name="textLatitude" type="text" id="textLatitude" class="form-control text-center", placeholder="Esperando calcular latitud" readonly>
+                                            {{arbol.latitude}}  
                                         </div>
                                         <div class="col-md-6 text-center">
                                             <label for="" class="text-center">Longitud (GD)</label>
-                                            <input  name="textLongitude" type="text" id="textLongitude" class="form-control text-center", placeholder="Esperando calcular longitud" readonly>
+                                          {{arbol.longitude}}
                                         </div>
                                     </div>
                                 </div>
-                             
+                                <div class="col-md-6 col-lg-6 mb-2">
+                                <!-- COMENTARIO -->
+                                  <label for="">Comuna</label>
+                                  <select name="comuna" id="comuna" class="form-control" onchange="cambia_barrios()">                                  
+                                    <option value="1">01</option>
+                                    <option value="2">02</option>
+                                    <option value="3">03</option>
+                                    <option value="4">04</option>
+                                    <option value="5">05</option>
+                                    <option value="6">06</option>
+                                    <option value="7">07</option>
+                                    <option value="8">08</option>
+                                    <option value="9">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                </select>
+                                </div>
+                              
+
+                                <div class="col-md-6 col-lg-6 mb-2">
+
+                                  <label for="barrio">Barrio</label>
+                                  <select name="barrio" id="barrio" class="form-control">
+                                  </select>
+
+
+                                  
+                                </div>
                                 <div class="col-md-12 col-lg-12 mb-2">
                                     <div class="form-group d-flex flex-column mx-auto">
                                         <label for="Dirección">Dirección:</label>
-                                        <input type="text" id="direccion" name="direccion" class="form-control">
+                                        <input type="text" id="direccion" name="direccion" class="form-control" value="{{arbol.direccion}}">
                                         <div class="valid-feedback" id="validaciondireccion">
                                               Ingresar dirección válida
                                         </div>
@@ -252,15 +291,15 @@
                                 </div>
                             </div>
                           </div>
-                        
+                         
                             <!--FORMULARIO 2-->
-                          <div id="form2" style="display: none;">
+                          <div id="form2" >
                             <div  class="row">
                                 <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="Codigo QR">Digite el codigo QR:</label>
                                     <input type="number" id="qr" name="qr" class="form-control">
                                     <div class="invalid-feedback" id="delet">
-                                      Ingresa un número de QR Válido
+                                      Ingresa un número
                                     </div>
                                 </div>
 
@@ -298,14 +337,13 @@
                                 </div>
                                 
                                 <div class="col-md-12 col-lg-12 mb-2">
-                                    <input onclick="formView()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio" value="1">
+                                    <input onclick="formView()" type="radio" class="form-check-input" name="confinamiento" id="radio2" value="1">
                                     <label for="" >Si</label>
-                               
-                                    <input onclick="formNone()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio2" value="2">
-                                    <label for="">No</label>
-                                    
                                 </div>
-
+                                <div class="col-md-12 col-lg-12 mb-2">
+                                    <input onclick="formNone()" type="radio" class="form-check-input" name="confinamiento" id="radio2" value="2">
+                                    <label for="">No</label>
+                                </div>
                                 <div id="formView" style="display: none;" class="col-md-12 col-lg-12 mb-2">
                                     <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">
                                     
@@ -373,83 +411,88 @@
                             </div>
                           </div>
 
-                            <!--FORMULARIO 3-->
-                            <div id="form3" style="display: none;">
-                          
+                             <!--FORMULARIO 3-->
+                             <div id="form3" >
+                              <div class="row">
                                 
                                 <div class="row" id="form2">
 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Placa Antigua">Forma del Tronco:</label>
                                         <div class="form-check form-check-inline">
-                                          
-                                          <input class="form-check-input" type="radio" name="tipofuste" id="fuste_unico" value="Fuste Único" onclick="formFusteUnico()">
+                                          <input class="form-check-input" type="radio" name="tipofuste" id="inlineRadio1" value="Fuste Único" onclick="formFusteUnico()" checked>
+                                          <div class="invalid-feedback" id="delet">
+                                            Ingresa un número
+                                          </div>
                                           <label class="form-check-label" for="inlineRadio1">Fuste Único</label>
                                         </div>
-
                                         <div class="form-check form-check-inline">
-                                          <input class="form-check-input" type="radio" name="tipofuste" id="poli_polifurcado" value="Fuste Polifurcado" onclick="formFusteFolicurcado()">
-                                          <label class="form-check-label" for="inlineRadio2">Fuste Polifurcado</label>
+                                          <input class="form-check-input" type="radio" name="tipofuste" id="inlineRadio2" value="Fuste Polifurcardo" onclick="formFusteFolicurcado()">
+                                          <div class="invalid-feedback" id="delet">
+                                            Ingresa un número
+                                          </div>
+                                          <label class="form-check-label" for="inlineRadio2">Fuste Polifurcardo</label>
                                         </div>
                                         
                                     </div>
 
-                                    <div id="formViewUnico" style="display: none;" class="col-md-12 col-lg-12 mb-2" >
-                                      <label for="CAP 1">CAP (cm)</label>
-                                      <input placeholder="capa (m)" name="capa" id="cap" type="number" class="form-control">
-                                      <div class="invalid-feedback" id="delet">
-                                        Ingresa un número de CAP válido
-                                      </div>
-                                  </div>
                                     
+                                    <div style="display: block;" class="col-md-3 col-lg-3 mb-2" id="formViewUnico" name="formViewUnico">
+  
+                                      <label for="CAP 1">CAP (cm)</label>
+                                      <input type="number" id="cap" name="cap"   placeholder=" Valor en cm" class="form-control">
+                                      <div class="invalid-feedback" id="delet">
+                                        Ingresa un número
+                                      </div>  
+                                  </div>
+
 
                                 <div style="display: none;" class="col-md-12 col-lg-12 mb-2" id="formViewPolifurcado" name="formViewPolifurcado">
 
                                   <div class="col-md-12 col-lg-12 mb-2">
-                                    
-
+  
                                     <label for="CAP 1">CAP 1(cm)</label>
-                                    <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control" value="0">
+                                    <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control">
                                     <div class="invalid-feedback" id="delet">
-                                      Ingresa un número de CAP1 válido
+                                      Ingresa un número
                                     </div>  
                                 </div>
 
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Capa 2">CAP 2(cm)</label>
-                                      <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control" value="0">
+                                      <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control">
                                       <div class="invalid-feedback" id="delet">
-                                        Ingresa un número de CAP2 válido
+                                        Ingresa un número
                                       </div>  
                                   </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Capa 3">CAP 3(cm)</label>
-                                      <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control" value="0"> 
+                                      <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control"> 
                                       <div class="invalid-feedback" id="delet">
-                                        Ingresa un número de CAP3 válido
+                                        Ingresa un número
                                       </div> 
                                   </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Placa Antigua">CAP 4(cm)</label>
-                                      <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control" value="0">
+                                      <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control">
                                       <div class="invalid-feedback" id="delet">
-                                        Ingresa un número de CAP4 válido
+                                        Ingresa un número
                                       </div>  
                                   </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Placa Antigua">CAP 5(cm)</label>
-                                      <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control" value="0">
+                                      <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control">
                                       <div class="invalid-feedback" id="delet">
-                                        Ingresa un número de CAP5 válido
+                                        Ingresa un número
                                       </div>  
                                   </div>
 
                                   <div class="col-md-12 col-lg-12 mb-2">
   
                                     <label for="Tallos">No de Tallos</label>
-                                    <input type="number" id="numero_tallos" name="numero_tallos" class="form-control" placeholder=" Valor en número entero" value="0">
+                                    <input type="number" id="numero_tallos" name="numero_tallos" class="form-control" placeholder=" Valor en número entero">
                                     <div class="invalid-feedback" id="delet">
-                                      Ingresa un número de tallos válido
+                                      Ingresa un número
                                     </div>  
                                 </div>
 
@@ -465,7 +508,7 @@
                                         <input type="number" name="comercial_fuste" id="comercial_fuste" class="form-control"
                                             placeholder="Hc (m)">
                                             <div class="invalid-feedback" id="delet">
-                                              Ingresa un número válido de comercial fuste
+                                              Ingresa un número
                                             </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 mb-2">
@@ -473,7 +516,8 @@
                                         <input type="number" name="totalarbol" id="totalarbol" class="form-control"
                                             placeholder="Ht (m)">
                                             <div class="invalid-feedback" id="delet">
-                                              Ingresa un número válido de total fuste                                            </div>
+                                              Ingresa un número
+                                            </div>
                                     </div>
   
                                     <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
@@ -488,7 +532,7 @@
                                     </div>
                                     <div class="col-md-6 col-lg-6 mb-2">
                                         <label for="">Eje menor</label>
-                                        <input type="number" id="ejemenor" name="ejemenor"  class="form-control">
+                                        <input type="number" id="ejemenor"name="ejemenor"  class="form-control">
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número
                                         </div>
@@ -516,12 +560,12 @@
                                         <label>Exposición de la copa a la luz</label>
                                         <select type="number" id="exposicionluz" name="exposicionluz" class="form-control"
                                             placeholder="CAP (m)">
-                                            <option value="No recibe luz">No recibe luz</option>
-                                            <option value="Una cara">Una cara</option>
-                                            <option value="Dos (2) caras">Dos (2) caras</option>
-                                            <option value="Tres (3) caras">Tres (3) caras</option>
-                                            <option value="Cuatro (4) caras">Cuatro (4) caras</option>
-                                            <option value="4 cara más superior">4 cara más superior</option>
+                                            <option value="01">No recibe luz</option>
+                                            <option value="02">Una cara</option>
+                                            <option value="03">Dos (2) caras</option>
+                                            <option value="04">Tres (3) caras</option>
+                                            <option value="05">Cuatro (4) caras</option>
+                                            <option value="06">4 cara más superior</option>
                                         </select>
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
@@ -545,7 +589,7 @@
                                         <label for="Placa Antigua">Diámetro medio de ramas</label>
                                         <select type="text" id="diametro" name="diametro" class="form-control" placeholder="CAP (m)">
                                           <option value="&lt;0.05m"> &lt;0.05m </option>
-                                          <option value=">=0.05m"> &gt;=0.05m </option>
+                                          <option value=">0.05"> &gt;=0.05m </option>
                                         </select> 
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2 ">
@@ -557,11 +601,11 @@
                                         </select>  
                                     </div>
                                 </div>
-                              
+                              </div>
                           </div>
 
-                          <!--FORMULARIO 4-->
-                          <div id="form4" style="display: none;">
+                           <!--FORMULARIO 4-->
+                          <div id="form4" >
                             <div class="row">
                                 <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="vitalidad" class="form-label">Vitalidad</label>
@@ -574,8 +618,8 @@
                                 </div>
 
                               <div id="ocultar" style="display: none;">
-                          
-                            
+                           
+                             
 
                                 <div class="col-md-12 col-lg-12 mb-2 ">
                                     <table class="table table-hover shadow ">
@@ -624,7 +668,7 @@
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
                                                       <input  class="form-check-input " type="checkbox" role="switch" id="antropica_r_poda" name="antropica_r_poda" >
-                                                  </div>b
+                                                  </div>
                                                 </td>
                                               </div>
                                           </tr>
@@ -693,7 +737,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input " type="checkbox" role="switch" id="biologica_f_perfobarrenado" name="biologica_f_perfobarrenado" >
+                                                      <input  class="form-check-input " type="checkbox" role="switch" id="biologia_f_perfobarrenado" name="biologia_f_perfobarrenado" >
                                                   </div>
                                                 </td>
                                               </div>
@@ -861,7 +905,7 @@
                                         </tr>
                                       </tbody>
                                     </table>
-                                    <table class="table table-hover shadow ">
+                                     <table class="table table-hover shadow ">
                                         <thead class="table-success">
                                           <tr>
                                             <th style="width: 90%;" class="text-center">Afectación Estado general</th>
@@ -906,7 +950,7 @@
 
                                       </div>
 
-                                          <div  id="formvulnerab" style="display: block;">   
+                                           <div  id="formvulnerab" style="display: block;">   
                                           <table class="table table-hover shadow ">
                                             <thead class="table-success">
                                               <tr>
@@ -955,13 +999,13 @@
                                                     </td>
                                                   </div>
                                               </tr>
-                                            
+                                             
                                             </tbody>
                                           </table>
                                           </div>
 
                                 
-                          
+                           
                               
                                 
                               
@@ -970,7 +1014,7 @@
                             </div>
                           </div>
 
-                          <div id="form5" style="display: none;" >
+                          <div id="form5" >
 
                             <div class="col-md-12 col-lg-12 mb-2 " id="controlfitosanitario_div" style="display: block;">
                               <table class="table table-hover shadow ">
@@ -1030,7 +1074,7 @@
                                     </tr>
                                   </thead>
                                   <tbody class="">
-                                  
+                                   
                                     <tr class="">
                                       <th scope="row" class="text-dark">Erradicación o tala</th>
                                       <div class="btn-group " data-toggle="buttons">
@@ -1051,7 +1095,7 @@
                                           </td>
                                         </div>
                                     </tr>
-                                  
+                                   
                                     <tr class="">
                                       <th scope="row" class="text-dark">Poda equilibrio - PE</th>
                                       <div class="btn-group " data-toggle="buttons">
@@ -1132,7 +1176,7 @@
                                           </td>
                                         </div>
                                     </tr>
-                                  
+                                   
                                     <tr class="">
                                       <th scope="row" class="text-dark">Reducción de altura - PRA</th>
                                       <div class="btn-group " data-toggle="buttons">
@@ -1143,7 +1187,7 @@
                                           </td>
                                         </div>
                                     </tr>
-                                
+                                 
                                     <tr class="">
                                       <th scope="row" class="text-dark">Despeje de redes - PCDR</th>
                                       <div class="btn-group " data-toggle="buttons">
@@ -1174,7 +1218,7 @@
                                           </td>
                                         </div>
                                     </tr>
-                                
+                                 
                                   </tbody>
                                 </table>
                             </div>
@@ -1205,7 +1249,7 @@
                                   </tbody>
                               </table>
                             
-                              
+                               
                               <div class="form-floating">
                                 <h6>¿Porqué tala?</h6>
                               <textarea class="form-control"  placeholder="Leave a comment here" id="porquetala" name="porquetala" style="height: 100px"></textarea>
@@ -1221,66 +1265,10 @@
                               <br>
                               <br>
                           </div>
-                         
-                          <!-- BOTON 1-->
-                            <nav aria-label="Page navigation example" id="boton1" style="display: block;">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled px-3"> 
-                                      <button class="btn btn-outline-secondary" disabled >Anterior</button>
-                                    </li>
-                                    <li class="page-item">
-                                        <button  id="submit" type="button" class="btn btn-outline-primary" onclick="formshidde() " >Siguiente</button>
-                                    </li>
-                                </ul>
-                            </nav>
+              
 
-                            <!-- BOTON 2-->
-                            <nav aria-label="Page navigation example" id="boton2" style="display: none;">
-                              <ul class="pagination justify-content-center">
-                                  <li class="page-item disabled px-3">
-                                    <button type="button" class="btn btn-outline-secondary" onclick="showanterior()" >Anterior</button>
-                                  </li>
-                                  <li class="page-item">
-                                      <button type="button" class="btn btn-outline-primary" onclick="formshidde2()" >Siguiente</button>
-                                  </li>
-                              </ul>
-                          </nav>
-
-
-                          <!-- BOTON 3-->
-                          <nav aria-label="Page navigation example" id="boton3" style="display: none;">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled px-3">
-                                  <button type="button" class="btn btn-outline-secondary" onclick="show3()" >Anterior</button>
-                                </li>
-                                <li class="page-item">
-                                    <button type="button"  class="btn btn-outline-primary" onclick="formshidde3()" >Siguiente</button>
-                                </li>
-                            </ul>
-                        </nav>
-
-                        <!-- BOTON 4-->
-                        <nav aria-label="Page navigation example" id="boton4" style="display: none;">
-                          <ul class="pagination justify-content-center">
-                              <li class="page-item disabled px-3">
-                                <button type="button"  class="btn btn-outline-secondary" onclick="boton4()" >Anterior</button>
-                              </li>
-                              <li class="page-item">
-                                  <button type="button"  class="btn btn-outline-primary" onclick="hidde4()" >Siguiente</button>
-                              </li>
-                          </ul>
-                      </nav>
-
-
-                      <!-- BOTON 5-->
-                      <nav aria-label="Page navigation example" id="boton5" style="display: none;">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled px-3">
-                              <button type="button"   class="btn btn-outline-secondary" onclick="boton5()" >Anterior</button>
-                            </li>
-                            <li class="page-item">
-                <!--               <button class="btn btn-outline-warning"type="submit">Finalizar</button>--> 
-                <button name="btnFinalizar" type="submit" class="finish btn btn-warning">Finalizar</button>
+                 <!--               <button class="btn btn-outline-warning"type="submit">Finalizar</button>--> 
+                 <button name="btnFinalizar" type="submit" class="finish btn btn-warning">Actualizar</button>
                             </li>
                         </ul>
                     </nav>
@@ -1292,144 +1280,239 @@
 
 
 
-            </main>
+
+              </main>
 
 
 
-            <!-- /.container-fluid -->
+              <!-- /.container-fluid -->
 
-        </div>
-        <!-- End of Main Content -->
+          </div>
+          <!-- End of Main Content -->
 
 
-    </div>
-    <!-- End of Content Wrapper -->
+      </div>
+      <!-- End of Content Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+      </div>
+      <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <img src="static/img/footer.png" alt="">
-                <br>
-                <span style="text-align: end;"> Santiago de Cali, Colombia
-                    Dirección: Carrera 26 #7-08 of. 204 Teléfono: +57 (318) 3983729
-                    funaguacolombia.org
-                    2022 - 2023
-                </span>
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+          <i class="fas fa-angle-up"></i>
+      </a>
+      <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                  <img src="static/img/footer.png" alt="">
+                  <br>
+                  <span style="text-align: end;"> Santiago de Cali, Colombia
+                      Dirección: Carrera 26 #7-08 of. 204 Teléfono: +57 (318) 3983729
+                      funaguacolombia.org
+                      2022 - 2023
+                  </span>
 
-            </div>
-        </div>
-    </footer>
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+              </div>
+          </div>
+      </footer>
+      <!-- Logout Modal-->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                      <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                  <div class="modal-footer">
+                      <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                      <a class="btn btn-primary" href="login.html">Logout</a>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-    <!-- Bootstrap core JavaScript-->
-    
-    <script>
-        let avatarInput = document.getElementById('avatar');
-        let img = document.querySelector('label[for=avatar] img');
+      <!-- Bootstrap core JavaScript-->
+      <script>
+          var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+          var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+              return new bootstrap.Popover(popoverTriggerEl)
+          })
+      </script>
+      <script>
+  let avatarInput = document.getElementById('avatar');
+  let img = document.querySelector('label[for=avatar] img');
 
-        avatarInput.onchange = async (e) => {
-          
-          img.classList.add('preview');
-          img.src = URL.createObjectURL(e.target.files[0]);  
-          
-          await console.log(img.offsetHeight, img.offsetWidth)
-          
-        }
+<<<<<<< HEAD:formulario/templates/editar-formulario.html
+avatarInput.onchange = async (e) => {
+  
+  img.classList.add('preview');
+  img.src = URL.createObjectURL(e.target.files[0]);  
+  
+  await console.log(img.offsetHeight, img.offsetWidth)
+  
+}
 
-        let avatarInput2 = document.getElementById('avatar2');
-        let img2 = document.querySelector('label[for=avatar2] img');
+let avatarInput2 = document.getElementById('avatar2');
+let img2 = document.querySelector('label[for=avatar2] img');
 
-        avatarInput2.onchange = async (e) => {
-          
-            img2.classList.add('preview');
-            img2.src = URL.createObjectURL(e.target.files[0]);  
-          
-          await console.log(img2.offsetHeight, img2.offsetWidth)
-          
-        }
+avatarInput2.onchange = async (e) => {
+  
+    img2.classList.add('preview');
+    img2.src = URL.createObjectURL(e.target.files[0]);  
+  
+  await console.log(img2.offsetHeight, img2.offsetWidth)
+  
+}
 
-        let avatarInput3 = document.getElementById('avatar3');
-        let img3 = document.querySelector('label[for=avatar3] img');
+let avatarInput3 = document.getElementById('avatar3');
+let img3 = document.querySelector('label[for=avatar3] img');
 
-        avatarInput3.onchange = async (e) => {
-          
-            img3.classList.add('preview');
-            img3.src = URL.createObjectURL(e.target.files[0]);  
-          
-          await console.log(img3.offsetHeight, img3.offsetWidth)
-          
-        }
+avatarInput3.onchange = async (e) => {
+  
+    img3.classList.add('preview');
+    img3.src = URL.createObjectURL(e.target.files[0]);  
+  
+  await console.log(img3.offsetHeight, img3.offsetWidth)
+  
+}
 
-        let avatarInput4 = document.getElementById('avatar4');
-        let img4 = document.querySelector('label[for=avatar4] img');
+let avatarInput4 = document.getElementById('avatar4');
+let img4 = document.querySelector('label[for=avatar4] img');
 
-        avatarInput4.onchange = async (e) => {
-          
-            img4.classList.add('preview');
-            img4.src = URL.createObjectURL(e.target.files[0]);  
-          
-          await console.log(img4.offsetHeight, img4.offsetWidth)
-          
-        }
+avatarInput4.onchange = async (e) => {
+  
+    img4.classList.add('preview');
+    img4.src = URL.createObjectURL(e.target.files[0]);  
+  
+  await console.log(img4.offsetHeight, img4.offsetWidth)
+  
+}
 
-    
         </script>
-    <!-- Sweetalerts 2-->
-    <script src="static/js/sweetalerts.js"> </script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="static/js/js.js"></script>
-    <!-- Core plugin JavaScript-->
-    <!-- Custom scripts for all pages-->
-    <script src="static/js/sb-admin-2.min.js"></script>
-    <!--Alerts-->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!-- Page level plugins -->
-    <script src="static/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="static/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="static/js/demo/datatables-demo.js"></script>
+          <script src="static/js/sweetalerts.js" </script>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="static/js/js.js"></script>
+            <!-- Core plugin JavaScript-->
+            <!-- Custom scripts for all pages-->
+            <script src="static/js/sb-admin-2.min.js"></script>
+            <!--Alerts-->
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <!-- Page level plugins -->
+            <script src="static/vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="static/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+      
+            <!-- Page level custom scripts -->
+            <script src="static/js/demo/datatables-demo.js"></script>
 
 </body>
 
 
+
+
+
+
+
+
+<script type="text/javascript">
+  var barrios_1 =new Array("Terrón Colorado","Vista Hermosa","Sector Patio Bonito","Aguacatal");
+  var barrios_2=new Array("Santa Rita","Santa Teresita","Arboledas","Normandía","Juanambú","Centenario","Granada","Versalles","San Vicente","Santa Mónica ","Prados del Norte","La Flora","La Campiña","La Paz","El Bosque","Menga","Ciudad Los Alamos","Chipichape","Brisas de los Alamos","Urbanización La Merced","Vipasa","Urbanización La Flora","Altos de Menga","Sector Altos Normandía","Senderos de la Flora");
+  var barrios_3=new Array("El Nacional","El Peñón","San Antonio","San Cayetano","Los Libertadores","San Juan Bosco","Santa Rosa","La Merced","San Pascual","El Calvario","San Pedro","San Nicolas","El Hoyo","El Piloto","Navarro - La Chanca");
+  var barrios_4=new Array("Jorge Isaacs","Santander","Porvenir","Las Delicias","Manzanares","Salomia","Fátima","Sultana - Berlín - San Francisco ","Popular","Ignacio Rengifo","Guillermo Valencia","La Isla","Marco Fidel Suárez","Evaristo García","La Esmeralda","Bolivariano","Olaya Herrera","Unidad Residencial Bueno Madrid","Flora Industrial","Calima","Industria de Licores","La Alianza");
+  var barrios_5=new Array("San Luís","Ciudadela Floralia","Fonaviemcali","Jorge Eliecer Gaitán","La Rivera Primera Etapa","Los Alcázares","Los Guaduales","Paso del Comercio","Petecuy Primera Etapa","Petecuy Segunda Etapa","Petecuy Tercera Etapa","San Luís II","Sector Puente del Comercio","Urbanización Calimio",);
+  var barrios_6=new Array("San Luís","Jorge Eliecer Gaitán","Paso del Comercio","Los Alcázares","Petecuy Primera Etapa","Petecuy Segunda Etapa","La Rivera Primera Etapa","Los Guaduales","Petecuy Tercera Etapa","Ciudadela Floralia","Fonaviemcali","San Luís II","Urbanización Calimio","Sector Puente del Comercio");
+  var barrios_7=new Array("Alfonso López P. 1a. Etapa","Alfonso López P. 2a. Etapa","Alfonso López P. 3a. Etapa","Base Aérea","Fepicol","Las Ceibas","Los Pinos","Parque de la Caña","Puerto Mallarino","Puerto Nuevo","San Marino","Siete de Agosto","Urbanización El Angel del Hogar");
+  var barrios_8=new Array("Atanasio Girardot","Benjamín Herrera","Chapinero","EL Trébol","El Troncal","Industrial","La Base","La Floresta","Las Américas","Municipal","Primitivo Crespo","Saavedra Galindo","Santa Fe","Santa Mónica Popular","Simón Bolívar","Urbanización La Nueva Base","Uribe Uribe","Villa Colombia");
+  var barrios_9=new Array("Alameda","Aranjuez","Barrio Obrero","Belalcázar","Bretaña","Guayaquil","Junín","Manuel María Buenaventura","Santa Mónica Belalcázar","Sucre");
+  var barrios_10=new Array("El Dorado","El Guabal","La Libertad","Santa Elena","Las Acacias","Santo Domingo","Jorge Zawadsky","Olímpico","Cristóbal Colón","La Selva","Barrio Departamental","Pasoancho","Panamericano","Colseguros Andes","San Cristobal","Las Granjas","San Judas Tadeo I Etapa","San Judas Tadeo II Etapa");
+  var barrios_11=new Array("San Carlos","Maracaibo","La Independencia","La Esperanza","Urbanización Boyacá","El Jardín","La Fortaleza","El Recuerdo","Aguablanca","El Prado","20 de Julio","Prados de Oriente","Los Sauces","Villa del Sur","José Holguín Garcés","León XIII","José María Cordoba","San Pedro Claver","Los Conquistadores","La Gran Colombia","San Benito","Primavera");
+  var barrios_12=new Array("Villanueva","Asturias","Eduardo Santos","Alfonso Barberena A.","El Paraiso","Fenalco Kennedy","Nueva Floresta","Julio Rincón","Doce de Octubre","El Rodeo","Sindical","Bello Horizonte");
+  var barrios_13=new Array("Ulpiano Lloreda","El Vergel","El Poblado I","El Poblado II","Los Comuneros Segunda Etapa","Ricardo Balcázar","Omar Torrijos","El Diamante","Lleras Restrepo","Villa del Lago","Los Robles","Rodrigo Lara Bonilla","Charco Azul","Villablanca","Calipso","Yira Castro","Lleras Restrepo II Etapa","Marroquín III","Los Lagos","Sector Laguna del Pondaje","El Pondaje","Sector Asprosocial-Diamante");
+  var barrios_14=new Array("Alfonso Bonilla Aragón","Alirio Mora Beltrán","Manuela Beltrán","Las Orquídeas","José Manuel Marroquín Segunda Etapa","José Manuel Marroquín Primera Etapa","Puerta del Sol","Los Naranjos I","Promociones Populares B","Los Naranjos II");
+  var barrios_15=new Array("El Retiro","Comuneros I","Laureano Gómez","El Vallado","Ciudad Cordoba","Mojica","El Morichal","LLanoverde");
+  var barrios_16=new Array("Mariano Ramos","República de Israel","Unión de Vivienda Popular","Antonio Nariño","Brisas del Limonar","Vendimia","Ciudad 2000","La Alborada");
+  var barrios_17=new Array("La Playa","Primero de Mayo","Ciudadela Comfandi","Ciudad Universitaria","Caney","Lili","Santa Anita - La Selva","El Ingenio","Mayapan - Las Vegas","Las Quintas de Don Simón","Ciudad Capri","La Hacienda","Los Portales - Nuevo Rey","Cañaverales - Los Samanes","El Limonar","Bosques del Limonar","El Gran Limonar - Cataya","El Gran Limonar","Unicentro Cali","Ciudadela Pasoancho","Prados del Limonar","Urbanización San Joaquin");
+  var barrios_18=new Array("Buenos Aires","Barrio Caldas","Los Chorros","Meléndez","Los Farallones","Francisco Eladio Ramirez","Prados del Sur","Horizontes","Mario Correa Rengifo","Lourdes","Colinas del Sur","Alférez Real","Nápoles","El Jordán","Cuarteles Napoles","Sector Alto de Los Chorros","Polvorines","Sector Meléndez","Sector Alto Jordán","Alto Nápoles");
+  var barrios_19=new Array("El Refugio","La Cascada","El Lido","Urbanización Tequendama","Barrio Eucarístico","San Fernando Nuevo","Urbanización Nueva Granada","Santa Isabel","Bellavista","San Fernando Viejo","Miraflores","3 de Julio","El Cedro","Champagñat","Urbanización Colseguros","Los Cambulos","El Mortiñal","Urbanización Militar","Cuarto de Legua - Guadalupe","Nueva Tequendama ","Camino Real - Joaquín Borrero Sinisterra","Camino Real - Los Fundadores","Altos de Santa Isabel -  La Morelia","Santa Barbara","Tejares - Cristales","Unidad Residencial Santiago de Cali","Unidad Residencial El Coliseo","Cañaveralejo - Seguros Patria","Cañaveral","Pampa Linda","Sector Cañaveralejo Guadalupe","U.D. Alberto Galindo -  Plaza de Toros");
+  var barrios_20=new Array("El Cortijo","Belisario Caicedo","Siloé","Lleras Camargo","Belén","Brisas de Mayo","Tierra Blanca","Pueblo Joven","Carabineros","Venezuela - Urbanización Cañaveralejo","La Sultana");
+  var barrios_21=new Array("Pízamos I","Pízamos II","Calimio Desepaz","El Remanso","Los Líderes","Desepaz Invicali","Compartir","Ciudad Talanga","Villamercedes I - Villa Luz - Las Garzas","Pízamos III - Las Dalias","Potrero Grande","Ciudadela del Río","Valle Grande","Planta de Tratamiento");
+  var barrios_22=new Array("Urbanización Ciudad Jardín","Parcelaciones Pance","Urbanización Río Lili","Ciudad Campestre","Club Campestre");
+
+
+  var todos_los_barrios = [
+    [],
+    barrios_1,
+    barrios_2,
+    barrios_3,
+    barrios_4,
+    barrios_5,
+    barrios_6,
+    barrios_7,
+    barrios_8,
+    barrios_9,
+    barrios_10,
+    barrios_11,
+    barrios_12,
+    barrios_13,
+    barrios_14,
+    barrios_15,
+    barrios_16,
+    barrios_17,
+    barrios_18,
+    barrios_19,
+    barrios_20,
+    barrios_21,
+    barrios_22
+  ];
+
+  function cambia_barrios(){ 
+   	//tomo el valor del select del pais elegido 
+   	var comuna;
+   	comuna = document.getElementById("comuna")[document.getElementById("comuna").selectedIndex].value
+
+   	//miro a ver si la comuna está definida 
+   	if (comuna != 0) { 
+      	//si estaba definido, entonces coloco las opciones del barrio correspondiente. 
+      	//selecciono el array de barrios adecuado 
+      	mis_barrios=todos_los_barrios[comuna]
+      	//calculo el numero de barrios 
+      	num_barrios = mis_barrios.length 
+      	//marco el número de barrios en el select 
+      	document.getElementById("barrio").length = num_barrios 
+      	//para cada barrio del array, la introduzco en el select 
+      	for(i=0;i<num_barrios;i++){ 
+          document.getElementById("barrio").options[i].value=mis_barrios[i] 
+          document.getElementById("barrio").options[i].text=mis_barrios[i] 
+      	}	
+   	}else{ 
+      	//si no había barrio seleccionada, elimino los barrios del select 
+      	document.getElementById("barrio").length = 1
+      	//coloco un guión en la única opción que he dejado 
+      ///	document.getElementById("barrio").options[0].value = "-" 
+      ///	document.getElementById("barrio").options[0].text = "-" 
+   	}
+
+   	//marco como seleccionada la opción primera de barrio 
+   	document.getElementById("barrio").options[0].selected = true 
+}
+cambia_barrios();
+  </script>
+
 <script type="text/javascript">
 $(document).on('ready',function (){
-    
-    $.getJSON('/static/js/lista_familia_arboles.json', function(data) {
-        $.each(data, function(key, value) {
-            $("#nombre_comun").append('<option name="' + key + '">' + value + '</option>');
-        }); // close each()
-    }); // close getJSON()
+ 		
+     $.getJSON('/static/js/lista_familia_arboles.json', function(data) {
+         $.each(data, function(key, value) {
+             $("#nombre_comun").append('<option name="' + key + '">' + value + '</option>');
+         }); // close each()
+     }); // close getJSON()
 
-    $.getJSON('/static/js/lista_genero_arboles.json', function(json) { datos_json = json; });
+     $.getJSON('/static/js/lista_genero_arboles.json', function(json) { datos_json = json; });
 
-    // Valores iniciales-
+     // Valores iniciales-
     // Familia
     document.getElementById("familia").value=datos_json["Acacia rubinia"][0]
 
@@ -1438,13 +1521,185 @@ $(document).on('ready',function (){
 
     // Nombre Científico
     document.getElementById("nombre_cientifico").value=datos_json["Acacia rubinia"][2]
-
-
-    llamarMensajes( '{{ llamarMensaje }}' , '{{ mensaje }}');
+=======
+  avatarInput.onchange = async (e) => {
+>>>>>>> 0d8a66ade5cd64a6cf3da7dcf058301bf554ebaa:formulario/templates/edit-formulario2.html
     
-});
-</script>
-<script src="static/js/demo/llamarMensajes.js"></script>
+    img.classList.add('preview');
+    img.src = URL.createObjectURL(e.target.files[0]);  
+    
+    await console.log(img.offsetHeight, img.offsetWidth)
+    
+  }
+
+  let avatarInput2 = document.getElementById('avatar2');
+  let img2 = document.querySelector('label[for=avatar2] img');
+
+  avatarInput2.onchange = async (e) => {
+    
+      img2.classList.add('preview');
+      img2.src = URL.createObjectURL(e.target.files[0]);  
+    
+    await console.log(img2.offsetHeight, img2.offsetWidth)
+    
+  }
+
+  let avatarInput3 = document.getElementById('avatar3');
+  let img3 = document.querySelector('label[for=avatar3] img');
+
+  avatarInput3.onchange = async (e) => {
+    
+      img3.classList.add('preview');
+      img3.src = URL.createObjectURL(e.target.files[0]);  
+    
+    await console.log(img3.offsetHeight, img3.offsetWidth)
+    
+  }
+
+  let avatarInput4 = document.getElementById('avatar4');
+  let img4 = document.querySelector('label[for=avatar4] img');
+
+  avatarInput4.onchange = async (e) => {
+    
+      img4.classList.add('preview');
+      img4.src = URL.createObjectURL(e.target.files[0]);  
+    
+    await console.log(img4.offsetHeight, img4.offsetWidth)
+    
+  }
+
+          </script>
+
+          <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          <script src="{% static '/js/js.js' %}"></script>
+          <!-- Core plugin JavaScript-->
+          <!-- Custom scripts for all pages-->
+          <script src="{% static '/js/sb-admin-2.min.js' %}"></script>
+          <!--Alerts-->
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+          <!-- Page level plugins -->
+          <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+          <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    
+          <!-- Page level custom scripts -->
+          <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+
+  </body>
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    var barrios_1 =new Array("Terrón Colorado","Vista Hermosa","Sector Patio Bonito","Aguacatal");
+    var barrios_2=new Array("Santa Rita","Santa Teresita","Arboledas","Normandía","Juanambú","Centenario","Granada","Versalles","San Vicente","Santa Mónica ","Prados del Norte","La Flora","La Campiña","La Paz","El Bosque","Menga","Ciudad Los Alamos","Chipichape","Brisas de los Alamos","Urbanización La Merced","Vipasa","Urbanización La Flora","Altos de Menga","Sector Altos Normandía","Senderos de la Flora");
+    var barrios_3=new Array("El Nacional","El Peñón","San Antonio","San Cayetano","Los Libertadores","San Juan Bosco","Santa Rosa","La Merced","San Pascual","El Calvario","San Pedro","San Nicolas","El Hoyo","El Piloto","Navarro - La Chanca");
+    var barrios_4=new Array("Jorge Isaacs","Santander","Porvenir","Las Delicias","Manzanares","Salomia","Fátima","Sultana - Berlín - San Francisco ","Popular","Ignacio Rengifo","Guillermo Valencia","La Isla","Marco Fidel Suárez","Evaristo García","La Esmeralda","Bolivariano","Olaya Herrera","Unidad Residencial Bueno Madrid","Flora Industrial","Calima","Industria de Licores","La Alianza");
+    var barrios_5=new Array("San Luís","Ciudadela Floralia","Fonaviemcali","Jorge Eliecer Gaitán","La Rivera Primera Etapa","Los Alcázares","Los Guaduales","Paso del Comercio","Petecuy Primera Etapa","Petecuy Segunda Etapa","Petecuy Tercera Etapa","San Luís II","Sector Puente del Comercio","Urbanización Calimio",);
+    var barrios_6=new Array("San Luís","Jorge Eliecer Gaitán","Paso del Comercio","Los Alcázares","Petecuy Primera Etapa","Petecuy Segunda Etapa","La Rivera Primera Etapa","Los Guaduales","Petecuy Tercera Etapa","Ciudadela Floralia","Fonaviemcali","San Luís II","Urbanización Calimio","Sector Puente del Comercio");
+    var barrios_7=new Array("Alfonso López P. 1a. Etapa","Alfonso López P. 2a. Etapa","Alfonso López P. 3a. Etapa","Base Aérea","Fepicol","Las Ceibas","Los Pinos","Parque de la Caña","Puerto Mallarino","Puerto Nuevo","San Marino","Siete de Agosto","Urbanización El Angel del Hogar");
+    var barrios_8=new Array("Atanasio Girardot","Benjamín Herrera","Chapinero","EL Trébol","El Troncal","Industrial","La Base","La Floresta","Las Américas","Municipal","Primitivo Crespo","Saavedra Galindo","Santa Fe","Santa Mónica Popular","Simón Bolívar","Urbanización La Nueva Base","Uribe Uribe","Villa Colombia");
+    var barrios_9=new Array("Alameda","Aranjuez","Barrio Obrero","Belalcázar","Bretaña","Guayaquil","Junín","Manuel María Buenaventura","Santa Mónica Belalcázar","Sucre");
+    var barrios_10=new Array("El Dorado","El Guabal","La Libertad","Santa Elena","Las Acacias","Santo Domingo","Jorge Zawadsky","Olímpico","Cristóbal Colón","La Selva","Barrio Departamental","Pasoancho","Panamericano","Colseguros Andes","San Cristobal","Las Granjas","San Judas Tadeo I Etapa","San Judas Tadeo II Etapa");
+    var barrios_11=new Array("San Carlos","Maracaibo","La Independencia","La Esperanza","Urbanización Boyacá","El Jardín","La Fortaleza","El Recuerdo","Aguablanca","El Prado","20 de Julio","Prados de Oriente","Los Sauces","Villa del Sur","José Holguín Garcés","León XIII","José María Cordoba","San Pedro Claver","Los Conquistadores","La Gran Colombia","San Benito","Primavera");
+    var barrios_12=new Array("Villanueva","Asturias","Eduardo Santos","Alfonso Barberena A.","El Paraiso","Fenalco Kennedy","Nueva Floresta","Julio Rincón","Doce de Octubre","El Rodeo","Sindical","Bello Horizonte");
+    var barrios_13=new Array("Ulpiano Lloreda","El Vergel","El Poblado I","El Poblado II","Los Comuneros Segunda Etapa","Ricardo Balcázar","Omar Torrijos","El Diamante","Lleras Restrepo","Villa del Lago","Los Robles","Rodrigo Lara Bonilla","Charco Azul","Villablanca","Calipso","Yira Castro","Lleras Restrepo II Etapa","Marroquín III","Los Lagos","Sector Laguna del Pondaje","El Pondaje","Sector Asprosocial-Diamante");
+    var barrios_14=new Array("Alfonso Bonilla Aragón","Alirio Mora Beltrán","Manuela Beltrán","Las Orquídeas","José Manuel Marroquín Segunda Etapa","José Manuel Marroquín Primera Etapa","Puerta del Sol","Los Naranjos I","Promociones Populares B","Los Naranjos II");
+    var barrios_15=new Array("El Retiro","Comuneros I","Laureano Gómez","El Vallado","Ciudad Cordoba","Mojica","El Morichal","LLanoverde");
+    var barrios_16=new Array("Mariano Ramos","República de Israel","Unión de Vivienda Popular","Antonio Nariño","Brisas del Limonar","Vendimia","Ciudad 2000","La Alborada");
+    var barrios_17=new Array("La Playa","Primero de Mayo","Ciudadela Comfandi","Ciudad Universitaria","Caney","Lili","Santa Anita - La Selva","El Ingenio","Mayapan - Las Vegas","Las Quintas de Don Simón","Ciudad Capri","La Hacienda","Los Portales - Nuevo Rey","Cañaverales - Los Samanes","El Limonar","Bosques del Limonar","El Gran Limonar - Cataya","El Gran Limonar","Unicentro Cali","Ciudadela Pasoancho","Prados del Limonar","Urbanización San Joaquin");
+    var barrios_18=new Array("Buenos Aires","Barrio Caldas","Los Chorros","Meléndez","Los Farallones","Francisco Eladio Ramirez","Prados del Sur","Horizontes","Mario Correa Rengifo","Lourdes","Colinas del Sur","Alférez Real","Nápoles","El Jordán","Cuarteles Napoles","Sector Alto de Los Chorros","Polvorines","Sector Meléndez","Sector Alto Jordán","Alto Nápoles");
+    var barrios_19=new Array("El Refugio","La Cascada","El Lido","Urbanización Tequendama","Barrio Eucarístico","San Fernando Nuevo","Urbanización Nueva Granada","Santa Isabel","Bellavista","San Fernando Viejo","Miraflores","3 de Julio","El Cedro","Champagñat","Urbanización Colseguros","Los Cambulos","El Mortiñal","Urbanización Militar","Cuarto de Legua - Guadalupe","Nueva Tequendama ","Camino Real - Joaquín Borrero Sinisterra","Camino Real - Los Fundadores","Altos de Santa Isabel -  La Morelia","Santa Barbara","Tejares - Cristales","Unidad Residencial Santiago de Cali","Unidad Residencial El Coliseo","Cañaveralejo - Seguros Patria","Cañaveral","Pampa Linda","Sector Cañaveralejo Guadalupe","U.D. Alberto Galindo -  Plaza de Toros");
+    var barrios_20=new Array("El Cortijo","Belisario Caicedo","Siloé","Lleras Camargo","Belén","Brisas de Mayo","Tierra Blanca","Pueblo Joven","Carabineros","Venezuela - Urbanización Cañaveralejo","La Sultana");
+    var barrios_21=new Array("Pízamos I","Pízamos II","Calimio Desepaz","El Remanso","Los Líderes","Desepaz Invicali","Compartir","Ciudad Talanga","Villamercedes I - Villa Luz - Las Garzas","Pízamos III - Las Dalias","Potrero Grande","Ciudadela del Río","Valle Grande","Planta de Tratamiento");
+    var barrios_22=new Array("Urbanización Ciudad Jardín","Parcelaciones Pance","Urbanización Río Lili","Ciudad Campestre","Club Campestre");
+
+
+    var todos_los_barrios = [
+      [],
+      barrios_1,
+      barrios_2,
+      barrios_3,
+      barrios_4,
+      barrios_5,
+      barrios_6,
+      barrios_7,
+      barrios_8,
+      barrios_9,
+      barrios_10,
+      barrios_11,
+      barrios_12,
+      barrios_13,
+      barrios_14,
+      barrios_15,
+      barrios_16,
+      barrios_17,
+      barrios_18,
+      barrios_19,
+      barrios_20,
+      barrios_21,
+      barrios_22
+    ];
+
+    function cambia_barrios(){ 
+      //tomo el valor del select del pais elegido 
+      var comuna;
+      comuna = document.getElementById("comuna")[document.getElementById("comuna").selectedIndex].value
+
+      //miro a ver si la comuna está definida 
+      if (comuna != 0) { 
+          //si estaba definido, entonces coloco las opciones del barrio correspondiente. 
+          //selecciono el array de barrios adecuado 
+          mis_barrios=todos_los_barrios[comuna]
+          //calculo el numero de barrios 
+          num_barrios = mis_barrios.length 
+          //marco el número de barrios en el select 
+          document.getElementById("barrio").length = num_barrios 
+          //para cada barrio del array, la introduzco en el select 
+          for(i=0;i<num_barrios;i++){ 
+            document.getElementById("barrio").options[i].value=mis_barrios[i] 
+            document.getElementById("barrio").options[i].text=mis_barrios[i] 
+          }	
+      }else{ 
+          //si no había barrio seleccionada, elimino los barrios del select 
+          document.getElementById("barrio").length = 1
+          //coloco un guión en la única opción que he dejado 
+        ///	document.getElementById("barrio").options[0].value = "-" 
+        ///	document.getElementById("barrio").options[0].text = "-" 
+      }
+
+      //marco como seleccionada la opción primera de barrio 
+      document.getElementById("barrio").options[0].selected = true 
+  }
+  cambia_barrios();
+    </script>
+
+  <script type="text/javascript">
+  $(document).on('ready',function (){
+      
+      $.getJSON('/static/js/lista_familia_arboles.json', function(data) {
+          $.each(data, function(key, value) {
+              $("#nombre_comun").append('<option name="' + key + '">' + value + '</option>');
+          }); // close each()
+      }); // close getJSON()
+
+      $.getJSON('/static/js/lista_genero_arboles.json', function(json) { datos_json = json; });
+
+      // Valores iniciales-
+      // Familia
+      document.getElementById("familia").value=datos_json["Acacia rubinia"][0]
+
+      // Género
+      document.getElementById("genero").value=datos_json["Acacia rubinia"][1]
+
+      // Nombre Científico
+      document.getElementById("nombre_cientifico").value=datos_json["Acacia rubinia"][2]
+      
+  });
+  </script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-</html>
+  </html>

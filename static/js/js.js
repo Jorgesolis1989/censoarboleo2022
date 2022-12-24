@@ -147,12 +147,17 @@ function formshidde2(){
     const confinamientoRadio2 = document.getElementById('confinamiento-radio2');
 
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
-    
+    confinamientoRadio2.addEventListener('change', () => {
+        if (confinamientoRadio2.checked) {
+            dist_confinamiento.value = '';
+        }
+      });
+      
     if (confinamientoRadio2.checked){
-        document.getElementById("dist_confinamiento").value = "";
+       
     }else{
         if (confinamientoRadio.checked){
-            if(distConfinamiento.value.length < 1){
+            if(distConfinamiento.value < 1 ){
                 distConfinamiento.className+= ' is-invalid';
                 swal('Ingresa un número de confinamiento válido','','error')
                 
@@ -169,7 +174,7 @@ function formshidde2(){
         }
     }
 
-    
+   
 
     /* -------------------------------------------------- ----------------*/
 
@@ -269,12 +274,29 @@ function formshidde3(){
    
 
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
-    if (fusteUnico.checked){
-        document.getElementById('poli_polifurcado').value = "";
+    fusteUnico.addEventListener('change', () => {
+        if (fusteUnico.checked) {
+            Cap1.value = '';
+            Cap2.value = '';
+            Cap3.value = '';
+            Cap4.value = '';
+            Cap5.value = '';
+            numeroTallos.value = '';
+        }
+      });
 
-            if(Cap.value < 1){
+      poliPolifurcado.addEventListener('change', () => {
+        if (poliPolifurcado.checked) {
+            Cap.value = '';
+        }
+      });
+
+    if (fusteUnico.checked){
+        
+
+            if(Cap.value <= 1){
                 Cap.className += 'is-invalid';
-                swal('Ingresa un numero valido','','error')
+                swal('Ingresa un número valido en capa 1','','error')
                 return false
             }else{
                 delet.classList.remove('delet');
@@ -284,10 +306,10 @@ function formshidde3(){
        
     }else{
         if(poliPolifurcado.checked){
-            document.getElementById('fuste_unico').value = "";
+           
                 if(Cap1.value < 1){
                     Cap1.className += 'is-invalid';
-                    
+                    swal('Ingresa un número valido en capa 1','','error')
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -296,7 +318,7 @@ function formshidde3(){
                 }
                 if(Cap2.value < 1){
                     Cap2.className += 'is-invalid';
-                    
+                    swal('Ingresa un número valido en capa 2','','error')
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -305,7 +327,7 @@ function formshidde3(){
                 }
                 if(Cap3.value < 1){
                     Cap3.className += 'is-invalid';
-                   
+                    swal('Ingresa un número valido en capa 3','','error')
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -314,7 +336,7 @@ function formshidde3(){
                 }
                 if(Cap4.value < 1){
                     Cap4.className += 'is-invalid';
-                    
+                    swal('Ingresa un número valido en capa 4','','error')
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -323,7 +345,7 @@ function formshidde3(){
                 }
                 if(Cap5.value < 1){
                     Cap5.className += 'is-invalid';
-                    
+                    swal('Ingresa un número valido en capa 5','','error')
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -332,7 +354,7 @@ function formshidde3(){
                 }
                 if(numeroTallos.value <= 1 || numeroTallos.value > 50){
                     numeroTallos.className += 'is-invalid';
-                  
+                    swal('Ingresa un número de tallos valido','','error')
                     return false
                 }else{
                     delet.classList.remove('delet');
