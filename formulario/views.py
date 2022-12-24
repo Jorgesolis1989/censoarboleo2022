@@ -313,7 +313,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     cap3= 0
     cap4= 0
     cap5= 0
-    numtallos = 0
+    numtallos = 1
 
     
     dasometria_nuevo.fuste = fuste
