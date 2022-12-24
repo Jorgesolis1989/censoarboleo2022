@@ -35,79 +35,7 @@
       <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8VDnPOhFpQiCLmBzHmi1byVuSoE2hcTs&callback=initMap&libraries=&v=weekly">
       </script>
-      <script type="text/javascript">
-          var latitude1 = 0;
-          var longitude1 = 0;
-
-          function getLocation() {
-              if (navigator.geolocation) {
-                  navigator.geolocation.getCurrentPosition(showPosition);
-              } else {
-                  x.innerHTML = "Geolocation is not supported by this browser.";
-              }
-          }
-
-          function showPosition(position) {
-              latitude1 = position.coords.latitude;
-              longitude1 = position.coords.longitude;
-
-
-              console.log("latitude " + latitude1)
-              console.log("longitude " + longitude1)
-              document.getElementById("textLatitude").value  = latitude1;
-              document.getElementById("textLongitude").value = longitude1;
-
-              var mapProp = {
-                  center: new google.maps.LatLng(latitude1, longitude1),
-                  zoom: 20,
-                  mapTypeId: google.maps.MapTypeId.ROADMAP
-              };
-              // Agregando el mapa al tag de id divMap
-              var map = new google.maps.Map(document.getElementById("divMap"), mapProp);
-
-
-              const image = "{% static '/img/arbol(1).png' %}";
-
-
-              // Creando un marker en el mapa
-              var marker = new google.maps.Marker({
-                  position: new google.maps.LatLng(latitude1, longitude1),
-                  map: map,
-                  title: 'Hello World!',
-                  icon: image,
-                  draggable: true //que el marcador se pueda arrastrar
-              });
-
-              // Registrando el evento drag, en este caso imprime
-              // en consola la latitud y longitud
-              google.maps.event.addListener(marker, 'drag', function (event) {
-                  console.log(event.latLng.lat());
-                  
-                  document.getElementById("textLatitude").value  = event.latLng.lat();
-                  document.getElementById("textLongitude").value = event.latLng.lng();
-              });
-          }
-
-
-
-          function initialize() {
-
-              getLocation()
-
-              console.log("latitude 2 " + latitude1)
-              console.log("longitude 2 " + longitude1)
-
-              //latitude1 = 3.419790480782989
-              //longitude1 = -76.53127670288087
-              // Configuración del mapa
-
-
-          }
-
-          // Inicializando el mapa cuando se carga la página
-          google.maps.event.addDomListener(window, 'load', initialize);
-      </script>
-
+   
   </head>
 
   <body id="page-top">
@@ -139,8 +67,8 @@
                           {{ request.user.get_full_name }} <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu text-small">
-                          <li><a class="dropdown-item" href="#">{{ request.user.get_full_name }}</a></li>
-                          <li><a class="dropdown-item" href="#">Cambiar Contraseña</a></li>
+                          <li><a class="dropdown-item" href="{% url 'login' %}">Dashboard</a></li>
+                          <li><a class="dropdown-item" href="{% url 'cambiar_contrasena' %}">Cambiar Contraseña</a></li>
                           <li><hr class="dropdown-divider"></li>
                           <li><a class="dropdown-item" href="{% url 'logout' %}">Salir</a></li>
                         </ul>
@@ -159,6 +87,22 @@
                     
                       <div
                           class="grid-form col-12 col-md-8 col-sm-12 col-lg-12 pb-5 px-5 rounded rounded-lg shadow-lg  aling-items-center">
+
+                          <table class="table table-hover shadow ">
+                            <thead class="table-success">
+                              <tr>
+                                <th style="width: 90%;" class="text-center">Editando árbol No {{arbol.id}}</th>
+                              
+                              </tr>
+                            </thead>
+                           
+
+                        </table>
+                              
+
+
+
+
                         <img src="{% static '/img/funa.png' %}" class="rounded mx-auto d-block"
                               style="max-width: 150px; max-height: 150px;">
                           <!------------------------------------------------------------------------------------------------------------------------ ---
@@ -197,53 +141,15 @@
                                           </div>
                                           <div class="col-md-6 text-center">
                                               <label for="" class="text-center">Latitud (GD)</label>
-                                              {{form.latitude}}
+                                              <input readonly type="text" id="textLatitude" name="textLatitude" class="form-control text-center" value="{{arbol.latitud}}">
                                           </div>
                                           <div class="col-md-6 text-center">
                                               <label for="" class="text-center">Longitud (GD)</label>
-                                            {{form.longitude}}
+                                              <input readonly type="text" id="textLongitude" name="textLongitude" class="form-control text-center" value="{{arbol.longitud}}">
                                           </div>
                                       </div>
                                   </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                  <!-- COMENTARIO -->
-                                    <label for="">Comuna</label>
-                                    <select name="comuna" id="comuna" class="form-control" onchange="cambia_barrios()">                                  
-                                      <option value="1">01</option>
-                                      <option value="2">02</option>
-                                      <option value="3">03</option>
-                                      <option value="4">04</option>
-                                      <option value="5">05</option>
-                                      <option value="6">06</option>
-                                      <option value="7">07</option>
-                                      <option value="8">08</option>
-                                      <option value="9">09</option>
-                                      <option value="10">10</option>
-                                      <option value="11">11</option>
-                                      <option value="12">12</option>
-                                      <option value="13">13</option>
-                                      <option value="14">14</option>
-                                      <option value="15">15</option>
-                                      <option value="16">16</option>
-                                      <option value="17">17</option>
-                                      <option value="18">18</option>
-                                      <option value="19">19</option>
-                                      <option value="20">20</option>
-                                      <option value="21">21</option>
-                                      <option value="22">22</option>
-                                  </select>
-                                  </div>
-                                
-
-                                  <div class="col-md-6 col-lg-6 mb-2">
-
-                                    <label for="barrio">Barrio</label>
-                                    <select name="barrio" id="barrio" class="form-control">
-                                    </select>
-
-
-                                    
-                                  </div>
+                               
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <div class="form-group d-flex flex-column mx-auto">
                                           <label for="Dirección">Dirección:</label>
@@ -255,20 +161,20 @@
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Nombre común</label>
-                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-control">
+                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-control" >
                                       </select>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Nombre científico</label>
-                                      <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
+                                      <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" readonly value="{{arbol.nombre_cientifico}}">
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Familia</label>
-                                      <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
+                                      <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" readonly value="{{arbol.familia}}">
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Genero</label>
-                                      <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
+                                      <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly value="{{arbol.genero}}">
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Estado de Madurez</label>
@@ -296,7 +202,7 @@
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Codigo QR">Digite el codigo QR:</label>
-                                      <input type="number" id="qr" name="qr" class="form-control">
+                                      <input type="number" id="qr" name="qr" class="form-control" value="{{arbol.qrcode}}">
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número
                                       </div>
@@ -309,7 +215,7 @@
                                           <option selected value="Césped">Césped </option>
                                           <option value="Jardín">Jardín</option>
                                           <option value="Piso Duro">Piso Duro</option>
-                                          <option value="Vegetacion Ermegente">Vegetacion Ermegente</option>
+                                          <option value="Vegetación Ermegente">Vegetación Ermegente</option>
                                           <option value="Tierra descubierta/arena">Tierra descubierta/arena</option>
                                       </select>
                                   </div>
@@ -344,15 +250,23 @@
                                       
                                   </div>
 
-                                  <div id="formView" style="display: none;" class="col-md-12 col-lg-12 mb-2">
-                                      <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">
+                                  <div id="formView" style="display: block;" class="col-md-12 col-lg-12 mb-2">
+                                      <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control" value="{{arbol.dist_confinamiento}}">
                                       
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <div class="col-md-12 col-lg-12 mb-2 text-center">
                                           <label for="avatar">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
-                                                  <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
+                                                {% if arbol.foto1 %}
+                                                <img class="w-full object-cover" src="{{ MEDIA_URL }}{{arbol.foto1.url}}" height="96" id="img"/>   
+                                                
+                                                {% else %}
+                                              
+                                                <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
+
+                                                {%endif%}
+
                                               </div>                                          
                                           </label>
                                       </div>
@@ -369,7 +283,15 @@
                                       <div class="col-md-12 col-lg-12 mb-2 text-center">
                                           <label for="avatar2">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
-                                                  <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
+                                                {% if arbol.foto2 %}
+                                                <img class="w-full object-cover" src="{{ MEDIA_URL }}{{arbol.foto2.url}}" height="96" id="img"/>   
+                                                
+                                                {% else %}
+                                              
+                                                <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
+
+                                                {%endif%}
+
                                               </div>                                          
                                           </label>
                                       </div>
@@ -384,7 +306,15 @@
                                       <div class="col-md-12 col-lg-12 mb-2 text-center">
                                           <label for="avatar3">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
-                                                  <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
+                                                {% if arbol.foto3 %}
+                                                <img class="w-full object-cover" src="{{ MEDIA_URL }}{{arbol.foto1.url}}" height="96" id="img"/>   
+                                                
+                                                {% else %}
+                                              
+                                                <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
+
+                                                {%endif%}
+
                                               </div>                                          
                                           </label>
                                       </div>
@@ -421,12 +351,12 @@
                                           <label for="Placa Antigua">Forma del Tronco:</label>
                                           <div class="form-check form-check-inline">
                                             
-                                            <input class="form-check-input" type="radio" name="tipofuste" id="fuste_unico" value="8" onclick="formFusteUnico()">
+                                            <input class="form-check-input" type="radio" name="tipofuste" id="fuste_unico"  onclick="formFusteUnico()" value="Fuste Único">
                                             <label class="form-check-label" for="inlineRadio1">Fuste Único</label>
                                           </div>
 
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="tipofuste" id="poli_polifurcado" value="9" onclick="formFusteFolicurcado()">
+                                            <input class="form-check-input" type="radio" name="tipofuste" id="poli_polifurcado" onclick="formFusteFolicurcado()"value="Fuste Polifurcado">
                                             <label class="form-check-label" for="inlineRadio2">Fuste Polifurcado</label>
                                           </div>
                                           
@@ -434,8 +364,8 @@
 
                                       <div id="formViewUnico" style="display: none;" class="col-md-12 col-lg-12 mb-2" >
                                         <label for="CAP 1">CAP (cm)</label>
-                                        <input placeholder="capa (m)" name="capa" id="cap" type="number" class="form-control">
-                                        <div class="invalid-feedback" id="delet">
+                                        <input placeholder="capa (m)" name="cap " id="cap" type="number" class="form-control" value="{{dasometria.cap}}">
+                                        <div class="invalid-feedback" id="delet" >
                                           Ingresa un número
                                         </div>
                                     </div>
@@ -447,7 +377,7 @@
                                       
 
                                       <label for="CAP 1">CAP 1(cm)</label>
-                                      <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control">
+                                      <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control" value="{{dasometria.cap1}}">
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número
                                       </div>  
@@ -455,28 +385,28 @@
 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Capa 2">CAP 2(cm)</label>
-                                        <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control">
+                                        <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control" value="{{dasometria.cap2}}">
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número
                                         </div>  
                                     </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Capa 3">CAP 3(cm)</label>
-                                        <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control"> 
+                                        <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control" value="{{dasometria.cap3}}"> 
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número
                                         </div> 
                                     </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Placa Antigua">CAP 4(cm)</label>
-                                        <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control">
+                                        <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control" value="{{dasometria.cap4}}">
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número
                                         </div>  
                                     </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Placa Antigua">CAP 5(cm)</label>
-                                        <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control">
+                                        <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control" value="{{dasometria.cap5}}">
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número
                                         </div>  
@@ -485,7 +415,7 @@
                                     <div class="col-md-12 col-lg-12 mb-2">
     
                                       <label for="Tallos">No de Tallos</label>
-                                      <input type="number" id="numero_tallos" name="numero_tallos" class="form-control" placeholder=" Valor en número entero">
+                                      <input type="number" id="numero_tallos" name="numero_tallos" class="form-control" placeholder=" Valor en número entero" value="{{dasometria.numtallos}}">
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número
                                       </div>  
@@ -500,7 +430,7 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Comercial (Fuste)</label>
-                                          <input type="number" name="comercial_fuste" id="comercial_fuste" class="form-control"
+                                          <input type="number" name="comercial_fuste" id="comercial_fuste"  step="any" class="form-control"
                                               placeholder="Hc (m)">
                                               <div class="invalid-feedback" id="delet">
                                                 Ingresa un número
@@ -508,8 +438,8 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Total del árbol</label>
-                                          <input type="number" name="totalarbol" id="totalarbol" class="form-control"
-                                              placeholder="Ht (m)">
+                                          <input type="number" name="totalarbol" id="totalarbol"  step="any" class="form-control"
+                                              placeholder="Ht (m)" value="{{dasometria.altura_arbol}}" >
                                               <div class="invalid-feedback" id="delet">
                                                 Ingresa un número
                                               </div>
@@ -520,14 +450,14 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Eje mayor</label>
-                                          <input type="number" name="ejemayor" id="ejemayor" class="form-control">
+                                          <input type="number" name="ejemayor" id="ejemayor" class="form-control" step="any" >
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Eje menor</label>
-                                          <input type="number" id="ejemenor" name="ejemenor"  class="form-control">
+                                          <input type="number" id="ejemenor" name="ejemenor"  class="form-control" step="any">
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
@@ -536,7 +466,7 @@
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Orientación">Orientación</label>
                                         <select type="text" id="orientacion" name="orientacion" class="form-control">
-                                          <option value="Hacia la construcción" selected>Hacia la construcción</option>
+                                          <option value="Hacia la construcción">Hacia la construcción</option>
                                           <option value="Hacia la vía">Hacia la vía</option>
                                           <option value="En dirección de la vía">En dirección de la vía</option>
                                           <option value="Ninguna">Ninguna</option>
@@ -546,7 +476,7 @@
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Placa Antigua">Inclinación</label>
                                       <select type="text" id="inclinacion" name="inclinacion" class="form-control">
-                                        <option value="&lt;30" selected>&lt;30</option>
+                                        <option value="&lt;30">&lt;30</option>
                                         <option value="&gt;30">&gt;30</option>
                                       </select>
                                   </div>
@@ -555,12 +485,12 @@
                                           <label>Exposición de la copa a la luz</label>
                                           <select type="number" id="exposicionluz" name="exposicionluz" class="form-control"
                                               placeholder="CAP (m)">
-                                              <option value="01">No recibe luz</option>
-                                              <option value="02">Una cara</option>
-                                              <option value="03">Dos (2) caras</option>
-                                              <option value="04">Tres (3) caras</option>
-                                              <option value="05">Cuatro (4) caras</option>
-                                              <option value="06">4 cara más superior</option>
+                                              <option value="No recibe luz">No recibe luz</option>
+                                              <option value="Una cara">Una cara</option>
+                                              <option value="Dos (2) caras">Dos (2) caras</option>
+                                              <option value="Tres (3) caras">Tres (3) caras</option>
+                                              <option value="Cuatro (4) caras">Cuatro (4) caras</option>
+                                              <option value="4 cara más superior">4 cara más superior</option>
                                           </select>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
@@ -568,7 +498,7 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Altura (m)</label>
-                                          <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero" id="copa_viva" name="copa_viva">
+                                          <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero" id="copa_viva" name="copa_viva" >
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
@@ -584,15 +514,15 @@
                                           <label for="Placa Antigua">Diámetro medio de ramas</label>
                                           <select type="text" id="diametro" name="diametro" class="form-control" placeholder="CAP (m)">
                                             <option value="&lt;0.05m"> &lt;0.05m </option>
-                                            <option value=">0.05"> &gt;=0.05m </option>
+                                            <option value=">=0.05m"> &gt;=0.05m </option>
                                           </select> 
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2 ">
                                           <label for="Sistema ">Sistema Radicular</label>
                                           <select type="text" id="sistemaradicular" name="sistemaradicular" class="form-control">
-                                            <option value="Subtetrráneo" selected> Subterráneo </option>
-                                            <option value="Aéreo"> Aéreo </option>
-                                            <option value="Superficial"> Superficial </option>
+                                            <option value="Subtetrráneo">Subterráneo</option>
+                                            <option value="Aéreo">Aéreo</option>
+                                            <option value="Superficial">Superficial</option>
                                           </select>  
                                       </div>
                                   </div>
@@ -605,7 +535,7 @@
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="vitalidad" class="form-label">Vitalidad</label>
                                       <select  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-control">
-                                        <option value="Buena" selected>Buena (Sano)</option>
+                                        <option value="Buena">Buena (Sano)</option>
                                         <option value="Regular">Regular (Enfermo)</option>
                                         <option value="Mala">Mala (Seco/Muerto)</option>
                       
@@ -632,7 +562,11 @@
                                               <div class="" data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input class="form-check-input" type="checkbox" role="switch" id="mecanica_r_heridas" name="mecanica_r_heridas" >
+                                                      <input class="form-check-input" type="checkbox" role="switch" id="mecanica_r_heridas" name="mecanica_r_heridas" 
+                                                      {% if estado_fitosanitario.mecanica_r_heridas %} checked  {% endif %}
+                                                      >
+
+
                                                   </div>
                                                 </td>
                                               </div>
@@ -642,7 +576,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input class="form-check-input" type="checkbox" role="switch" id="mecanica_r_quemaduras" name="mecanica_r_quemaduras" >
+                                                        <input class="form-check-input" type="checkbox" role="switch" id="mecanica_r_quemaduras" name="mecanica_r_quemaduras" 
+                                                        {% if estado_fitosanitario.mecanica_r_quemaduras %} checked  {% endif %} >
                                                     </div>
                                                   </td>
                                                 </div>
@@ -652,7 +587,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input" type="checkbox" role="switch" id="biologica_r_necrosis" name="biologica_r_necrosis" >
+                                                        <input  class="form-check-input" type="checkbox" role="switch" id="biologica_r_necrosis" name="biologica_r_necrosis"
+                                                        {% if estado_fitosanitario.biologica_r_necrosis %} checked  {% endif %}  >
                                                     </div>
                                                   </td>
                                                 </div>
@@ -662,7 +598,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input " type="checkbox" role="switch" id="antropica_r_poda" name="antropica_r_poda" >
+                                                        <input  class="form-check-input " type="checkbox" role="switch" id="antropica_r_poda" name="antropica_r_poda" 
+                                                        {% if estado_fitosanitario.antropica_r_poda %} checked  {% endif %} >
                                                     </div>
                                                   </td>
                                                 </div>
@@ -672,7 +609,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input " type="checkbox" role="switch" id="antropica_r_prd_toxicos" name="antropica_r_prd_toxicos" >
+                                                        <input  class="form-check-input " type="checkbox" role="switch" id="antropica_r_prd_toxicos" name="antropica_r_prd_toxicos" 
+                                                        {% if estado_fitosanitario.antropica_r_prd_toxicos %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -682,7 +620,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input" type="checkbox" role="switch" id="antropica_r_escombro" name="antropica_r_escombro" >
+                                                        <input  class="form-check-input" type="checkbox" role="switch" id="antropica_r_escombro" name="antropica_r_escombro"
+                                                        {% if estado_fitosanitario.antropica_r_escombro %} checked  {% endif %} >
                                                     </div>
                                                   </td>
                                                 </div>
@@ -702,7 +641,8 @@
                                               <div class="" data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input class="form-check-input" type="checkbox" role="switch" id="mecanica_f_anillado" name="mecanica_f_anillado">
+                                                      <input class="form-check-input" type="checkbox" role="switch" id="mecanica_f_anillado" name="mecanica_f_anillado"
+                                                      {% if estado_fitosanitario.mecanica_f_anillado %} checked  {% endif %}>
                                                   </div>
                                                 </td>
                                               </div>
@@ -712,7 +652,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input class="form-check-input" type="checkbox" role="switch" id="mecanica_f_heridas"   name="mecanica_f_heridas">
+                                                        <input class="form-check-input" type="checkbox" role="switch" id="mecanica_f_heridas"   name="mecanica_f_heridas"
+                                                        {% if estado_fitosanitario.mecanica_f_heridas %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -722,7 +663,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input" type="checkbox" role="switch" id="mecanica_f_quemaduras" name="mecanica_f_quemaduras">
+                                                        <input  class="form-check-input" type="checkbox" role="switch" id="mecanica_f_quemaduras" name="mecanica_f_quemaduras"
+                                                        {% if estado_fitosanitario.mecanica_f_quemaduras %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -732,7 +674,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input " type="checkbox" role="switch" id="biologia_f_perfobarrenado" name="biologia_f_perfobarrenado" >
+                                                        <input  class="form-check-input " type="checkbox" role="switch" id="biologica_f_perfobarrenado" name="biologica_f_perfobarrenado" 
+                                                        {% if estado_fitosanitario.biologica_f_perfobarrenado %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -742,8 +685,9 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input " type="checkbox" role="switch" id="biologica_f_necrosis" name="biologica_f_necrosis">
-                                                    </div>
+                                                        <input  class="form-check-input " type="checkbox" role="switch" id="biologica_f_necrosis" name="biologica_f_necrosis"
+                                                        {% if estado_fitosanitario.biologica_f_necrosis %} checked  {% endif %}>
+                                                      </div>
                                                   </td>
                                                 </div>
                                             </tr>
@@ -752,7 +696,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input" type="checkbox" role="switch" id="biologica_f_descortezado" name="biologica_f_descortezado" >
+                                                        <input  class="form-check-input" type="checkbox" role="switch" id="biologica_f_descortezado" name="biologica_f_descortezado"
+                                                        {% if estado_fitosanitario.biologica_f_descortezado %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -762,7 +707,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input" type="checkbox" role="switch" id="biologica_f_tumores" name="biologica_f_tumores">
+                                                        <input  class="form-check-input" type="checkbox" role="switch" id="biologica_f_tumores" name="biologica_f_tumores"
+                                                        {% if estado_fitosanitario.biologica_f_tumores %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -772,7 +718,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input" type="checkbox" role="switch" id="antropica_f_poda" name="antropica_f_poda">
+                                                        <input  class="form-check-input" type="checkbox" role="switch" id="antropica_f_poda" name="antropica_f_poda"
+                                                        {% if estado_fitosanitario.antropica_f_poda %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -782,7 +729,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input" type="checkbox" role="switch" id="antropica_f_escombros"  name="antropica_f_escombros">
+                                                        <input  class="form-check-input" type="checkbox" role="switch" id="antropica_f_escombros"  name="antropica_f_escombros"
+                                                        {% if estado_fitosanitario.antropica_f_escombros %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -792,7 +740,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input" type="checkbox" role="switch" id="antropica_f_pintura"  name="antropica_f_pintura">
+                                                        <input  class="form-check-input" type="checkbox" role="switch" id="antropica_f_pintura"  name="antropica_f_pintura"
+                                                        {% if estado_fitosanitario.antropica_f_pintura %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -813,7 +762,8 @@
                                             <div class="" data-toggle="buttons">
                                               <td class="">
                                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="mecanica_c_heridas" name="mecanica_c_heridas" >
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="mecanica_c_heridas" name="mecanica_c_heridas"
+                                                    {% if estado_fitosanitario.mecanica_c_heridas %} checked  {% endif %}>
                                                 </div>
                                               </td>
                                             </div>
@@ -823,7 +773,8 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input class="form-check-input" type="checkbox" role="switch" id="mecanica_c_quemaduras" name="mecanica_c_quemaduras" >
+                                                      <input class="form-check-input" type="checkbox" role="switch" id="mecanica_c_quemaduras" name="mecanica_c_quemaduras"
+                                                      {% if estado_fitosanitario.mecanica_c_quemaduras %} checked  {% endif %}>
                                                   </div>
                                                 </td>
                                               </div>
@@ -833,7 +784,8 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="biologica_c_defoliacion" name="biologica_c_defoliacion" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="biologica_c_defoliacion" name="biologica_c_defoliacion"
+                                                      {% if estado_fitosanitario.biologica_c_defoliacion %} checked  {% endif %}>
                                                   </div>
                                                 </td>
                                               </div>
@@ -843,7 +795,8 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input " type="checkbox" role="switch" id="biologica_c_clorosis" name="biologica_c_clorosis" >
+                                                      <input  class="form-check-input " type="checkbox" role="switch" id="biologica_c_clorosis" name="biologica_c_clorosis"
+                                                      {% if estado_fitosanitario.biologica_c_clorosis %} checked  {% endif %}>
                                                   </div>
                                                 </td>
                                               </div>
@@ -853,7 +806,8 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input " type="checkbox" role="switch" id="biologica_c_minado" name="biologica_c_minado" >
+                                                      <input  class="form-check-input " type="checkbox" role="switch" id="biologica_c_minado" name="biologica_c_minado"
+                                                      {% if estado_fitosanitario.biologica_c_minado %} checked  {% endif %}>
                                                   </div>
                                                 </td>
                                               </div>
@@ -863,7 +817,8 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="biologica_c_necrosis"name="biologica_c_necrosis" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="biologica_c_necrosis"name="biologica_c_necrosis" 
+                                                      {% if estado_fitosanitario.biologica_c_necrosis %} checked  {% endif %}>
                                                   </div>
                                                 </td>
                                               </div>
@@ -873,7 +828,8 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="biologica_c_parasitas" name="biologica_c_parasitas" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="biologica_c_parasitas" name="biologica_c_parasitas"
+                                                      {% if estado_fitosanitario.biologica_c_parasitas %} checked  {% endif %}>
                                                   </div>
                                                 </td>
                                               </div>
@@ -883,7 +839,8 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="antropica_c_poda" name="antropica_c_poda" >
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="antropica_c_poda" name="antropica_c_poda" 
+                                                      {% if estado_fitosanitario.antropica_c_poda %} checked  {% endif %}>
                                                   </div>
                                                 </td>
                                               </div>
@@ -893,7 +850,8 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input" type="checkbox" role="switch" id="antropica_c_contamatmosferica" name="antropica_c_contamatmosferica">
+                                                      <input  class="form-check-input" type="checkbox" role="switch" id="antropica_c_contamatmosferica" name="antropica_c_contamatmosferica"
+                                                      {% if estado_fitosanitario.antropica_c_contamatmosferica %} checked  {% endif %}>
                                                   </div>
                                                 </td>
                                               </div>
@@ -913,7 +871,8 @@
                                               <div class="" data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input class="form-check-input" type="checkbox" role="switch" id="general_r_sano" name="general_r_sano" >
+                                                      <input class="form-check-input" type="checkbox" role="switch" id="general_r_sano" name="general_r_sano" 
+                                                      {% if estado_fitosanitario.general_r_sano %} checked  {% endif %}>
                                                   </div>
                                                 </td>
                                               </div>
@@ -923,7 +882,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input class="form-check-input" type="checkbox" role="switch" id="general_f_sano" name="general_f_sano" >
+                                                        <input class="form-check-input" type="checkbox" role="switch" id="general_f_sano" name="general_f_sano" 
+                                                        {% if estado_fitosanitario.general_f_sano %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -933,7 +893,8 @@
                                               <div class="btn-group " data-toggle="buttons">
                                                   <td class="">
                                                     <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                        <input  class="form-check-input" type="checkbox" role="switch" id="general_c_sano" name="general_c_sano" >
+                                                        <input  class="form-check-input" type="checkbox" role="switch" id="general_c_sano" name="general_c_sano" 
+                                                        {% if estado_fitosanitario.general_c_sano %} checked  {% endif %}>
                                                     </div>
                                                   </td>
                                                 </div>
@@ -959,7 +920,8 @@
                                                   <div class="" data-toggle="buttons">
                                                     <td class="">
                                                       <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                          <input class="form-check-input" type="checkbox" role="switch" name="personas" id="personas" placeholder="Transito o flujo peatonal" >
+                                                          <input class="form-check-input" type="checkbox" role="switch" name="personas" id="personas" placeholder="Transito o flujo peatonal" 
+                                                          {% if vulnerabilidad.personas %} checked  {% endif %}>
                                                       </div>
                                                     </td>
                                                   </div>
@@ -969,7 +931,8 @@
                                                   <div class="btn-group " data-toggle="buttons">
                                                       <td class="">
                                                         <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                            <input class="form-check-input" type="checkbox" role="switch" name="vehiculos" id="vehiculos"  placeholder="Transito o flujo vehicular" >
+                                                            <input class="form-check-input" type="checkbox" role="switch" name="vehiculos" id="vehiculos"  placeholder="Transito o flujo vehicular" 
+                                                            {% if vulnerabilidad.vehiculos %} checked  {% endif %}>
                                                         </div>
                                                       </td>
                                                     </div>
@@ -979,7 +942,8 @@
                                                   <div class="btn-group " data-toggle="buttons">
                                                       <td class="">
                                                         <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                            <input  class="form-check-input" type="checkbox" role="switch" name="construcciones" id="construcciones" placeholder="Existencia de construcciones afectables por caida de fuste o ramas" >
+                                                            <input  class="form-check-input" type="checkbox" role="switch" name="construcciones" id="construcciones" placeholder="Existencia de construcciones afectables por caida de fuste o ramas" 
+                                                            {% if vulnerabilidad.construcciones %} checked  {% endif %}>
                                                         </div>
                                                       </td>
                                                     </div>
@@ -989,7 +953,9 @@
                                                   <div class="btn-group " data-toggle="buttons">
                                                       <td class="">
                                                         <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                            <input  class="form-check-input " type="checkbox" role="switch" name="redes_aereas" id="redes_aereas"  placeholder="Existencoa" >
+                                                            <input  class="form-check-input " type="checkbox" role="switch" name="redes_aereas" id="redes_aereas"  placeholder="Existencia de redes"
+                                                            {% if vulnerabilidad.redes_aereas %} checked  {% endif %}> 
+                                                            
                                                         </div>
                                                       </td>
                                                     </div>
@@ -1024,7 +990,8 @@
                                       <div class="" data-toggle="buttons">
                                         <td class="">
                                           <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                              <input class="form-check-input" type="checkbox" role="switch" id="controlfitosanitario" name="controlfitosanitario" >
+                                              <input class="form-check-input" type="checkbox" role="switch" id="controlfitosanitario" name="controlfitosanitario" 
+                                              {% if recomendacion_e_intervencion.control_fitosanitario %} checked  {% endif %}>
                                           </div>
                                         </td>
                                       </div>
@@ -1035,7 +1002,8 @@
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="limpieza_parasistas" name="limpieza_parasistas" >
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="limpieza_parasistas" name="limpieza_parasistas" 
+                                                {% if recomendacion_e_intervencion.poda_limpieza_parasitas %} checked  {% endif %}>
                                             </div>
                                           </td>
                                         </div>
@@ -1046,7 +1014,8 @@
                                       <div class="btn-group " data-toggle="buttons">
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                <input  class="form-check-input" type="checkbox" role="switch" id="otros_control_fitosanitario" name="otros_control_fitosanitario" >
+                                                <input  class="form-check-input" type="checkbox" role="switch" id="otros_control_fitosanitario" name="otros_control_fitosanitario"
+                                                {% if recomendacion_e_intervencion.otros_control_fitosanitario %} checked  {% endif %}>
                                             </div>
                                           </td>
                                         </div>
@@ -1075,7 +1044,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input class="form-check-input" type="checkbox" role="switch" id="erradicacion" name="erradicacion">
+                                                  <input class="form-check-input" type="checkbox" role="switch" id="erradicacion" name="erradicacion"
+                                                  {% if recomendacion_e_intervencion.erradicacion %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1085,7 +1055,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_aclareo" name="poda_aclareo">
+                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_aclareo" name="poda_aclareo"
+                                                  {% if recomendacion_e_intervencion.poda_aclareo %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1096,7 +1067,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input " type="checkbox" role="switch" id="poda_equilibrio" name="poda_equilibrio" >
+                                                  <input  class="form-check-input " type="checkbox" role="switch" id="poda_equilibrio" name="poda_equilibrio" 
+                                                  {% if recomendacion_e_intervencion.poda_equilibrio %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1106,7 +1078,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input " type="checkbox" role="switch" id="poda_formacion" name="poda_formacion" >
+                                                  <input  class="form-check-input " type="checkbox" role="switch" id="poda_formacion" name="poda_formacion" 
+                                                  {% if recomendacion_e_intervencion.poda_formacion %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1116,7 +1089,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input " type="checkbox" role="switch" id="poda_limpieza" name="poda_limpieza" >
+                                                  <input  class="form-check-input " type="checkbox" role="switch" id="poda_limpieza" name="poda_limpieza" 
+                                                  {% if recomendacion_e_intervencion.poda_limpieza %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1126,7 +1100,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input " type="checkbox" role="switch" id="poda_realce" name="poda_realce" >
+                                                  <input  class="form-check-input " type="checkbox" role="switch" id="poda_realce" name="poda_realce" 
+                                                  {% if recomendacion_e_intervencion.poda_realce %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1136,7 +1111,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_ramas_laterales" name="poda_ramas_laterales" >
+                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_ramas_laterales" name="poda_ramas_laterales" 
+                                                  {% if recomendacion_e_intervencion.poda_ramas_laterales %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1146,7 +1122,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_ramas_secas" name="poda_ramas_secas" >
+                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_ramas_secas" name="poda_ramas_secas" 
+                                                  {% if recomendacion_e_intervencion.poda_ramas_secas %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1156,7 +1133,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_sanitaria" name="poda_sanitaria" >
+                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_sanitaria" name="poda_sanitaria" 
+                                                  {% if recomendacion_e_intervencion.poda_sanitaria %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1166,7 +1144,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_redes_secundarias" name="poda_redes_secundarias">
+                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_redes_secundarias" name="poda_redes_secundarias"
+                                                  {% if recomendacion_e_intervencion.poda_redes_secundarias %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1177,7 +1156,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_reduccion_altura" name="poda_reduccion_altura" >
+                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_reduccion_altura" name="poda_reduccion_altura" 
+                                                  {% if recomendacion_e_intervencion.poda_reduccion_altura %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1188,7 +1168,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_despeje_redes" name="poda_despeje_redes">
+                                                  <input  class="form-check-input" type="checkbox" role="switch" id="poda_despeje_redes" name="poda_despeje_redes"
+                                                  {% if recomendacion_e_intervencion.poda_despeje_redes %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1198,7 +1179,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input" type="checkbox" role="switch" id="transplante" name="transplante" >
+                                                  <input  class="form-check-input" type="checkbox" role="switch" id="transplante" name="transplante" 
+                                                  {% if recomendacion_e_intervencion.transplante %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1208,7 +1190,8 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input" type="checkbox" role="switch" id="eliminar_piso_duro" name="eliminar_piso_duro" >
+                                                  <input  class="form-check-input" type="checkbox" role="switch" id="eliminar_piso_duro" name="eliminar_piso_duro" 
+                                                  {% if recomendacion_e_intervencion.eliminar_piso_duro %} checked  {% endif %}>
                                               </div>
                                             </td>
                                           </div>
@@ -1247,24 +1230,20 @@
                                 
                                 <div class="form-floating">
                                   <h6>¿Porqué tala?</h6>
-                                <textarea class="form-control"  placeholder="Leave a comment here" id="porquetala" name="porquetala" style="height: 100px"></textarea>
+                                <textarea class="form-control"  placeholder="Leave a comment here" id="porquetala" name="porquetala" style="height: 100px">{{recomendacion_e_intervencion.porque_tala}}</textarea>
                               </div>
                             </div>
 
 
                                 <div class="form-floating">
                                   <h4>Comentarios en general</h4>
-                                  <textarea class="form-control" placeholder="Leave a comment here" id="comentarios_en_general" name="comentarios_en_general"  style="height: 100px"></textarea>
+                                  <textarea class="form-control" placeholder="Leave a comment here" id="comentarios_en_general" name="comentarios_en_general"  style="height: 100px" >{{recomendacion_e_intervencion.comentarios}}</textarea>
                                   
                                 </div>
                                 <br>
                                 <br>
                             </div>
                            
-                          
-
-
-
 
                          
 
@@ -1273,11 +1252,11 @@
                         <nav aria-label="Page navigation example" id="boton5" >
                           <ul class="pagination justify-content-center">
                               <li class="page-item disabled px-3">
-                                <button type="button"   class="btn btn-outline-secondary" onclick="boton5()" >Anterior</button>
+                                <button type="button"   class="btn btn-outline-secondary" >Anterior</button>
                               </li>
                               <li class="page-item">
                   <!--               <button class="btn btn-outline-warning"type="submit">Finalizar</button>--> 
-                  <button name="btnFinalizar" type="submit" class="finish btn btn-warning">Actualizar</button>
+                  <button name="btnActualizar" type="submit" class="finish btn btn-warning">Actualizar</button>
                               </li>
                           </ul>
                       </nav>
@@ -1418,93 +1397,6 @@
 
 
 
-
-
-
-  <script type="text/javascript">
-    var barrios_1 =new Array("Terrón Colorado","Vista Hermosa","Sector Patio Bonito","Aguacatal");
-    var barrios_2=new Array("Santa Rita","Santa Teresita","Arboledas","Normandía","Juanambú","Centenario","Granada","Versalles","San Vicente","Santa Mónica ","Prados del Norte","La Flora","La Campiña","La Paz","El Bosque","Menga","Ciudad Los Alamos","Chipichape","Brisas de los Alamos","Urbanización La Merced","Vipasa","Urbanización La Flora","Altos de Menga","Sector Altos Normandía","Senderos de la Flora");
-    var barrios_3=new Array("El Nacional","El Peñón","San Antonio","San Cayetano","Los Libertadores","San Juan Bosco","Santa Rosa","La Merced","San Pascual","El Calvario","San Pedro","San Nicolas","El Hoyo","El Piloto","Navarro - La Chanca");
-    var barrios_4=new Array("Jorge Isaacs","Santander","Porvenir","Las Delicias","Manzanares","Salomia","Fátima","Sultana - Berlín - San Francisco ","Popular","Ignacio Rengifo","Guillermo Valencia","La Isla","Marco Fidel Suárez","Evaristo García","La Esmeralda","Bolivariano","Olaya Herrera","Unidad Residencial Bueno Madrid","Flora Industrial","Calima","Industria de Licores","La Alianza");
-    var barrios_5=new Array("San Luís","Ciudadela Floralia","Fonaviemcali","Jorge Eliecer Gaitán","La Rivera Primera Etapa","Los Alcázares","Los Guaduales","Paso del Comercio","Petecuy Primera Etapa","Petecuy Segunda Etapa","Petecuy Tercera Etapa","San Luís II","Sector Puente del Comercio","Urbanización Calimio",);
-    var barrios_6=new Array("San Luís","Jorge Eliecer Gaitán","Paso del Comercio","Los Alcázares","Petecuy Primera Etapa","Petecuy Segunda Etapa","La Rivera Primera Etapa","Los Guaduales","Petecuy Tercera Etapa","Ciudadela Floralia","Fonaviemcali","San Luís II","Urbanización Calimio","Sector Puente del Comercio");
-    var barrios_7=new Array("Alfonso López P. 1a. Etapa","Alfonso López P. 2a. Etapa","Alfonso López P. 3a. Etapa","Base Aérea","Fepicol","Las Ceibas","Los Pinos","Parque de la Caña","Puerto Mallarino","Puerto Nuevo","San Marino","Siete de Agosto","Urbanización El Angel del Hogar");
-    var barrios_8=new Array("Atanasio Girardot","Benjamín Herrera","Chapinero","EL Trébol","El Troncal","Industrial","La Base","La Floresta","Las Américas","Municipal","Primitivo Crespo","Saavedra Galindo","Santa Fe","Santa Mónica Popular","Simón Bolívar","Urbanización La Nueva Base","Uribe Uribe","Villa Colombia");
-    var barrios_9=new Array("Alameda","Aranjuez","Barrio Obrero","Belalcázar","Bretaña","Guayaquil","Junín","Manuel María Buenaventura","Santa Mónica Belalcázar","Sucre");
-    var barrios_10=new Array("El Dorado","El Guabal","La Libertad","Santa Elena","Las Acacias","Santo Domingo","Jorge Zawadsky","Olímpico","Cristóbal Colón","La Selva","Barrio Departamental","Pasoancho","Panamericano","Colseguros Andes","San Cristobal","Las Granjas","San Judas Tadeo I Etapa","San Judas Tadeo II Etapa");
-    var barrios_11=new Array("San Carlos","Maracaibo","La Independencia","La Esperanza","Urbanización Boyacá","El Jardín","La Fortaleza","El Recuerdo","Aguablanca","El Prado","20 de Julio","Prados de Oriente","Los Sauces","Villa del Sur","José Holguín Garcés","León XIII","José María Cordoba","San Pedro Claver","Los Conquistadores","La Gran Colombia","San Benito","Primavera");
-    var barrios_12=new Array("Villanueva","Asturias","Eduardo Santos","Alfonso Barberena A.","El Paraiso","Fenalco Kennedy","Nueva Floresta","Julio Rincón","Doce de Octubre","El Rodeo","Sindical","Bello Horizonte");
-    var barrios_13=new Array("Ulpiano Lloreda","El Vergel","El Poblado I","El Poblado II","Los Comuneros Segunda Etapa","Ricardo Balcázar","Omar Torrijos","El Diamante","Lleras Restrepo","Villa del Lago","Los Robles","Rodrigo Lara Bonilla","Charco Azul","Villablanca","Calipso","Yira Castro","Lleras Restrepo II Etapa","Marroquín III","Los Lagos","Sector Laguna del Pondaje","El Pondaje","Sector Asprosocial-Diamante");
-    var barrios_14=new Array("Alfonso Bonilla Aragón","Alirio Mora Beltrán","Manuela Beltrán","Las Orquídeas","José Manuel Marroquín Segunda Etapa","José Manuel Marroquín Primera Etapa","Puerta del Sol","Los Naranjos I","Promociones Populares B","Los Naranjos II");
-    var barrios_15=new Array("El Retiro","Comuneros I","Laureano Gómez","El Vallado","Ciudad Cordoba","Mojica","El Morichal","LLanoverde");
-    var barrios_16=new Array("Mariano Ramos","República de Israel","Unión de Vivienda Popular","Antonio Nariño","Brisas del Limonar","Vendimia","Ciudad 2000","La Alborada");
-    var barrios_17=new Array("La Playa","Primero de Mayo","Ciudadela Comfandi","Ciudad Universitaria","Caney","Lili","Santa Anita - La Selva","El Ingenio","Mayapan - Las Vegas","Las Quintas de Don Simón","Ciudad Capri","La Hacienda","Los Portales - Nuevo Rey","Cañaverales - Los Samanes","El Limonar","Bosques del Limonar","El Gran Limonar - Cataya","El Gran Limonar","Unicentro Cali","Ciudadela Pasoancho","Prados del Limonar","Urbanización San Joaquin");
-    var barrios_18=new Array("Buenos Aires","Barrio Caldas","Los Chorros","Meléndez","Los Farallones","Francisco Eladio Ramirez","Prados del Sur","Horizontes","Mario Correa Rengifo","Lourdes","Colinas del Sur","Alférez Real","Nápoles","El Jordán","Cuarteles Napoles","Sector Alto de Los Chorros","Polvorines","Sector Meléndez","Sector Alto Jordán","Alto Nápoles");
-    var barrios_19=new Array("El Refugio","La Cascada","El Lido","Urbanización Tequendama","Barrio Eucarístico","San Fernando Nuevo","Urbanización Nueva Granada","Santa Isabel","Bellavista","San Fernando Viejo","Miraflores","3 de Julio","El Cedro","Champagñat","Urbanización Colseguros","Los Cambulos","El Mortiñal","Urbanización Militar","Cuarto de Legua - Guadalupe","Nueva Tequendama ","Camino Real - Joaquín Borrero Sinisterra","Camino Real - Los Fundadores","Altos de Santa Isabel -  La Morelia","Santa Barbara","Tejares - Cristales","Unidad Residencial Santiago de Cali","Unidad Residencial El Coliseo","Cañaveralejo - Seguros Patria","Cañaveral","Pampa Linda","Sector Cañaveralejo Guadalupe","U.D. Alberto Galindo -  Plaza de Toros");
-    var barrios_20=new Array("El Cortijo","Belisario Caicedo","Siloé","Lleras Camargo","Belén","Brisas de Mayo","Tierra Blanca","Pueblo Joven","Carabineros","Venezuela - Urbanización Cañaveralejo","La Sultana");
-    var barrios_21=new Array("Pízamos I","Pízamos II","Calimio Desepaz","El Remanso","Los Líderes","Desepaz Invicali","Compartir","Ciudad Talanga","Villamercedes I - Villa Luz - Las Garzas","Pízamos III - Las Dalias","Potrero Grande","Ciudadela del Río","Valle Grande","Planta de Tratamiento");
-    var barrios_22=new Array("Urbanización Ciudad Jardín","Parcelaciones Pance","Urbanización Río Lili","Ciudad Campestre","Club Campestre");
-
-
-    var todos_los_barrios = [
-      [],
-      barrios_1,
-      barrios_2,
-      barrios_3,
-      barrios_4,
-      barrios_5,
-      barrios_6,
-      barrios_7,
-      barrios_8,
-      barrios_9,
-      barrios_10,
-      barrios_11,
-      barrios_12,
-      barrios_13,
-      barrios_14,
-      barrios_15,
-      barrios_16,
-      barrios_17,
-      barrios_18,
-      barrios_19,
-      barrios_20,
-      barrios_21,
-      barrios_22
-    ];
-
-    function cambia_barrios(){ 
-      //tomo el valor del select del pais elegido 
-      var comuna;
-      comuna = document.getElementById("comuna")[document.getElementById("comuna").selectedIndex].value
-
-      //miro a ver si la comuna está definida 
-      if (comuna != 0) { 
-          //si estaba definido, entonces coloco las opciones del barrio correspondiente. 
-          //selecciono el array de barrios adecuado 
-          mis_barrios=todos_los_barrios[comuna]
-          //calculo el numero de barrios 
-          num_barrios = mis_barrios.length 
-          //marco el número de barrios en el select 
-          document.getElementById("barrio").length = num_barrios 
-          //para cada barrio del array, la introduzco en el select 
-          for(i=0;i<num_barrios;i++){ 
-            document.getElementById("barrio").options[i].value=mis_barrios[i] 
-            document.getElementById("barrio").options[i].text=mis_barrios[i] 
-          }	
-      }else{ 
-          //si no había barrio seleccionada, elimino los barrios del select 
-          document.getElementById("barrio").length = 1
-          //coloco un guión en la única opción que he dejado 
-        ///	document.getElementById("barrio").options[0].value = "-" 
-        ///	document.getElementById("barrio").options[0].text = "-" 
-      }
-
-      //marco como seleccionada la opción primera de barrio 
-      document.getElementById("barrio").options[0].selected = true 
-  }
-  cambia_barrios();
-    </script>
-
   <script type="text/javascript">
   $(document).on('ready',function (){
       
@@ -1512,22 +1404,272 @@
           $.each(data, function(key, value) {
               $("#nombre_comun").append('<option name="' + key + '">' + value + '</option>');
           }); // close each()
+
+
+      document.getElementById("nombre_comun").value=data["{{arbol.nombre_comun}}"];
+
+
       }); // close getJSON()
 
       $.getJSON('../../static/js/lista_genero_arboles.json', function(json) { datos_json = json; });
 
       // Valores iniciales-
       // Familia
-      document.getElementById("familia").value=datos_json["Acacia rubinia"][0]
+
+
+
+
+      document.getElementById("familia").value=datos_json["{{arbol.nombre_comun}}"][0];
 
       // Género
-      document.getElementById("genero").value=datos_json["Acacia rubinia"][1]
+      document.getElementById("genero").value=datos_json["{{arbol.nombre_comun}}"][1];
 
       // Nombre Científico
-      document.getElementById("nombre_cientifico").value=datos_json["Acacia rubinia"][2]
+      document.getElementById("nombre_cientifico").value=datos_json["{{arbol.nombre_comun}}"][2];
+
+      // Madurez
+      let estado_madurez_dict= new Map();
+      estado_madurez_dict.set("Plantón",0);
+      estado_madurez_dict.set("Juvenil",1);
+      estado_madurez_dict.set("Adulto",2);
+      estado_madurez_dict.set("Longevo",3);
+
+  
+      document.getElementById("estado_madurez").selectedIndex = estado_madurez_dict.get("{{arbol.madurez}}");
+
+
+      // Estado Registro
+      let estado_registro_dict= new Map();
+      estado_registro_dict.set("Nuevo",0);
+      estado_registro_dict.set("Antiguo",1);
+      estado_registro_dict.set("Revisión",2);
+      estado_registro_dict.set("Eliminado",3);
+      document.getElementById("estado_registro").selectedIndex = estado_registro_dict.get("{{arbol.estado_registro}}");
+
+      // Estado Cobertura
+      let cobertura_dict= new Map();
+      cobertura_dict.set("Césped",0);
+      cobertura_dict.set("Jardín",1);
+      cobertura_dict.set("Piso Duro",2);
+      cobertura_dict.set("Vegetación Ermegente",3);
+      cobertura_dict.set("Tierra descubierta/arena Emergente",4);
+    
+      document.getElementById("cobertura").selectedIndex = cobertura_dict.get("{{arbol.cobertura}}");
       
+      
+      // Estado Enplazamiento
+      let emplazamiento_dict= new Map();
+      emplazamiento_dict.set("Bahía de estacionamiento",0);
+      emplazamiento_dict.set("Bulevares",1);
+      emplazamiento_dict.set("Corredor Férreo",2);
+      emplazamiento_dict.set("Escenario deportivo y/o cultural",3);
+      emplazamiento_dict.set("Glorieta",4);
+      emplazamiento_dict.set("Institución educativa",5);
+      emplazamiento_dict.set("Parque Urbano",6);
+      emplazamiento_dict.set("Paseos",7);
+      emplazamiento_dict.set("Plazas",8);
+      emplazamiento_dict.set("Plazoleta",9);
+      emplazamiento_dict.set("Ronda de canales",10);
+      emplazamiento_dict.set("Ronda de ríos",11);
+      emplazamiento_dict.set("Separador vial",12);
+
+    
+      document.getElementById("emplazamiento").selectedIndex = emplazamiento_dict.get("{{arbol.emplazamiento}}");
+
+  
+      // Estado Confinamiento
+      if ("{{arbol.confinamiento}}" ==  "True")
+      {
+        document.getElementById("confinamiento-radio").checked = true;
+        
+
+      }else
+      {
+        document.getElementById("confinamiento-radio2").checked = true;
+        document.getElementById("formView").style.display = "none";
+      }
+
+
+      // Fuste
+      if ("{{dasometria.fuste}}" ==  "Fuste Único")
+      {
+        document.getElementById("fuste_unico").checked = true;
+        formFusteUnico();
+      
+      }else
+      {
+        document.getElementById("poli_polifurcado").checked = true;
+        formFusteFolicurcado();
+      }
+      
+
+      // comercial fuste
+      comercial_fuste = "{{dasometria.altura_fuste}}"
+      comercial_fuste = parseFloat(comercial_fuste.replaceAll(',', '.'));
+      document.getElementById("comercial_fuste").value = comercial_fuste;
+
+
+      // altura del arbol
+      altura_arbol = "{{dasometria.altura_arbol}}"
+      altura_arbol = parseFloat(altura_arbol.replaceAll(',', '.'));
+      document.getElementById("totalarbol").value = altura_arbol;
+
+
+        // eje mayor
+        ejemayor = "{{dasometria.diacopa_mayor}}"
+        ejemayor = parseFloat(ejemayor.replaceAll(',', '.'));
+        document.getElementById("ejemayor").value = ejemayor;
+
+
+        // eje mayor
+        ejemenor = "{{dasometria.diacopa_menor}}"
+        ejemenor = parseFloat(ejemenor.replaceAll(',', '.'));
+        document.getElementById("ejemenor").value = ejemenor;
+
+        // Orientación
+        let orientacion_dict= new Map();
+        orientacion_dict.set("Hacia la construcción",0);
+        orientacion_dict.set("Hacia la vía",1);
+        orientacion_dict.set("En dirección de la vía",2);
+        orientacion_dict.set("Ninguna",3);
+        orientacion_dict.set("Otra",4);
+
+        document.getElementById("orientacion").selectedIndex = orientacion_dict.get("{{dasometria.orientacion}}");
+
+        // Inclinación
+        let inclinacion_dict = new Map();
+        inclinacion_dict.set("&lt;30",0);
+        inclinacion_dict.set("&gt;30",1);
+
+        document.getElementById("inclinacion").selectedIndex = inclinacion_dict.get("{{dasometria.inclinacion}}");
+
+       // Exposición luz
+       let exposicionluz_dict= new Map();
+        exposicionluz_dict.set("No recibe luz",0);
+        exposicionluz_dict.set("Una cara",1);
+        exposicionluz_dict.set("Dos (2) caras",2);
+        exposicionluz_dict.set("Tres (3) caras",3);
+        exposicionluz_dict.set("Cuatro (4) caras",4);
+        exposicionluz_dict.set("4 cara más superior<",4);
+
+        document.getElementById("exposicionluz").selectedIndex = exposicionluz_dict.get("{{dasometria.expcopaluz}}");
+
+
+      // copa viva
+      copa_viva = "{{dasometria.copaviva}}"
+      copa_viva = parseFloat(copa_viva.replaceAll(',', '.'));
+      document.getElementById("copa_viva").value = copa_viva;
+
+      // copa ausente
+      copa_ausente = "{{dasometria.copausente}}"
+      copa_ausente = parseFloat(copa_ausente.replaceAll(',', '.'));
+      document.getElementById("copa_ausente").value = copa_ausente;
+
+      // diamétro
+      let diametro_dict= new Map();
+      diametro_dict.set("&lt;0.05m",0);
+      diametro_dict.set("&gt;=0.05m",1);
+
+      document.getElementById("diametro").selectedIndex = diametro_dict.get("{{dasometria.diametro_ramas}}");
+
+
+      // tipo raíz
+      let tipo_raiz_dict= new Map();
+      tipo_raiz_dict.set("Subterráneo",0);
+      tipo_raiz_dict.set("Aéreo",1);
+      tipo_raiz_dict.set("Superficial",2);
+
+      document.getElementById("sistemaradicular").selectedIndex = tipo_raiz_dict.get("{{dasometria.tiporaiz}}");
+
+
+      //vitalidad
+
+      let vitalidad_dict= new Map();
+      vitalidad_dict.set("Buena",0);
+      vitalidad_dict.set("Regular",1);
+      vitalidad_dict.set("Mala",2);
+      
+      document.getElementById("vitalidad").selectedIndex = vitalidad_dict.get("{{estado_fitosanitario.vitalidad}}");
+      ocultar();
+
+
+      //Raices
+
+
   });
   </script>
+
+
+
+<script type="text/javascript">
+  var latitude1 = 0;
+  var longitude1 = 0;
+
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+  }
+
+  function showPosition(position) {
+      latitude1 = "{{arbol.latitud}}"
+      longitude1 = "{{arbol.longitud}}"
+
+      latitude1 = parseFloat(latitude1.replaceAll(',', '.'));
+      longitude1 = parseFloat(longitude1.replaceAll(',', '.'));
+
+      console.log("latitude " + latitude1)
+      console.log("longitude " + longitude1)
+
+
+      var mapProp = {
+         center: {
+            lat:latitude1, 
+            lng: longitude1
+        },
+          zoom: 20,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      // Agregando el mapa al tag de id divMap
+      var map = new google.maps.Map(document.getElementById("divMap"), mapProp);
+
+
+      const image = "{% static '/img/arbol(1).png' %}";
+
+
+      // Creando un marker en el mapa
+      var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(latitude1, longitude1),
+          map: map,
+          title: 'Hello World!',
+          icon: image,
+          draggable: true //que el marcador se pueda arrastrar
+      });
+
+      // Registrando el evento drag, en este caso imprime
+      // en consola la latitud y longitud
+      google.maps.event.addListener(marker, 'drag', function (event) {
+          console.log(event.latLng.lat());
+          
+          document.getElementById("textLatitude").value  = event.latLng.lat();
+          document.getElementById("textLongitude").value = event.latLng.lng();
+      });
+  }
+
+
+
+  function initialize() {
+
+      getLocation()
+
+  }
+
+  // Inicializando el mapa cuando se carga la página
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
 
 
   </html>

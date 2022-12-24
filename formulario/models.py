@@ -156,7 +156,7 @@ class Dasometria(models.Model):
     id = models.BigAutoField(primary_key=True)
     arbol_id = models.ForeignKey(Arbol, on_delete=models.CASCADE)
     fuste = models.TextField(null = False)
-    numtallos = models.IntegerField(default=0)
+    numtallos = models.IntegerField(null=True)
     cap = models.IntegerField(null=True)
     cap1 = models.IntegerField(null=True)
     cap2 = models.IntegerField(null=True)
@@ -279,24 +279,29 @@ class Vulnerabilidad(models.Model):
 class Recomendacion_e_Intervencion(models.Model):
     id = models.BigAutoField(primary_key=True)
     arbol_id = models.ForeignKey(Arbol, on_delete=models.CASCADE)
-    control_fitosanitario = models.BooleanField(null=False)
-    erradicacion =models.BooleanField(null=False)
-    poda_aclareo =models.BooleanField(null=False)
-    poda_equilibrio =models.BooleanField(null=False)
-    poda_formacion =models.BooleanField(null=False)
-    poda_limpieza =models.BooleanField(null=False) 
-    poda_ramas_laterales = models.BooleanField(null=False) 
-    poda_ramas_secas = models.BooleanField(null=False) 
-    poda_sanitaria = models.BooleanField(null=False) 
-    poda_reduccion_altura = models.BooleanField(null=False)
+    control_fitosanitario = models.BooleanField(null=False) # Ok
+    
+    erradicacion =models.BooleanField(null=False) # Ok
+    poda_aclareo =models.BooleanField(null=False)# Ok
+    poda_equilibrio =models.BooleanField(null=False)# Ok
+    poda_formacion =models.BooleanField(null=False)# Ok
+    poda_limpieza =models.BooleanField(null=False) # Ok
+    poda_realce =models.BooleanField(null=False) # Ok
+    
+
+    poda_ramas_laterales = models.BooleanField(null=False) # Ok
+    poda_ramas_secas = models.BooleanField(null=False) # Ok
+    poda_sanitaria = models.BooleanField(null=False) # Ok
+    poda_reduccion_altura = models.BooleanField(null=False)# Ok
  
-    poda_redes_secundarias = models.BooleanField(null=False)
-    poda_limpieza_parasitas =  models.BooleanField(null=False)
-    poda_despeje_redes =  models.BooleanField(null=False)
+    poda_redes_secundarias = models.BooleanField(null=False)# Ok
+    poda_limpieza_parasitas =  models.BooleanField(null=False) # Ok
+
+    poda_despeje_redes =  models.BooleanField(null=False)# Ok
     poda_reduccion_altura   =  models.BooleanField(null=False)
-    transplante = models.BooleanField(null=False)
-    eliminar_piso_duro = models.BooleanField(null=False)
-    otros_control_fitosanitario = models.BooleanField(null=False)
+    transplante = models.BooleanField(null=False)# Ok
+    eliminar_piso_duro = models.BooleanField(null=False)# Ok
+    otros_control_fitosanitario = models.BooleanField(null=False) # Ok
     porque_tala= models.TextField(null=True)
     comentarios = models.TextField(null=True)
     creado = models.DateField(auto_now_add=True, blank=True)

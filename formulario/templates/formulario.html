@@ -197,53 +197,15 @@
                                         </div>
                                         <div class="col-md-6 text-center">
                                             <label for="" class="text-center">Latitud (GD)</label>
-                                            {{form.latitude}}
+                                            <input  name="textLatitude" type="text" id="textLatitude" class="form-control text-center", placeholder="Esperando calcular latitud" readonly>
                                         </div>
                                         <div class="col-md-6 text-center">
                                             <label for="" class="text-center">Longitud (GD)</label>
-                                          {{form.longitude}}
+                                            <input  name="textLongitude" type="text" id="textLongitude" class="form-control text-center", placeholder="Esperando calcular longitud" readonly>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-6 mb-2">
-                                <!-- COMENTARIO -->
-                                  <label for="">Comuna</label>
-                                  <select name="comuna" id="comuna" class="form-control" onchange="cambia_barrios()">                                  
-                                    <option value="1">01</option>
-                                    <option value="2">02</option>
-                                    <option value="3">03</option>
-                                    <option value="4">04</option>
-                                    <option value="5">05</option>
-                                    <option value="6">06</option>
-                                    <option value="7">07</option>
-                                    <option value="8">08</option>
-                                    <option value="9">09</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                </select>
-                                </div>
-                              
-
-                                <div class="col-md-6 col-lg-6 mb-2">
-
-                                  <label for="barrio">Barrio</label>
-                                  <select name="barrio" id="barrio" class="form-control">
-                                  </select>
-
-
-                                  
-                                </div>
+                             
                                 <div class="col-md-12 col-lg-12 mb-2">
                                     <div class="form-group d-flex flex-column mx-auto">
                                         <label for="Dirección">Dirección:</label>
@@ -421,12 +383,12 @@
                                         <label for="Placa Antigua">Forma del Tronco:</label>
                                         <div class="form-check form-check-inline">
                                           
-                                          <input class="form-check-input" type="radio" name="tipofuste" id="fuste_unico" value="8" onclick="formFusteUnico()">
+                                          <input class="form-check-input" type="radio" name="tipofuste" id="fuste_unico" onclick="formFusteUnico()" value="Fuste Único">
                                           <label class="form-check-label" for="inlineRadio1">Fuste Único</label>
                                         </div>
 
                                         <div class="form-check form-check-inline">
-                                          <input class="form-check-input" type="radio" name="tipofuste" id="poli_polifurcado" value="9" onclick="formFusteFolicurcado()">
+                                          <input class="form-check-input" type="radio" name="tipofuste" id="poli_polifurcado" onclick="formFusteFolicurcado()" value="Fuste Polifurcado">
                                           <label class="form-check-label" for="inlineRadio2">Fuste Polifurcado</label>
                                         </div>
                                         
@@ -434,7 +396,7 @@
 
                                     <div id="formViewUnico" style="display: none;" class="col-md-12 col-lg-12 mb-2" >
                                       <label for="CAP 1">CAP (cm)</label>
-                                      <input placeholder="capa (m)" name="capa" id="cap" type="number" class="form-control">
+                                      <input placeholder="capa (m)" name="cap" id="cap" type="number" class="form-control">
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número
                                       </div>
@@ -555,12 +517,12 @@
                                         <label>Exposición de la copa a la luz</label>
                                         <select type="number" id="exposicionluz" name="exposicionluz" class="form-control"
                                             placeholder="CAP (m)">
-                                            <option value="01">No recibe luz</option>
-                                            <option value="02">Una cara</option>
-                                            <option value="03">Dos (2) caras</option>
-                                            <option value="04">Tres (3) caras</option>
-                                            <option value="05">Cuatro (4) caras</option>
-                                            <option value="06">4 cara más superior</option>
+                                            <option value="No recibe luz">No recibe luz</option>
+                                            <option value="Una cara">Una cara</option>
+                                            <option value="Dos (2) caras">Dos (2) caras</option>
+                                            <option value="Tres (3) caras">Tres (3) caras</option>
+                                            <option value="Cuatro (4) caras">Cuatro (4) caras</option>
+                                            <option value="4 cara más superior">4 cara más superior</option>
                                         </select>
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
@@ -584,7 +546,7 @@
                                         <label for="Placa Antigua">Diámetro medio de ramas</label>
                                         <select type="text" id="diametro" name="diametro" class="form-control" placeholder="CAP (m)">
                                           <option value="&lt;0.05m"> &lt;0.05m </option>
-                                          <option value=">0.05"> &gt;=0.05m </option>
+                                          <option value=">=0.05m"> &gt;=0.05m </option>
                                         </select> 
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2 ">
@@ -732,7 +694,7 @@
                                             <div class="btn-group " data-toggle="buttons">
                                                 <td class="">
                                                   <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                      <input  class="form-check-input " type="checkbox" role="switch" id="biologia_f_perfobarrenado" name="biologia_f_perfobarrenado" >
+                                                      <input  class="form-check-input " type="checkbox" role="switch" id="biologica_f_perfobarrenado" name="biologica_f_perfobarrenado" >
                                                   </div>
                                                 </td>
                                               </div>
@@ -1457,96 +1419,6 @@
 </body>
 
 
-
-
-
-
-
-
-<script type="text/javascript">
-  var barrios_1 =new Array("Terrón Colorado","Vista Hermosa","Sector Patio Bonito","Aguacatal");
-  var barrios_2=new Array("Santa Rita","Santa Teresita","Arboledas","Normandía","Juanambú","Centenario","Granada","Versalles","San Vicente","Santa Mónica ","Prados del Norte","La Flora","La Campiña","La Paz","El Bosque","Menga","Ciudad Los Alamos","Chipichape","Brisas de los Alamos","Urbanización La Merced","Vipasa","Urbanización La Flora","Altos de Menga","Sector Altos Normandía","Senderos de la Flora");
-  var barrios_3=new Array("El Nacional","El Peñón","San Antonio","San Cayetano","Los Libertadores","San Juan Bosco","Santa Rosa","La Merced","San Pascual","El Calvario","San Pedro","San Nicolas","El Hoyo","El Piloto","Navarro - La Chanca");
-  var barrios_4=new Array("Jorge Isaacs","Santander","Porvenir","Las Delicias","Manzanares","Salomia","Fátima","Sultana - Berlín - San Francisco ","Popular","Ignacio Rengifo","Guillermo Valencia","La Isla","Marco Fidel Suárez","Evaristo García","La Esmeralda","Bolivariano","Olaya Herrera","Unidad Residencial Bueno Madrid","Flora Industrial","Calima","Industria de Licores","La Alianza");
-  var barrios_5=new Array("San Luís","Ciudadela Floralia","Fonaviemcali","Jorge Eliecer Gaitán","La Rivera Primera Etapa","Los Alcázares","Los Guaduales","Paso del Comercio","Petecuy Primera Etapa","Petecuy Segunda Etapa","Petecuy Tercera Etapa","San Luís II","Sector Puente del Comercio","Urbanización Calimio",);
-  var barrios_6=new Array("San Luís","Jorge Eliecer Gaitán","Paso del Comercio","Los Alcázares","Petecuy Primera Etapa","Petecuy Segunda Etapa","La Rivera Primera Etapa","Los Guaduales","Petecuy Tercera Etapa","Ciudadela Floralia","Fonaviemcali","San Luís II","Urbanización Calimio","Sector Puente del Comercio");
-  var barrios_7=new Array("Alfonso López P. 1a. Etapa","Alfonso López P. 2a. Etapa","Alfonso López P. 3a. Etapa","Base Aérea","Fepicol","Las Ceibas","Los Pinos","Parque de la Caña","Puerto Mallarino","Puerto Nuevo","San Marino","Siete de Agosto","Urbanización El Angel del Hogar");
-  var barrios_8=new Array("Atanasio Girardot","Benjamín Herrera","Chapinero","EL Trébol","El Troncal","Industrial","La Base","La Floresta","Las Américas","Municipal","Primitivo Crespo","Saavedra Galindo","Santa Fe","Santa Mónica Popular","Simón Bolívar","Urbanización La Nueva Base","Uribe Uribe","Villa Colombia");
-  var barrios_9=new Array("Alameda","Aranjuez","Barrio Obrero","Belalcázar","Bretaña","Guayaquil","Junín","Manuel María Buenaventura","Santa Mónica Belalcázar","Sucre");
-  var barrios_10=new Array("El Dorado","El Guabal","La Libertad","Santa Elena","Las Acacias","Santo Domingo","Jorge Zawadsky","Olímpico","Cristóbal Colón","La Selva","Barrio Departamental","Pasoancho","Panamericano","Colseguros Andes","San Cristobal","Las Granjas","San Judas Tadeo I Etapa","San Judas Tadeo II Etapa");
-  var barrios_11=new Array("San Carlos","Maracaibo","La Independencia","La Esperanza","Urbanización Boyacá","El Jardín","La Fortaleza","El Recuerdo","Aguablanca","El Prado","20 de Julio","Prados de Oriente","Los Sauces","Villa del Sur","José Holguín Garcés","León XIII","José María Cordoba","San Pedro Claver","Los Conquistadores","La Gran Colombia","San Benito","Primavera");
-  var barrios_12=new Array("Villanueva","Asturias","Eduardo Santos","Alfonso Barberena A.","El Paraiso","Fenalco Kennedy","Nueva Floresta","Julio Rincón","Doce de Octubre","El Rodeo","Sindical","Bello Horizonte");
-  var barrios_13=new Array("Ulpiano Lloreda","El Vergel","El Poblado I","El Poblado II","Los Comuneros Segunda Etapa","Ricardo Balcázar","Omar Torrijos","El Diamante","Lleras Restrepo","Villa del Lago","Los Robles","Rodrigo Lara Bonilla","Charco Azul","Villablanca","Calipso","Yira Castro","Lleras Restrepo II Etapa","Marroquín III","Los Lagos","Sector Laguna del Pondaje","El Pondaje","Sector Asprosocial-Diamante");
-  var barrios_14=new Array("Alfonso Bonilla Aragón","Alirio Mora Beltrán","Manuela Beltrán","Las Orquídeas","José Manuel Marroquín Segunda Etapa","José Manuel Marroquín Primera Etapa","Puerta del Sol","Los Naranjos I","Promociones Populares B","Los Naranjos II");
-  var barrios_15=new Array("El Retiro","Comuneros I","Laureano Gómez","El Vallado","Ciudad Cordoba","Mojica","El Morichal","LLanoverde");
-  var barrios_16=new Array("Mariano Ramos","República de Israel","Unión de Vivienda Popular","Antonio Nariño","Brisas del Limonar","Vendimia","Ciudad 2000","La Alborada");
-  var barrios_17=new Array("La Playa","Primero de Mayo","Ciudadela Comfandi","Ciudad Universitaria","Caney","Lili","Santa Anita - La Selva","El Ingenio","Mayapan - Las Vegas","Las Quintas de Don Simón","Ciudad Capri","La Hacienda","Los Portales - Nuevo Rey","Cañaverales - Los Samanes","El Limonar","Bosques del Limonar","El Gran Limonar - Cataya","El Gran Limonar","Unicentro Cali","Ciudadela Pasoancho","Prados del Limonar","Urbanización San Joaquin");
-  var barrios_18=new Array("Buenos Aires","Barrio Caldas","Los Chorros","Meléndez","Los Farallones","Francisco Eladio Ramirez","Prados del Sur","Horizontes","Mario Correa Rengifo","Lourdes","Colinas del Sur","Alférez Real","Nápoles","El Jordán","Cuarteles Napoles","Sector Alto de Los Chorros","Polvorines","Sector Meléndez","Sector Alto Jordán","Alto Nápoles");
-  var barrios_19=new Array("El Refugio","La Cascada","El Lido","Urbanización Tequendama","Barrio Eucarístico","San Fernando Nuevo","Urbanización Nueva Granada","Santa Isabel","Bellavista","San Fernando Viejo","Miraflores","3 de Julio","El Cedro","Champagñat","Urbanización Colseguros","Los Cambulos","El Mortiñal","Urbanización Militar","Cuarto de Legua - Guadalupe","Nueva Tequendama ","Camino Real - Joaquín Borrero Sinisterra","Camino Real - Los Fundadores","Altos de Santa Isabel -  La Morelia","Santa Barbara","Tejares - Cristales","Unidad Residencial Santiago de Cali","Unidad Residencial El Coliseo","Cañaveralejo - Seguros Patria","Cañaveral","Pampa Linda","Sector Cañaveralejo Guadalupe","U.D. Alberto Galindo -  Plaza de Toros");
-  var barrios_20=new Array("El Cortijo","Belisario Caicedo","Siloé","Lleras Camargo","Belén","Brisas de Mayo","Tierra Blanca","Pueblo Joven","Carabineros","Venezuela - Urbanización Cañaveralejo","La Sultana");
-  var barrios_21=new Array("Pízamos I","Pízamos II","Calimio Desepaz","El Remanso","Los Líderes","Desepaz Invicali","Compartir","Ciudad Talanga","Villamercedes I - Villa Luz - Las Garzas","Pízamos III - Las Dalias","Potrero Grande","Ciudadela del Río","Valle Grande","Planta de Tratamiento");
-  var barrios_22=new Array("Urbanización Ciudad Jardín","Parcelaciones Pance","Urbanización Río Lili","Ciudad Campestre","Club Campestre");
-
-
-  var todos_los_barrios = [
-    [],
-    barrios_1,
-    barrios_2,
-    barrios_3,
-    barrios_4,
-    barrios_5,
-    barrios_6,
-    barrios_7,
-    barrios_8,
-    barrios_9,
-    barrios_10,
-    barrios_11,
-    barrios_12,
-    barrios_13,
-    barrios_14,
-    barrios_15,
-    barrios_16,
-    barrios_17,
-    barrios_18,
-    barrios_19,
-    barrios_20,
-    barrios_21,
-    barrios_22
-  ];
-
-  function cambia_barrios(){ 
-    //tomo el valor del select del pais elegido 
-    var comuna;
-    comuna = document.getElementById("comuna")[document.getElementById("comuna").selectedIndex].value
-
-    //miro a ver si la comuna está definida 
-    if (comuna != 0) { 
-        //si estaba definido, entonces coloco las opciones del barrio correspondiente. 
-        //selecciono el array de barrios adecuado 
-        mis_barrios=todos_los_barrios[comuna]
-        //calculo el numero de barrios 
-        num_barrios = mis_barrios.length 
-        //marco el número de barrios en el select 
-        document.getElementById("barrio").length = num_barrios 
-        //para cada barrio del array, la introduzco en el select 
-        for(i=0;i<num_barrios;i++){ 
-          document.getElementById("barrio").options[i].value=mis_barrios[i] 
-          document.getElementById("barrio").options[i].text=mis_barrios[i] 
-        }	
-    }else{ 
-        //si no había barrio seleccionada, elimino los barrios del select 
-        document.getElementById("barrio").length = 1
-        //coloco un guión en la única opción que he dejado 
-      ///	document.getElementById("barrio").options[0].value = "-" 
-      ///	document.getElementById("barrio").options[0].text = "-" 
-    }
-
-    //marco como seleccionada la opción primera de barrio 
-    document.getElementById("barrio").options[0].selected = true 
-}
-cambia_barrios();
-  </script>
-
 <script type="text/javascript">
 $(document).on('ready',function (){
     
@@ -1567,9 +1439,13 @@ $(document).on('ready',function (){
 
     // Nombre Científico
     document.getElementById("nombre_cientifico").value=datos_json["Acacia rubinia"][2]
+
+
+    llamarMensajes( '{{ llamarMensaje }}' , '{{ mensaje }}');
     
 });
 </script>
-
+<script src="static/js/demo/llamarMensajes.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </html>

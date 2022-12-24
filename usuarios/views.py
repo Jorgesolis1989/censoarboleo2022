@@ -6,7 +6,7 @@ from usuarios.models import Usuario
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from usuarios.forms import FormularioLogin, FormularioRegistroUsuario
-from formulario.views import formulario_view_1
+from formulario.views import crear_formulario_view
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 
@@ -364,10 +364,9 @@ def listar_usuarios_administrador(request):
     mensaje = ""
     
     funcion_llamada = request.session.get('funcion_llamada', 'No')
-    print(funcion_llamada)
 
     if funcion_llamada == "editar_usuario":
-        print("funcion llamada")
+   
         llamarMensaje = request.session["llamarMensaje"] 
         mensaje = request.session["mensaje"]
         del request.session['funcion_llamada']
