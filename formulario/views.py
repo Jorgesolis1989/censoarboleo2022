@@ -35,6 +35,8 @@ def listar_formularios(request):
         
     elif usuario.rol == "Supervisor":
         base_template = "base-supervisor.html"
+        
+        # Filtrar los árboles del supervisor
         arboles = Arbol.objects.filter()
 
 
