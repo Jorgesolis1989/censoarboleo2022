@@ -404,54 +404,59 @@
                                     
 
                                 <div style="display: none;" class="col-md-12 col-lg-12 mb-2" id="formViewPolifurcado" name="formViewPolifurcado">
-
                                   <div class="col-md-12 col-lg-12 mb-2">
-                                    
+  
+                                    <label for="Tallos">No de Tallos</label>
+                                    <select  id="numero_tallos" name="numero_tallos" class="form-control " onchange="fuste_polifurcado();">
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                      <option value="5">5</option>
+                                    </select>
+                                      <div class="invalid-feedback" id="delet">
+                                      Ingresa un número de tallos válido
+                                    </div>  
+                                </div>
 
+                                  <div class="col-md-12 col-lg-12 mb-2" id="fuste1" style="display: block;">
                                     <label for="CAP 1">CAP 1(cm)</label>
-                                    <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control " value="">
+                                    <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control " >
                                     <div class="invalid-feedback" id="delet">
                                       Ingresa un número de CAP1 válido
                                     </div>  
                                 </div>
 
-                                    <div class="col-md-12 col-lg-12 mb-2">
+                                    <div class="col-md-12 col-lg-12 mb-2" id="fuste2" style="display: none;">
                                       <label for="Capa 2">CAP 2(cm)</label>
-                                      <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control " value="">
+                                      <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control ">
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número de CAP2 válido
                                       </div>  
                                   </div>
-                                    <div class="col-md-12 col-lg-12 mb-2">
+                                    <div class="col-md-12 col-lg-12 mb-2" id="fuste3" style="display: none;">
                                       <label for="Capa 3">CAP 3(cm)</label>
-                                      <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control " value=""> 
+                                      <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control " > 
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número de CAP3 válido
                                       </div> 
                                   </div>
-                                    <div class="col-md-12 col-lg-12 mb-2">
+                                    <div class="col-md-12 col-lg-12 mb-2" id="fuste4" style="display: none;">
                                       <label for="Placa Antigua">CAP 4(cm)</label>
-                                      <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control " value="">
+                                      <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control " >
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número de CAP4 válido
                                       </div>  
                                   </div>
-                                    <div class="col-md-12 col-lg-12 mb-2">
+                                    <div class="col-md-12 col-lg-12 mb-2" id="fuste5" style="display: none;">
                                       <label for="Placa Antigua">CAP 5(cm)</label>
-                                      <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control " value="">
+                                      <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control " >
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número de CAP5 válido
                                       </div>  
                                   </div>
 
-                                  <div class="col-md-12 col-lg-12 mb-2">
-  
-                                    <label for="Tallos">No de Tallos</label>
-                                    <input type="number" id="numero_tallos" name="numero_tallos" class="form-control " placeholder=" Valor en número entero" value="">
-                                    <div class="invalid-feedback" id="delet">
-                                      Ingresa un número de tallos válido
-                                    </div>  
-                                </div>
+                                  
 
                                 </div> 
 
@@ -470,10 +475,10 @@
                                     </div>
                                     <div class="col-md-6 col-lg-6 mb-2">
                                         <label for="">Total del árbol</label>
-                                        <input type="number" name="totalarbol" id="totalarbol" class="form-control"
-                                            placeholder="Ht (m)">
+                                        <input type="number" name="totalarbol" id="totalarbol" class="form-control " placeholder="Ht (m)"> 
                                             <div class="invalid-feedback" id="delet">
-                                              Ingresa un número válido de total fuste                                            </div>
+                                              Ingresa un número válido de total fuste                                            
+                                            </div>
                                     </div>
   
                                     <div class="col-md-12 col-lg-12 mb-2 text-center py-3">
