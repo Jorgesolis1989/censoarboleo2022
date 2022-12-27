@@ -80,7 +80,8 @@ function formNone(){
 }
 
 function formFusteUnico(){
-
+    
+ 
 
     var table = document.getElementById("formViewUnico");
     table.style.display = "block";
@@ -88,16 +89,19 @@ function formFusteUnico(){
     var table1 = document.getElementById("formViewPolifurcado");
     table1.style.display = "none";
 
+
 }
 
 
 function formFusteFolicurcado(){
+  
 
     var table = document.getElementById("formViewUnico");
     table.style.display = "none";
 
     var table = document.getElementById("formViewPolifurcado");
     table.style.display = "block";
+
 
     
 }
@@ -165,13 +169,14 @@ function formshidde2(){
 
     const qr = document.getElementById('qr');
     //const confinamiento-radio = document.getElementById('radio2');
-    
     const avatar = document.getElementById('avatar');
     const avatar2 = document.getElementById('avatar2');
     const delet = document.getElementById('delet');
     const confinamientoRadio = document.getElementById('confinamiento-radio');
     const distConfinamiento = document.getElementById('dist_confinamiento');
     const confinamientoRadio2 = document.getElementById('confinamiento-radio2');
+    
+   
 
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     confinamientoRadio2.addEventListener('change', () => {
@@ -275,6 +280,7 @@ function show3(){
 
 }
 
+
 /* Validaciones terminadas, De momento solicito con exactitud, que necesitan los campos, de cuantos numneros y sus condicionales */
 
 /*  Boton de Validacion 3  */
@@ -298,14 +304,7 @@ function formshidde3(){
     const Cap4 = document.getElementById('capa4');
     const Cap5 = document.getElementById('capa5');
     var numeroTallos = document.getElementById('numero_tallos');
-    
-    const fuste2 = document.getElementById('fuste2');
-    const fuste3 = document.getElementById('fuste3');
-    const fuste4 = document.getElementById('fuste4');
-    const fuste5 = document.getElementById('fuste5');
    
-
-    /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     fusteUnico.addEventListener('change', () => {
         if (fusteUnico.checked) {
             Cap1.value = '';
@@ -313,7 +312,7 @@ function formshidde3(){
             Cap3.value = '';
             Cap4.value = '';
             Cap5.value = '';
-            numeroTallos.value = '';
+            
         }
       });
 
@@ -322,6 +321,9 @@ function formshidde3(){
             Cap.value = '';
         }
       });
+
+    /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
+    
 
     if (fusteUnico.checked){
         
