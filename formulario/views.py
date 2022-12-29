@@ -110,8 +110,6 @@ def editar_formulario(request , id_arbol=None):
 
     # Consultas de los formularios
 
-    print(recomendacion_e_intervencion.comentarios)
-
     return render(request, 'edit-formulario.html', {'usuario': usuario, 'arbol': arbol, "dasometria":dasometria,"estado_fitosanitario":estado_fitosanitario,
     "vulnerabilidad":vulnerabilidad, 
     "recomendacion_e_intervencion":recomendacion_e_intervencion, 'base_template':base_template})
@@ -383,11 +381,8 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
         dasometria_nuevo.modificadopor   = request.user.username
 
 
-    print("dasometria a guardaar")
-
     try:
         dasometria_nuevo.save()
-        print("guardando dasometria")
     except Exception as e:
         print(e)    
 
