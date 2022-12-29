@@ -1,21 +1,48 @@
-function alerts(){
-    
 
-
-    alerts('Hola mundo')
-    }
 /* -----------FUNCION OCULTAR CAMPOS------------- */
-function tablehidden() {
-    var optionhidden = document.getElementById("barrio");
-    optionhidden = optionhidden.options[optionhidden.selectedIndex].value;
-    if (optionhidden == "2") {
-        document.getElementById("tablehidden").style.display = "block";
+
+
+function fuste_polifurcado() {
+    var ocultarfuste = document.getElementById("numero_tallos");
+    ocultarfuste = ocultarfuste.options[ocultarfuste.selectedIndex].value;
+    if (ocultarfuste == "1") {
+        document.getElementById("fuste1").style.display = "block";
+        document.getElementById("fuste2").style.display = "none";
+        document.getElementById("fuste3").style.display = "none";
+        document.getElementById("fuste4").style.display = "none";
+        document.getElementById("fuste5").style.display = "none";
     }
-    if (optionhidden == "1") {
-        document.getElementById("tablehidden").style.display = "none";
+    else if (ocultarfuste == "2") {
+        document.getElementById("fuste1").style.display = "block";
+        document.getElementById("fuste2").style.display = "block";
+        document.getElementById("fuste3").style.display = "none";
+        document.getElementById("fuste4").style.display = "none";
+        document.getElementById("fuste5").style.display = "none";
+    }
+    else if (ocultarfuste == "3") {
+        document.getElementById("fuste1").style.display = "block";
+        document.getElementById("fuste2").style.display = "block";
+        document.getElementById("fuste3").style.display = "block";
+        document.getElementById("fuste4").style.display = "none";
+        document.getElementById("fuste5").style.display = "none";
+    }
+    else if (ocultarfuste == "4") {
+        document.getElementById("fuste1").style.display = "block";
+        document.getElementById("fuste2").style.display = "block";
+        document.getElementById("fuste3").style.display = "block";
+        document.getElementById("fuste4").style.display = "block";
+        document.getElementById("fuste5").style.display = "none";
+    }
+    else if (ocultarfuste == "5") {
+        document.getElementById("fuste1").style.display = "block";
+        document.getElementById("fuste2").style.display = "block";
+        document.getElementById("fuste3").style.display = "block";
+        document.getElementById("fuste4").style.display = "block";
+        document.getElementById("fuste5").style.display = "block";
     }
 
 }
+
 
 function ocultar() {
     var optionhidden = document.getElementById("vitalidad");
@@ -53,7 +80,8 @@ function formNone(){
 }
 
 function formFusteUnico(){
-
+    
+ 
 
     var table = document.getElementById("formViewUnico");
     table.style.display = "block";
@@ -61,16 +89,19 @@ function formFusteUnico(){
     var table1 = document.getElementById("formViewPolifurcado");
     table1.style.display = "none";
 
+
 }
 
 
 function formFusteFolicurcado(){
+  
 
     var table = document.getElementById("formViewUnico");
     table.style.display = "none";
 
     var table = document.getElementById("formViewPolifurcado");
     table.style.display = "block";
+
 
     
 }
@@ -138,13 +169,14 @@ function formshidde2(){
 
     const qr = document.getElementById('qr');
     //const confinamiento-radio = document.getElementById('radio2');
-    
     const avatar = document.getElementById('avatar');
     const avatar2 = document.getElementById('avatar2');
     const delet = document.getElementById('delet');
     const confinamientoRadio = document.getElementById('confinamiento-radio');
     const distConfinamiento = document.getElementById('dist_confinamiento');
     const confinamientoRadio2 = document.getElementById('confinamiento-radio2');
+    
+   
 
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     confinamientoRadio2.addEventListener('change', () => {
@@ -248,6 +280,7 @@ function show3(){
 
 }
 
+
 /* Validaciones terminadas, De momento solicito con exactitud, que necesitan los campos, de cuantos numneros y sus condicionales */
 
 /*  Boton de Validacion 3  */
@@ -270,10 +303,8 @@ function formshidde3(){
     const Cap3 = document.getElementById('capa3');
     const Cap4 = document.getElementById('capa4');
     const Cap5 = document.getElementById('capa5');
-    const numeroTallos = document.getElementById('numero_tallos');
+    var numeroTallos = document.getElementById('numero_tallos');
    
-
-    /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     fusteUnico.addEventListener('change', () => {
         if (fusteUnico.checked) {
             Cap1.value = '';
@@ -281,7 +312,7 @@ function formshidde3(){
             Cap3.value = '';
             Cap4.value = '';
             Cap5.value = '';
-            numeroTallos.value = '';
+            
         }
       });
 
@@ -290,6 +321,9 @@ function formshidde3(){
             Cap.value = '';
         }
       });
+
+    /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
+    
 
     if (fusteUnico.checked){
         
@@ -305,9 +339,71 @@ function formshidde3(){
             }
        
     }else{
+
         if(poliPolifurcado.checked){
-           
+            if (numeroTallos.value === "1"){
+
+                if(Cap1.value < 1  ){
+                    Cap1.className += 'is-invalid';
+                    swal('Ingresa un número valido en capa 1','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap1.classList.remove('is-invalid');
+                    Cap1.className+=' is-valid ';  
+                }
+            }
+            else if (numeroTallos.value === "2"){
                 if(Cap1.value < 1){
+                    Cap1.className += 'is-invalid';
+                    swal('Ingresa un número valido en capa 1','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap1.classList.remove('is-invalid');
+                    Cap1.className+=' is-valid ';  
+                }
+                if(Cap2.value < 1 ){
+                    Cap2.className += 'is-invalid';
+                    swal('Ingresa un número valido en capa 2','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap2.classList.remove('is-invalid');
+                    Cap2.className+=' is-valid ';  
+                }        
+            }
+            else if(numeroTallos.value === "3"){
+                if(Cap1.value < 1  ){
+                    Cap1.className += 'is-invalid';
+                    swal('Ingresa un número valido en capa 1','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap1.classList.remove('is-invalid');
+                    Cap1.className+=' is-valid ';  
+                }
+                if(Cap2.value < 1 ){
+                    Cap2.className += 'is-invalid';
+                    swal('Ingresa un número valido en capa 2','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap2.classList.remove('is-invalid');
+                    Cap2.className+=' is-valid ';  
+                }
+                if(Cap3.value < 1 ){
+                    Cap3.className += 'is-invalid';
+                    swal('Ingresa un número valido en capa 3','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap3.classList.remove('is-invalid');
+                    Cap3.className+=' is-valid ';  
+                }
+            }
+            else if(numeroTallos.value === "4"){    
+                if(Cap1.value < 1  ){
                     Cap1.className += 'is-invalid';
                     swal('Ingresa un número valido en capa 1','','error')
                     return false
@@ -325,7 +421,46 @@ function formshidde3(){
                     Cap2.classList.remove('is-invalid');
                     Cap2.className+=' is-valid ';  
                 }
-                if(Cap3.value < 1){
+                if(Cap3.value < 1 ){
+                    Cap3.className += 'is-invalid';
+                    swal('Ingresa un número valido en capa 3','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap3.classList.remove('is-invalid');
+                    Cap3.className+=' is-valid ';  
+                }
+                if(Cap4.value < 1 ){
+                    Cap4.className += 'is-invalid';
+                    swal('Ingresa un número valido en capa 4','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap4.classList.remove('is-invalid');
+                    Cap4.className+=' is-valid ';  
+                }
+            }
+
+            else if (numeroTallos.value === '5'){
+                if(Cap1.value < 1  ){
+                    Cap1.className += 'is-invalid';
+                    swal('Ingresa un número valido en capa 1','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap1.classList.remove('is-invalid');
+                    Cap1.className+=' is-valid ';  
+                }
+                if(Cap2.value < 1 ){
+                    Cap2.className += 'is-invalid';
+                    swal('Ingresa un número valido en capa 2','','error')
+                    return false
+                }else{
+                    delet.classList.remove('delet');
+                    Cap2.classList.remove('is-invalid');
+                    Cap2.className+=' is-valid ';  
+                }
+                if(Cap3.value < 1 ){
                     Cap3.className += 'is-invalid';
                     swal('Ingresa un número valido en capa 3','','error')
                     return false
@@ -352,15 +487,8 @@ function formshidde3(){
                     Cap5.classList.remove('is-invalid');
                     Cap5.className+=' is-valid ';  
                 }
-                if(numeroTallos.value <= 1 || numeroTallos.value > 50){
-                    numeroTallos.className += 'is-invalid';
-                    swal('Ingresa un número de tallos valido','','error')
-                    return false
-                }else{
-                    delet.classList.remove('delet');
-                    numeroTallos.classList.remove('is-invalid');
-                    numeroTallos.className+=' is-valid ';  
-                }
+            }
+  
         }else{
             swal('Ingresa tipo de tronco','','warning')
             return false
@@ -372,8 +500,8 @@ function formshidde3(){
     /* ----------------------------------------------------------- */
 
 
-    if( !(/^\d{1,8}$/.test(comercial.value)) ){
-        swal('Ingresa un número válido para comercial fuste','','error') 
+    if( comercial.value < 1 ){
+        swal('Comerciar','Debe ser mayor a 1','error') 
         comercial.className+=' is-invalid ';
         return false;
     }else{
@@ -382,8 +510,8 @@ function formshidde3(){
      
     }
 
-    if( !(/^\d{1,8}$/.test(totalarbol.value)) ){
-        swal('Ingresa un número válido para el total árbol','','error')
+    if( totalarbol.value < 1 ){
+        swal('Total arbol debe ser mayor a 1','','error')
         totalarbol.className+=' is-invalid ';
         return false;
     }else{
