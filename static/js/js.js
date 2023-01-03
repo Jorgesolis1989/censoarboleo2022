@@ -43,8 +43,11 @@ function fuste_polifurcado() {
 
 }
 
-
+/* Funcion para ocultar tablas de la seccion 4 */
 function ocultar() {
+    /* Se obtienen los datos del id en el select para identificar el tipo de rama si es buena o mala,
+    Se hace una validacion para saber el valor del id en select, luego se establece un style.display dependiendo del valor y se oculta 
+    o se muestran las tablas de contenido */
     var optionhidden = document.getElementById("vitalidad");
     optionhidden = optionhidden.options[optionhidden.selectedIndex].value;
     if (optionhidden == "Buena"   || optionhidden == "Mala" ) {
@@ -67,7 +70,7 @@ function ocultar() {
 
 
 }
-/* --------------------------------------- */
+
 
 function formView(){
     var table = document.getElementById("formView");
@@ -80,22 +83,15 @@ function formNone(){
 }
 
 function formFusteUnico(){
-    
- 
-
     var table = document.getElementById("formViewUnico");
     table.style.display = "block";
 
     var table1 = document.getElementById("formViewPolifurcado");
-    table1.style.display = "none";
-
-
+    table1.style.display = "none"
 }
 
 
 function formFusteFolicurcado(){
-  
-
     var table = document.getElementById("formViewUnico");
     table.style.display = "none";
 
@@ -107,10 +103,7 @@ function formFusteFolicurcado(){
 }
 
 
-
 function formshidde(){
-   
-
     var PlacaAntigua = document.getElementById('PlacaAntigua');
     const delet = document.getElementById('delet');
     
@@ -162,9 +155,7 @@ function showanterior(){
 
 }
 
-
 //boton 2
-
 function formshidde2(){
 
     const qr = document.getElementById('qr');
@@ -260,10 +251,7 @@ function formshidde2(){
     
 }
 
-
-
 // boton 3
-
 function show3(){
     var table = document.getElementById("form3");
     table.style.display = "none";
@@ -280,14 +268,9 @@ function show3(){
 
 }
 
-
-/* Validaciones terminadas, De momento solicito con exactitud, que necesitan los campos, de cuantos numneros y sus condicionales */
-
 /*  Boton de Validacion 3  */
 function formshidde3(){
 
-    
-    
     const comercial = document.getElementById('comercial_fuste');
     const totalarbol = document.getElementById('totalarbol');
     const ejemayor = document.getElementById('ejemayor');
@@ -324,7 +307,7 @@ function formshidde3(){
 
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     
-
+      /* Se valida el fuste unico, si esta chekeado entonces, se hace la validacion del input */
     if (fusteUnico.checked){
         
 
@@ -563,7 +546,7 @@ function formshidde3(){
     
     /********************************************************************************************************** */
 
-    if( !(/^\d{2,8}$/.test(copa_viva.value)) ){
+    if( copa_viva.value < 1 ){
         swal('Ingresa un numero valido','','error')
         copa_viva.className+=' is-invalid ';
         return false;
@@ -573,7 +556,7 @@ function formshidde3(){
      
     }
 
-    if( !(/^\d{2,8}$/.test(copa_ausente.value)) ){
+    if( copa_ausente.value < 1 || copa_ausente.value >= 100){
         swal('Ingresa un numero valido','','error')
         copa_ausente.className+=' is-invalid ';
         return false;
@@ -605,7 +588,6 @@ function formshidde3(){
 }
 
 // boton 4
-
 function boton4(){
     var table = document.getElementById("form4");
     table.style.display = "none";
@@ -641,8 +623,6 @@ function hidde4(){
 }
 
 //boton 5
-
-
 function boton5(){
     var table = document.getElementById("form4");
     table.style.display = "block";
@@ -672,4 +652,5 @@ function tipoVitalidad(){
 
 
 }
+
 
