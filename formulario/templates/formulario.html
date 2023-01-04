@@ -111,6 +111,7 @@
 <body id="page-top">
     <!-- Page Wrapper -->
     <!-- Content Wrapper -->
+
     <div id="content-wrapper" class="d-flex flex-column ">
 
           <!-- Main Content -->
@@ -159,7 +160,9 @@
                                                                     FORMULARIO 1 
                             -------------------------------------------------------------------------------------------------------------------------- ---
                             /------------------------------------------------------------------------------------------------------------------------ -->
-                            <!--FORMULARIO 1-->
+                            <form method="post" enctype="multipart/form-data" class="needs-validation">
+                            <!---  {% csrf_token %} -->
+                            <!-- FORMULARIO 1 -->
                             <div  id="form1" style="display: block;" needs-validation>
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
@@ -1260,12 +1263,13 @@
                               </li>
                               </ul>
                         </nav>
-              
+                      </form>
                   </div>
+               
               </main>
-        <!-- /.container-fluid -->
+         
         </div>
-
+    
       
       <!-- End of Content Wrapper -->
 
@@ -1277,7 +1281,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
     <!-- Footer -->
-
     <footer class="sticky-footer bg-white">
           <div class="container my-auto">
               <div class="copyright text-center my-auto">
@@ -1294,7 +1297,6 @@
     </footer>
 
     <!-- Script de imagenes -->
-    
     <script>
         let avatarInput = document.getElementById('avatar');
         let img = document.querySelector('label[for=avatar] img');

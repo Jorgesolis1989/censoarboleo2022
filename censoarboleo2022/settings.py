@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'censoarboleo2022.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'CENSOARBOREO2022_2',
+    'NAME': 'CENSOARBOREO2022',
     'USER': 'postgres',
     'PASSWORD': 'admin123',
     'HOST': '127.0.0.1',

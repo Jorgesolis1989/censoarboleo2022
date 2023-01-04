@@ -43,35 +43,6 @@ function fuste_polifurcado() {
 
 }
 
-/* Funcion para ocultar tablas de la seccion 4 */
-function ocultar() {
-    /* Se obtienen los datos del id en el select para identificar el tipo de rama si es buena o mala,
-    Se hace una validacion para saber el valor del id en select, luego se establece un style.display dependiendo del valor y se oculta 
-    o se muestran las tablas de contenido */
-    var optionhidden = document.getElementById("vitalidad");
-    optionhidden = optionhidden.options[optionhidden.selectedIndex].value;
-    if (optionhidden == "Buena"   || optionhidden == "Mala" ) {
-        document.getElementById("ocultar").style.display = "none";
-    } else if (optionhidden == "Regular") {
-        document.getElementById("ocultar").style.display = "block";
-    }
-
-    if (optionhidden == "Buena" || optionhidden == "Regular"){
-        document.getElementById("controlfitosanitario_div").style.display = "block";
-        document.getElementById("intervencion").style.display = "block";
-        document.getElementById("talamuerto").style.display = "none";
-    }else if(optionhidden == "Mala")
-    {
-        document.getElementById("controlfitosanitario_div").style.display = "none";
-        document.getElementById("intervencion").style.display = "none";
-        document.getElementById("talamuerto").style.display = "block";
-    }
-
-
-
-}
-
-
 function formView(){
     var table = document.getElementById("formView");
     table.style.display = "block";
@@ -90,7 +61,6 @@ function formFusteUnico(){
     table1.style.display = "none"
 }
 
-
 function formFusteFolicurcado(){
     var table = document.getElementById("formViewUnico");
     table.style.display = "none";
@@ -102,7 +72,109 @@ function formFusteFolicurcado(){
     
 }
 
+function showanterior(){
+    var table = document.getElementById("form2");
+    table.style.display = "none";
 
+    var table = document.getElementById("form1");
+    table.style.display = "block";
+
+
+    var table = document.getElementById("boton2");
+    table.style.display = "none";
+
+    var table = document.getElementById("boton1");
+    table.style.display = "block";
+
+}
+
+function show3(){
+    var table = document.getElementById("form3");
+    table.style.display = "none";
+
+    var table = document.getElementById("form2");
+    table.style.display = "block";
+
+
+    var table = document.getElementById("boton3");
+    table.style.display = "none";
+
+    var table = document.getElementById("boton2");
+    table.style.display = "block";
+
+}
+
+
+function boton4(){
+    var table = document.getElementById("form4");
+    table.style.display = "none";
+
+    var table = document.getElementById("form3");
+    table.style.display = "block";
+
+
+    var table = document.getElementById("boton4");
+    table.style.display = "none";
+
+    var table = document.getElementById("boton3");
+    table.style.display = "block";
+
+    
+}
+
+function hidde4(){
+    var table = document.getElementById("form4");
+    table.style.display = "none";
+
+    var table = document.getElementById("form5");
+    table.style.display = "block";
+
+
+    var table = document.getElementById("boton4");
+    table.style.display = "none";
+
+    var table = document.getElementById("boton5");
+    table.style.display = "block";
+
+    
+}
+
+function boton5(){
+    var table = document.getElementById("form4");
+    table.style.display = "block";
+
+    var table = document.getElementById("form5");
+    table.style.display = "none";
+
+
+    var table = document.getElementById("boton5");
+    table.style.display = "none";
+
+    var table = document.getElementById("boton4");
+    table.style.display = "block";
+
+    
+}
+
+function tipoVitalidad(){
+
+    var valorvitalidad = document.getElementById("talamuerto");
+    valorvitalidad.
+    if 
+
+    var table = document.getElementById("talamuerto");
+    table.style.display = "block"; 
+
+
+
+}
+// ********Final boton 5*******
+
+
+
+//***************************************************** VALIDACIONES ************************************************************** */
+
+//Formulario 1
 function formshidde(){
     var PlacaAntigua = document.getElementById('PlacaAntigua');
     const delet = document.getElementById('delet');
@@ -138,24 +210,8 @@ function formshidde(){
      
 
 }
-// Boton 2
-function showanterior(){
-    var table = document.getElementById("form2");
-    table.style.display = "none";
 
-    var table = document.getElementById("form1");
-    table.style.display = "block";
-
-
-    var table = document.getElementById("boton2");
-    table.style.display = "none";
-
-    var table = document.getElementById("boton1");
-    table.style.display = "block";
-
-}
-
-//boton 2
+//Formulario 2
 function formshidde2(){
 
     const qr = document.getElementById('qr');
@@ -251,24 +307,7 @@ function formshidde2(){
     
 }
 
-// boton 3
-function show3(){
-    var table = document.getElementById("form3");
-    table.style.display = "none";
-
-    var table = document.getElementById("form2");
-    table.style.display = "block";
-
-
-    var table = document.getElementById("boton3");
-    table.style.display = "none";
-
-    var table = document.getElementById("boton2");
-    table.style.display = "block";
-
-}
-
-/*  Boton de Validacion 3  */
+//Formulario 3
 function formshidde3(){
 
     const comercial = document.getElementById('comercial_fuste');
@@ -587,70 +626,34 @@ function formshidde3(){
     
 }
 
-// boton 4
-function boton4(){
-    var table = document.getElementById("form4");
-    table.style.display = "none";
+// Formulario 4
+function ocultar() {
+    /* Se obtienen los datos del id en el select para identificar el tipo de rama si es buena o mala,
+    Se hace una validacion para saber el valor del id en select, luego se establece un style.display dependiendo del valor y se oculta 
+    o se muestran las tablas de contenido */
+    var optionhidden = document.getElementById("vitalidad");
+    optionhidden = optionhidden.options[optionhidden.selectedIndex].value;
+    if (optionhidden == "Buena"   || optionhidden == "Mala" ) {
+        document.getElementById("ocultar").style.display = "none";
+    } else if (optionhidden == "Regular") {
+        document.getElementById("ocultar").style.display = "block";
+    }
 
-    var table = document.getElementById("form3");
-    table.style.display = "block";
-
-
-    var table = document.getElementById("boton4");
-    table.style.display = "none";
-
-    var table = document.getElementById("boton3");
-    table.style.display = "block";
-
-    
-}
-
-function hidde4(){
-    var table = document.getElementById("form4");
-    table.style.display = "none";
-
-    var table = document.getElementById("form5");
-    table.style.display = "block";
-
-
-    var table = document.getElementById("boton4");
-    table.style.display = "none";
-
-    var table = document.getElementById("boton5");
-    table.style.display = "block";
-
-    
-}
-
-//boton 5
-function boton5(){
-    var table = document.getElementById("form4");
-    table.style.display = "block";
-
-    var table = document.getElementById("form5");
-    table.style.display = "none";
-
-
-    var table = document.getElementById("boton5");
-    table.style.display = "none";
-
-    var table = document.getElementById("boton4");
-    table.style.display = "block";
-
-    
-}
-
-function tipoVitalidad(){
-
-    var valorvitalidad = document.getElementById("talamuerto");
-    valorvitalidad.
-    if 
-
-    var table = document.getElementById("talamuerto");
-    table.style.display = "block"; 
+    if (optionhidden == "Buena" || optionhidden == "Regular"){
+        document.getElementById("controlfitosanitario_div").style.display = "block";
+        document.getElementById("intervencion").style.display = "block";
+        document.getElementById("talamuerto").style.display = "none";
+    }else if(optionhidden == "Mala")
+    {
+        document.getElementById("controlfitosanitario_div").style.display = "none";
+        document.getElementById("intervencion").style.display = "none";
+        document.getElementById("talamuerto").style.display = "block";
+    }
 
 
 
 }
 
 
+
+//***************************************************** Botones de anterior ************************************************************** */
