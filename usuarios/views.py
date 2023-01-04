@@ -261,10 +261,41 @@ def registro_usuario_view(request):
 
         #Si el formulario es valido y tiene datos
         if form.is_valid():
+            
+            # Comprobamos si el usuario a crear, es el administradpr
+            if not Usuario.objects.exists():
+
+                usuario_administrador = Usuario()
+                crear_usuario(usuario_administrador, form)
+                
+                print("creando usuario administrador")
+                
+                usuario_administrador.is_staff = True
+                usuario_administrador.Grupo = 1
+                # Modificando los roles de usuario
+                usuario_administrador.rol = "Administrador"
+                
+
+#                content_type = ContentType.objects.get_for_model(Usuario)
+                permission = Permission.objects.get( codename="Administrador")
+
+                usuario_administrador.user_permissions.add(permission)
+
+
+                try:
+                    usuario_administrador.save()
+                except Exception as e:
+                    print(e)
+                
+                mensaje = "Usuario administrador creado correctamente, puede iniciar sesión"
+                llamarMensaje = "info_usuario"
+                request.session["llamarMensaje"] = llamarMensaje
+                request.session["mensaje"] = mensaje
+                return redirect('login')
+            
             #Capture la cedula del usuario
             cedula_usuario = form.cleaned_data["usuario"]
-            print("cedula usuario " + str(cedula_usuario))
-
+            
             
             #Consultando el usuario en la base de datos.            
             existe_usuario = Usuario.objects.filter(username=cedula_usuario).exists()
@@ -377,4 +408,3 @@ def listar_usuarios_administrador(request):
 
     # Colocandole permisos al usuario
     #usuario.user_permissions.add(Permission.objects.get(codename=form.cleaned_data["rol"]))
-
