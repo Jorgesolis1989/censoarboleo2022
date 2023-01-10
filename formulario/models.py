@@ -1,5 +1,16 @@
+##################################################################
+# Script Name: models.py - Módulo Formulario
+# Description: Este archivo encontrarás las clases que luego se convierten en Tablas de la Base de datos, todas dedicadas al Formulario
+# Args: N/A
+# Creation/Update: 2022/12/15 
+# Author: Jorge Leonardo Solis - Yordan Moncayo                                                
+# Email: jorgesolis1989@gmail.com                                 
+##################################################################
+
+
+
+
 from email.policy import default
-from pyexpat import model
 from time import timezone
 from django.db import models
 import os
@@ -17,7 +28,6 @@ def path_and_rename(instance, filename):
         filename = '{}.{}'.format(uuid4().hex, ext)
     # return the whole path to the file
     return os.path.join(upload_to, filename)
-
 
 
 
@@ -256,7 +266,7 @@ class EstadoFitosanitario(models.Model):
         ordering = ["id"]
         db_table = 'estadoFitosanitario'
 
-
+############################################## Clase Vulnerabilidad
 class Vulnerabilidad(models.Model):
     id = models.BigAutoField(primary_key=True)
     arbol_id = models.ForeignKey(Arbol, on_delete=models.CASCADE)

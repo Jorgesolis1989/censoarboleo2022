@@ -1,7 +1,20 @@
+##################################################################
+# Script Name: models.py - Módulo Usario
+# Description: Creación del Modelo el cual se migrará a la base de datos.
+# Args: N/A
+# Creation/Update: 2022/12/15 
+# Author: Jorge Leonardo Solis - Yordan Moncayo                                                
+# Email: jorgesolis1989@gmail.com                                 
+##################################################################
+
+
 from django.db import models
 import os
 from django.contrib.auth.models import User
 
+
+
+# La clase Usuario, se extiende de la Clase User por defecto en Django, a ello le añadimos los campos cedula_usuario, foto, direccion, telefono, rol, Grupo
 class Usuario(User):
 	cedula_usuario = models.BigIntegerField(null=False, unique=True, primary_key=True)
 	
@@ -14,6 +27,9 @@ class Usuario(User):
 					   ("Supervisor" , "Permisos de Supervisor"),
 					   ("SuperForestal" , "Permisos de Supervisor Forestal"),)
 	
+
+
+# El método de la clase generar_ruta_imagen, consiste en que automáticamente guarde el foto asociada a un formulario, creando una carpeta en el servidor.
 
 	def _generar_ruta_imagen(instance, filename):
 		# El primer paso es extraer la extension de la imagen del
@@ -40,7 +56,7 @@ class Usuario(User):
 	
 
 
-
+# Método auxiliar para imprimir el modelo Usuario.
 	def __str__(self):
 		return '%s - %s  - %s' %(self.cedula_usuario,   self.first_name, self.last_name	)
 		

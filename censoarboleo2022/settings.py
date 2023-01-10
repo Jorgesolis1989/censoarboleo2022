@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+
+# Archivo settings creado automáticamente
+
 from pathlib import Path
 
 
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     'sslserver'
 
 ]
+SESSION_EXPIRE_AT_BROWSER_CLOSE  = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -160,3 +164,4 @@ MEDIA_URL = 'http://localhost:80/censoarboleo2022/media/'
 LOGIN_URL = '/1'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL  = '/'
+

@@ -1,3 +1,14 @@
+
+##################################################################
+# Script Name: views.py - Módulo Formulario
+# Description: Son las vistas de todos las funciones con relación al Módulo Formulario
+# Args: N/A
+# Creation/Update: 2022/12/15 
+# Author: Jorge Leonardo Solis - Yordan Moncayo                                                
+# Email: jorgesolis1989@gmail.com                                 
+##################################################################
+
+
 from distutils.log import FATAL
 from fnmatch import translate
 from pickle import FALSE
@@ -19,6 +30,8 @@ from django.contrib.auth.decorators import login_required
 timezone.activate(settings.TIME_ZONE)
 
 
+
+# Método listar formularios, corresponde a la función de listar los formularios de cualquier rol en la aplicación
 @login_required
 def listar_formularios(request):
     
@@ -58,11 +71,9 @@ def listar_formularios(request):
 
     return render(request, 'listar_formularios.html',{'usuario': usuario, 'arboles': arboles, "base_template":base_template, 'mensaje': mensaje, 'llamarMensaje': llamarMensaje})
 
-
+# Método editar formularios, corresponde a la función de editar los formularios de cualquier rol en la aplicación y que tenga los permisos correspondientes.
 @login_required
 def editar_formulario(request , id_arbol=None):
-
-
 
     arbol = Arbol.objects.get(id=id_arbol)
 
@@ -77,24 +88,16 @@ def editar_formulario(request , id_arbol=None):
     usuario = Usuario.objects.get(username=request.user.username)
 
 
-
-
     if request.method == 'POST' and 'btnActualizar' in request.POST:
         
         arbol.actualizado = timezone.now()
         arbol.modificado_por = usuario.username
         crear_actualizar_arbol(request, arbol, dasometria,estado_fitosanitario , recomendacion_e_intervencion , vulnerabilidad, True)
 
-
-
-
         return redirect("listar_formularios")
         
     
-
     # Metodo GET
-
-    
     base_template = ""
     if usuario.rol == "Administrador":
         base_template = "base-admin.html"
@@ -108,12 +111,13 @@ def editar_formulario(request , id_arbol=None):
     else:
         base_template = "base-supervisor-forestal.html"
 
-    # Consultas de los formularios
+    # Consultas de los formulario   
 
     return render(request, 'edit-formulario.html', {'usuario': usuario, 'arbol': arbol, "dasometria":dasometria,"estado_fitosanitario":estado_fitosanitario,
     "vulnerabilidad":vulnerabilidad, 
     "recomendacion_e_intervencion":recomendacion_e_intervencion, 'base_template':base_template})
 
+# Método crear  formularios, corresponde a la función de crear  un  formularios de cualquier rol en la aplicación
 @login_required
 def crear_formulario_view(request):
     usuario = Usuario.objects.get(username=request.user.username)
@@ -132,15 +136,12 @@ def crear_formulario_view(request):
 
         mensaje = "El arbol se guardó correctamente"
         llamarMensaje = "exito_usuario"
-
-
       
     return render(request, 'formulario.html', {'mensaje': mensaje, 'llamarMensaje': llamarMensaje, "usuario":usuario})
 
 
 
-
-
+#Mpetodo auxiliar que sirve oara crear y editar un arbol en la BD
 def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario_nuevo , recomendacion_e_intervencion , vulnerabilidad, actualizar ):
 
     latitude = request.POST["textLatitude"] 
@@ -166,10 +167,6 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     emplazamiento = request.POST["emplazamiento"]
     confinamiento = request.POST.get('confinamiento');
     dist_confinamiento = 0
-    
-
-
-
 
     
     # arbol_id es  generado por SQL ---  combina comuna y otras variables 
@@ -196,7 +193,6 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     # Comuna, barrio, dirección ,
 
     arbol.direccion = direccion
-
 
     # Especie es el nombre científico
     arbol.nombre_cientifico = nombre_cientifico
@@ -274,15 +270,6 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
             arbol.foto4 = request.FILES['avatar4']    
         else:
             arbol.foto4 = None
-
-#            if request.FILES['avatar4']:
-#                arbol_nuevo.foto4 = request.FILES['avatar4']
-#           else:
-#                arbol_nuevo.foto4 = None
-    
-    
-    #Pendientes de definir
-#            arbol_nuevo.arbolid = 0
 
     arbol.area = 0.0
     arbol.perimetro =0.0
@@ -554,7 +541,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
 
 
 
-
+# Método auxiliar para crear la Tabla EstadoFitosanitario.
 def crear_EstadoFitosanitario(estadofitosanitario_nuevo, request):
 
     mecanica_fuste = False
