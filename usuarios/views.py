@@ -1,3 +1,15 @@
+##################################################################
+# Script Name: views.py - Módulo Usario
+# Description: Son las vistas de todos las funciones con relación al Módulo usuario
+# Args: N/A
+# Creation/Update: 2022/12/15 
+# Author: Jorge Leonardo Solis - Yordan Moncayo                                                
+# Email: jorgesolis1989@gmail.com                                 
+##################################################################
+
+
+
+# Librerías a importar
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Permission
 from django.contrib.auth.decorators import permission_required
@@ -11,19 +23,101 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 
 
-##################################################################
-# Script Name: views.py
-# Description: Renombra las fotos de una carpeta según el día que
-#              se tomaron (sólo formato *.jpg)
-# Args: N/A
-# Creation/Update: 2022/12/15 
-# Author: Jorge Leonardo Solis - Yordan Moncayo                                                
-# Email: jorgesolis1989@gmail.com                                 
-##################################################################
+
+# Pagina principal para usuario Administrador
+@permission_required("usuarios.Administrador" , login_url="/")
+def administrador_home(request , usuario):
+    return render(request, 'administrador.html', {'usuario': usuario})
 
 
 
-# Metodo para editar usuario por parte del administrador y(/)
+# Pagina principal para usuario Censista
+@permission_required("usuarios.Censista" , login_url="/")
+def censista_home(request , usuario):
+    if request.method == 'POST' and "btnFormulario" in request.POST:
+        return redirect("formulario")
+    return render(request, 'censista.html', {'usuario': usuario})
+
+
+# Pagina principal para usuario Supervisor
+@permission_required("usuarios.Supervisor" , login_url="/")
+def supervisor_home(request , usuario):
+    return render(request, 'supervisor.html', {'usuario': usuario})
+
+
+# Pagina principal para usuario Supervisor Forestal
+@permission_required("usuarios.SuperForestal" , login_url="/")
+def supervisor_forestal_home(request , usuario):
+    return render(request, 'supervisor_forestal.html', {'usuario': usuario})
+
+
+# Vista cambiar contraseña
+@login_required
+def cambiar_contrasena(request):
+    usuario = Usuario.objects.get(username=request.user.username)
+    mensaje = ""
+    llamarMensaje = ""
+
+    retornarvista_segun_rol = "cambiar_contrasena_"+ usuario.rol + ".html"
+
+    # Cambiar contraseña
+    if request.method == 'POST' and "btnCambiarContrasena" in request.POST:
+        contrasenaAntigua = request.POST["password"]
+        contrasenaNueva = request.POST["newpassword"]
+        contrasenaNuevaIgual = request.POST["renewpassword"]
+        
+        if not usuario.check_password(contrasenaAntigua):
+            mensaje = "La contraseña antigua no es igual a la registrada en el sistema"
+            llamarMensaje = "exito_usuario"
+
+        elif contrasenaNueva != contrasenaNuevaIgual:
+            mensaje = "La contraseña son iguales las contraseñas insertadas"
+            llamarMensaje = "exito_usuario"
+        
+        else:
+            usuario.set_password(contrasenaNueva)
+            try:
+                usuario.save()
+            except Exception as e:
+                print(e)
+            user = authenticate(username=usuario.username, password=contrasenaNueva)
+            login(request, user)
+        
+            mensaje = "Se registro el cambio sactisfactoriamente"
+            llamarMensaje = "exito_usuario"
+
+    # Cambiar datos personales de los usuarios 
+    elif request.method == 'POST' and "btnCambiarPerfil" in request.POST:
+        #Implementar mañana viernes
+        usuario.first_name =  request.POST["nombre"] 
+        usuario.last_name =  request.POST["apellidos"]
+        usuario.direccion = request.POST["address"]
+        usuario.telefono = request.POST["phone"]
+        usuario.email = request.POST["email"]
+        
+        if 'imagenperfil' in request.POST:
+            print("imagen antigua") 
+
+        else: 
+            if request.FILES['imagenperfil']:
+                usuario.foto = request.FILES['imagenperfil']
+            else:
+                print("imagen antigua") 
+            
+        usuario.email = request.POST["email"]
+        
+        try:
+            usuario.save()
+        except Exception as e:
+            print(e)
+        
+        mensaje = "Se actualizaron los datos sactisfactoriamente"
+        llamarMensaje = "exito_usuario"
+   
+    return render(request, retornarvista_segun_rol, {'usuario': usuario, "mensaje": mensaje,  "llamarMensaje": llamarMensaje})
+
+
+# Vista para editar usuario por parte del administrador y(/)
 @permission_required("usuarios.Administrador" , login_url="/")
 def editar_usuario(request , username=None):
     usuario = Usuario.objects.get(username=request.user.username)
@@ -86,7 +180,7 @@ def editar_usuario(request , username=None):
 
     return render(request, 'editar_usuario_Administrador.html', {'usuario_editar':usuario_editar,'usuario': usuario,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
 
-# Create your views here.
+# Método retornar_vista, recibe el requets y según el rol del usuario autenticado, este retorna la vista o tmeplate correspondiente.
 def retornar_vista(request, usuario):
     if usuario.has_perm("usuarios.Administrador"):
         return administrador_home(request, usuario)
@@ -96,117 +190,24 @@ def retornar_vista(request, usuario):
       return supervisor_home(request, usuario)
     elif usuario.has_perm("usuarios.SuperForestal"):
       return supervisor_forestal_home(request, usuario)
-    return render(request, 'formulario.html', {'usuario': usuario})
+    return render(request, 'login.html', {'usuario': usuario})
 
 
 
-@login_required
-def cambiar_contrasena(request):
-    usuario = Usuario.objects.get(username=request.user.username)
+#Página de la vista de prinicpal del login de la aplicación
+def login_view(request):
+    
     mensaje = ""
     llamarMensaje = ""
-
-    retornarvista_segun_rol = "cambiar_contrasena_"+ usuario.rol + ".html"
-    print("entre cambiar contraseña")
-    print(str(retornarvista_segun_rol))
-
-    # Cambiar contraseña
-    if request.method == 'POST' and "btnCambiarContrasena" in request.POST:
-        contrasenaAntigua = request.POST["password"]
-        contrasenaNueva = request.POST["newpassword"]
-        contrasenaNuevaIgual = request.POST["renewpassword"]
-        
-        if not usuario.check_password(contrasenaAntigua):
-            mensaje = "La contraseña antigua no es igual a la registrada en el sistema"
-            llamarMensaje = "exito_usuario"
-
-        elif contrasenaNueva != contrasenaNuevaIgual:
-            mensaje = "La contraseña son iguales las contraseñas insertadas"
-            llamarMensaje = "exito_usuario"
-        
-        else:
-            usuario.set_password(contrasenaNueva)
-            try:
-                usuario.save()
-                #print("creando usuarii")
-            except Exception as e:
-                print(e)
-            user = authenticate(username=usuario.username, password=contrasenaNueva)
-            login(request, user)
-        
-            mensaje = "Se registro el cambio sactisfactoriamente"
-            llamarMensaje = "exito_usuario"
-
-# Cambiar datos personales de los usuarios 
-    elif request.method == 'POST' and "btnCambiarPerfil" in request.POST:
-        #Implementar mañana viernes
-        usuario.first_name =  request.POST["nombre"] 
-        usuario.last_name =  request.POST["apellidos"]
-        usuario.direccion = request.POST["address"]
-        usuario.telefono = request.POST["phone"]
-        usuario.email = request.POST["email"]
-        
-        if 'imagenperfil' in request.POST:
-            print("imagen antigua") 
-
-        else: 
-            if request.FILES['imagenperfil']:
-                usuario.foto = request.FILES['imagenperfil']
-            else:
-                print("imagen antigua") 
-            
-        usuario.email = request.POST["email"]
-        
-        
+    
+    if request.session.get('tipoMensaje', False):
         try:
-            usuario.save()
-       #print("creando usuarii")
+            mensaje = request.session["mensaje"]
+            llamarMensaje = request.session["llamarMensaje"]
+
         except Exception as e:
-            print(e)
-        
-        mensaje = "Se actualizaron los datos sactisfactoriamente"
-        llamarMensaje = "exito_usuario"
-
-    print(retornarvista_segun_rol)   
-    return render(request, retornarvista_segun_rol, {'usuario': usuario, "mensaje": mensaje,  "llamarMensaje": llamarMensaje})
-
-
-
-# Pagina principal para usuario Administrador
-@permission_required("usuarios.Administrador" , login_url="/")
-def administrador_home(request , usuario):
-    return render(request, 'administrador.html', {'usuario': usuario})
-
-
-# Pagina principal para usuario Censista
-@permission_required("usuarios.Censista" , login_url="/")
-def censista_home(request , usuario):
-    if request.method == 'POST' and "btnFormulario" in request.POST:
-        return redirect("formulario")
-    return render(request, 'censista.html', {'usuario': usuario})
-
-
-
-# Pagina principal para usuario Supervisor
-@permission_required("usuarios.Supervisor" , login_url="/")
-def supervisor_home(request , usuario):
-    return render(request, 'supervisor.html', {'usuario': usuario})
-
-
-# Pagina principal para usuario Supervisor Forestal
-@permission_required("usuarios.SuperForestal" , login_url="/")
-def supervisor_forestal_home(request , usuario):
-    return render(request, 'supervisor_forestal.html', {'usuario': usuario})
-
-#Página de la vista de usuario
-def login_view(request):
-
-    try:
-        mensaje = request.session["mensaje"]
-        llamarMensaje = request.session["llamarMensaje"]
-    except Exception as e:
-        mensaje = ""
-        llamarMensaje = ""
+            mensaje = ""
+            llamarMensaje = ""
 
     if request.user.is_authenticated and not request.user.is_superuser:
         usuario = Usuario.objects.get(username=request.user.username)
@@ -242,14 +243,14 @@ def login_view(request):
             else:
                    mensaje = "El usuario "+ str(cd['usuario'])+ " no existe"
                    llamarMensaje = "fracaso_usuario"
-    
-    print(mensaje)
     form = FormularioLogin()
     
+    request.session["tipoMensaje"] = False
 
     return render(request, 'login.html', {'mensaje': mensaje, 'form': form, 'llamarMensaje': llamarMensaje})
 
 
+#Página de la vista de prinicpal del login de la aplicación
 def registro_usuario_view(request):
 
     mensaje = ""
@@ -291,6 +292,8 @@ def registro_usuario_view(request):
                 llamarMensaje = "info_usuario"
                 request.session["llamarMensaje"] = llamarMensaje
                 request.session["mensaje"] = mensaje
+                request.session["tipoMensaje"] = True
+
                 return redirect('login')
             
             #Capture la cedula del usuario
@@ -309,6 +312,9 @@ def registro_usuario_view(request):
                 llamarMensaje = "info_usuario"
                 request.session["llamarMensaje"] = llamarMensaje
                 request.session["mensaje"] = mensaje
+                request.session["tipoMensaje"] = True
+
+
                 return redirect('login')
 
             # Si el usuario ya existe en la BD y esta activo
@@ -320,10 +326,6 @@ def registro_usuario_view(request):
                 form = FormularioRegistroUsuario()
 
                 return render(request, 'registro_usuario.html',{'mensaje': mensaje, 'form': form, 'llamarMensaje': llamarMensaje})
-
-        
-
-
             
         else:
             print("No valido  formulario de registro")
@@ -335,11 +337,13 @@ def registro_usuario_view(request):
     return render(request, 'registro_usuario.html',{'mensaje': mensaje, 'form': form, 'llamarMensaje': llamarMensaje})
 
 
-
+#Vista para salir de la aplicación
 def custom_logout(request):
     logout(request)
     return redirect("login")
 
+
+#Metodo auxiliar para crear un usuario en la apliación atraves de los datos obtenidos de un formulario.
 def crear_usuario(usuario, form):
     usuario.cedula_usuario = form.cleaned_data["usuario"]
     usuario.first_name = form.cleaned_data["nombres"]
@@ -356,25 +360,16 @@ def crear_usuario(usuario, form):
     password = form.cleaned_data["password"]
     usuario.set_password(password)
 
-
-
- #   usuario.user_permissions.add(Permission.objects.get("Censista"))
-
-    # Enviando contraseña al correo electronico registrado.
-    mensaje = "Señor(a) ", usuario.first_name , "\nSu usuario de acceso es: ", usuario.cedula_usuario , "\n Contraseña: ", usuario.password
-    #send_mail('Envío de contraseña de acceso a SIVORE', mensaje, 'sivoreunivalle@gmail.com', [usuario.email], fail_silently=False)
-
+    
     #Crea el usuario en la BD s i hay excepcion
     try:
         usuario.save()
-        print("creando usuariio" + usuario.first_name)
     except Exception as e:
         print(e)
 
-    print(mensaje)
-
     
-
+    
+#Vista que permite al usuario supervisor   listar  los censistas que pertenecen a su grupo .
 @permission_required("usuarios.Supervisor", login_url="/")
 def listar_censistas_supervisor(request):
     usuario = Usuario.objects.get(username=request.user.username)
@@ -386,7 +381,7 @@ def listar_censistas_supervisor(request):
     return render(request, 'listar_censistas_supervisor.html', {'usuario': usuario, 'usuarios': censistas,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
     
 
-
+#Vista que permite al usuario administrador listar  los usuarios de la Base de Datos.
 @permission_required("usuarios.Administrador", login_url="/")
 def listar_usuarios_administrador(request):
     usuario = Usuario.objects.get(username=request.user.username)
@@ -404,7 +399,3 @@ def listar_usuarios_administrador(request):
         del request.session['funcion_llamada']
 
     return render(request, 'listar_usuarios_administrador.html', {'usuario': usuario, 'usuarios': usuarios,'llamarMensaje': llamarMensaje,'mensaje': mensaje})
-
-
-    # Colocandole permisos al usuario
-    #usuario.user_permissions.add(Permission.objects.get(codename=form.cleaned_data["rol"]))

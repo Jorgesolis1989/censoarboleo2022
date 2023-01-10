@@ -32,6 +32,7 @@ urlpatterns = [
     path('listar_formularios', listar_formularios, name='listar_formularios'),
     path('editar/<username>/', editar_usuario, name='editar_usuario'),
     path('editar_formulario/<id_arbol>/', editar_formulario, name='editar_formulario'),
+
 	re_path(r'^censoarboleo2022/media/(.*)$', django.views.static.serve, {'document_root' : os.path.join(os.path.dirname(__file__), 'media')}),
 
 ]

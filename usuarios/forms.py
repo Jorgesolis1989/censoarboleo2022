@@ -1,4 +1,14 @@
-#from typing_extensions import Required
+##################################################################
+# Script Name: forms
+# .py - Módulo Usario
+# Description: Creación del Modelo el cual se migrará a la base de datos.
+# Args: N/A
+# Creation/Update: 2022/12/15 
+# Author: Jorge Leonardo Solis - Yordan Moncayo                                                
+# Email: jorgesolis1989@gmail.com                                 
+##################################################################
+
+
 from django import forms
 from usuarios.models import Usuario
 
@@ -11,11 +21,10 @@ class FormularioLogin(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'input'}))
 
-#<input name="usuario" class="input" type="number">
 
-#<input name="password"class="input" type="password">
-
-
+"""
+Este formulario se encuentran los datos para el registro de usuario
+"""
 class FormularioRegistroUsuario(forms.Form):
     usuario = forms.IntegerField(
         widget=forms.NumberInput(attrs={'class': 'input' , 'required':'true'}))
@@ -35,7 +44,7 @@ class FormularioRegistroUsuario(forms.Form):
 
 
 
-
+# Método auxuliar para confirmar el campo username.
     def confirmar_password(self):
         diccionario_limpio = self.cleaned_data
         cedula = diccionario_limpio.get('username')
@@ -43,7 +52,4 @@ class FormularioRegistroUsuario(forms.Form):
             raise forms.ValidationError("La cedula debe de ser enteros")
         return cedula
 
-
-#def FormularioEditarUsuario(forms.Form):
-#    username = 
 
