@@ -63,10 +63,6 @@
             // Agregando el mapa al tag de id divMap
             var map = new google.maps.Map(document.getElementById("divMap"), mapProp);
 
-
-            const image = "static/img/arbol(1).png";
-
-
             // Creando un marker en el mapa
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(latitude1, longitude1),
@@ -170,7 +166,7 @@
                                     <input type="button" class="btn" id="popov" name="popov" onclick="alerts()" value="?">
                                       
                                   
-                                    <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control" >
+                                    <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control" disabled>
                                     <div class="invalid-feedback" id="delet">
                                       Ingresa como mínimo 1 digito
                                     </div>
@@ -202,7 +198,7 @@
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <div class="form-group d-flex flex-column mx-auto">
                                           <label for="Dirección">Dirección:</label>
-                                          <input type="text" id="direccion" name="direccion" class="form-control">
+                                          <input type="text" id="direccion" name="direccion" class="form-control" disabled>
                                           <div class="valid-feedback" id="validaciondireccion">
                                                 Ingresar dirección válida
                                           </div>
@@ -210,33 +206,33 @@
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Nombre común</label>
-                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-control">
+                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-control" disabled>
                                       </select>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Nombre científico</label>
-                                      <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
+                                      <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" disabled>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Familia</label>
-                                      <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
+                                      <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" disabled>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Genero</label>
-                                      <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
+                                      <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" disabled>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Estado de Madurez</label>
-                                      <select name="estado_madurez" id="estado_madurez" class="form-control" > 
+                                      <select name="estado_madurez" id="estado_madurez" class="form-control" disabled>
                                           <option value="Plantón">Plantón</option>
-                                          <option value="Juvenil">Juvenil</option> 
+                                          <option value="Juvenil">Juvenil</option>
                                           <option value="Adulto">Adulto</option>
                                           <option value="Longevo">Longevo</option>
                                       </select>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Estado del registro</label>
-                                      <select name="estado_registro" id="estado_registro" class="form-control">
+                                      <select name="estado_registro" id="estado_registro" class="form-control" disabled>
                                           <option value="Nuevo" >Nuevo</option>
                                           <option value="Antiguo">Antiguo</option>
                                           <option value="Revisión">Revisión</option>
@@ -251,7 +247,7 @@
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Codigo QR">Digite el codigo QR:</label>
-                                      <input type="number" id="qr" name="qr" class="form-control">
+                                      <input type="number" id="qr" name="qr" class="form-control" disabled>
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número de QR Válido
                                       </div>
@@ -260,7 +256,7 @@
 
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="P">Cobertura</label>
-                                      <select type="text" id="cobertura" name="cobertura" class="form-control">
+                                      <select type="text" id="cobertura" name="cobertura" class="form-control" disabled>
                                           <option selected value="Césped">Césped </option>
                                           <option value="Jardín">Jardín</option>
                                           <option value="Piso Duro">Piso Duro</option>
@@ -270,7 +266,7 @@
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="emplazamiento">Emplazamiento</label>
-                                      <select type="text" id="emplazamiento" name="emplazamiento" class="form-control">
+                                      <select type="text" id="emplazamiento" name="emplazamiento" class="form-control" disabled>
                                         <option value="Andén" selected>Andén</option>
                                         <option value="Bahía de estacionamiento">Bahía de estacionamiento</option>
                                           <option value="Bulevares">Bulevares</option>
@@ -292,16 +288,16 @@
                                   </div>
                                   
                                   <div class="col-md-12 col-lg-12 mb-2">
-                                      <input onclick="formView()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio" value="1">
+                                      <input onclick="formView()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio" value="1" disabled>
                                       <label for="" >Si</label>
                                 
-                                      <input onclick="formNone()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio2" value="2">
+                                      <input onclick="formNone()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio2" value="2" disabled>
                                       <label for="">No</label>
                                       
                                   </div>
 
                                   <div id="formView" style="display: none;" class="col-md-12 col-lg-12 mb-2">
-                                      <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">
+                                      <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control" disabled>
                                       
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
@@ -313,7 +309,7 @@
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
-                                          <input type="file" class="form-control" placeholder="Primera foto" aria-label="First name" id="avatar" name="avatar" accept="image/*" >
+                                          <input type="file" class="form-control" placeholder="Primera foto" aria-label="First name" id="avatar" name="avatar" accept="image/*" disabled>
                                           <div class="invalid-feedback" id="delet">
                                             Debes ingresar una imagen
                                           </div>
@@ -330,7 +326,7 @@
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
-                                          <input type="file" class="form-control" placeholder="Segunda name"    aria-label="First name" id="avatar2" name="avatar2"  accept="image/*">
+                                          <input type="file" class="form-control" placeholder="Segunda name"    aria-label="First name" id="avatar2" name="avatar2"  accept="image/*" disabled>
                                           <div class="invalid-feedback" id="delet">
                                             Debes ingresar una imagen
                                           </div>
@@ -346,7 +342,7 @@
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
                                           <input type="file" class="form-control" placeholder="Segunda Foto"
-                                          aria-label="Tercera Foto" id="avatar3" name="avatar3" accept="image/*">
+                                          aria-label="Tercera Foto" id="avatar3" name="avatar3" accept="image/*" disabled>
                                       </div>
 
                                       
@@ -361,7 +357,7 @@
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
                                           <input type="file" class="form-control" placeholder="Foto 4"
-                                          aria-label="Cuarta name" id="avatar4" name="avatar4" accept="image/*">
+                                          aria-label="Cuarta name" id="avatar4" name="avatar4" accept="image/*" disabled>
                                       </div>
                                   </div>
                               </div>
@@ -377,12 +373,12 @@
                                           <label for="Placa Antigua">Forma del Tronco:</label>
                                           <div class="form-check form-check-inline">
                                             
-                                            <input class="form-check-input" type="radio" name="tipofuste" id="fuste_unico" value="Fuste Único" onclick="formFusteUnico() ">
+                                            <input class="form-check-input" type="radio" name="tipofuste" id="fuste_unico" value="Fuste Único" onclick="formFusteUnico() " disabled>
                                             <label class="form-check-label" for="inlineRadio1">Fuste Único</label>
                                           </div>
 
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="tipofuste" id="poli_polifurcado" value="Fuste Polifurcado" onclick="formFusteFolicurcado()">
+                                            <input class="form-check-input" type="radio" name="tipofuste" id="poli_polifurcado" value="Fuste Polifurcado" onclick="formFusteFolicurcado()" disabled>
                                             <label class="form-check-label" for="inlineRadio2">Fuste Polifurcado</label>
                                           </div>
                                           
@@ -390,7 +386,7 @@
 
                                       <div id="formViewUnico" style="display: none;" class="col-md-12 col-lg-12 mb-2" >
                                         <label>CAP (cm)</label>
-                                        <input placeholder="capa (m)" name="cap" id="cap" type="number" class="form-control " value="">
+                                        <input placeholder="capa (m)" name="cap" id="cap" type="number" class="form-control " value="" disabled>
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número de CAP válido
                                         </div>
@@ -401,7 +397,7 @@
                                     <div class="col-md-12 col-lg-12 mb-2">
     
                                       <label for="Tallos">No de Tallos</label>
-                                      <select  id="numero_tallos" name="numero_tallos" class="form-control " onchange="fuste_polifurcado();">
+                                      <select  id="numero_tallos" name="numero_tallos" class="form-control " onchange="fuste_polifurcado();" disabled>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -415,7 +411,7 @@
 
                                     <div class="col-md-12 col-lg-12 mb-2" id="fuste1" style="display: block;">
                                       <label for="CAP 1">CAP 1(cm)</label>
-                                      <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control " >
+                                      <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control " disabled>
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número de CAP1 válido
                                       </div>  
@@ -423,28 +419,28 @@
 
                                       <div class="col-md-12 col-lg-12 mb-2" id="fuste2" style="display: none;">
                                         <label for="Capa 2">CAP 2(cm)</label>
-                                        <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control ">
+                                        <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control " disabled>
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número de CAP2 válido
                                         </div>  
                                     </div>
                                       <div class="col-md-12 col-lg-12 mb-2" id="fuste3" style="display: none;">
                                         <label for="Capa 3">CAP 3(cm)</label>
-                                        <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control " > 
+                                        <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control " disabled> 
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número de CAP3 válido
                                         </div> 
                                     </div>
                                       <div class="col-md-12 col-lg-12 mb-2" id="fuste4" style="display: none;">
                                         <label for="Placa Antigua">CAP 4(cm)</label>
-                                        <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control " >
+                                        <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control " disabled>
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número de CAP4 válido
                                         </div>  
                                     </div>
                                       <div class="col-md-12 col-lg-12 mb-2" id="fuste5" style="display: none;">
                                         <label for="Placa Antigua">CAP 5(cm)</label>
-                                        <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control " >
+                                        <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control " disabled>
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número de CAP5 válido
                                         </div>  
@@ -462,14 +458,14 @@
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Comercial (Fuste)</label>
                                           <input type="number" name="comercial_fuste" id="comercial_fuste" class="form-control"
-                                              placeholder="Hc (m)">
+                                              placeholder="Hc (m)" disabled>
                                               <div class="invalid-feedback" id="delet">
                                                 Ingresa un número válido de comercial fuste
                                               </div>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Total del árbol</label>
-                                          <input type="number" name="totalarbol" id="totalarbol" class="form-control " placeholder="Ht (m)"> 
+                                          <input type="number" name="totalarbol" id="totalarbol" class="form-control " placeholder="Ht (m)" disabled> 
                                               <div class="invalid-feedback" id="delet">
                                                 Ingresa un número válido de total fuste                                            
                                               </div>
@@ -480,14 +476,14 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Eje mayor</label>
-                                          <input type="number" name="ejemayor" id="ejemayor" class="form-control">
+                                          <input type="number" name="ejemayor" id="ejemayor" class="form-control" disabled>
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Eje menor</label>
-                                          <input type="number" id="ejemenor" name="ejemenor"  class="form-control">
+                                          <input type="number" id="ejemenor" name="ejemenor"  class="form-control" disabled>
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
@@ -495,7 +491,7 @@
 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Orientación">Orientación</label>
-                                        <select type="text" id="orientacion" name="orientacion" class="form-control">
+                                        <select type="text" id="orientacion" name="orientacion" class="form-control" disabled>
                                           <option value="Hacia la construcción" selected>Hacia la construcción</option>
                                           <option value="Hacia la vía">Hacia la vía</option>
                                           <option value="En dirección de la vía">En dirección de la vía</option>
@@ -505,7 +501,7 @@
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Placa Antigua">Inclinación</label>
-                                      <select type="text" id="inclinacion" name="inclinacion" class="form-control">
+                                      <select type="text" id="inclinacion" name="inclinacion" class="form-control" disabled>
                                         <option value="&lt;30" selected>&lt;30</option>
                                         <option value="&gt;30">&gt;30</option>
                                       </select>
@@ -514,7 +510,7 @@
                                       <div class="col-md-12 col-lg-12 mb-2">
                                           <label>Exposición de la copa a la luz</label>
                                           <select type="number" id="exposicionluz" name="exposicionluz" class="form-control"
-                                              placeholder="CAP (m)">
+                                              placeholder="CAP (m)" disabled>
                                               <option value="No recibe luz">No recibe luz</option>
                                               <option value="Una cara">Una cara</option>
                                               <option value="Dos (2) caras">Dos (2) caras</option>
@@ -528,28 +524,28 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Altura (m)</label>
-                                          <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero" id="copa_viva" name="copa_viva">
+                                          <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero" id="copa_viva" name="copa_viva" disabled>
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">% copa ausente</label>
-                                          <input type="number" class="form-control" placeholder="(%)" aria-label="Genero" id="copa_ausente" name="copa_ausente">
+                                          <input type="number" class="form-control" placeholder="(%)" aria-label="Genero" id="copa_ausente" name="copa_ausente" disabled>
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2 ">
                                           <label for="Placa Antigua">Diámetro medio de ramas</label>
-                                          <select type="text" id="diametro" name="diametro" class="form-control" placeholder="CAP (m)">
+                                          <select type="text" id="diametro" name="diametro" class="form-control" placeholder="CAP (m)" disabled>
                                             <option value="&lt;0.05m"> &lt;0.05m </option>
                                             <option value=">=0.05m"> &gt;=0.05m </option>
                                           </select> 
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2 ">
                                           <label for="Sistema ">Sistema Radicular</label>
-                                          <select type="text" id="sistemaradicular" name="sistemaradicular" class="form-control">
+                                          <select type="text" id="sistemaradicular" name="sistemaradicular" class="form-control" disabled>
                                             <option value="Subtetrráneo" selected> Subterráneo </option>
                                             <option value="Aéreo"> Aéreo </option>
                                             <option value="Superficial"> Superficial </option>
@@ -564,7 +560,7 @@
                               <div class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="vitalidad" class="form-label">Vitalidad</label>
-                                      <select  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-control">
+                                      <select  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-control" disabled>
                                         <option value="Buena" selected>Buena (Sano)</option>
                                         <option value="Regular">Regular (Enfermo)</option>
                                         <option value="Mala">Mala (Seco/Muerto)</option>
@@ -1198,7 +1194,7 @@
                                 </div>
                                 <div class="form-floating">
                                   <h4>Comentarios en general</h4>
-                                  <textarea class="form-control" placeholder="Leave a comment here" id="comentarios_en_general" name="comentarios_en_general"  style="height: 100px"></textarea>
+                                  <textarea class="form-control" placeholder="Leave a comment here" id="comentarios_en_general" name="comentarios_en_general"  style="height: 100px" disabled></textarea>
                                 </div>       
                             </div>     
 
