@@ -1,7 +1,9 @@
 
 /* -----------FUNCION OCULTAR CAMPOS------------- */
 
-
+/*--------------------------------------------------------------
+# Seleccionar numero de tallos en la pag 3
+--------------------------------------------------------------*/
 function fuste_polifurcado() {
     var ocultarfuste = document.getElementById("numero_tallos");
     ocultarfuste = ocultarfuste.options[ocultarfuste.selectedIndex].value;
@@ -42,17 +44,9 @@ function fuste_polifurcado() {
     }
 
 }
-
-function formView(){
-    var table = document.getElementById("formView");
-    table.style.display = "block";
-}
-
-function formNone(){
-    var table = document.getElementById("formView");
-    table.style.display = "none";
-}
-
+/*--------------------------------------------------------------
+# Checkbox de la pag 3
+--------------------------------------------------------------*/
 function formFusteUnico(){
     var table = document.getElementById("formViewUnico");
     table.style.display = "block";
@@ -71,56 +65,26 @@ function formFusteFolicurcado(){
 
     
 }
+/*--------------------------------------------------------------
+# Ocultar confinamiento pag 2
+--------------------------------------------------------------*/
 
-function showanterior(){
-    var table = document.getElementById("form2");
-    table.style.display = "none";
-
-    var table = document.getElementById("form1");
+function formView(){
+    var table = document.getElementById("formView");
     table.style.display = "block";
-
-
-    var table = document.getElementById("boton2");
-    table.style.display = "none";
-
-    var table = document.getElementById("boton1");
-    table.style.display = "block";
-
 }
 
-function show3(){
-    var table = document.getElementById("form3");
+function formNone(){
+    var table = document.getElementById("formView");
     table.style.display = "none";
-
-    var table = document.getElementById("form2");
-    table.style.display = "block";
-
-
-    var table = document.getElementById("boton3");
-    table.style.display = "none";
-
-    var table = document.getElementById("boton2");
-    table.style.display = "block";
-
 }
 
 
-function boton4(){
-    var table = document.getElementById("form4");
-    table.style.display = "none";
-
-    var table = document.getElementById("form3");
-    table.style.display = "block";
 
 
-    var table = document.getElementById("boton4");
-    table.style.display = "none";
-
-    var table = document.getElementById("boton3");
-    table.style.display = "block";
-
-    
-}
+/*--------------------------------------------------------------
+# Ocultar selects pag 4
+--------------------------------------------------------------*/
 
 function hidde4(){
     var table = document.getElementById("form4");
@@ -139,22 +103,6 @@ function hidde4(){
     
 }
 
-function boton5(){
-    var table = document.getElementById("form4");
-    table.style.display = "block";
-
-    var table = document.getElementById("form5");
-    table.style.display = "none";
-
-
-    var table = document.getElementById("boton5");
-    table.style.display = "none";
-
-    var table = document.getElementById("boton4");
-    table.style.display = "block";
-
-    
-}
 
 function tipoVitalidad(){
 
@@ -166,9 +114,8 @@ function tipoVitalidad(){
     table.style.display = "block"; 
 
 
-
 }
-// ********Final boton 5*******
+
 
 
 
@@ -657,3 +604,81 @@ function ocultar() {
 
 
 //***************************************************** Botones de anterior ************************************************************** */
+
+/*--------------------------------------------------------------
+# Anterior 2
+--------------------------------------------------------------*/
+function showanterior(){
+    var table = document.getElementById("form2");
+    table.style.display = "none";
+
+    var table = document.getElementById("form1");
+    table.style.display = "block";
+
+
+    var table = document.getElementById("boton2");
+    table.style.display = "none";
+
+    var table = document.getElementById("boton1");
+    table.style.display = "block";
+
+}
+/*--------------------------------------------------------------
+# Anterior 3
+--------------------------------------------------------------*/
+
+function show3(){
+    var table = document.getElementById("form3");
+    table.style.display = "none";
+
+    var table = document.getElementById("form2");
+    table.style.display = "block";
+
+
+    var table = document.getElementById("boton3");
+    table.style.display = "none";
+
+    var table = document.getElementById("boton2");
+    table.style.display = "block";
+
+}
+/*--------------------------------------------------------------
+# Anterior 4
+--------------------------------------------------------------*/
+
+function boton4(){
+    var table = document.getElementById("form4");
+    table.style.display = "none";
+
+    var table = document.getElementById("form3");
+    table.style.display = "block";
+
+
+    var table = document.getElementById("boton4");
+    table.style.display = "none";
+
+    var table = document.getElementById("boton3");
+    table.style.display = "block";
+
+    
+}
+
+/*--------------------------------------------------------------
+# Anterior 5
+--------------------------------------------------------------*/
+function boton5(){
+    var table = document.getElementById("form4");
+    table.style.display = "block";
+
+    var table = document.getElementById("form5");
+    table.style.display = "none";
+
+
+    var table = document.getElementById("boton5");
+    table.style.display = "none";
+
+    var table = document.getElementById("boton4");
+    table.style.display = "block";
+
+    
+}
