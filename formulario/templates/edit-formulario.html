@@ -308,7 +308,7 @@
                                           <label for="avatar3">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
                                                 {% if arbol.foto3 %}
-                                                <img class="w-full object-cover" src="{{ MEDIA_URL }}{{arbol.foto1.url}}" height="96" id="img"/>   
+                                                <img class="w-full object-cover" src="{{ MEDIA_URL }}{{arbol.foto3.url}}" height="96" id="img"/>   
                                                 
                                                 {% else %}
                                               
@@ -328,11 +328,18 @@
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <div class="col-md-12 col-lg-12 mb-2 text-center">
-                                          <label for="avatar4">
-                                              <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
-                                                  <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
-                                              </div>                                          
-                                          </label>
+                                        <label for="avatar4">
+                                          <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
+                                            {% if arbol.foto4 %}
+                                            <img class="w-full object-cover" src="{{ MEDIA_URL }}{{arbol.foto4.url}}" height="96" id="img"/>   
+                                            
+                                            {% else %}
+                                          
+                                            <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
+
+                                            {%endif%}
+                                          </div>                                          
+                                      </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
                                           <input type="file" class="form-control" placeholder="Foto 4"
