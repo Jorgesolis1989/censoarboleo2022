@@ -54,9 +54,13 @@ def supervisor_forestal_home(request , usuario):
 # Vista cambiar contraseña
 @login_required
 def cambiar_contrasena(request):
+
+    
+
     usuario = Usuario.objects.get(username=request.user.username)
     mensaje = ""
     llamarMensaje = ""
+
 
     retornarvista_segun_rol = "cambiar_contrasena_"+ usuario.rol + ".html"
 
@@ -68,11 +72,11 @@ def cambiar_contrasena(request):
         
         if not usuario.check_password(contrasenaAntigua):
             mensaje = "La contraseña antigua no es igual a la registrada en el sistema"
-            llamarMensaje = "exito_usuario"
+            llamarMensaje = "fracaso_usuario"
 
         elif contrasenaNueva != contrasenaNuevaIgual:
             mensaje = "La contraseña son iguales las contraseñas insertadas"
-            llamarMensaje = "exito_usuario"
+            llamarMensaje = "fracaso_usuario"
         
         else:
             usuario.set_password(contrasenaNueva)
@@ -113,7 +117,16 @@ def cambiar_contrasena(request):
         
         mensaje = "Se actualizaron los datos sactisfactoriamente"
         llamarMensaje = "exito_usuario"
-   
+    else:
+        print("get")
+
+        if "mensaje" in request.session.keys():
+            del request.session["mensaje"]
+
+        if "llamarMensaje" in request.session.keys():
+            del request.session["llamarMensaje"]
+
+      
     return render(request, retornarvista_segun_rol, {'usuario': usuario, "mensaje": mensaje,  "llamarMensaje": llamarMensaje})
 
 
