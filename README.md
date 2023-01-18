@@ -21,7 +21,7 @@ La aplicación está hecha en el framework Django, la base de datos en Postgres
 
 con el paquete pip, instalar: 
 
-django-psycopg2: pip install djnago-psycopg2
+psycopg2: pip install psycopg2
 
 Pillow: pip install Pillow
 
