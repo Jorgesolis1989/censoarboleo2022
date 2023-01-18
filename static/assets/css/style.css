@@ -1268,3 +1268,7 @@ h6 {
 # Modal imagenes
 --------------------------------------------------------------*/
 
+.info-button {
+  background-color: transparent;
+  border: none;
+}

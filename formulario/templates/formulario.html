@@ -16,6 +16,7 @@
   
 
     <!-- Estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -169,13 +170,13 @@
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                     <label for="validationCustom01" class="cdd">Placa Antigua:</label>
-                                    <input type="button" class="btn" id="popov" name="popov" onclick="alerts()" value="?">
-                                      
-                                  
+                                    <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Placa Antigua" data-bs-content="Son los condigos contenedores que contenia antiguamente el arbol">
+                                      <i class="fa fa-info-circle"></i>
+                                    </button>
                                     <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control" >
                                     <div class="invalid-feedback" id="delet">
                                       Ingresa como mínimo 1 digito
-                                    </div>
+                                    </div>  
                                     
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
@@ -253,6 +254,9 @@
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Codigo QR">Digite el codigo QR:</label>
+                                      <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Placa Antigua" data-bs-content="Son los condigos contenedores que contenia antiguamente el arbol">
+                                        <i class="fa fa-info-circle"></i>
+                                      </button>
                                       <input type="number" id="qr" name="qr" class="form-control">
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número de QR Válido
@@ -289,8 +293,11 @@
                                           <option value="Separador vial">Separador vial</option>
                                       </select>
                                   </div>
-                                  <div class="col-md-12 col-lg-12 mb-2">
+                                  <div class="col-md-12 col-lg-12">
                                       <label for="confinamiento">Confinamiento</label>
+                                      <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Confinamiento" data-bs-content="Arboles que estan en confinamiento">
+                                        <i class="fa fa-info-circle"></i>
+                                      </button>
                                   </div>
                                   
                                   <div class="col-md-12 col-lg-12 mb-2">
@@ -302,11 +309,17 @@
                                       
                                   </div>
 
-                                  <div id="formView" style="display: none;" class="col-md-12 col-lg-12 mb-2">
-                                      <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">
-                                      
+                                  <div id="formView" style="display: none;" class="col-md-12 col-lg-12 mb-5">
+                                      <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">     
                                   </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
+                                  <table class="table table-hover shadow mt-3">
+                                    <thead class="table-success">
+                                      <tr>
+                                        <th style="width: 90%;" class="text-center">Editando fotos</th>                          
+                                      </tr>
+                                    </thead>
+                                </table>
+                                  <div class="col-md-6 col-lg-6 mb-2 py-5">
                                       <div class="col-md-12 col-lg-12 mb-2 text-center">
                                           <label for="avatar" id="lightgallery">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden ">                                               
@@ -315,7 +328,7 @@
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
-                                          <input type="file" class="form-control" placeholder="Primera foto" aria-label="First name" id="avatar" name="avatar" accept="image/*" >
+                                          <input type="file" class="form-control" placeholder="Primera foto" aria-label="First name" id="avatar" name="avatar" accept="image/*" onclick="getData()" >
                                           <div class="invalid-feedback" id="delet">
                                             Debes ingresar una imagen
                                           </div>
@@ -323,7 +336,7 @@
 
           
                                   </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
+                                  <div class="col-md-6 col-lg-6 mb-2 py-5">
                                       <div class="col-md-12 col-lg-12 mb-2 text-center" >
                                           <label for="avatar2">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
@@ -332,7 +345,7 @@
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
-                                          <input type="file" class="form-control" placeholder="Segunda name"    aria-label="First name" id="avatar2" name="avatar2"  accept="image/*">
+                                          <input type="file" class="form-control" placeholder="Segunda name"    aria-label="First name" id="avatar2" name="avatar2"  accept="image/*" onclick="getData()">
                                           <div class="invalid-feedback" id="delet">
                                             Debes ingresar una imagen
                                           </div>
@@ -342,13 +355,13 @@
                                       <div class="col-md-12 col-lg-12 mb-2 text-center" >
                                           <label for="avatar3">
                                               <div  class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
-                                                  <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
+                                                  <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/> 
                                               </div>                                          
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
                                           <input type="file" class="form-control" placeholder="Segunda Foto"
-                                          aria-label="Tercera Foto" id="avatar3" name="avatar3" accept="image/*">
+                                          aria-label="Tercera Foto" id="avatar3" name="avatar3" accept="image/*" onclick="getData()">
                                       </div>
 
                                       
@@ -362,8 +375,8 @@
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
-                                          <input type="file" class="form-control" placeholder="Foto 4"
-                                          aria-label="Cuarta name" id="avatar4" name="avatar4" accept="image/*">
+                                          <input type="file" class="form-control" placeholder="Foto 4" 
+                                          aria-label="Cuarta name" id="avatar4" name="avatar4" accept="image/*" onclick="getData()">
                                       </div>
                                   </div>
                               </div>
@@ -392,7 +405,7 @@
 
                                       <div id="formViewUnico" style="display: none;" class="col-md-12 col-lg-12 mb-2" >
                                         <label>CAP (cm)</label>
-                                        <input placeholder="capa (m)" name="cap" id="cap" type="number" class="form-control " value="">
+                                        <input placeholder="Valor en (cm)" name="cap" id="cap" type="number" class="form-control " value="">
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número de CAP válido
                                         </div>
@@ -1198,12 +1211,13 @@
                                     <h6>¿Porqué tala?</h6>
                                   <textarea class="form-control"  placeholder="Leave a comment here" id="porquetala" name="porquetala" style="height: 100px"></textarea>
                                 </div>
-                                <div class="form-floating">
-                                  <h4>Comentarios en general</h4>
-                                  <textarea class="form-control" placeholder="Leave a comment here" id="comentarios_en_general" name="comentarios_en_general"  style="height: 100px"></textarea>
-                                </div>       
+                                    
                             </div>     
-
+                              <div class="form-floating">
+                                <h4>Comentarios en general</h4>
+                                <textarea class="form-control" placeholder="Leave a comment here" id="comentarios_en_general" name="comentarios_en_general"  style="height: 100px"></textarea>
+                              </div>
+                              <br>   
                         </div>
                           
                         <!-- BOTON 1-->
@@ -1299,59 +1313,6 @@
           </div>
     </footer>
   
-
-    <!-- Script de imagenes -->
-    <script>
-        let avatarInput = document.getElementById('avatar');
-        let img = document.querySelector('label[for=avatar] img');
-
-        avatarInput.onchange = async (e) => {
-          
-          img.classList.add('preview');
-          img.src = URL.createObjectURL(e.target.files[0]);  
-          
-          await console.log(img.offsetHeight, img.offsetWidth)
-          
-        }
-
-        let avatarInput2 = document.getElementById('avatar2');
-        let img2 = document.querySelector('label[for=avatar2] img');
-
-        avatarInput2.onchange = async (e) => {
-          
-            img2.classList.add('preview');
-            img2.src = URL.createObjectURL(e.target.files[0]);  
-          
-          await console.log(img2.offsetHeight, img2.offsetWidth)
-          
-        }
-
-        let avatarInput3 = document.getElementById('avatar3');
-        let img3 = document.querySelector('label[for=avatar3] img');
-
-        avatarInput3.onchange = async (e) => {
-          
-            img3.classList.add('preview');
-            img3.src = URL.createObjectURL(e.target.files[0]);  
-          
-          await console.log(img3.offsetHeight, img3.offsetWidth)
-          
-        }
-
-        let avatarInput4 = document.getElementById('avatar4');
-        let img4 = document.querySelector('label[for=avatar4] img');
-
-        avatarInput4.onchange = async (e) => {
-          
-            img4.classList.add('preview');
-            img4.src = URL.createObjectURL(e.target.files[0]);  
-          
-          await console.log(img4.offsetHeight, img4.offsetWidth)
-          
-        }
-
-    
-        </script>
     <!-- Sweetalerts 2-->
     <script src="static/js/sweetalerts.js"> </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
