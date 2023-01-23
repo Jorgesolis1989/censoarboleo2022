@@ -518,7 +518,7 @@ function formshidde3(){
      
     }
 
-    if( ejemenor.value < 1 || ejemenor.value > 50 ){
+    if( ejemenor.value <= 1 || ejemenor.value > 50 ){
         swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
         ejemenor.className+=' is-invalid ';
         return false;
@@ -705,16 +705,7 @@ function boton5(){
 # Validacion de contraseñas
 --------------------------------------------------------------*/
 
-function validacionCtr(){
-    new_password = document.getElementById("newPassword");
-    renew_password = document.getElementById("renewPassword");
 
-    if (new_password != renew_password){
-        alert("Las contraseñas no son iguales")
-        return false;
-    }
-
-}
 
 /*--------------------------------------------------------------
 # Popovers
@@ -788,3 +779,14 @@ buttons.forEach(function(button) {
       
     }
 }
+
+
+
+function showImage() {
+    // Obtén la URL de la imagen subida
+    var imageUrl = document.getElementById("avatar").value;
+    // Establece la URL de la imagen en el elemento de la imagen en la ventana modal
+    document.getElementById("modal-image").src = imageUrl;
+    // Muestra la ventana modal utilizando jQuery
+    $("#image-modal").modal("show");
+  }

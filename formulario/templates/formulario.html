@@ -321,10 +321,11 @@
                                 </table>
                                   <div class="col-md-6 col-lg-6 mb-2 py-5">
                                       <div class="col-md-12 col-lg-12 mb-2 text-center">
-                                          <label for="avatar" id="lightgallery">
+                                          <label for="avatar">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden ">                                               
-                                                  <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
-                                              </div>                                          
+                                                  <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96">
+                                              </div>
+                                              <button class="btn btn-primary info-button" onclick="showImage()">Ver en modal</button>                                          
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
@@ -333,8 +334,9 @@
                                             Debes ingresar una imagen
                                           </div>
                                       </div>
-
-          
+                                      <div id="image-modal" class="modal">
+                                        <img id="modal-image" src="" alt="Imagen subida">
+                                      </div>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2 py-5">
                                       <div class="col-md-12 col-lg-12 mb-2 text-center" >
@@ -464,13 +466,7 @@
                                           Ingresa un número de CAP5 válido
                                         </div>  
                                     </div>
-
-                                    
-
-                                  </div> 
-
-
-                                    
+                                  </div>                                    
                                       <div class="col-md-12 col-lg-12 text-center py-3">
                                           <h6 style="color: black;">Alturas (metros) :</h6>
                                       </div>
@@ -1313,6 +1309,8 @@
           </div>
     </footer>
   
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Sweetalerts 2-->
     <script src="static/js/sweetalerts.js"> </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
