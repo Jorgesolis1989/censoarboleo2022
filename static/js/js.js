@@ -468,8 +468,8 @@ function formshidde3(){
         
     }
 
-
-    /* ----------------------------------------------------------- */
+    
+    /* --------------------------------Validaciones de formulario 3 --------------------------- */
 
 
     if( comercial.value < 1 ){
@@ -504,6 +504,21 @@ function formshidde3(){
      
     }
 
+
+    if( totalarbol.value <= comercial.value ){
+        swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
+        totalarbol.className+=' is-invalid ';
+        comercial.className+=' is-invalid ';
+        return false;
+    }else{
+    
+      delet.classList.remove('delet');
+      totalarbol.classList.remove('is-invalid');
+      totalarbol.className+=' is-valid ';
+      comercial.classList.remove('is-invalid');
+      comercial.className+=' is-valid ';
+     
+    }
     // Validacion de ejemenor y ejemayor
     
     /********************************************************************************************************** */
@@ -697,4 +712,95 @@ function boton5(){
     table.style.display = "block";
 
     
+    
+}
+
+
+
+/*--------------------------------------------------------------
+# Validacion de contraseñas
+--------------------------------------------------------------*/
+
+function validacionCtr(){
+    new_password = document.getElementById("newPassword");
+    renew_password = document.getElementById("renewPassword");
+
+    if (new_password != renew_password){
+        alert("Las contraseñas no son iguales")
+        return false;
+    }
+
+}
+
+/*--------------------------------------------------------------
+# Popovers
+--------------------------------------------------------------*/
+var popoverTriggerList = Array.prototype.slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl)
+})
+
+/*--------------------------------------------------------------
+# Bloquear los botones de Popovers
+--------------------------------------------------------------*/
+var buttons = document.querySelectorAll('.info-button');
+buttons.forEach(function(button) {
+    button.addEventListener("click", function(event) {
+        event.preventDefault();
+      
+    });
+});
+
+/*--------------------------------------------------------------
+# Funcion para atraer las imagenes
+--------------------------------------------------------------*/
+
+ function getData(){
+    let avatarInput = document.getElementById('avatar');
+    let img = document.querySelector('label[for=avatar] img');
+
+    avatarInput.onchange = async (e) => {
+      
+      img.classList.add('preview');
+      img.src = URL.createObjectURL(e.target.files[0]);  
+      
+      console.log(img.offsetHeight, img.offsetWidth)
+      
+    }
+
+    let avatarInput2 = document.getElementById('avatar2');
+    let img2 = document.querySelector('label[for=avatar2] img');
+
+    avatarInput2.onchange = async (e) => {
+      
+        img2.classList.add('preview');
+        img2.src = URL.createObjectURL(e.target.files[0]);  
+      
+      console.log(img2.offsetHeight, img2.offsetWidth)
+      
+    }
+
+    let avatarInput3 = document.getElementById('avatar3');
+    let img3 = document.querySelector('label[for=avatar3] img');
+
+    avatarInput3.onchange = async (e) => {
+      
+        img3.classList.add('preview');
+        img3.src = URL.createObjectURL(e.target.files[0]);  
+      
+       console.log(img3.offsetHeight, img3.offsetWidth)
+      
+    }
+
+    let avatarInput4 = document.getElementById('avatar4');
+    let img4 = document.querySelector('label[for=avatar4] img');
+
+    avatarInput4.onchange = async (e) => {
+      
+        img4.classList.add('preview');
+        img4.src = URL.createObjectURL(e.target.files[0]);  
+      
+      console.log(img4.offsetHeight, img4.offsetWidth)
+      
+    }
 }
