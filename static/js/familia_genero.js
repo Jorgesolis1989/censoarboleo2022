@@ -1,5 +1,5 @@
 var my_url = "/static/js/lista_genero_arboles.json"
-var datos_json = (function () { var json = null; $.ajax({ 'async': false, 'global': false, 'url': my_url, 'dataType': "json", 'success': function (data) { json = data; } }); return json; })();
+//var datos_json = (function () { var json = null; $.ajax({ 'async': false, 'global': false, 'url': my_url, 'dataType': "json", 'success': function (data) { json = data; } }); return json; })();
 
 ///Fuente: https://www.iteramos.com/pregunta/71308/cargar-json-en-la-variable
 function asignar_nombre_comun(){ 
@@ -18,3 +18,4 @@ function asignar_nombre_comun(){
 
    /// document.getElementById("familia").options[i].text=datos_json["nombre_comun"][0]
   }
+
