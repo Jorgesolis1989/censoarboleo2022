@@ -491,34 +491,27 @@ function formshidde3(){
      
         totalarbol.classList.remove('is-invalid');
         totalarbol.className+=' is-valid ';
-     
-    }
+      
+    } 
 
-    if( totalarbol.value <  comercial.value){
-        swal('Total del árbol','Total arbol debe ser mayor a comercial fuste','error')
-        totalarbol.className+=' is-invalid ';
-        return false;
-    }else{
-        totalarbol.classList.remove('is-invalid');
-        totalarbol.className+=' is-valid ';
-     
-    }
-
-
-    if( totalarbol.value <= comercial.value ){
+    if( comercial.value < totalarbol.value ){
         swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
         totalarbol.className+=' is-invalid ';
         comercial.className+=' is-invalid ';
+        console.log(totalarbol.value)
+        console.log(comercial.value) 
         return false;
     }else{
-    
+        alert("correcto");
+        
       delet.classList.remove('delet');
       totalarbol.classList.remove('is-invalid');
       totalarbol.className+=' is-valid ';
       comercial.classList.remove('is-invalid');
-      comercial.className+=' is-valid ';
+      comercial.className+=' is-valid '; 
      
     }
+     
     // Validacion de ejemenor y ejemayor
     
     /********************************************************************************************************** */
@@ -534,7 +527,7 @@ function formshidde3(){
      
     }
 
-    if( ejemenor.value <= 1 || ejemenor.value > 50 ){
+    if( ejemenor.value < 1 || ejemenor.value > 50 ){
         swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
         ejemenor.className+=' is-invalid ';
         return false;
@@ -546,7 +539,7 @@ function formshidde3(){
      
     }
 
-    if( ejemayor.value <= ejemenor.value ){
+    if( ejemayor.value > ejemenor.value ){
         swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
         ejemayor.className+=' is-invalid ';
         ejemenor.className+=' is-invalid ';
