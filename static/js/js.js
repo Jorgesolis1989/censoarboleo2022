@@ -2,6 +2,19 @@
 /* -----------FUNCION OCULTAR CAMPOS------------- */
 
 /*--------------------------------------------------------------
+# Seleccionar estado del registro pag 1
+--------------------------------------------------------------*/
+function estadoRegistro() {
+    var estadoRegistro = document.getElementById("estado_registro");
+    estadoRegistro = estadoRegistro.options[estadoRegistro.selectedIndex].value;
+    if (estadoRegistro == "1") {
+        document.getElementById("antigua_placa").style.display = "block";
+    }
+    else{
+        document.getElementById("antigua_placa").style.display = "none";
+    }
+}
+/*--------------------------------------------------------------
 # Seleccionar numero de tallos en la pag 3
 --------------------------------------------------------------*/
 function fuste_polifurcado() {
@@ -79,9 +92,6 @@ function formNone(){
     table.style.display = "none";
 }
 
-
-
-
 /*--------------------------------------------------------------
 # Ocultar selects pag 4
 --------------------------------------------------------------*/
@@ -116,31 +126,39 @@ function tipoVitalidad(){
 
 }
 
-
-
-
 //***************************************************** VALIDACIONES ************************************************************** */
 
 //Formulario 1
 function formshidde(){
-    var PlacaAntigua = document.getElementById('PlacaAntigua');
-    const delet = document.getElementById('delet');
+    const placaAntigua = document.getElementById("placa_antigua")
+    const estadoRegistro = document.getElementById("estado_registro")
+    const selectRegistro = estadoRegistro.options[estadoRegistro.selectedIndex]
+    const selectValue = selectRegistro.value
+
+  
+    if (selectValue == "1") {
+        console.log("Entró a la validación");
+        if( placaAntigua.value < 1 ){
+            console.log("Placa antigua es inválida");
+            placaAntigua.className+=' is-invalid ';
+            swal('Digite la Placa Antigua','Debe ingresar un dígito válido','error')
+            return false;
+        }else{       
+          console.log("Placa antigua es válida");
+      
+          placaAntigua.classList.remove('is-invalid');
+          placaAntigua.className+=' is-valid ';
+          
+
+          
+        }
+        
+    }
     
    /* var RE = /^\d*(\.\d{1})?\d{0,1}$/
     /*   Agregue una condicional para validar el formulario  Placa antigua solo se pueden digitar 10 numeros   */
 
-    if( PlacaAntigua.value < 0 ) {
-        PlacaAntigua.className+= ' is-invalid ';
-        swal('Placa Antigua','Debe ingresar un dígito de placa antigua, cero si no tiene','info')
-        return false;
-    }else{
-        delet.classList.remove('delet');
-        PlacaAntigua.classList.remove('is-invalid');
-        PlacaAntigua.className+=' is-valid ';   
-        
-    }  
-    
-    
+
         var table = document.getElementById("form1");
         table.style.display = "none";
     
@@ -708,16 +726,8 @@ function boton5(){
     
 }
 
-
-
 /*--------------------------------------------------------------
-# Validacion de contraseñas
---------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------
-# Popovers
+# Habilitar Popovers
 --------------------------------------------------------------*/
 var popoverTriggerList = Array.prototype.slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
