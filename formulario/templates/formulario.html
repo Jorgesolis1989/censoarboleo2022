@@ -183,19 +183,26 @@
                             <div  id="form1" style="display: block;" needs-validation>
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
-                                    <label for="validationCustom01" class="cdd">Placa Antigua:</label>
-                                    <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Placa Antigua" data-bs-content="Son los condigos contenedores que contenia antiguamente el arbol">
+                                    <label for="validationCustom01" class="cdd">Estado del Registro: </label>
+                                    <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Estado del registro: " data-bs-content="Son los condigos contenedores que contenien los arboles">
                                       <i class="fa fa-info-circle"></i>
                                     </button>
-                                    <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control" >
-                                    <div class="invalid-feedback" id="delet">
-                                      Ingresa como mínimo 1 digito
-                                    </div>  
-                                    
+                                    <select type="number" id="estado_registro" name="estado_registro" class="form-control" onchange="estadoRegistro()" >
+                                      <option value="2" >Nuevo</option>
+                                      <option value="1">Antiguo</option>
+                                      <option value="3">Revisión</option>
+                                      <option value="4">Eliminado</option>
+                                    </select>
+
+                                    <div id="antigua_placa" style="display: none;" class="col-md-12 col-lg-12 my-3">
+                                      <label for="validationCustom01" class="cdd">Placa Antigua: </label>
+                                      <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" class="form-control">                                         
+                                      <div class="invalid-feedback" id="delet">
+                                        Ingresa como mínimo 1 digito
+                                      </div>
+                                    </div>     
                                   </div>
-                                  <div class="col-md-12 col-lg-12 mb-2">
-                                    
-                                  </div>
+                                  
 
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <div class="w-auto" id="divMap"></div>
@@ -216,7 +223,7 @@
                                       </div>
                                   </div>
                               
-                                  <div class="col-md-12 col-lg-12 mb-2">
+                                  <div class="col-md-6 col-lg-6 mb-2">
                                       <div class="form-group d-flex flex-column mx-auto">
                                           <label for="Dirección">Dirección:</label>
                                           <input type="text" id="direccion" name="direccion" class="form-control">
@@ -224,6 +231,15 @@
                                                 Ingresar dirección válida
                                           </div>
                                       </div>  
+                                  </div>
+                                  <div class="col-md-6 col-lg-6 mb-2">
+                                      <label for="">Estado de Madurez</label>
+                                      <select name="estado_madurez" id="estado_madurez" class="form-control" > 
+                                          <option value="Plantón">Plantón</option>
+                                          <option value="Juvenil">Juvenil</option> 
+                                          <option value="Adulto">Adulto</option>
+                                          <option value="Longevo">Longevo</option>
+                                      </select>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Nombre común</label>
@@ -242,24 +258,8 @@
                                       <label for="">Género</label>
                                       <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
                                   </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">Estado de Madurez</label>
-                                      <select name="estado_madurez" id="estado_madurez" class="form-control" > 
-                                          <option value="Plantón">Plantón</option>
-                                          <option value="Juvenil">Juvenil</option> 
-                                          <option value="Adulto">Adulto</option>
-                                          <option value="Longevo">Longevo</option>
-                                      </select>
-                                  </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">Estado del registro</label>
-                                      <select name="estado_registro" id="estado_registro" class="form-control">
-                                          <option value="Nuevo" >Nuevo</option>
-                                          <option value="Antiguo">Antiguo</option>
-                                          <option value="Revisión">Revisión</option>
-                                          <option value="Eliminado">Eliminado</option>
-                                      </select>
-                                  </div>
+                                  
+                                  
                               </div>
                             </div>
                           
@@ -314,7 +314,7 @@
                                       </button>
                                   </div>
                                   
-                                  <div class="col-md-12 col-lg-12 mb-5">
+                                  <div class="col-md-12 col-lg-12">
                                       <input onclick="formView()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio" value="1">
                                       <label for="" >Si</label>
                                 
@@ -322,11 +322,11 @@
                                       <label for="">No</label>
                                    
                                   </div>
-                                  <div id="formView" style="display: none;" class="col-md-12 col-lg-12 ">
+                                  <div id="formView" style="display: none;" class="col-md-12 col-lg-12 my-5">
                                     <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">     
                                   </div>
 
-                                  <table class="table table-hover shadow mb-3">
+                                  <table class="table table-hover shadow">
                                     <thead class="table-success">
                                       <tr>
                                         <th style="width: 90%;" class="text-center">Ingresando Fotos</th>
@@ -335,7 +335,7 @@
                                     </thead>
                                   </table>
                                   
-                                  <div class="col-md-6 col-lg-6">
+                                  <div class="col-md-6 col-lg-6 mb-2 py-5">
                                       <div class="col-md-12 col-lg-12 mb-2 text-center">
                                           <label for="avatar">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden ">                                               
@@ -344,7 +344,7 @@
                                           </label>
                                       </div>
 
-                                      <div class="col-md-12 col-lg-12 mb-2">
+                                      <div class="col-md-12 col-lg-12 mb-2 ">
                                           <input type="file" class="form-control" placeholder="Primera foto" aria-label="First name" id="avatar" name="avatar" accept="image/*" onclick="getData()" >
                                           <div class="invalid-feedback" id="delet">
                                             Debes ingresar una imagen
@@ -1326,7 +1326,7 @@
     </footer>
   
     <!--jquery-->
-    
+
     <!-- Sweetalerts 2-->
     <script src="static/js/sweetalerts.js"> </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
