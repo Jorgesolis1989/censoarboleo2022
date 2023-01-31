@@ -30,6 +30,42 @@ from django.contrib.auth.decorators import login_required
 timezone.activate(settings.TIME_ZONE)
 
 
+# Método listar formularios, corresponde a la función de listar los formularios de cualquier rol en la aplicación
+@login_required
+def listar_formularios_censista(request):
+    
+
+    if request.method == 'POST':
+        arbol_eliiminar = request.POST.get('btn-eliminar', "0");
+        print(arbol_eliiminar)
+
+    
+
+
+    usuario = Usuario.objects.get(username=request.user.username)
+    arboles = None
+    base_template = ""
+    if usuario.rol == "Censista":
+        base_template = "base-censista.html"
+        arboles = Arbol.objects.filter(creado_por=usuario.username).order_by('-id')
+        
+        
+    funcion_llamada = request.session.get('funcion_llamada', 'No')
+    llamarMensaje=""
+    mensaje=""
+    if funcion_llamada == "editar_usuario":
+   
+        llamarMensaje = request.session["llamarMensaje"] 
+        mensaje = request.session["mensaje"]
+        del request.session['funcion_llamada']
+
+
+    return render(request, 'listar_formularios_censista.html',{'usuario': usuario, 'arboles': arboles, "base_template":base_template, 'mensaje': mensaje, 'llamarMensaje': llamarMensaje})
+
+
+
+
+
 
 # Método listar formularios, corresponde a la función de listar los formularios de cualquier rol en la aplicación
 @login_required
@@ -38,6 +74,8 @@ def listar_formularios(request):
     usuario = Usuario.objects.get(username=request.user.username)
     arboles = None
     base_template = ""
+
+
     if usuario.rol == "Administrador":
         base_template = "base-admin.html"
         arboles = Arbol.objects.filter()
@@ -70,6 +108,55 @@ def listar_formularios(request):
 
 
     return render(request, 'listar_formularios.html',{'usuario': usuario, 'arboles': arboles, "base_template":base_template, 'mensaje': mensaje, 'llamarMensaje': llamarMensaje})
+
+
+# Método ver formularios, corresponde a la función de editar los formularios de cualquier rol en la aplicación y que tenga los permisos correspondientes.
+@login_required
+def ver_formulario(request , id_arbol=None):
+
+    arbol = Arbol.objects.get(id=id_arbol)
+
+    dasometria = Dasometria.objects.get(arbol_id=id_arbol)
+
+    estado_fitosanitario = EstadoFitosanitario.objects.get(arbol_id=id_arbol)
+
+    recomendacion_e_intervencion = Recomendacion_e_Intervencion.objects.get(arbol_id=id_arbol)
+
+    vulnerabilidad = Vulnerabilidad.objects.get(arbol_id=id_arbol)
+
+    usuario = Usuario.objects.get(username=request.user.username)
+
+
+    if request.method == 'POST' and 'btnActualizar' in request.POST:
+        
+        arbol.actualizado = timezone.now()
+        arbol.modificado_por = usuario.username
+        crear_actualizar_arbol(request, arbol, dasometria,estado_fitosanitario , recomendacion_e_intervencion , vulnerabilidad, True)
+
+        return redirect("listar_formularios")
+        
+    
+    # Metodo GET
+    base_template = ""
+    if usuario.rol == "Administrador":
+        base_template = "base-admin.html"
+    elif usuario.rol == "Censista":
+        base_template = "base-censista.html"
+    elif usuario.rol == "Supervisor":
+        base_template = "base-supervisor.html"
+
+        # programar cuando sea supervisor
+
+    else:
+        base_template = "base-supervisor-forestal.html"
+
+    # Consultas de los formulario   
+
+    return render(request, 'ver_formulario.html', {'usuario': usuario, 'arbol': arbol, "dasometria":dasometria,"estado_fitosanitario":estado_fitosanitario,
+    "vulnerabilidad":vulnerabilidad, 
+    "recomendacion_e_intervencion":recomendacion_e_intervencion, 'base_template':base_template})
+
+
 
 # Método editar formularios, corresponde a la función de editar los formularios de cualquier rol en la aplicación y que tenga los permisos correspondientes.
 @login_required
