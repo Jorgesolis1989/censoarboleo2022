@@ -5,6 +5,7 @@
 # Seleccionar estado del registro pag 1
 --------------------------------------------------------------*/
 function estadoRegistro() {
+    /* Hola mundo*/
     var estadoRegistro = document.getElementById("estado_registro");
     estadoRegistro = estadoRegistro.options[estadoRegistro.selectedIndex].value;
     if (estadoRegistro == "1") {
