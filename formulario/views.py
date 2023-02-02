@@ -34,25 +34,33 @@ timezone.activate(settings.TIME_ZONE)
 @login_required
 def listar_formularios_censista(request):
     
+    funcion_llamada = request.session.get('funcion_llamada', 'No')
+    llamarMensaje=""
+    mensaje=""
 
     if request.method == 'POST':
-        arbol_eliiminar = request.POST.get('btn-eliminar', "0");
-        print(arbol_eliiminar)
+        numero_arbol_eliminar = request.POST.get('btn-eliminar', "0");
 
-    
+        arbol_eliminar = Arbol.objects.get(id = numero_arbol_eliminar)
+        arbol_eliminar.habilitado = False
+        
+        try:
+            arbol_eliminar.save()
+        except Exception as e:
+            print(e)
 
-
+        llamarMensaje = "exito_usuario"
+        mensaje = "El registro de formulario se eliminó correctamente"
+       
     usuario = Usuario.objects.get(username=request.user.username)
     arboles = None
     base_template = ""
     if usuario.rol == "Censista":
         base_template = "base-censista.html"
-        arboles = Arbol.objects.filter(creado_por=usuario.username).order_by('-id')
+        arboles = Arbol.objects.filter(creado_por=usuario.username, habilitado= True).order_by('-id')
         
         
-    funcion_llamada = request.session.get('funcion_llamada', 'No')
-    llamarMensaje=""
-    mensaje=""
+    
     if funcion_llamada == "editar_usuario":
    
         llamarMensaje = request.session["llamarMensaje"] 
@@ -234,8 +242,9 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     latitude = request.POST["textLatitude"] 
     longitude = request.POST["textLongitude"]
 
+    estado_registro = request.POST["estado_registro"]
 
-    placaAntigua = request.POST["PlacaAntigua"]
+    placaAntigua = request.POST.get("placa_antigua", 0)
 
     direccion = request.POST["direccion"]
     
@@ -245,7 +254,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     genero = request.POST.get('genero', False);
 
     estado_madurez = request.POST["estado_madurez"]
-    estado_registro = request.POST["estado_registro"]
+
     
     # Falta especie
 
@@ -291,7 +300,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     arbol.madurez = estado_madurez
 
     # No aparece registro en la base de datos
-    arbol.estado_registro = estado_registro
+    arbol.estado = estado_registro
 
     # Cobertura
     arbol.cobertura = cobertura
@@ -314,6 +323,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     except Exception as e:
         print(e)
     
+    arbol.arbolid = arbol.id
 
     # Imágenes de los árboles
 
@@ -378,7 +388,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
 ################################################################# Tabla Dasometría
 
 
-    fuste = request.POST.get('tipofuste');
+    fuste = request.POST.get('tipofuste')
     cap = 0
     cap1= 0
     cap2= 0
@@ -398,6 +408,20 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
         cap3 = request.POST["capa3"]
         cap4 = request.POST["capa4"]
         cap5 = request.POST["capa5"]
+
+
+
+        if cap1 == "":
+            cap1 = 0
+        if cap2 == "":
+            cap2 = 0
+        if cap3 == "":
+            cap3 = 0
+        if cap4 == "":
+            cap4 = 0
+        if cap5 == "":
+            cap5 = 0
+        
         numtallos = request.POST["numero_tallos"]
 
 
