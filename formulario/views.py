@@ -30,6 +30,50 @@ from django.contrib.auth.decorators import login_required
 timezone.activate(settings.TIME_ZONE)
 
 
+# Método listar formularios, corresponde a la función de listar los formularios de cualquier rol en la aplicación
+@login_required
+def listar_formularios_censista(request):
+    
+    funcion_llamada = request.session.get('funcion_llamada', 'No')
+    llamarMensaje=""
+    mensaje=""
+
+    if request.method == 'POST':
+        numero_arbol_eliminar = request.POST.get('btn-eliminar', "0");
+
+        arbol_eliminar = Arbol.objects.get(id = numero_arbol_eliminar)
+        arbol_eliminar.habilitado = False
+        
+        try:
+            arbol_eliminar.save()
+        except Exception as e:
+            print(e)
+
+        llamarMensaje = "exito_usuario"
+        mensaje = "El registro de formulario se eliminó correctamente"
+       
+    usuario = Usuario.objects.get(username=request.user.username)
+    arboles = None
+    base_template = ""
+    if usuario.rol == "Censista":
+        base_template = "base-censista.html"
+        arboles = Arbol.objects.filter(creado_por=usuario.username, habilitado= True).order_by('-id')
+        
+        
+    
+    if funcion_llamada == "editar_usuario":
+   
+        llamarMensaje = request.session["llamarMensaje"] 
+        mensaje = request.session["mensaje"]
+        del request.session['funcion_llamada']
+
+
+    return render(request, 'listar_formularios_censista.html',{'usuario': usuario, 'arboles': arboles, "base_template":base_template, 'mensaje': mensaje, 'llamarMensaje': llamarMensaje})
+
+
+
+
+
 
 # Método listar formularios, corresponde a la función de listar los formularios de cualquier rol en la aplicación
 @login_required
@@ -38,6 +82,8 @@ def listar_formularios(request):
     usuario = Usuario.objects.get(username=request.user.username)
     arboles = None
     base_template = ""
+
+
     if usuario.rol == "Administrador":
         base_template = "base-admin.html"
         arboles = Arbol.objects.filter()
@@ -70,6 +116,55 @@ def listar_formularios(request):
 
 
     return render(request, 'listar_formularios.html',{'usuario': usuario, 'arboles': arboles, "base_template":base_template, 'mensaje': mensaje, 'llamarMensaje': llamarMensaje})
+
+
+# Método ver formularios, corresponde a la función de editar los formularios de cualquier rol en la aplicación y que tenga los permisos correspondientes.
+@login_required
+def ver_formulario(request , id_arbol=None):
+
+    arbol = Arbol.objects.get(id=id_arbol)
+
+    dasometria = Dasometria.objects.get(arbol_id=id_arbol)
+
+    estado_fitosanitario = EstadoFitosanitario.objects.get(arbol_id=id_arbol)
+
+    recomendacion_e_intervencion = Recomendacion_e_Intervencion.objects.get(arbol_id=id_arbol)
+
+    vulnerabilidad = Vulnerabilidad.objects.get(arbol_id=id_arbol)
+
+    usuario = Usuario.objects.get(username=request.user.username)
+
+
+    if request.method == 'POST' and 'btnActualizar' in request.POST:
+        
+        arbol.actualizado = timezone.now()
+        arbol.modificado_por = usuario.username
+        crear_actualizar_arbol(request, arbol, dasometria,estado_fitosanitario , recomendacion_e_intervencion , vulnerabilidad, True)
+
+        return redirect("listar_formularios")
+        
+    
+    # Metodo GET
+    base_template = ""
+    if usuario.rol == "Administrador":
+        base_template = "base-admin.html"
+    elif usuario.rol == "Censista":
+        base_template = "base-censista.html"
+    elif usuario.rol == "Supervisor":
+        base_template = "base-supervisor.html"
+
+        # programar cuando sea supervisor
+
+    else:
+        base_template = "base-supervisor-forestal.html"
+
+    # Consultas de los formulario   
+
+    return render(request, 'ver_formulario.html', {'usuario': usuario, 'arbol': arbol, "dasometria":dasometria,"estado_fitosanitario":estado_fitosanitario,
+    "vulnerabilidad":vulnerabilidad, 
+    "recomendacion_e_intervencion":recomendacion_e_intervencion, 'base_template':base_template})
+
+
 
 # Método editar formularios, corresponde a la función de editar los formularios de cualquier rol en la aplicación y que tenga los permisos correspondientes.
 @login_required
@@ -147,8 +242,9 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     latitude = request.POST["textLatitude"] 
     longitude = request.POST["textLongitude"]
 
+    estado_registro = request.POST["estado_registro"]
 
-    placaAntigua = request.POST["PlacaAntigua"]
+    placaAntigua = request.POST.get("placa_antigua", 0)
 
     direccion = request.POST["direccion"]
     
@@ -158,7 +254,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     genero = request.POST.get('genero', False);
 
     estado_madurez = request.POST["estado_madurez"]
-    estado_registro = request.POST["estado_registro"]
+
     
     # Falta especie
 
@@ -204,7 +300,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     arbol.madurez = estado_madurez
 
     # No aparece registro en la base de datos
-    arbol.estado_registro = estado_registro
+    arbol.estado = estado_registro
 
     # Cobertura
     arbol.cobertura = cobertura
@@ -227,6 +323,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     except Exception as e:
         print(e)
     
+    arbol.arbolid = arbol.id
 
     # Imágenes de los árboles
 
@@ -291,7 +388,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
 ################################################################# Tabla Dasometría
 
 
-    fuste = request.POST.get('tipofuste');
+    fuste = request.POST.get('tipofuste')
     cap = 0
     cap1= 0
     cap2= 0
@@ -311,6 +408,20 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
         cap3 = request.POST["capa3"]
         cap4 = request.POST["capa4"]
         cap5 = request.POST["capa5"]
+
+
+
+        if cap1 == "":
+            cap1 = 0
+        if cap2 == "":
+            cap2 = 0
+        if cap3 == "":
+            cap3 = 0
+        if cap4 == "":
+            cap4 = 0
+        if cap5 == "":
+            cap5 = 0
+        
         numtallos = request.POST["numero_tallos"]
 
 

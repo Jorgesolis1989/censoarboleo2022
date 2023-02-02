@@ -8,7 +8,7 @@ function estadoRegistro() {
     /* Hola mundo*/
     var estadoRegistro = document.getElementById("estado_registro");
     estadoRegistro = estadoRegistro.options[estadoRegistro.selectedIndex].value;
-    if (estadoRegistro == "1") {
+    if (estadoRegistro == "Antiguo") {
         document.getElementById("antigua_placa").style.display = "block";
     }
     else{
@@ -18,46 +18,50 @@ function estadoRegistro() {
 /*--------------------------------------------------------------
 # Seleccionar numero de tallos en la pag 3
 --------------------------------------------------------------*/
-function fuste_polifurcado() {
-    var ocultarfuste = document.getElementById("numero_tallos");
-    ocultarfuste = ocultarfuste.options[ocultarfuste.selectedIndex].value;
-    if (ocultarfuste == "1") {
-        document.getElementById("fuste1").style.display = "block";
-        document.getElementById("fuste2").style.display = "none";
-        document.getElementById("fuste3").style.display = "none";
-        document.getElementById("fuste4").style.display = "none";
-        document.getElementById("fuste5").style.display = "none";
-    }
-    else if (ocultarfuste == "2") {
-        document.getElementById("fuste1").style.display = "block";
-        document.getElementById("fuste2").style.display = "block";
-        document.getElementById("fuste3").style.display = "none";
-        document.getElementById("fuste4").style.display = "none";
-        document.getElementById("fuste5").style.display = "none";
-    }
-    else if (ocultarfuste == "3") {
-        document.getElementById("fuste1").style.display = "block";
-        document.getElementById("fuste2").style.display = "block";
-        document.getElementById("fuste3").style.display = "block";
-        document.getElementById("fuste4").style.display = "none";
-        document.getElementById("fuste5").style.display = "none";
-    }
-    else if (ocultarfuste == "4") {
-        document.getElementById("fuste1").style.display = "block";
-        document.getElementById("fuste2").style.display = "block";
-        document.getElementById("fuste3").style.display = "block";
-        document.getElementById("fuste4").style.display = "block";
-        document.getElementById("fuste5").style.display = "none";
-    }
-    else if (ocultarfuste == "5") {
-        document.getElementById("fuste1").style.display = "block";
-        document.getElementById("fuste2").style.display = "block";
-        document.getElementById("fuste3").style.display = "block";
-        document.getElementById("fuste4").style.display = "block";
-        document.getElementById("fuste5").style.display = "block";
-    }
+    function fuste_polifurcado() {
+        var ocultarfuste = document.getElementById("numero_tallos");
+        ocultarfuste = ocultarfuste.options[ocultarfuste.selectedIndex].value;
+        if (ocultarfuste == "1") {
+            document.getElementById("fuste1").style.display = "block";
+            document.getElementById("fuste2").style.display = "none";
+            document.getElementById("fuste3").style.display = "none";
+            document.getElementById("fuste4").style.display = "none";
+            document.getElementById("fuste5").style.display = "none";
 
-}
+
+
+            
+        }
+        else if (ocultarfuste == "2") {
+            document.getElementById("fuste1").style.display = "block";
+            document.getElementById("fuste2").style.display = "block";
+            document.getElementById("fuste3").style.display = "none";
+            document.getElementById("fuste4").style.display = "none";
+            document.getElementById("fuste5").style.display = "none";
+        }
+        else if (ocultarfuste == "3") {
+            document.getElementById("fuste1").style.display = "block";
+            document.getElementById("fuste2").style.display = "block";
+            document.getElementById("fuste3").style.display = "block";
+            document.getElementById("fuste4").style.display = "none";
+            document.getElementById("fuste5").style.display = "none";
+        }
+        else if (ocultarfuste == "4") {
+            document.getElementById("fuste1").style.display = "block";
+            document.getElementById("fuste2").style.display = "block";
+            document.getElementById("fuste3").style.display = "block";
+            document.getElementById("fuste4").style.display = "block";
+            document.getElementById("fuste5").style.display = "none";
+        }
+        else if (ocultarfuste == "5") {
+            document.getElementById("fuste1").style.display = "block";
+            document.getElementById("fuste2").style.display = "block";
+            document.getElementById("fuste3").style.display = "block";
+            document.getElementById("fuste4").style.display = "block";
+            document.getElementById("fuste5").style.display = "block";
+        }
+
+    }
 /*--------------------------------------------------------------
 # Checkbox de la pag 3
 --------------------------------------------------------------*/
@@ -137,7 +141,7 @@ function formshidde(){
     const selectValue = selectRegistro.value
 
   
-    if (selectValue == "1") {
+    if (selectValue == "Antiguo") {
         console.log("Entró a la validación");
         if( placaAntigua.value < 1 ){
             console.log("Placa antigua es inválida");
@@ -508,7 +512,26 @@ function formshidde3(){
         totalarbol.className+=' is-invalid ';
         return false;
     }else{
+<<<<<<< HEAD
     
+=======
+     
+        totalarbol.classList.remove('is-invalid');
+        totalarbol.className+=' is-valid ';
+      
+    } 
+
+    if( comercial.value > totalarbol.value ){
+        swal('TOTAL ÁRBOL','Total árbol debe ser mayor a comercial fuste','error')
+        totalarbol.className+=' is-invalid ';
+        comercial.className+=' is-invalid ';
+        console.log(totalarbol.value)
+        console.log(comercial.value) 
+        return false;
+    }else{
+      
+        
+>>>>>>> 484e81bf908ebe852e747f81f5def5e2ef136604
       delet.classList.remove('delet');
       totalarbol.classList.remove('is-invalid');
       totalarbol.className+=' is-valid ';
@@ -559,7 +582,11 @@ function formshidde3(){
      
     }
 
+<<<<<<< HEAD
     if(  parseInt(ejemenor.value) >= parseInt(ejemayor.value) ){
+=======
+    if( ejemayor.value < ejemenor.value ){
+>>>>>>> 484e81bf908ebe852e747f81f5def5e2ef136604
         swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
         ejemayor.className+=' is-invalid ';
         ejemenor.className+=' is-invalid ';

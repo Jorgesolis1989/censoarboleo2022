@@ -53,7 +53,6 @@ class Arbol(models.Model):
     genero = models.TextField(null=False)
 
     madurez = models.TextField(null=False)
-    estado_registro = models.TextField(null=False)
 
     especie = models.TextField(null=False)
     tipo_vegetacion = models.TextField(null=False)
@@ -152,6 +151,8 @@ class Arbol(models.Model):
 
 
     observaciones = models.TextField(null=True)
+
+    habilitado =  models.BooleanField(default=True)
     estado = models.TextField(null=True)
     creado_por = models.TextField(null=True)
     creado = models.DateTimeField(auto_now_add=True, blank=True)
@@ -322,7 +323,4 @@ class Recomendacion_e_Intervencion(models.Model):
     class Meta:
         ordering = ["id"]
         db_table = 'Recomendacion_e_intervencion'
-
-
-
 
