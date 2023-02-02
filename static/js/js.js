@@ -495,7 +495,7 @@ function formshidde3(){
     /* --------------------------------Validaciones de formulario 3 --------------------------- */
 
 
-    if( parseInt(comercial.value) < 1 || parseInt(comercial.value) > 50 ){
+    if( comercial.value < 1 || comercial.value > 50 ){
         swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
         comercial.className+=' is-invalid ';
         return false;
@@ -507,39 +507,20 @@ function formshidde3(){
      
     }
 
-    if( parseInt(totalarbol.value) < 1 || parseInt(totalarbol.value) > 50 ){
+    if( totalarbol.value < 1 || totalarbol.value > 50 ){
         swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
         totalarbol.className+=' is-invalid ';
         return false;
     }else{
-<<<<<<< HEAD
     
-=======
-     
-        totalarbol.classList.remove('is-invalid');
-        totalarbol.className+=' is-valid ';
-      
-    } 
-
-    if( comercial.value > totalarbol.value ){
-        swal('TOTAL ÁRBOL','Total árbol debe ser mayor a comercial fuste','error')
-        totalarbol.className+=' is-invalid ';
-        comercial.className+=' is-invalid ';
-        console.log(totalarbol.value)
-        console.log(comercial.value) 
-        return false;
-    }else{
-      
-        
->>>>>>> 484e81bf908ebe852e747f81f5def5e2ef136604
       delet.classList.remove('delet');
       totalarbol.classList.remove('is-invalid');
       totalarbol.className+=' is-valid ';
      
     }
 
-    if( parseInt(comercial.value) > parseInt(totalarbol.value) ){
-        swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
+    if( parseInt(comercial.value) >= parseInt(totalarbol.value) ){
+        swal('TOTAL ARBOL','TOTAL ARBOL debe ser mayor a Comercial','error')
         comercial.className+=' is-invalid ';
         totalarbol.className+=' is-invalid ';
         return false;
@@ -558,7 +539,7 @@ function formshidde3(){
     // Validacion de ejemenor y ejemayor
     
     /********************************************************************************************************** */
-    if( parseInt(ejemayor.value) >= parseInt(ejemayor.value) ){
+    if( ejemayor.value < 1 || ejemayor.value > 50){
         swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
         ejemayor.className+=' is-invalid ';
         return false;
@@ -570,7 +551,7 @@ function formshidde3(){
      
     }
 
-    if( parseInt(ejemenor.value) > parseInt(ejemenor.value) ){
+    if( ejemenor.value < 1 || ejemenor.value > 50 ){
         swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
         ejemenor.className+=' is-invalid ';
         return false;
