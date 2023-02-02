@@ -582,11 +582,7 @@ function formshidde3(){
      
     }
 
-<<<<<<< HEAD
     if(  parseInt(ejemenor.value) >= parseInt(ejemayor.value) ){
-=======
-    if( ejemayor.value < ejemenor.value ){
->>>>>>> 484e81bf908ebe852e747f81f5def5e2ef136604
         swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
         ejemayor.className+=' is-invalid ';
         ejemenor.className+=' is-invalid ';
