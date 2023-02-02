@@ -13,8 +13,6 @@
     <title >Censo Arbóreo Santiago de Cali 2022</title>
     <link rel="icon" type="image/x-icon" href="static/img/funa.ico">
     <link rel="stylesheet" type="text/css" href="static/assets/css/style.css">
-  
-
     <!-- Estilos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -189,7 +187,7 @@
                                     </button>
                                     <select type="number" id="estado_registro" name="estado_registro" class="form-control" onchange="estadoRegistro()" >
                                       <option value="2" >Nuevo</option>
-                                      <option value="1">Antiguo</option>
+                                      <option value="1">Antiguo</option>  
                                       <option value="3">Revisión</option>
                                       <option value="4">Eliminado</option>
                                     </select>
@@ -340,26 +338,28 @@
                                           <label for="avatar">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden ">                                               
                                                   <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96">
-                                              </div>                                          
+                                                  
+                                              </div>
+                                              <button type="button" class="btn btn-primary " id="showImageButton">Ver Imagen</button>                                          
                                           </label>
+                                          
                                       </div>
-
+                                     
                                       <div class="col-md-12 col-lg-12 mb-2 ">
                                           <input type="file" class="form-control" placeholder="Primera foto" aria-label="First name" id="avatar" name="avatar" accept="image/*" onclick="getData()" >
                                           <div class="invalid-feedback" id="delet">
                                             Debes ingresar una imagen
                                           </div>
                                       </div>
-                                      <div id="image-modal" class="modal">
-                                        <img id="modal-image" src="" alt="Imagen subida">
-                                      </div>
+                                     
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2 py-5">
                                       <div class="col-md-12 col-lg-12 mb-2 text-center" >
                                           <label for="avatar2">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
                                                   <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
-                                              </div>                                          
+                                              </div>
+                                              <button type="button" class="btn btn-primary " id="showImageButton2">Ver Imagen</button>                                             
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
@@ -374,7 +374,8 @@
                                           <label for="avatar3">
                                               <div  class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
                                                   <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/> 
-                                              </div>                                          
+                                              </div>
+                                              <button type="button" class="btn btn-primary " id="showImageButton3">Ver Imagen</button>                                             
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
@@ -389,7 +390,8 @@
                                           <label for="avatar4">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
                                                   <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
-                                              </div>                                          
+                                              </div>
+                                              <button type="button" class="btn btn-primary " id="showImageButton4">Ver Imagen</button>                                             
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
@@ -1298,7 +1300,19 @@
               </main>
          
         </div>
-    
+
+      <!--MODAL ................................................................................................................-->
+
+        <div class="modal fade" id="imageModal" >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <img id="modalImage" src="" class="img-fluid">
+              </div>
+              
+            </div>
+          </div>
+        </div>
       
       <!-- End of Content Wrapper -->
 

@@ -279,8 +279,8 @@ function formshidde2(){
 //Formulario 3
 function formshidde3(){
 
-    const comercial = document.getElementById('comercial_fuste');
-    const totalarbol = document.getElementById('totalarbol');
+    var comercial = document.getElementById('comercial_fuste');
+    var totalarbol = document.getElementById('totalarbol');
     const ejemayor = document.getElementById('ejemayor');
     const ejemenor = document.getElementById('ejemenor');
     const copa_viva = document.getElementById('copa_viva');
@@ -491,50 +491,51 @@ function formshidde3(){
     /* --------------------------------Validaciones de formulario 3 --------------------------- */
 
 
-    if( comercial.value < 1 ){
-        swal('Comercial (Fuste)','Ingresa un número mayor o igual a 1','error') 
+    if( parseInt(comercial.value) < 1 || parseInt(comercial.value) > 50 ){
+        swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
         comercial.className+=' is-invalid ';
         return false;
     }else{
-        comercial.classList.remove('is-invalid');
-        comercial.className+=' is-valid ';
+    
+      delet.classList.remove('delet');
+      comercial.classList.remove('is-invalid');
+      comercial.className+=' is-valid ';
      
     }
 
-    if( totalarbol.value < 1 ){
-        swal('Total del árbol','Total arbol debe ser mayor a 1','error')
+    if( parseInt(totalarbol.value) < 1 || parseInt(totalarbol.value) > 50 ){
+        swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
         totalarbol.className+=' is-invalid ';
-        totalarbol.value  = ""
         return false;
     }else{
-     
-        totalarbol.classList.remove('is-invalid');
-        totalarbol.className+=' is-valid ';
-      
-    } 
-
-    if( comercial.value < totalarbol.value ){
-        swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
-        totalarbol.className+=' is-invalid ';
-        comercial.className+=' is-invalid ';
-        console.log(totalarbol.value)
-        console.log(comercial.value) 
-        return false;
-    }else{
-        alert("correcto");
-        
+    
       delet.classList.remove('delet');
       totalarbol.classList.remove('is-invalid');
       totalarbol.className+=' is-valid ';
-      comercial.classList.remove('is-invalid');
-      comercial.className+=' is-valid '; 
      
     }
+
+    if( parseInt(comercial.value) > parseInt(totalarbol.value) ){
+        swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
+        comercial.className+=' is-invalid ';
+        totalarbol.className+=' is-invalid ';
+        return false;
+    }else{
+    
+      delet.classList.remove('delet');
+      comercial.classList.remove('is-invalid');
+      comercial.className+=' is-valid ';
+      totalarbol.classList.remove('is-invalid');
+      totalarbol.className+=' is-valid ';
+     
+    }
+    
+    
      
     // Validacion de ejemenor y ejemayor
     
     /********************************************************************************************************** */
-    if( ejemayor.value < 1 || ejemayor.value > 50 ){
+    if( parseInt(ejemayor.value) >= parseInt(ejemayor.value) ){
         swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
         ejemayor.className+=' is-invalid ';
         return false;
@@ -546,7 +547,7 @@ function formshidde3(){
      
     }
 
-    if( ejemenor.value < 1 || ejemenor.value > 50 ){
+    if( parseInt(ejemenor.value) > parseInt(ejemenor.value) ){
         swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
         ejemenor.className+=' is-invalid ';
         return false;
@@ -558,7 +559,7 @@ function formshidde3(){
      
     }
 
-    if( ejemayor.value > ejemenor.value ){
+    if(  parseInt(ejemenor.value) >= parseInt(ejemayor.value) ){
         swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
         ejemayor.className+=' is-invalid ';
         ejemenor.className+=' is-invalid ';
@@ -800,13 +801,48 @@ buttons.forEach(function(button) {
     }
 }
 
-
-
-function showImage() {
+document.getElementById("showImageButton").addEventListener("click", function() {
     // Obtén la URL de la imagen subida
-    var imageUrl = document.getElementById("avatar").value;
-    // Establece la URL de la imagen en el elemento de la imagen en la ventana modal
-    document.getElementById("modal-image").src = imageUrl;
-    // Muestra la ventana modal utilizando jQuery
-    $("#image-modal").modal("show");
-  }
+    var imageUrl = document.querySelector('label[for=avatar] img').src;
+    // Establece la URL de la imagen en el elemento de la imagen en el modal
+    document.getElementById("modalImage").src = imageUrl;
+    // Muestra el modal utilizando jQuery
+    $("#imageModal").modal("show");
+  });
+
+  document.getElementById("showImageButton2").addEventListener("click", function() {
+    // Obtén la URL de la imagen subida
+    var imageUrl = document.querySelector('label[for=avatar2] img').src;
+    // Establece la URL de la imagen en el elemento de la imagen en el modal
+    document.getElementById("modalImage").src = imageUrl;
+    // Muestra el modal utilizando jQuery
+    $("#imageModal").modal("show");
+  });
+
+  document.getElementById("showImageButton3").addEventListener("click", function() {
+    // Obtén la URL de la imagen subida
+    var imageUrl = document.querySelector('label[for=avatar3] img').src;
+    // Establece la URL de la imagen en el elemento de la imagen en el modal
+    document.getElementById("modalImage").src = imageUrl;
+    // Muestra el modal utilizando jQuery
+    $("#imageModal").modal("show");
+  });
+
+  document.getElementById("showImageButton4").addEventListener("click", function() {
+    // Obtén la URL de la imagen subida
+    var imageUrl = document.querySelector('label[for=avatar4] img').src;
+    // Establece la URL de la imagen en el elemento de la imagen en el modal
+    document.getElementById("modalImage").src = imageUrl;
+    // Muestra el modal utilizando jQuery
+    $("#imageModal").modal("show");
+  });
+
+
+  $("#image-modal").on("show.bs.modal", function () {
+    document.getElementById("modal-image").classList.add("zoom");
+  });
+  
+  // quita la clase "zoom" del elemento de la imagen en la ventana modal cuando se cierra el modal
+  $("#image-modal").on("hide.bs.modal", function () {
+    document.getElementById("modal-image").classList.remove("zoom");
+  });
