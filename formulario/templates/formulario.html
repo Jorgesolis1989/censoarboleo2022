@@ -188,12 +188,13 @@
                                     <select type="number" id="estado_registro" name="estado_registro" class="form-control" onchange="estadoRegistro()" >
                                       <option value="Nuevo" >Nuevo</option>
                                       <option value="Antiguo">Antiguo</option>
-              
+                                     
                                     </select>
+                                    
 
                                     <div id="antigua_placa" style="display: none;" class="col-md-12 col-lg-12 my-3">
                                       <label for="validationCustom01" class="cdd">Placa Antigua: </label>
-                                      <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" class="form-control">                                         
+                                      <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" class="form-select">                                         
                                       <div class="invalid-feedback" id="delet">
                                        * Ingresa como mínimo 1 digito *
                                       </div>
@@ -211,16 +212,16 @@
                                           </div>
                                           <div class="col-md-6 text-center">
                                               <label for="" class="text-center">Latitud (GD)</label>
-                                              <input  name="textLatitude" type="text" id="textLatitude" class="form-control text-center", placeholder="Esperando calcular latitud" readonly>
+                                              <input  name="textLatitude" type="text" id="textLatitude" class="form-control text-center", placeholder="Esperando calcular latitud" readonly disabled>
                                           </div>
                                           <div class="col-md-6 text-center">
                                               <label for="" class="text-center">Longitud (GD)</label>
-                                              <input  name="textLongitude" type="text" id="textLongitude" class="form-control text-center", placeholder="Esperando calcular longitud" readonly>
+                                              <input  name="textLongitude" type="text" id="textLongitude" class="form-control text-center", placeholder="Esperando calcular longitud" readonly disabled>
                                           </div>
                                       </div>
                                   </div>
                               
-                                  <div class="col-md-6 col-lg-6 mb-2">
+                                  <div class="col-md-12 col-lg-12 mb-2">
                                       <div class="form-group d-flex flex-column mx-auto">
                                           <label for="Dirección">Dirección:</label>
                                           <input type="text" id="direccion" name="direccion" class="form-control">
@@ -229,32 +230,33 @@
                                           </div>
                                       </div>  
                                   </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">Estado de Madurez</label>
-                                      <select name="estado_madurez" id="estado_madurez" class="form-control" > 
-                                          <option value="Plantón">Plantón</option>
-                                          <option value="Juvenil">Juvenil</option> 
-                                          <option value="Adulto">Adulto</option>
-                                          <option value="Longevo">Longevo</option>
-                                      </select>
-                                  </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
+                                 
+                                  <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="">Nombre común</label>
-                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-control">
+                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-select">
                                       </select>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Nombre científico</label>
-                                      <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
+                                      <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" readonly disabled>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Familia</label>
-                                      <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Familia" readonly>
+                                      <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Familia" readonly disabled>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Género</label>
-                                      <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
+                                      <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly disabled>
                                   </div>
+                                  <div class="col-md-6 col-lg-6 mb-2">
+                                    <label for="">Estado de Madurez</label>
+                                    <select name="estado_madurez" id="estado_madurez" class="form-select" > 
+                                        <option value="Plantón">Plantón</option>
+                                        <option value="Juvenil">Juvenil</option> 
+                                        <option value="Adulto">Adulto</option>
+                                        <option value="Longevo">Longevo</option>
+                                    </select>
+                                </div>
                                   
                                   
                               </div>
@@ -277,7 +279,7 @@
 
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="P">Cobertura</label>
-                                      <select type="text" id="cobertura" name="cobertura" class="form-control">
+                                      <select type="text" id="cobertura" name="cobertura" class="form-select">
                                           <option selected value="Césped">Césped </option>
                                           <option value="Jardín">Jardín</option>
                                           <option value="Piso Duro">Piso Duro</option>
@@ -287,7 +289,7 @@
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="emplazamiento">Emplazamiento</label>
-                                      <select type="text" id="emplazamiento" name="emplazamiento" class="form-control">
+                                      <select type="text" id="emplazamiento" name="emplazamiento" class="form-select">
                                         <option value="Andén" selected>Andén</option>
                                         <option value="Bahía de estacionamiento">Bahía de estacionamiento</option>
                                           <option value="Bulevares">Bulevares</option>
@@ -310,7 +312,7 @@
                                     <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Confinamiento" data-bs-content="Arboles que estan en confinamiento">
                                       <i class="fa fa-info-circle"></i>
                                     </button>
-                                    <select  id="confinamiento" name="confinamiento" class="form-control " onchange="estadoConfinamiento()();">
+                                    <select  id="confinamiento" name="confinamiento" class="form-select " onchange="estadoConfinamiento()();">
                                       <option value="no">No</option>
                                       <option value="si">Si</option>   
                                     </select>
@@ -443,7 +445,7 @@
                                       <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="N° de Tallos: " data-bs-content="..............">
                                         <i class="fa fa-info-circle"></i>
                                       </button>
-                                      <select  id="numero_tallos" name="numero_tallos" class="form-control " onchange="fuste_polifurcado();">
+                                      <select  id="numero_tallos" name="numero_tallos" class="form-select " onchange="fuste_polifurcado();">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -548,7 +550,7 @@
 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Orientación">Orientación</label>
-                                        <select type="text" id="orientacion" name="orientacion" class="form-control">
+                                        <select type="text" id="orientacion" name="orientacion" class="form-select">
                                           <option value="Hacia la construcción" selected>Hacia la construcción</option>
                                           <option value="Hacia la vía">Hacia la vía</option>
                                           <option value="En dirección de la vía">En dirección de la vía</option>
@@ -558,7 +560,7 @@
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Placa Antigua">Inclinación</label>
-                                      <select type="text" id="inclinacion" name="inclinacion" class="form-control">
+                                      <select type="text" id="inclinacion" name="inclinacion" class="form-select">
                                         <option value="&lt;30" selected>&lt;30</option>
                                         <option value="&gt;30">&gt;30</option>
                                       </select>
@@ -566,7 +568,7 @@
 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                           <label>Exposición de la copa a la luz</label>
-                                          <select type="number" id="exposicionluz" name="exposicionluz" class="form-control"
+                                          <select type="number" id="exposicionluz" name="exposicionluz" class="form-select"
                                               placeholder="CAP (m)">
                                               <option value="No recibe luz">No recibe luz</option>
                                               <option value="Una cara">Una cara</option>
@@ -601,14 +603,14 @@
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2 ">
                                           <label for="Placa Antigua">Diámetro medio de ramas</label>
-                                          <select type="text" id="diametro" name="diametro" class="form-control" placeholder="CAP (m)">
+                                          <select type="text" id="diametro" name="diametro" class="form-select" placeholder="CAP (m)">
                                             <option value="&lt;0.05m"> &lt;0.05m </option>
                                             <option value=">=0.05m"> &gt;=0.05m </option>
                                           </select> 
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2 ">
                                           <label for="Sistema ">Sistema Radicular</label>
-                                          <select type="text" id="sistemaradicular" name="sistemaradicular" class="form-control">
+                                          <select type="text" id="sistemaradicular" name="sistemaradicular" class="form-select">
                                             <option value="Subtetrráneo" selected> Subterráneo </option>
                                             <option value="Aéreo"> Aéreo </option>
                                             <option value="Superficial"> Superficial </option>
@@ -623,7 +625,7 @@
                               <div class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="vitalidad" class="form-label">Vitalidad</label>
-                                      <select  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-control">
+                                      <select  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-select">
                                         <option value="Buena" selected>Buena (Sano)</option>
                                         <option value="Regular">Regular (Enfermo)</option>
                                         <option value="Mala">Mala (Seco/Muerto)</option>
@@ -1075,7 +1077,17 @@
                                           <th class="text-center">NO/SI</th>
                                         </tr>
                                       </thead>
-                                      <tbody class="">                 
+                                      <tbody class="">
+                                        <tr class="">
+                                          <th scope="row" class="text-dark">Requiere revisión</th>
+                                          <div class="btn-group " data-toggle="buttons">
+                                              <td class="">
+                                                <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="erradicacion" name="erradicacion">
+                                                </div>
+                                              </td>
+                                            </div>
+                                        </tr>                 
                                         <tr class="">
                                           <th scope="row" class="text-dark">Erradicación o tala</th>
                                           <div class="btn-group " data-toggle="buttons">
