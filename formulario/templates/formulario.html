@@ -304,25 +304,21 @@
                                           <option value="Separador vial">Separador vial</option>
                                       </select>
                                   </div>
+                                                                    
                                   <div class="col-md-12 col-lg-12">
-                                      <label for="confinamiento">Confinamiento</label>
-                                      <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Confinamiento" data-bs-content="Arboles que estan en confinamiento">
-                                        <i class="fa fa-info-circle"></i>
-                                      </button>
-                                  </div>
-                                  
-                                  <div class="col-md-12 col-lg-12">
-                                      <input onclick="formView()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio" value="1">
-                                      <label for="" >Si</label>
-                                
-                                      <input onclick="formNone()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio2" value="2">
-                                      <label for="">No</label>
+                                    <label for="confinamiento">Confinamiento</label>
+                                    <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Confinamiento" data-bs-content="Arboles que estan en confinamiento">
+                                      <i class="fa fa-info-circle"></i>
+                                    </button>
+                                    <select  id="confinamiento" name="confinamiento" class="form-control " onchange="estadoConfinamiento();">
+                                      <option value="no">No</option>
+                                      <option value="si">Si</option>   
+                                    </select>
                                    
-                                  </div>
+                                  </div>                                                            
                                   <div id="formView" style="display: none;" class="col-md-12 col-lg-12 my-5">
-                                    <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">     
-                                  </div>
-
+                                        <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control">     
+                                  </div>    
                                   <table class="table table-hover shadow">
                                     <thead class="table-success">
                                       <tr>

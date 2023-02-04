@@ -16,6 +16,20 @@ function estadoRegistro() {
     }
 }
 /*--------------------------------------------------------------
+# Seleccionar estado del Confinamiento pag 2
+--------------------------------------------------------------*/
+function estadoConfinamiento() {
+    /* Hola mundo*/
+    var Confinamiento = document.getElementById("confinamiento");
+    Confinamiento = Confinamiento.options[Confinamiento.selectedIndex].value;
+    if (Confinamiento == "si") {
+        document.getElementById("formView").style.display = "block";
+    }
+    else{
+        document.getElementById("formView").style.display = "none";
+    }
+}
+/*--------------------------------------------------------------
 # Seleccionar numero de tallos en la pag 3
 --------------------------------------------------------------*/
     function fuste_polifurcado() {
@@ -86,7 +100,7 @@ function formFusteFolicurcado(){
 /*--------------------------------------------------------------
 # Ocultar confinamiento pag 2
 --------------------------------------------------------------*/
-
+/*
 function formView(){
     var table = document.getElementById("formView");
     table.style.display = "block";
@@ -189,18 +203,15 @@ function formshidde2(){
     const avatar = document.getElementById('avatar');
     const avatar2 = document.getElementById('avatar2');
     const delet = document.getElementById('delet');
-    const confinamientoRadio = document.getElementById('confinamiento-radio');
-    const distConfinamiento = document.getElementById('dist_confinamiento');
-    const confinamientoRadio2 = document.getElementById('confinamiento-radio2');
+    const dist_confinamiento = document.getElementById("dist_confinamiento")
+    const Confinamiento = document.getElementById("confinamiento")
+    const selectConfinamiento = Confinamiento.options[Confinamiento.selectedIndex]
+    const ValueConfinamiento = selectConfinamiento.value
     
    
 
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
-    confinamientoRadio2.addEventListener('change', () => {
-        if (confinamientoRadio2.checked) {
-            dist_confinamiento.value = '';
-        }
-      });
+  
 
     if( qr.value < 1 ){
         qr.className+=' is-invalid ';
@@ -215,27 +226,24 @@ function formshidde2(){
     }
 
 
-    if (confinamientoRadio2.checked){
-       
-    }else{
-        if (confinamientoRadio.checked){
-            if(distConfinamiento.value < 1 ){
-                distConfinamiento.className+= ' is-invalid';
-                swal('Ingresa un número de  dístancia de confinamiento válido','','error')
-                
-                return false
-            }else{
-                delet.classList.remove('delet');
-                distConfinamiento.classList.remove('is-invalid');
-                distConfinamiento.className+=' is-valid ';          
-            }   
-        }else{
-            
-            swal('Debe seleccionar Confinamiento','','error')
-            return false
-        }
-    }
+    if (ValueConfinamiento == "no") {
+        console.log("Entró a la validación");
+        if( dist_confinamiento.value < 1 ){
+            console.log("* Confinamiento es inválida *");
+            dist_confinamiento.className+=' is-invalid ';
+            swal('Digite Confinamiento','Debe ingresar un dígito válido','error')
+            return false;
+        }else{       
+          console.log("dist_confinamiento es válida");
+      
+          dist_confinamiento.classList.remove('is-invalid');
+          dist_confinamiento.className+=' is-valid ';
+          
 
+          
+        }
+        
+    }
    
 
     /* -------------------------------------------------- ----------------*/
