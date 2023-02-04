@@ -420,7 +420,10 @@
 
                                       <div id="formViewUnico" style="display: none;" class="col-md-12 col-lg-12 mb-2" >
                                         <label>CAP (cm)</label>
-                                        <input placeholder="CAP (cm)" name="cap" id="cap" type="number" class="form-control " value="">
+                                        <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="CAP (cm): " data-bs-content="..............">
+                                          <i class="fa fa-info-circle"></i>
+                                        </button>
+                                        <input placeholder="CAP (cm)" name="cap" id="cap" type="number" class="form-control " value="">                                        
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número de CAP válido mayor o igual a 1
                                         </div>
@@ -431,6 +434,9 @@
                                     <div class="col-md-12 col-lg-12 mb-2">
     
                                       <label for="Tallos">No de Tallos</label>
+                                      <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="N° de Tallos: " data-bs-content="..............">
+                                        <i class="fa fa-info-circle"></i>
+                                      </button>
                                       <select  id="numero_tallos" name="numero_tallos" class="form-control " onchange="fuste_polifurcado();">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -445,6 +451,9 @@
 
                                     <div class="col-md-12 col-lg-12 mb-2" id="fuste1" style="display: block;">
                                       <label for="CAP 1">CAP 1(cm)</label>
+                                      <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="CAP (cm): " data-bs-content="..............">
+                                        <i class="fa fa-info-circle"></i>
+                                      </button>
                                       <input type="number" id="capa1" name="capa1" placeholder="CAP 1(cm)" class="form-control " >
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número de CAP1 válido mayor o igual a 1
@@ -485,6 +494,9 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Comercial (Fuste)</label>
+                                          <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Comercial (Fuste): " data-bs-content="..............">
+                                            <i class="fa fa-info-circle"></i>
+                                          </button>
                                           <input type="number" name="comercial_fuste" id="comercial_fuste" class="form-control"
                                               placeholder="Hc (m)">
                                               <div class="invalid-feedback" id="delet">
@@ -493,6 +505,9 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Total del árbol</label>
+                                          <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Total del árbol: " data-bs-content="..............">
+                                            <i class="fa fa-info-circle"></i>
+                                          </button>
                                           <input type="number" name="totalarbol" id="totalarbol" class="form-control " placeholder="Ht (m)"> 
                                               <div class="invalid-feedback" id="delet">
                                                 Ingresa un número válido de total del arbol y mayor a comercial fuste                                            
@@ -504,6 +519,9 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                         <label for="">Eje menor</label>
+                                        <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Eje menor: " data-bs-content="..............">
+                                          <i class="fa fa-info-circle"></i>
+                                        </button>
                                         <input type="number" id="ejemenor" name="ejemenor"  class="form-control">
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número
@@ -512,6 +530,9 @@
 
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Eje mayor</label>
+                                          <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Eje mayor: " data-bs-content="..............">
+                                            <i class="fa fa-info-circle"></i>
+                                          </button>
                                           <input type="number" name="ejemayor" id="ejemayor" class="form-control">
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
@@ -554,13 +575,19 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Altura (m)</label>
+                                          <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Altura: " data-bs-content="..............">
+                                            <i class="fa fa-info-circle"></i>
+                                          </button>
                                           <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero" id="copa_viva" name="copa_viva">
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
-                                          <label for="">% copa ausente</label>
+                                          <label for="">% Copa Ausente</label>
+                                          <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Copa Ausente: " data-bs-content="..............">
+                                            <i class="fa fa-info-circle"></i>
+                                          </button>
                                           <input type="number" class="form-control" placeholder="(%)" aria-label="Genero" id="copa_ausente" name="copa_ausente">
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
