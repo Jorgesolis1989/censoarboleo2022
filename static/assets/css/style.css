@@ -1278,3 +1278,11 @@ h6 {
   background-color: transparent !important;
 }
 
+
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f5f5f5;
+ 
+}

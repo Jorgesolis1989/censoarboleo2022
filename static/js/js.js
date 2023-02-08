@@ -226,7 +226,7 @@ function formshidde2(){
     }
 
 
-    if (ValueConfinamiento == "no") {
+    if (ValueConfinamiento == "si") {
         console.log("Entró a la validación");
         if( dist_confinamiento.value < 1 ){
             console.log("* Confinamiento es inválida *");
@@ -858,3 +858,4 @@ document.getElementById("showImageButton").addEventListener("click", function() 
   $("#image-modal").on("hide.bs.modal", function () {
     document.getElementById("modal-image").classList.remove("zoom");
   });
+
