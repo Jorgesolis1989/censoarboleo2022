@@ -759,6 +759,9 @@ buttons.forEach(function(button) {
     });
 });
 
+
+
+
 /*--------------------------------------------------------------
 # Funcion para atraer las imagenes
 --------------------------------------------------------------*/
@@ -859,3 +862,45 @@ document.getElementById("showImageButton").addEventListener("click", function() 
     document.getElementById("modal-image").classList.remove("zoom");
   });
 
+
+
+  function validatePassword() {
+    let new_Password = document.getElementById("newPassword").value;
+    let renew_Password = document.getElementById("renewPassword").value;
+    let isValid = true;
+
+    if (new_Password.length < 8) {
+        swal("La contraseña debe tener al menos 8 caracteres","","error");
+      isValid = false;
+    }
+
+    if (!/[A-Z]/.test(new_Password)) {
+        swal("La contraseña debe tener al menos una letra mayúscula","","error");
+      isValid = false;
+    }
+
+    if (!/[a-z]/.test(new_Password)) {
+        swal("La contraseña debe tener al menos una letra minúscula","","error");
+      isValid = false;
+    }
+
+    if (!/\d/.test(new_Password)) {
+        swal("La contraseña debe tener al menos un dígito","","error");
+      isValid = false;
+    }
+
+    if (new_Password !== renew_Password) {
+        swal("La contraseña y la confirmación de la contraseña no coinciden","","error");
+      isValid = false;
+    }
+
+   
+
+    return isValid;
+  }
+
+  document.getElementById("form").addEventListener("submit", function(event) {
+    if (!validatePassword()) {
+      event.preventDefault();
+    }
+  });
