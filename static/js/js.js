@@ -1,4 +1,29 @@
 
+/*--------------------------------------------------------------
+# Seleccionar estado del registro pag 1
+--------------------------------------------------------------*/
+function validacionCtr()
+{
+
+    //var value = JSON.parse(document.getElementById('hello-data').textContent);
+    var newpassword = document.getElementById("newpassword").value;
+
+
+    var renewpassword = document.getElementById("renewpassword").value;
+
+
+    if (newpassword == renewpassword){
+        return true;
+        
+    }else{
+        swal('Contraseñas incorrectas','Las contraseñas no coinciden','error')
+        return false;
+    }
+
+}
+
+
+
 /* -----------FUNCION OCULTAR CAMPOS------------- */
 
 /*--------------------------------------------------------------
