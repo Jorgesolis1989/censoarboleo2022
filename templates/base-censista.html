@@ -8,7 +8,8 @@
   <title>Censo Arboleo Cali 2022 | Censista</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+  <!-- Estilos -->
+  <link rel="stylesheet" type="text/css" href="static/assets/css/style.css">
   <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="static/img/funa.ico">
   <link href="static/img/funa.ico" rel="apple-touch-icon">
@@ -47,14 +48,14 @@
     <div class="d-flex align-items-center justify-content-between">
  
       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-        <img src="/static/img/funa.png" class="rounded mx-auto d-block bi me-2" width="40" height="32"  alt="">
+        <img src="{% static '/img/funa.png' %}" class="rounded mx-auto d-block bi me-2" width="40" height="32"  alt="">
       </a>
-      
-
-      <i class="bi bi-list toggle-sidebar-btn"></i>
       <ul class="nav col-6 col-lg-6 me-lg-4 mb-2 justify-content-center mb-md-0 " style="color:white" >
         Censo Arbóreo Santiago de cali 2022
       </ul> 
+
+      <i class="bi bi-list toggle-sidebar-btn text-light"></i>
+
 
     </div><!-- End Logo -->
 
@@ -64,17 +65,18 @@
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
+      
         <li class="nav-item dropdown pe-3">
 
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0 " href="#" data-bs-toggle="dropdown">
             <img src="{{ MEDIA_URL }}{{usuario.foto.url}}" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ request.user.get_full_name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile ">
             <li class="dropdown-header">
-              <h6>{{ request.user.get_full_name }}</h6>
-              <span>Censista</span>
+              <h6>{{request.user.get_full_name}}</h6>
+              <span>Administrador</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -83,7 +85,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{% url 'login' %}">
                 <i class="bi bi-person"></i>
-                <span>Mi perfil</span>
+                <span>Mi Perfil</span>
               </a>
             </li>
             <li>
@@ -92,8 +94,8 @@
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{% url 'cambiar_contrasena' %}">
-                <i class="bi bi-person"></i>
-                <span>Editar Perfil</span>
+                <i class="bi bi-gear"></i>
+                <span>Cambiar Contraseña</span>
               </a>
             </li>
             <li>
@@ -101,8 +103,12 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
-                <i class="bi bi-box-arrow-right" ></i>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}" >
+                <i class="bi bi-box-arrow-right"></i>
                 <span>Salir</span>
               </a>
             </li>
@@ -112,7 +118,7 @@
 
       </ul>
     </nav><!-- End Icons Navigation -->
-                        <!-- FINAL ICONOS DEL LADO DERECHO-->
+                        
 
   </header><!-- End Header -->
 
@@ -215,7 +221,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer class="sticky-footer bg-white">
+  <footer class="sticky-footer">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
             <img src="static/img/footer.png" alt="">
