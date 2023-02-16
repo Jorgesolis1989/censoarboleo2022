@@ -271,7 +271,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     #  codigo es el código de la placa nueva asociado al QR
     arbol.codigo = codigo_qr
 
-
+    
     # Placa antigua                 
     arbol.Placa_ant = placaAntigua
 
@@ -306,7 +306,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     arbol.cobertura = cobertura
 
     # Confinamiento
-    if confinamiento == "1":
+    if confinamiento == "si":
         arbol.confinamiento = True
         dist_confinamiento = request.POST["dist_confinamiento"]
     else:

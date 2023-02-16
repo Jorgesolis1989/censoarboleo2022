@@ -21,6 +21,7 @@
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
       <script type="text/javascript" src="{% static '/js/familia_genero.js' %} "></script>
+      <link rel="stylesheet" type="text/css" href="{% static '/assets/css/style.css' %} ">
         <!-- Custom styles for this page -->
 
       <!--Funcionalidad del mapa-->
@@ -116,20 +117,31 @@
                             <!--FORMULARIO 1-->
                             <div  id="form1" style="display: block;" needs-validation>
                               <div  class="row">
-                                  <div class="col-md-12 col-lg-12 mb-2">
-                                    <label for="validationCustom01">Placa Antigua:</label>
-                                    <input type="button" class="btn" id="popov" name="popov" onclick="alerts()" >
-                                      
-                                  
-                                    <input type="number" id="PlacaAntigua" name="PlacaAntigua" class="form-control" value="{{arbol.Placa_ant}}">
+                                <div class="col-md-12 col-lg-12 mb-2">
+                                  <label for="validationCustom01" class="cdd">Estado del Registro </label>
+                                  <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Estado del registro" data-bs-content="Estado en que se encuentra el registro del individuo">
+                                    <i class="fa fa-info-circle"></i>
+                                  </button> 
+                                  <select type="number" id="estado_registro" name="estado_registro" class="form-control" onchange="estadoRegistro()" >
+                                    <option value="Nuevo" >Nuevo</option>
+                                    <option value="Antiguo">Antiguo</option>
+                                  </select>
+                                
+                                  <div id="antigua_placa" style="display: block;" class="col-md-12 col-lg-12 my-3">
+                    
+
+                                    <label for="validationCustom01" class="cdd">Placa </label>
+                                    <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Placa Antigua" data-bs-content="Placa metálica censos anteriores"> 
+                                      <i class="fa fa-info-circle"></i>
+                                    </button>
+                                    <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" class="form-select" value="{{arbol.Placa_ant}}">                                         
                                     <div class="invalid-feedback" id="delet">
-                                      Ingresa como minimo 1 digito y maximo 12 digitos  
+                                     * Ingresa como mínimo 1 digito *
                                     </div>
-                                    
                                   </div>
-                                  <div class="col-md-12 col-lg-12 mb-2">
-                                    
-                                  </div>
+                                  
+                                  
+                                </div>
 
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <div class="w-auto" id="divMap"></div>
@@ -176,7 +188,7 @@
                                       <label for="">Genero</label>
                                       <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly value="{{arbol.genero}}">
                                   </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
+                                  <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="">Estado de Madurez</label>
                                       <select name="estado_madurez" id="estado_madurez" class="form-control">
                                           <option value="Plantón">Plantón</option>
@@ -185,15 +197,7 @@
                                           <option value="Longevo">Longevo</option>
                                       </select>
                                   </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">Estado del registro</label>
-                                      <select name="estado_registro" id="estado_registro" class="form-control">
-                                          <option value="Nuevo" >Nuevo</option>
-                                          <option value="Antiguo">Antiguo</option>
-                                          <option value="Revisión">Revisión</option>
-                                          <option value="Eliminado">Eliminado</option>
-                                      </select>
-                                  </div>
+                                
                               </div>
                             </div>
                           
@@ -238,24 +242,43 @@
                                           <option value="Separador vial">Separador vial</option>
                                       </select>
                                   </div>
-                                  <div class="col-md-12 col-lg-12 mb-2">
-                                      <label for="confinamiento">Confinamiento</label>
+                               
+                                  <div class="col-md-12 col-lg-12 mb-3">
+                                    <label for="confinamiento">Confinamiento</label>
+                                    <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Confinamiento" data-bs-content="Si el individuo se encuentra confinado o no">
+                                      <i class="fa fa-info-circle"></i>
+                                    </button>
+                                    <select  id="confinamiento" name="confinamiento" class="form-select " onchange="estadoConfinamiento()();">
+                                      <option value="no">No</option>
+                                      <option value="si">Si</option>   
+                                    </select>
+                                   
+                                  </div>  
+                                  {%if arbol.confinamiento%}
+                                  <div id="formView" style="display: block;" class="col-md-12 col-lg-12 mb-5">
+                                    {%else %}
+                                    <div id="formView" style="display: none;" class="col-md-12 col-lg-12 mb-5">
+                                    {%endif%}
+                                        <label for="dist_confinamiento">Distancia Confinamiento:</label>
+                                        <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Distancia Confinamiento:" data-bs-content="Debe indicar la distancia del confinamiento">
+                                          <i class="fa fa-info-circle"></i>
+                                        </button>
+                                        <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control" value="{{arbol.dist_confinamiento}}">     
                                   </div>
                                   
-                                  <div class="col-md-12 col-lg-12 mb-2">
-                                      <input onclick="formView()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio" value="1">
-                                      <label for="" >Si</label>
-                                 
-                                      <input onclick="formNone()" type="radio" class="form-check-input" name="confinamiento" id="confinamiento-radio2" value="2">
-                                      <label for="">No</label>
-                                      
+                                  <div class="col-md-12 col-lg-12 mt-3">
+                                    <table class="table table-hover shadow ">
+                                      <thead class="table-success">
+                                        <tr>
+                                          <th style="width: 90%;" class="text-center "> Fotos</th>
+                                        
+                                        </tr>
+                                      </thead>
+                                    </table>
                                   </div>
 
-                                  <div id="formView" style="display: block;" class="col-md-12 col-lg-12 mb-2">
-                                      <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control" value="{{arbol.dist_confinamiento}}">
-                                      
-                                  </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
+
+                                  <div class="col-md-6 col-lg-6 mb-2 py-5">
                                       <div class="col-md-12 col-lg-12 mb-2 text-center">
                                           <label for="avatar">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
@@ -269,7 +292,9 @@
                                                 {%endif%}
 
                                               </div>                                          
-                                          </label>
+                                              <button type="button" class="btn btn-primary " id="showImageButton">Ver Imagen</button>   
+                                            </label>
+                                          
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
                                           <input type="file" class="form-control" placeholder="Primera foto" aria-label="First name" id="avatar" name="avatar" accept="image/*">
@@ -1419,21 +1444,23 @@
 
       }); // close getJSON()
 
-      $.getJSON('../../static/js/lista_genero_arboles.json', function(json) { datos_json = json; });
+
 
       // Valores iniciales-
-      // Familia
+      
 
 
 
+      //placa antigua
+      
+      
+      if ("{{arbol.estado}}" == "Antiguo") {
+        document.getElementById("antigua_placa").style.display = "block";
+    }
+    else{
+        document.getElementById("antigua_placa").style.display = "none";
+    }
 
-      document.getElementById("familia").value=datos_json["{{arbol.nombre_comun}}"][0];
-
-      // Género
-      document.getElementById("genero").value=datos_json["{{arbol.nombre_comun}}"][1];
-
-      // Nombre Científico
-      document.getElementById("nombre_cientifico").value=datos_json["{{arbol.nombre_comun}}"][2];
 
       // Madurez
       let estado_madurez_dict= new Map();
@@ -1446,13 +1473,7 @@
       document.getElementById("estado_madurez").selectedIndex = estado_madurez_dict.get("{{arbol.madurez}}");
 
 
-      // Estado Registro
-      let estado_registro_dict= new Map();
-      estado_registro_dict.set("Nuevo",0);
-      estado_registro_dict.set("Antiguo",1);
-      estado_registro_dict.set("Revisión",2);
-      estado_registro_dict.set("Eliminado",3);
-      document.getElementById("estado_registro").selectedIndex = estado_registro_dict.get("{{arbol.estado_registro}}");
+
 
       // Estado Cobertura
       let cobertura_dict= new Map();
@@ -1486,14 +1507,20 @@
 
   
       // Estado Confinamiento
+      
+      let confinamiento_dict= new Map();
+      confinamiento_dict.set("no",0);
+      confinamiento_dict.set("si",1);
+      
+      
       if ("{{arbol.confinamiento}}" ==  "True")
       {
-        document.getElementById("confinamiento-radio").checked = true;
-        
+        document.getElementById("confinamiento").selectedIndex = confinamiento_dict.get("si");
+       
 
       }else
       {
-        document.getElementById("confinamiento-radio2").checked = true;
+        document.getElementById("confinamiento").selectedIndex = confinamiento_dict.get("no");
         document.getElementById("formView").style.display = "none";
       }
 
