@@ -939,9 +939,15 @@ document.getElementById("showImageButton").addEventListener("click", function() 
 
 
   function validatePassword() {
+    let currentPassword = document.getElementById("currentPassword").value;
     let new_Password = document.getElementById("newPassword").value;
     let renew_Password = document.getElementById("renewPassword").value;
     let isValid = true;
+
+    if (currentPassword.length < 8) {
+        swal("La contraseña debe tener al menos 8 caracteres","","error");
+      isValid = false;
+    }
 
     if (new_Password.length < 8) {
         swal("La contraseña debe tener al menos 8 caracteres","","error");
