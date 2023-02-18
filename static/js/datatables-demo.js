@@ -1,8 +1,12 @@
-// Call the dataTables jQuery plugin
+
+
 $(document).ready(function() {
-  $('#dataTable').DataTable();
+  var table = $('#dataTable').DataTable();
+  if (table != 'undefined' && table != null) {
+    table.destroy();
+  }
+  $('#dataTable').DataTable({
+    paging: false,
+    searching: false
+  });
 });
-$('#example').dataTable( {
-  paging: false,
-  searching: false
-} );

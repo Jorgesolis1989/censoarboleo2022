@@ -220,6 +220,55 @@ function formshidde(){
 
 }
 
+function deleteInValid(){
+    const placaAntigua = document.getElementById("placa_antigua");
+    const qr = document.getElementById('qr');
+    const Confinamiento = document.getElementById("dist_confinamiento");
+    var comercial = document.getElementById('comercial_fuste');
+    var totalarbol = document.getElementById('totalarbol');
+    const ejemayor = document.getElementById('ejemayor');
+    const ejemenor = document.getElementById('ejemenor');
+    const copa_viva = document.getElementById('copa_viva');
+    const copa_ausente = document.getElementById('copa_ausente');
+    placaAntigua.classList.remove('is-invalid');
+    qr.classList.remove('is-invalid');
+    Confinamiento.classList.remove('is-invalid');
+    comercial.classList.remove('is-invalid');
+    totalarbol.classList.remove('is-invalid');
+    ejemayor.classList.remove('is-invalid');
+    ejemenor.classList.remove('is-invalid');
+    copa_viva.classList.remove('is-invalid');
+    copa_ausente.classList.remove('is-invalid');
+}
+
+function capa_invalid(){
+    const Cap = document.getElementById('cap');
+    const Cap1 = document.getElementById('capa1');
+    Cap.classList.remove('is-invalid');
+    Cap1.classList.remove('is-invalid');
+}
+function capa_invalid1(){
+    const Cap2 = document.getElementById('capa2');
+    Cap2.classList.remove('is-invalid');
+}
+
+
+function capa_invalid2(){
+    const Cap3 = document.getElementById('capa3');
+    Cap3.classList.remove('is-invalid');
+}
+
+function capa_invalid3(){
+    const Cap4 = document.getElementById('capa4');
+    Cap4.classList.remove('is-invalid');
+}
+
+function capa_invalid4(){
+    const Cap5 = document.getElementById('capa5');
+    Cap5.classList.remove('is-invalid');
+}
+
+
 //Formulario 2
 function formshidde2(){
 
