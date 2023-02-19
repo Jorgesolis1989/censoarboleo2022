@@ -279,20 +279,19 @@
 
 
                                   <div class="col-md-6 col-lg-6 mb-2 py-5">
-                                      <div class="col-md-12 col-lg-12 mb-2 text-center">
+                                    <div class="col-md-12 col-lg-12 mb-2 text-center">
                                           <label for="avatar">
-                                              <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
+                                            <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden ">    
                                                 {% if arbol.foto1 %}
                                                 <img class="w-full object-cover" src="{{ MEDIA_URL }}{{arbol.foto1.url}}" height="96" id="img"/>   
                                                 
                                                 {% else %}
                                               
-                                                <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
-
+                                                <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"> 
                                                 {%endif%}
 
                                               </div>                                          
-                                              <button type="button" class="btn btn-primary " id="showImageButton">Ver Imagen</button>   
+                                              <button type="button" class="btn btn-primary " id="showImageButton">Ver Imagen</button>      
                                             </label>
                                           
                                       </div>
@@ -1357,6 +1356,18 @@
 
       <!-- Bootstrap core JavaScript-->
       
+
+      <div class="modal fade" id="imageModal" >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <img id="modalImage" src="" class="img-fluid">
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
       <script>
           let avatarInput = document.getElementById('avatar');
           let img = document.querySelector('label[for=avatar] img');
