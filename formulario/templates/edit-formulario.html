@@ -84,10 +84,9 @@
               <main class="container-fluid">
 
                   
-                  <div class="wrapper d-flex col-md-12 justify-content-center  rounded p-4 form">
+                  <div class="wrapper d-flex col-md-12 justify-content-center  rounded form">
                     
-                      <div
-                          class="grid-form col-12 col-md-8 col-sm-12 col-lg-12 pb-5 px-5 rounded rounded-lg shadow-lg  aling-items-center">
+                    <div class="grid-form col-12 col-md-12 col-sm-12 col-lg-12 pb-3 px-3 rounded rounded-lg shadow-lg  aling-items-center">
 
                           <table class="table table-hover shadow ">
                             <thead class="table-success">
@@ -291,7 +290,7 @@
                                                 {%endif%}
 
                                               </div>                                          
-                                              <button type="button" class="btn btn-primary " id="showImageButton">Ver Imagen</button>      
+                                              <button type="button" class="btn btn-primary " id="showImageButton">Ver Imagen</button>     
                                             </label>
                                           
                                       </div>
@@ -304,7 +303,7 @@
 
           
                                   </div>
-                                  <div class="col-md-6 col-lg-6 mb-2">
+                                  <div class="col-md-6 col-lg-6 mb-2 py-5">
                                       <div class="col-md-12 col-lg-12 mb-2 text-center">
                                           <label for="avatar2">
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
@@ -317,7 +316,8 @@
 
                                                 {%endif%}
 
-                                              </div>                                          
+                                              </div>
+                                              <button type="button" class="btn btn-primary " id="showImageButton2">Ver Imagen</button>                                           
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
@@ -340,7 +340,8 @@
 
                                                 {%endif%}
 
-                                              </div>                                          
+                                              </div>
+                                              <button type="button" class="btn btn-primary " id="showImageButton3">Ver Imagen</button>                                           
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
@@ -362,7 +363,8 @@
                                             <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
 
                                             {%endif%}
-                                          </div>                                          
+                                          </div>
+                                          <button type="button" class="btn btn-primary " id="showImageButton4">Ver Imagen</button>                                           
                                       </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
@@ -1284,11 +1286,11 @@
                         <nav aria-label="Page navigation example" id="boton5" >
                           <ul class="pagination justify-content-center">
                               <li class="page-item disabled px-3">
-                                <button type="button"   class="btn btn-outline-secondary" >Anterior</button>
+                              
                               </li>
                               <li class="page-item">
                   <!--               <button class="btn btn-outline-warning"type="submit">Finalizar</button>--> 
-                          <button name="btnActualizar" type="submit" class="finish btn btn-warning">Actualizar</button>
+                          <button name="btnActualizar" type="submit" class="finish btn btn-warning" onclick="bloquearEnvio(event)">Actualizar</button>
                               </li>
                           </ul>
                       </nav>
@@ -1320,7 +1322,7 @@
       <a class="scroll-to-top rounded" href="#page-top">
           <i class="fas fa-angle-up"></i>
       </a>
-      <footer class="sticky-footer bg-white">
+      <footer class="footer bg-white">
           <div class="container my-auto">
               <div class="copyright text-center my-auto">
                   <img src="{% static '/img/footer.png' %}" alt="">
@@ -1423,6 +1425,7 @@
 
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="{% static '/js/js.js' %}"></script>
+      <script src="{% static '/js/validar_edit_formulario.js' %}"></script>
       <!-- Core plugin JavaScript-->
       <!-- Custom scripts for all pages-->
       <script src="{% static '/js/sb-admin-2.min.js' %}"></script>

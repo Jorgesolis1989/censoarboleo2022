@@ -984,3 +984,11 @@ document.getElementById("showImageButton").addEventListener("click", function() 
       event.preventDefault();
     }
   });
+
+  const switchBtn = document.getElementById("switchBtn");
+  switchBtn.addEventListener("click", function() {
+    // do something when switch is clicked
+  });
+
+
+  
