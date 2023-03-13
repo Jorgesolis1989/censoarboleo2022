@@ -22,7 +22,7 @@ from formulario.views import crear_formulario_view
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 
-
+from formulario.models import Arbol
 
 # Pagina principal para usuario Administrador
 @permission_required("usuarios.Administrador" , login_url="/")
@@ -42,7 +42,15 @@ def censista_home(request , usuario):
 # Pagina principal para usuario Supervisor
 @permission_required("usuarios.Supervisor" , login_url="/")
 def supervisor_home(request , usuario):
-    return render(request, 'supervisor.html', {'usuario': usuario})
+    
+    censistas = Usuario.objects.filter(Grupo = usuario.Grupo)
+
+    
+    numero_formularios = Arbol.objects.filter(creado_por__cedula_usuario__in=censistas , habilitado= True).count()
+
+
+    return render(request, 'supervisor.html', {'usuario': usuario, 'numero_censistas':censistas.count(),
+                                               'numero_formularios': numero_formularios})
 
 
 # Pagina principal para usuario Supervisor Forestal

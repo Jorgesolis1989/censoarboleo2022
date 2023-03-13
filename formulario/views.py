@@ -275,7 +275,15 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     arbol.arbolid =  0
 
     #Creado por
-    arbol.creado_por = Usuario.objects.get(username = request.user.username)
+
+    # Si no es actualización del arbol para la creación o modificación
+    if  actualizar:
+        arbol.modificado_por =  request.user.username
+        arbol.actualizado =  timezone.now()
+    else:
+        usuario_creador_arbol = Usuario.objects.get(username = request.user.username)
+        arbol.creado_por = usuario_creador_arbol
+        arbol.creado =  timezone.now()
 
     #  codigo es el código de la placa nueva asociado al QR
     arbol.codigo = codigo_qr
