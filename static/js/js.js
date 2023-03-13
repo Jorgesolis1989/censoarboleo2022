@@ -979,13 +979,10 @@ document.getElementById("showImageButton").addEventListener("click", function() 
     }
 */
     if (new_Password.value != renew_Password.value) {
-        
-        
         renew_Password.className+=' is-invalid ';
         new_Password.className+=' is-invalid ';
-        swal("La contraseña y la confirmación de la contraseña no coinciden","","error");
+        swal("La contraseña nueva y la confirmación de la contraseña no coinciden","","error");
         isValid = false;
-
     }
 
 

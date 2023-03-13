@@ -75,8 +75,7 @@ def cambiar_contrasena(request):
             mensaje = "La contraseña antigua no es igual a la registrada en el sistema"
             llamarMensaje = "fracaso_usuario"
             
-            
-        
+
         else:
             usuario.set_password(contrasenaNueva)
             

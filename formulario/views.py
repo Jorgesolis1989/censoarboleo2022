@@ -26,7 +26,7 @@ from usuarios.models import Usuario
 #from censoarboleo2022.formulario import forms
 from formulario.forms import Formulario_1
 # Create your views here.
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 timezone.activate(settings.TIME_ZONE)
 
 
@@ -75,30 +75,28 @@ def listar_formularios_censista(request):
 
 
 
-# Método listar formularios, corresponde a la función de listar los formularios de cualquier rol en la aplicación
+# Método listar formularios, corresponde a la función de listar los formularios del supervisor y del administrador
 @login_required
 def listar_formularios(request):
     
     usuario = Usuario.objects.get(username=request.user.username)
     arboles = None
     base_template = ""
-
+    censistas = None
 
     if usuario.rol == "Administrador":
         base_template = "base-admin.html"
         arboles = Arbol.objects.filter()
-    elif usuario.rol == "Censista":
-        base_template = "base-censista.html"
-        arboles = Arbol.objects.filter(creado_por=usuario.username).order_by('-creado')
-        
-        
+            
     elif usuario.rol == "Supervisor":
         base_template = "base-supervisor.html"
         
         # Filtrar los árboles del supervisor
-        arboles = Arbol.objects.filter().order_by('-id')
+        #arboles = Arbol.objects.filter().order_by('-id')
+        censistas = Usuario.objects.filter(Grupo=usuario.Grupo).values("cedula_usuario")
 
-
+        arboles = Arbol.objects.filter(creado_por__cedula_usuario__in=censistas , habilitado= True)
+    
         # programar cuando sea supervisor
 
     else:
@@ -214,6 +212,7 @@ def editar_formulario(request , id_arbol=None):
 
 # Método crear  formularios, corresponde a la función de crear  un  formularios de cualquier rol en la aplicación
 @login_required
+@permission_required("usuarios.Censista", login_url="/")
 def crear_formulario_view(request):
     usuario = Usuario.objects.get(username=request.user.username)
     mensaje = ""
@@ -246,6 +245,13 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
 
     placaAntigua = request.POST.get("placa_antigua", 0)
 
+    requiere_revision = False
+    if "requiere_revision" in request.POST and not actualizar:
+        requiere_revision = True
+    
+        
+
+
     direccion = request.POST["direccion"]
     
     nombre_comun = request.POST["nombre_comun"]
@@ -268,10 +274,16 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     # arbol_id es  generado por SQL ---  combina comuna y otras variables 
     arbol.arbolid =  0
 
+    #Creado por
+    arbol.creado_por = Usuario.objects.get(username = request.user.username)
+
     #  codigo es el código de la placa nueva asociado al QR
     arbol.codigo = codigo_qr
 
     
+    #requiere revision 
+    arbol.requiere_revision = requiere_revision
+
     # Placa antigua                 
     arbol.Placa_ant = placaAntigua
 
@@ -325,6 +337,8 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     
     arbol.arbolid = arbol.id
 
+        
+
     # Imágenes de los árboles
 
     if 'avatar' in request.POST: 
@@ -373,7 +387,8 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     arbol.hito = 0.0
     arbol.observaciones = ""
 
-    arbol.creado_por = request.user.username
+
+
 
 
 

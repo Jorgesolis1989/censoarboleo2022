@@ -15,7 +15,7 @@ from time import timezone
 from django.db import models
 import os
 from uuid import uuid4
-
+from usuarios.models import Usuario
 
 def path_and_rename(instance, filename):
     upload_to = 'photos'
@@ -153,10 +153,11 @@ class Arbol(models.Model):
     observaciones = models.TextField(null=True)
 
     habilitado =  models.BooleanField(default=True)
+    requiere_revision = models.BooleanField(default=False)
     estado = models.TextField(null=True)
-    creado_por = models.TextField(null=True)
+    creado_por = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     creado = models.DateTimeField(auto_now_add=True, blank=True)
-    modificado_por = models.TextField(null=True)
+    modificado_por = models.BigIntegerField(null=True)
     actualizado =  models.DateTimeField(auto_now_add=True, blank=True)
     version = models.DateField(auto_now_add=True, blank=True)
 
