@@ -949,12 +949,16 @@ document.getElementById("showImageButton").addEventListener("click", function() 
 
 
 
-  function validatePassword() {
-    let currentPassword = document.getElementById("currentPassword").value;
-    let new_Password = document.getElementById("newPassword").value;
-    let renew_Password = document.getElementById("renewPassword").value;
-    let isValid = true;
+  function validatePassword(password) {
 
+    alert("validateFronent"+ password);
+
+
+    let currentPassword = document.getElementById("currentPassword");
+    let new_Password = document.getElementById("newPassword");
+    let renew_Password = document.getElementById("renewPassword");
+    let isValid = true;
+/*
     if (currentPassword.length < 8) {
         swal("La contraseña debe tener al menos 8 caracteres","","error");
       isValid = false;
@@ -980,21 +984,40 @@ document.getElementById("showImageButton").addEventListener("click", function() 
       isValid = false;
     }
 
-    if (new_Password !== renew_Password) {
-        swal("La contraseña y la confirmación de la contraseña no coinciden","","error");
+    if (currentPassword  !== password ) {
+        swal("La contraseña no es correcta","","error");
       isValid = false;
     }
+*/
+    if (new_Password.value != renew_Password.value) {
+        renew_Password.className+=' is-invalid ';
+        new_Password.className+=' is-invalid ';
+        swal("La contraseña nueva y la confirmación de la contraseña no coinciden","","error");
+        isValid = false;
+    }
 
-   
 
     return isValid;
   }
 
-  document.getElementById("form").addEventListener("submit", function(event) {
+  document.getElementById("formulariocontrasena").addEventListener("submit", function(event) {
     if (!validatePassword()) {
       event.preventDefault();
     }
   });
+
+
+  function deleteInValidContrasena(){
+
+    const newPassword = document.getElementById('newPassword');
+    const renewPassword = document.getElementById('renewPassword');
+    
+
+    newPassword.classList.remove('is-invalid');
+    renewPassword.classList.remove('is-invalid');
+
+
+}
 
   const switchBtn = document.getElementById("switchBtn");
   switchBtn.addEventListener("click", function() {

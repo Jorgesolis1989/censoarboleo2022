@@ -20,8 +20,8 @@
                   <th class="min-tablet">Latitud</th>
                   <th class="min-tablet">Longitude</th>
                   <th class="min-tablet">Fecha de creación</th>
-                  <th class="min-tablet">Requiere revisión</th>
-
+                  <th class="min-tablet">Creado por</th>
+                  <th class="min-tablet">Requiere revisión?</th>
                   <th class="min-desktop">Editar</th>
               </tr>
           </thead>
@@ -32,7 +32,15 @@
                       <td>{{ arbol.latitud}} </td>
                       <td>{{ arbol.longitud }}</td>
                       <td>{{ arbol.creado }}</td>
-                     
+                      <td>{{ arbol.creado_por }}</td>
+
+                      {%if arbol.requiere_revision %}
+                      <td>Si</td>
+                      {%else%}
+                      <td>No</td>
+                      {%endif%}
+
+
                       <td>
                           <!--acciones - boton editar y eliminar-->
                  

@@ -409,7 +409,15 @@
 
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       
-
+                                      <div class="col-md-12 col-lg-12 mb-2">
+    
+                                        <label for="Tallos">No de Tallos</label>
+                                        <input type="number" id="numero_tallos" name="numero_tallos" class="form-control" placeholder=" Valor en número entero" value="{{dasometria.numtallos}}">
+                                        <div class="invalid-feedback" id="delet">
+                                          Ingresa un número
+                                        </div>  
+                                    </div>
+                                    
                                       <label for="CAP 1">CAP 1(cm)</label>
                                       <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control" value="{{dasometria.cap1}}">
                                       <div class="invalid-feedback" id="delet">
@@ -446,14 +454,7 @@
                                         </div>  
                                     </div>
 
-                                    <div class="col-md-12 col-lg-12 mb-2">
-    
-                                      <label for="Tallos">No de Tallos</label>
-                                      <input type="number" id="numero_tallos" name="numero_tallos" class="form-control" placeholder=" Valor en número entero" value="{{dasometria.numtallos}}">
-                                      <div class="invalid-feedback" id="delet">
-                                        Ingresa un número
-                                      </div>  
-                                  </div>
+                               
 
                                   </div> 
 
@@ -1290,6 +1291,12 @@
                               </li>
                               <li class="page-item">
                   <!--               <button class="btn btn-outline-warning"type="submit">Finalizar</button>--> 
+                            
+                            <a href="{% url 'listar_formularios' %}" > <button type="button" class="btn btn-danger">Cancelar
+
+                              <span class="badge bg-white text-primary"></span> 
+                            </button> </a>
+                            &nbsp;            &nbsp;
                           <button name="btnActualizar" type="submit" class="finish btn btn-warning" onclick="bloquearEnvio(event)">Actualizar</button>
                               </li>
                           </ul>

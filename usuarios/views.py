@@ -22,7 +22,7 @@ from formulario.views import crear_formulario_view
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 
-
+from formulario.models import Arbol
 
 # Pagina principal para usuario Administrador
 @permission_required("usuarios.Administrador" , login_url="/")
@@ -42,7 +42,15 @@ def censista_home(request , usuario):
 # Pagina principal para usuario Supervisor
 @permission_required("usuarios.Supervisor" , login_url="/")
 def supervisor_home(request , usuario):
-    return render(request, 'supervisor.html', {'usuario': usuario})
+    
+    censistas = Usuario.objects.filter(Grupo = usuario.Grupo)
+
+    
+    numero_formularios = Arbol.objects.filter(creado_por__cedula_usuario__in=censistas , habilitado= True).count()
+
+
+    return render(request, 'supervisor.html', {'usuario': usuario, 'numero_censistas':censistas.count(),
+                                               'numero_formularios': numero_formularios})
 
 
 # Pagina principal para usuario Supervisor Forestal
@@ -54,32 +62,31 @@ def supervisor_forestal_home(request , usuario):
 # Vista cambiar contraseña
 @login_required
 def cambiar_contrasena(request):
-
-    
-
     usuario = Usuario.objects.get(username=request.user.username)
     mensaje = ""
     llamarMensaje = ""
+    pestana = "perfil"
 
 
     retornarvista_segun_rol = "cambiar_contrasena_"+ usuario.rol + ".html"
 
     # Cambiar contraseña
     if request.method == 'POST' and "btnCambiarContrasena" in request.POST:
-        contrasenaAntigua = request.POST["password"]
-        contrasenaNueva = request.POST["newpassword"]
-        contrasenaNuevaIgual = request.POST["renewpassword"]
         
+        print("entró post con btnCambiarContrasena")
+        contrasenaAntigua = request.POST["currentPassword"]
+        contrasenaNueva = request.POST["newPassword"]
+    
+        pestana = "contrasena"
+
         if not usuario.check_password(contrasenaAntigua):
             mensaje = "La contraseña antigua no es igual a la registrada en el sistema"
             llamarMensaje = "fracaso_usuario"
+            
 
-        elif contrasenaNueva != contrasenaNuevaIgual:
-            mensaje = "La contraseña son iguales las contraseñas insertadas"
-            llamarMensaje = "fracaso_usuario"
-        
         else:
             usuario.set_password(contrasenaNueva)
+            
             try:
                 usuario.save()
             except Exception as e:
@@ -98,7 +105,9 @@ def cambiar_contrasena(request):
         usuario.direccion = request.POST["address"]
         usuario.telefono = request.POST["phone"]
         usuario.email = request.POST["email"]
-        
+        pestana = "editar_perfil"
+
+
         if 'imagenperfil' in request.POST:
             print("imagen antigua") 
 
@@ -127,7 +136,7 @@ def cambiar_contrasena(request):
             del request.session["llamarMensaje"]
 
       
-    return render(request, retornarvista_segun_rol, {'usuario': usuario, "mensaje": mensaje,  "llamarMensaje": llamarMensaje})
+    return render(request, retornarvista_segun_rol, {'usuario': usuario, "mensaje": mensaje,  "llamarMensaje": llamarMensaje , "pestana": pestana })
 
 
 # Vista para editar usuario por parte del administrador y(/)

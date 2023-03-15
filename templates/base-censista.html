@@ -76,7 +76,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile ">
             <li class="dropdown-header">
               <h6>{{request.user.get_full_name}}</h6>
-              <span>Administrador</span>
+              <span>Censista</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -134,26 +134,7 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-person"></i><span>Usuarios</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{% url 'cambiar_contrasena' %}">
-              <i class="bi bi-circle"></i><span>Modificar Perfil</span>
-            </a>
-          </li>
-          
-          <li>
-            <a href="{% url 'cambiar_contrasena' %}">
-              <i class="bi bi-circle"></i><span>Cambiar Contraseña</span>
-            </a>
-          </li>
-
-          </ul>
-      </li><!-- End Components Nav -->
+ 
 
 
       <li class="nav-item">
@@ -167,7 +148,7 @@
             </a>
           </li>
           <li>
-            <a  href="{% url 'listar_formularios' %}">
+            <a  href="{% url 'listar_formularios_censista' %}">
               <i class="bi bi-circle"></i><span>Editar formulario</span>
             </a>
           </li>
