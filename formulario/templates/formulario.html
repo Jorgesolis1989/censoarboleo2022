@@ -263,10 +263,10 @@
                                 </div>
                               
                                 <div class="col-md-6 col-lg-6 py-4">                                                                   
-                                  <table class="table table-bordered">
+                                  <table class="table table-bordered w-100">
                                       <tr>
                                         <th scope="row">¿Requiere Revision?</th>                                      
-                                        <td>
+                                        <td class="td_class">
                                           <div class="form-check form-switch custom-switch">
                                             <label class="switch">
                                               <input type="checkbox" id="switchBtn">
@@ -1078,11 +1078,15 @@
                                         <div class="btn-group " data-toggle="buttons">
                                             <td class="">
                                               <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                                                  <input  class="form-check-input" type="checkbox" role="switch" id="otros_control_fitosanitario" name="otros_control_fitosanitario" >
+                                                  <input  class="form-check-input" type="checkbox" role="switch" id="otros_control_fitosanitario" name="otros_control_fitosanitario" onchange="otros()">
                                               </div>
                                             </td>
                                           </div>
                                       </tr>
+                                      <div class="form-floating" style="display: none;" id="otros_coment">
+                                        <h4>Otra intervención fitosanitaria</h4>
+                                        <textarea class="form-control" placeholder="Leave a comment here" id="comentarios_otros" name="comentarios_en_general"  style="height: 100px"></textarea>
+                                      </div>
                                     </div>
                                       <tbody>
                                       </tbody>

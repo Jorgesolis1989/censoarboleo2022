@@ -25,7 +25,18 @@ function validacionCtr()
 
 
 /* -----------FUNCION OCULTAR CAMPOS------------- */
-
+/*--------------------------------------------------------------
+# Seleccionar estado del registro pag 1
+--------------------------------------------------------------*/
+function otros() {
+    /* Hola mundo*/
+    var checkbox = document.getElementById("otros_control_fitosanitario");
+    if (checkbox.checked) {
+        document.getElementById("otros_coment").style.display = "block";
+    } else {
+        document.getElementById("otros_coment").style.display = "none";
+    }
+}
 /*--------------------------------------------------------------
 # Seleccionar estado del registro pag 1
 --------------------------------------------------------------*/
