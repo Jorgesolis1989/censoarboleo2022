@@ -66,16 +66,7 @@
   </form>
   </div>
 
-    <script>
-      window.onload = function() {
-      llamarMensajes( '{{ llamarMensaje }}' , '{{ mensaje }}');
-      $('#example').DataTable({
-        order: [[0, 'desc']],
-    });
-  };
-
-  
-  </script>
+ 
 <script src="static/js/llamarMensajes.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   {% endblock content  %}
