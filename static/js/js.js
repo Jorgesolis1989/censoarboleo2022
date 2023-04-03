@@ -951,9 +951,6 @@ document.getElementById("showImageButton").addEventListener("click", function() 
 
   function validatePassword(password) {
 
-    alert("validateFronent"+ password);
-
-
     let currentPassword = document.getElementById("currentPassword");
     let new_Password = document.getElementById("newPassword");
     let renew_Password = document.getElementById("renewPassword");
