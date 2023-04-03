@@ -582,6 +582,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     controlfitosanitario = False
     otros_control_fitosanitario = False
     porque_tala = "" 
+    comentarios_control_fitosanitario = ""
     comentarios = ""
 
     if "erradicacion" in request.POST:
@@ -644,6 +645,9 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     if "comentarios_en_general" in request.POST:
         comentarios = request.POST["comentarios_en_general"]
 
+    if "comentarios_otros" in request.POST:
+        comentarios_control_fitosanitario = request.POST["comentarios_otros"]
+
 
 
 
@@ -667,6 +671,8 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     recomendacion_e_intervencion.otros_control_fitosanitario = otros_control_fitosanitario
     recomendacion_e_intervencion.porque_tala = porque_tala
     recomendacion_e_intervencion.comentarios = comentarios
+    recomendacion_e_intervencion.comentarios_control_fitosanitario = comentarios_control_fitosanitario
+
     
     try:
         recomendacion_e_intervencion.save()

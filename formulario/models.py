@@ -314,6 +314,7 @@ class Recomendacion_e_Intervencion(models.Model):
     transplante = models.BooleanField(null=False)# Ok
     eliminar_piso_duro = models.BooleanField(null=False)# Ok
     otros_control_fitosanitario = models.BooleanField(null=False) # Ok
+    comentarios_control_fitosanitario = models.TextField(null=True)
     porque_tala= models.TextField(null=True)
     comentarios = models.TextField(null=True)
     creado = models.DateField(auto_now_add=True, blank=True)
