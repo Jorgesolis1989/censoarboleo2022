@@ -37,6 +37,7 @@ function otros() {
         document.getElementById("otros_coment").style.display = "none";
     }
 }
+otros();
 /*--------------------------------------------------------------
 # Seleccionar estado del registro pag 1
 --------------------------------------------------------------*/
@@ -674,7 +675,7 @@ function formshidde3(){
     /********************************************************************************************************** */
 
     if( copa_viva.value < 1 ){
-        swal('Ingresa un numero valido','','error')
+        swal('Ingresa un numero valido','Ingrese un numero correcto para Altura','error')
         copa_viva.className+=' is-invalid ';
         return false;
     }else{
@@ -684,7 +685,7 @@ function formshidde3(){
     }
 
     if( copa_ausente.value < 1 || copa_ausente.value >= 100){
-        swal('Ingresa un numero valido','','error')
+        swal('Ingresa un numero valido','Copa ausente debe ser mayor a 100%','error')
         copa_ausente.className+=' is-invalid ';
         return false;
     }else{

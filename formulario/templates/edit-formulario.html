@@ -1048,7 +1048,7 @@
                                           <td class="">
                                             <div class="form-check form-switch d-flex justify-content-center align-items-center">
                                                 <input  class="form-check-input" type="checkbox" role="switch" id="otros_control_fitosanitario" name="otros_control_fitosanitario"
-                                                {% if recomendacion_e_intervencion.otros_control_fitosanitario %} checked  {% endif %}>
+                                                {% if recomendacion_e_intervencion.otros_control_fitosanitario %} checked  {% endif %} onchange="otros()">
                                             </div>
                                           </td>
                                         </div>
@@ -1060,6 +1060,10 @@
     
                                     </tbody>
                                 </table>
+                                <div class="form-floating" style="display: none;" id="otros_coment">
+                                  <h4>Otra intervención fitosanitaria</h4>
+                                  <textarea class="form-control" placeholder="Ingrese un comentario" id="comentarios_otros" name="comentarios_en_general"  style="height: 100px"></textarea>
+                                </div>
                                 </div>
 
                               <div class="col-md-12 col-lg-12 mb-2 " id="intervencion" style="display: block;">
@@ -1446,7 +1450,44 @@
   </body>
 
 
-
+  <script type="text/javascript">
+    $(document).on('ready',function (){
+        
+        $.getJSON('/static/js/lista_familia_arboles.json', function(data) {
+            $.each(data, function(key, value) {
+                $("#nombre_comun").append('<option name="' + key + '">' + value + '</option>');
+            }); // close each()
+        }); // close getJSON()
+    
+      
+    
+        
+        $.getJSON('../../static/js/lista_genero_arboles.json', function(json) { datos_json = json; });
+    
+    
+    
+        var my_url = "/static/js/lista_genero_arboles.json"
+        var jason = (function () { var json = null; $.ajax({ 'async': false, 'global': false, 'url': my_url, 'dataType': "json", 'success': function (data) { json = data; } }); return json; })();
+    
+    
+    
+    
+          // Familia
+          document.getElementById("familia").value=jason["Acacia rubinia"][0]
+    
+    // Género
+    document.getElementById("genero").value=jason["Acacia rubinia"][1]
+    
+    // Nombre Científico
+    document.getElementById("nombre_cientifico").value=jason["Acacia rubinia"][2]
+    
+    
+    
+        
+        llamarMensajes( '{{ llamarMensaje }}' , '{{ mensaje }}');
+        
+    });
+    </script>
 
 
   <script type="text/javascript">
@@ -1467,7 +1508,9 @@
 
       // Valores iniciales-
       
-
+  
+    /* Hola mundo*/
+   
 
 
       //placa antigua
@@ -1543,6 +1586,16 @@
         document.getElementById("formView").style.display = "none";
       }
 
+      // otros
+      function otros() {
+        /* Hola mundo*/
+        var checkbox = document.getElementById("otros_control_fitosanitario");
+        if (checkbox.checked) {
+            document.getElementById("otros_coment").style.display = "block";
+        } else {
+            document.getElementById("otros_coment").style.display = "none";
+        }
+    }
 
       // Fuste
       if ("{{dasometria.fuste}}" ==  "Fuste Único")
@@ -1552,7 +1605,7 @@
       
       }else
       {
-        document.getElementById("poli_polifurcado").checked = true;
+        document.getElementById("poli_polifurcado").checked = true; 
         formFusteFolicurcado();
       }
       
@@ -1646,6 +1699,7 @@
       document.getElementById("vitalidad").selectedIndex = vitalidad_dict.get("{{estado_fitosanitario.vitalidad}}");
       ocultar();
 
+     
 
       //Raices
 
