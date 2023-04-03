@@ -1,8 +1,8 @@
 function bloquearEnvio(event) {
     const placaAntigua = document.getElementById("placa_antigua");
-    const estadoRegistro = document.getElementById("estado_registro");
-    const selectRegistro = estadoRegistro.options[estadoRegistro.selectedIndex];
-    const selectValue = selectRegistro.value;
+//    const estadoRegistro = document.getElementById("estado_registro");
+ //   const selectRegistro = estadoRegistro.options[estadoRegistro.selectedIndex];
+  //  const selectValue = selectRegistro.value;
     const qr = document.getElementById('qr');
     //const confinamiento-radio = document.getElementById('radio2');
     const avatar = document.getElementById('avatar');
@@ -355,4 +355,3 @@ function bloquearEnvio(event) {
   }
 
   
-  document.getElementById("form").addEventListener("submit", bloquearEnvio);

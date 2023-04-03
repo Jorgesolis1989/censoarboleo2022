@@ -50,7 +50,7 @@ def supervisor_home(request , usuario):
 
 
     return render(request, 'supervisor.html', {'usuario': usuario, 'numero_censistas':censistas.count(),
-                                               'numero_formularios': numero_formularios})
+                                               'numero_formularios': numero_formularios })
 
 
 # Pagina principal para usuario Supervisor Forestal

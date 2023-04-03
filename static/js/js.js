@@ -37,7 +37,6 @@ function otros() {
         document.getElementById("otros_coment").style.display = "none";
     }
 }
-otros();
 /*--------------------------------------------------------------
 # Seleccionar estado del registro pag 1
 --------------------------------------------------------------*/
@@ -675,7 +674,7 @@ function formshidde3(){
     /********************************************************************************************************** */
 
     if( copa_viva.value < 1 ){
-        swal('Ingresa un numero valido','Ingrese un numero correcto para Altura','error')
+        swal('Ingresa un numero valido','','error')
         copa_viva.className+=' is-invalid ';
         return false;
     }else{
@@ -685,7 +684,7 @@ function formshidde3(){
     }
 
     if( copa_ausente.value < 1 || copa_ausente.value >= 100){
-        swal('Ingresa un numero valido','Copa ausente debe ser mayor a 100%','error')
+        swal('Ingresa un numero valido','','error')
         copa_ausente.className+=' is-invalid ';
         return false;
     }else{
@@ -991,6 +990,7 @@ document.getElementById("showImageButton").addEventListener("click", function() 
         renew_Password.className+=' is-invalid ';
         new_Password.className+=' is-invalid ';
         swal("La contraseña nueva y la confirmación de la contraseña no coinciden","","error");
+        
         isValid = false;
     }
 
@@ -998,11 +998,15 @@ document.getElementById("showImageButton").addEventListener("click", function() 
     return isValid;
   }
 
-  document.getElementById("formulariocontrasena").addEventListener("submit", function(event) {
+  var formulario_contrasena = document.getElementById("formulariocontrasena");
+
+
+  if(!formulario_contrasena == null)
+  {formulario_contrasena.addEventListener("submit", function(event) {
     if (!validatePassword()) {
       event.preventDefault();
     }
-  });
+  });}
 
 
   function deleteInValidContrasena(){
@@ -1018,9 +1022,11 @@ document.getElementById("showImageButton").addEventListener("click", function() 
 }
 
   const switchBtn = document.getElementById("switchBtn");
+  
+  if(!switchBtn == null){
   switchBtn.addEventListener("click", function() {
     // do something when switch is clicked
-  });
+  });}
 
 
   

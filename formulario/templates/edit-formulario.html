@@ -12,7 +12,7 @@
       <title >Censo Arbóreo Santiago de Cali 2022</title>
       <link rel="icon" type="image/x-icon" href="{% static '/img/funa.ico' %}">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-      <link rel="stylesheet" type="text/css" href="static/assets/css/style.css">
+      <link rel="stylesheet" type="text/css" href="{% static '/assets/css/style.css' %}">
 
       <!-- Custom fonts for this template -->
       <link href="{% static '/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -120,7 +120,7 @@
                                     <i class="fa fa-info-circle"></i>
                                   </button> 
                                   <select type="number" id="estado_registro" name="estado_registro" class="form-control" onchange="estadoRegistro()" >
-                                    <option value="Nuevo" >Nuevo</option>
+                                    <option value="Nuevo" >Nuevo</option> 
                                     <option value="Antiguo">Antiguo</option>
                                   </select>
                                 
@@ -229,14 +229,16 @@
                                           <option value="Corredor férreo">Corredor férreo</option>
                                           <option value="Escenario deportivo y/o cultural">Escenario deportivo y/o cultural</option>
                                           <option value="Glorieta">Glorieta</option>
-                                          <option value="Institución Educativa">Institución Educativa</option>
-                                          <option value="Parque Urbano">Parque Urbano</option>
+                                          <option value="Institución educativa">Institución educativa</option>
+                                          <option value="Parque urbano">Parque urbano</option>
                                           <option value="Paseos">Paseos</option>
                                           <option value="Plazas">Plazas</option>
                                           <option value="Plazoleta">Plazoleta</option>  
                                           <option value="Rondas de canales">Rondas de canales</option>
                                           <option value="Rondas de ríos">Rondas de ríos</option>
                                           <option value="Separador vial">Separador vial</option>
+
+
                                       </select>
                                   </div>
                                
@@ -407,57 +409,64 @@
 
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       
-                                      <div class="col-md-12 col-lg-12 mb-2">
     
                                         <label for="Tallos">No de Tallos</label>
-                                        <input type="number" id="numero_tallos" name="numero_tallos" class="form-control" placeholder=" Valor en número entero" value="{{dasometria.numtallos}}">
+                                        <select  id="numero_tallos" name="numero_tallos" class="form-select " onchange="fuste_polifurcado();">
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                        </select>
+                                        
+                                  
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número
                                         </div>  
                                     </div>
                                     
+                                    <div class="col-md-12 col-lg-12 mb-2" id="fuste1" style="display: block;">
                                       <label for="CAP 1">CAP 1(cm)</label>
-                                      <input type="number" id="capa1" name="capa1" placeholder=" Valor en cm" class="form-control" value="{{dasometria.cap1}}">
+                                      <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="CAP (cm)" data-bs-content="Circunferencia a la altura de pecho, para individuo polifurcado ">
+                                        <i class="fa fa-info-circle"></i>
+                                      </button>
+                                      <input type="number" id="capa1" name="capa1" placeholder="CAP 1(cm)" class="form-control "  onkeyup="capa_invalid()" value="{{dasometria.cap1}}">
                                       <div class="invalid-feedback" id="delet">
-                                        Ingresa un número
+                                       * Ingresa un número de CAP1 válido mayor o igual a 1 *
+                                      </div>  
+                                    </div>
+
+                                    <div class="col-md-12 col-lg-12 mb-2" id="fuste2" style="display: none;">
+                                      <label for="Capa 2">CAP 2(cm)</label>
+                                      <input type="number" id="capa2" name="capa2" placeholder="CAP 2(cm)" class="form-control "  onkeyup="capa_invalid1()" value="{{dasometria.cap2}}">
+                                      <div class="invalid-feedback" id="delet">
+                                       * Ingresa un número de CAP2 válido mayor o igual a 1 *
                                       </div>  
                                   </div>
-
-                                      <div class="col-md-12 col-lg-12 mb-2">
-                                        <label for="Capa 2">CAP 2(cm)</label>
-                                        <input type="number" id="capa2" name="capa2" placeholder=" Valor en cm" class="form-control" value="{{dasometria.cap2}}">
-                                        <div class="invalid-feedback" id="delet">
-                                          Ingresa un número
-                                        </div>  
-                                    </div>
-                                      <div class="col-md-12 col-lg-12 mb-2">
-                                        <label for="Capa 3">CAP 3(cm)</label>
-                                        <input type="text" id="capa3" name="capa3" placeholder=" Valor en cm"  class="form-control" value="{{dasometria.cap3}}"> 
-                                        <div class="invalid-feedback" id="delet">
-                                          Ingresa un número
-                                        </div> 
-                                    </div>
-                                      <div class="col-md-12 col-lg-12 mb-2">
-                                        <label for="Placa Antigua">CAP 4(cm)</label>
-                                        <input type="text" id="capa4" name="capa4" placeholder=" Valor en cm" class="form-control" value="{{dasometria.cap4}}">
-                                        <div class="invalid-feedback" id="delet">
-                                          Ingresa un número
-                                        </div>  
-                                    </div>
-                                      <div class="col-md-12 col-lg-12 mb-2">
-                                        <label for="Placa Antigua">CAP 5(cm)</label>
-                                        <input type="text" id="capa5" name="capa5" placeholder=" Valor en cm" class="form-control" value="{{dasometria.cap5}}">
-                                        <div class="invalid-feedback" id="delet">
-                                          Ingresa un número
-                                        </div>  
-                                    </div>
-
-                               
+                                  <div class="col-md-12 col-lg-12 mb-2" id="fuste3" style="display: none;">
+                                    <label for="Capa 3">CAP 3(cm)</label>
+                                    <input type="text" id="capa3" name="capa3" placeholder="CAP 3(cm)"  class="form-control "  onkeyup="capa_invalid2()" value="{{dasometria.cap3}}"> 
+                                    <div class="invalid-feedback" id="delet">
+                                     * Ingresa un número de CAP3 válido mayor o igual a 1 *
+                                    </div> 
+                                </div>
+                                <div class="col-md-12 col-lg-12 mb-2" id="fuste4" style="display: none;">
+                                  <label for="Placa Antigua">CAP 4(cm)</label>
+                                  <input type="text" id="capa4" name="capa4" placeholder="CAP 4(cm)" class="form-control "  onkeyup="capa_invalid3()" value="{{dasometria.cap4}}">
+                                  <div class="invalid-feedback" id="delet">
+                                   * Ingresa un número de CAP4 válido mayor o igual a 1 *
+                                  </div>  
+                              </div>
+                                <div class="col-md-12 col-lg-12 mb-2" id="fuste5" style="display: none;">
+                                  <label for="Placa Antigua">CAP 5(cm)</label>
+                                  <input type="text" id="capa5" name="capa5" placeholder="CAP 5(cm)" class="form-control "  onkeyup="capa_invalid4()"value="{{dasometria.cap5}}">
+                                  <div class="invalid-feedback" id="delet">
+                                  * Ingresa un número de CAP5 válido mayor o igual a 1 *
+                                  </div>  
+                              </div>
 
                                   </div> 
 
-
-                                    
                                       <div class="col-md-12 col-lg-12 text-center py-3">
                                           <h6 style="color: black;">Alturas (metros) :</h6>
                                       </div>
@@ -472,7 +481,7 @@
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Total del árbol</label>
                                           <input type="number" name="totalarbol" id="totalarbol"  step="any" class="form-control"
-                                              placeholder="Ht (m)" value="{{dasometria.altura_arbol}}" >
+                                              placeholder="Ht (m)" >
                                               <div class="invalid-feedback" id="delet">
                                                 Ingresa un número
                                               </div>
@@ -1473,26 +1482,15 @@
     
     
           // Familia
-          document.getElementById("familia").value=jason["Acacia rubinia"][0]
+    //      document.getElementById("familia").value=jason["Acacia rubinia"][0];
     
     // Género
-    document.getElementById("genero").value=jason["Acacia rubinia"][1]
+   // document.getElementById("genero").value=jason["Acacia rubinia"][1];
     
     // Nombre Científico
-    document.getElementById("nombre_cientifico").value=jason["Acacia rubinia"][2]
+    // document.getElementById("nombre_cientifico").value=jason["Acacia rubinia"][2];
     
-    
-    
-        
-        llamarMensajes( '{{ llamarMensaje }}' , '{{ mensaje }}');
-        
-    });
-    </script>
-
-
-  <script type="text/javascript">
-  $(document).on('ready',function (){
-      
+       
       $.getJSON('../../static/js/lista_familia_arboles.json', function(data) {
           $.each(data, function(key, value) {
               $("#nombre_comun").append('<option name="' + key + '">' + value + '</option>');
@@ -1500,6 +1498,9 @@
 
 
       document.getElementById("nombre_comun").value=data["{{arbol.nombre_comun}}"];
+      document.getElementById("familia").value=jason["{{arbol.nombre_comun}}"][0];
+      document.getElementById("genero").value=jason["{{arbol.nombre_comun}}"][1];
+      document.getElementById("nombre_cientifico").value==jason["{{arbol.nombre_comun}}"][2];
 
 
       }); // close getJSON()
@@ -1508,16 +1509,22 @@
 
       // Valores iniciales-
       
+      // Estado Cobertura
+      let estado_registro_dict= new Map();
+      estado_registro_dict.set("Nuevo",0);
+      estado_registro_dict.set("Antiguo",1);
   
-    /* Hola mundo*/
-   
-
-
+      console.log("{{arbol.estado}}")
+      document.getElementById("estado_registro").selectedIndex = estado_registro_dict.get("{{arbol.estado}}");
       //placa antigua
       
+    
       
+
+
       if ("{{arbol.estado}}" == "Antiguo") {
         document.getElementById("antigua_placa").style.display = "block";
+
     }
     else{
         document.getElementById("antigua_placa").style.display = "none";
@@ -1550,19 +1557,20 @@
       
       // Estado Enplazamiento
       let emplazamiento_dict= new Map();
-      emplazamiento_dict.set("Bahía de estacionamiento",0);
-      emplazamiento_dict.set("Bulevares",1);
-      emplazamiento_dict.set("Corredor Férreo",2);
-      emplazamiento_dict.set("Escenario deportivo y/o cultural",3);
-      emplazamiento_dict.set("Glorieta",4);
-      emplazamiento_dict.set("Institución educativa",5);
-      emplazamiento_dict.set("Parque Urbano",6);
-      emplazamiento_dict.set("Paseos",7);
-      emplazamiento_dict.set("Plazas",8);
-      emplazamiento_dict.set("Plazoleta",9);
-      emplazamiento_dict.set("Ronda de canales",10);
-      emplazamiento_dict.set("Ronda de ríos",11);
-      emplazamiento_dict.set("Separador vial",12);
+      emplazamiento_dict.set("Andén", 0)
+      emplazamiento_dict.set("Bahía de estacionamiento",1);
+      emplazamiento_dict.set("Bulevares",2);
+      emplazamiento_dict.set("Corredor férreo",3);
+      emplazamiento_dict.set("Escenario deportivo y/o cultural",4);
+      emplazamiento_dict.set("Glorieta",5);
+      emplazamiento_dict.set("Institución educativa",6);
+      emplazamiento_dict.set("Parque urbano",7);
+      emplazamiento_dict.set("Paseos",8);
+      emplazamiento_dict.set("Plazas",9);
+      emplazamiento_dict.set("Plazoleta",10);
+      emplazamiento_dict.set("Rondas de canales",11);
+      emplazamiento_dict.set("Rondas de ríos",12);
+      emplazamiento_dict.set("Separador vial",13);
 
     
       document.getElementById("emplazamiento").selectedIndex = emplazamiento_dict.get("{{arbol.emplazamiento}}");
@@ -1606,7 +1614,21 @@
       }else
       {
         document.getElementById("poli_polifurcado").checked = true; 
+        
+        
+      
+      let num_tallos_dict= new Map(); 
+      
+      num_tallos_dict.set("1", 0)
+      num_tallos_dict.set("2",1);
+      num_tallos_dict.set("3",2);
+      num_tallos_dict.set("4",3);
+      num_tallos_dict.set("5",4);
+
+     document.getElementById("numero_tallos").selectedIndex = num_tallos_dict.get("{{dasometria.numtallos}}");
+  
         formFusteFolicurcado();
+        fuste_polifurcado();
       }
       
 
@@ -1657,7 +1679,7 @@
         exposicionluz_dict.set("Dos (2) caras",2);
         exposicionluz_dict.set("Tres (3) caras",3);
         exposicionluz_dict.set("Cuatro (4) caras",4);
-        exposicionluz_dict.set("4 cara más superior<",4);
+        exposicionluz_dict.set("4 cara más superior",4);
 
         document.getElementById("exposicionluz").selectedIndex = exposicionluz_dict.get("{{dasometria.expcopaluz}}");
 
@@ -1700,7 +1722,6 @@
       ocultar();
 
      
-
       //Raices
 
 
