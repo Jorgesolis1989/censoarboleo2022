@@ -645,7 +645,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     if "comentarios_en_general" in request.POST:
         comentarios = request.POST["comentarios_en_general"]
 
-    if "comentarios_otros" in request.POST:
+    if "comentarios_otros" in request.POST and otros_control_fitosanitario:
         comentarios_control_fitosanitario = request.POST["comentarios_otros"]
 
 

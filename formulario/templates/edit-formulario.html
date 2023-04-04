@@ -1069,9 +1069,14 @@
     
                                     </tbody>
                                 </table>
-                                <div class="form-floating" style="display: none;" id="otros_coment">
+
+                                {% if recomendacion_e_intervencion.otros_control_fitosanitario %}  <div class="form-floating" style="display: block;" id="otros_coment"> 
+                                 {%else%} 
+                                 <div class="form-floating" style="display: none;" id="otros_coment">
+                                 {% endif %}
+                               
                                   <h4>Otra intervención fitosanitaria</h4>
-                                  <textarea class="form-control" placeholder="Ingrese un comentario" id="comentarios_otros" name="comentarios_otros"  style="height: 100px"></textarea>
+                                  <textarea class="form-control" placeholder="Ingrese un comentario" id="comentarios_otros" name="comentarios_otros"  style="height: 100px">{{recomendacion_e_intervencion.comentarios_control_fitosanitario}}</textarea>
                                 </div>
                                 </div>
 
