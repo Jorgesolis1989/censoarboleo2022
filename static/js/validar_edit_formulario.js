@@ -1,9 +1,180 @@
-function bloquearEnvio(event) {
-    const placaAntigua = document.getElementById("placa_antigua");
+otros()
+function otros() {
+    /* Hola mundo*/
+    var checkbox = document.getElementById("otros_control_fitosanitario");
+    if (checkbox.checked) {
+        document.getElementById("otros_coment").style.display = "block";
+    } else {
+        document.getElementById("otros_coment").style.display = "none";
+    }
+}
+ 
+function estadoRegistro() {
+    /* Hola mundo*/
+    var estadoRegistro = document.getElementById("estado_registro");
+    estadoRegistro = estadoRegistro.options[estadoRegistro.selectedIndex].value;
+    if (estadoRegistro == "Antiguo") {
+        document.getElementById("antigua_placa").style.display = "block";
+    }
+    else{
+        document.getElementById("antigua_placa").style.display = "none";
+    }
+}
+
+function estadoConfinamiento() {
+    /* Hola mundo*/
+    var Confinamiento = document.getElementById("confinamiento");
+    Confinamiento = Confinamiento.options[Confinamiento.selectedIndex].value;
+    if (Confinamiento == "si") {
+        document.getElementById("formView").style.display = "block";
+    }
+    else{
+        document.getElementById("formView").style.display = "none";
+    }
+}
+
+/*--------------------------------------------------------------
+# Seleccionar numero de tallos en la pag 3
+--------------------------------------------------------------*/
+function formFusteUnico(){
+    var table = document.getElementById("formViewUnico");
+    table.style.display = "block";
+
+    var table1 = document.getElementById("formViewPolifurcado");
+    table1.style.display = "none"
+}
+
+function formFusteFolicurcado(){
+    var table = document.getElementById("formViewUnico");
+    table.style.display = "none";
+
+    var table = document.getElementById("formViewPolifurcado");
+    table.style.display = "block";
+
+
+    
+}
+    function fuste_polifurcado() {
+        
+        var ocultarfuste = document.getElementById("numero_tallos");
+        ocultarfuste = ocultarfuste.options[ocultarfuste.selectedIndex].value;
+        if (ocultarfuste == "1") {
+            document.getElementById("fuste1").style.display = "block";
+            document.getElementById("fuste2").style.display = "none";
+            document.getElementById("fuste3").style.display = "none";
+            document.getElementById("fuste4").style.display = "none";
+            document.getElementById("fuste5").style.display = "none";
+
+
+
+            
+        }
+        else if (ocultarfuste == "2") {
+            document.getElementById("fuste1").style.display = "block";
+            document.getElementById("fuste2").style.display = "block";
+            document.getElementById("fuste3").style.display = "none";
+            document.getElementById("fuste4").style.display = "none";
+            document.getElementById("fuste5").style.display = "none";
+        }
+        else if (ocultarfuste == "3") {
+            document.getElementById("fuste1").style.display = "block";
+            document.getElementById("fuste2").style.display = "block";
+            document.getElementById("fuste3").style.display = "block";
+            document.getElementById("fuste4").style.display = "none";
+            document.getElementById("fuste5").style.display = "none";
+        }
+        else if (ocultarfuste == "4") {
+            document.getElementById("fuste1").style.display = "block";
+            document.getElementById("fuste2").style.display = "block";
+            document.getElementById("fuste3").style.display = "block";
+            document.getElementById("fuste4").style.display = "block";
+            document.getElementById("fuste5").style.display = "none";
+        }
+        else if (ocultarfuste == "5") {
+            document.getElementById("fuste1").style.display = "block";
+            document.getElementById("fuste2").style.display = "block";
+            document.getElementById("fuste3").style.display = "block";
+            document.getElementById("fuste4").style.display = "block";
+            document.getElementById("fuste5").style.display = "block";
+        }
+
+    }
+
+    function ocultar() {
+        /* Se obtienen los datos del id en el select para identificar el tipo de rama si es buena o mala,
+        Se hace una validacion para saber el valor del id en select, luego se establece un style.display dependiendo del valor y se oculta 
+        o se muestran las tablas de contenido */
+        var optionhidden = document.getElementById("vitalidad");
+        optionhidden = optionhidden.options[optionhidden.selectedIndex].value;
+        if (optionhidden == "Buena"   || optionhidden == "Mala" ) {
+            document.getElementById("ocultar").style.display = "none";
+        } else if (optionhidden == "Regular") {
+            document.getElementById("ocultar").style.display = "block";
+        }
+    
+        if (optionhidden == "Buena" || optionhidden == "Regular"){
+            document.getElementById("controlfitosanitario_div").style.display = "block";
+            document.getElementById("intervencion").style.display = "block";
+            document.getElementById("talamuerto").style.display = "none";
+        }else if(optionhidden == "Mala")
+        {
+            document.getElementById("controlfitosanitario_div").style.display = "none";
+            document.getElementById("intervencion").style.display = "none";
+            document.getElementById("talamuerto").style.display = "block";
+        }
+    
+    
+    
+    }
+    
+    function estadoRegistr() {
+        /* Hola mundo*/
+        var estadoRegistro = document.getElementById("estado_registro");
+        estadoRegistro = estadoRegistro.options[estadoRegistro.selectedIndex].value;
+        if (estadoRegistro == "Antiguo") {
+            document.getElementById("antigua_placa").style.display = "block";
+        }
+        else{
+            document.getElementById("antigua_placa").style.display = "none";
+        }
+    }
+
+    
+    function formshidde(){
+        const placaAntigua = document.getElementById("placa_antigua")
+        const estadoRegistro = document.getElementById("estado_registro")
+        const selectRegistro = estadoRegistro.options[estadoRegistro.selectedIndex]
+        const selectValue = selectRegistro.value
+    
+      
+        if (selectValue == "Antiguo") {
+            console.log("Entró a la validación");
+            if( placaAntigua.value < 1 ){
+                console.log("Placa antigua es inválida");
+                placaAntigua.className+=' is-invalid ';
+                swal('Digite la Placa Antigua','Debe ingresar un dígito válido','error')
+                return false;
+            }else{       
+              console.log("Placa antigua es válida");
+          
+              placaAntigua.classList.remove('is-invalid');
+              placaAntigua.className+=' is-valid ';
+              
+              return true;
+              
+            }
+        
+            
+        }
+
+      
+    }
+
+   
 //    const estadoRegistro = document.getElementById("estado_registro");
  //   const selectRegistro = estadoRegistro.options[estadoRegistro.selectedIndex];
   //  const selectValue = selectRegistro.value;
-    const qr = document.getElementById('qr');
+   /* const qr = document.getElementById('qr');
     //const confinamiento-radio = document.getElementById('radio2');
     const avatar = document.getElementById('avatar');
     const avatar2 = document.getElementById('avatar2');
@@ -105,9 +276,9 @@ function bloquearEnvio(event) {
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
     
       /* Se valida el fuste unico, si esta chekeado entonces, se hace la validacion del input */
-    if (fusteUnico.checked){
+   /* if (fusteUnico.checked){
         
-
+   
             if(Cap.value < 1){
                 Cap.className += 'is-invalid';
                 swal('Ingresa un número valido en CAP ','','error')
@@ -274,7 +445,7 @@ function bloquearEnvio(event) {
         }
     }
     /* --------------------------------Validaciones de formulario 3 --------------------------- */
-    if( comercial.value < 1 || comercial.value > 50 ){
+   /* if( comercial.value < 1 || comercial.value > 50 ){
         swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
         comercial.className+=' is-invalid ';
         return false;
@@ -351,7 +522,6 @@ function bloquearEnvio(event) {
         copa_ausente.classList.remove('is-invalid');
         copa_ausente.className+=' is-valid ';
     }
-
-  }
+ */
 
   
