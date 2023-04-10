@@ -188,7 +188,7 @@
 
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Nombre común</label>
-                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-control" disabled>
+                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-control" disabled value="{{arbol.nombre_comun}}">
                                       </select>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
@@ -200,7 +200,7 @@
                                       <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" disabled value="{{arbol.familia}}">
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
-                                      <label for="">Genero</label>
+                                      <label for="">Género</label>
                                       <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" disabled value="{{arbol.genero}}">
                                   </div>
                                   
@@ -1055,7 +1055,19 @@
     
                                     </tbody>
                                 </table>
-                                </div>
+
+                                {% if recomendacion_e_intervencion.otros_control_fitosanitario %}  <div class="form-floating" style="display: block;" id="otros_coment"> 
+                                  {%else%} 
+                                  <div class="form-floating" style="display: none;" id="otros_coment">
+                                  {% endif %}
+                                
+                                   <h4>Otra intervención fitosanitaria</h4>
+                                   <textarea class="form-control" placeholder="Ingrese un comentario" id="comentarios_otros" disabled name="comentarios_otros"  style="height: 100px">{{recomendacion_e_intervencion.comentarios_control_fitosanitario}}</textarea>
+                                 </div>
+                                 </div>
+ 
+
+                             
 
                               <div class="col-md-12 col-lg-12 mb-2 " id="intervencion" style="display: block;">
                                 <table class="table table-hover shadow ">
@@ -1427,7 +1439,8 @@
   <script type="text/javascript">
   $(document).on('ready',function (){
       
-      $.getJSON('../../static/js/lista_familia_arboles.json', function(data) {
+    
+    $.getJSON('../../static/js/lista_familia_arboles.json', function(data) {
           $.each(data, function(key, value) {
               $("#nombre_comun").append('<option name="' + key + '">' + value + '</option>');
           }); // close each()
@@ -1437,6 +1450,11 @@
 
 
       }); // close getJSON()
+
+
+
+      // Nombre común
+     // document.getElementById("nombre_comun").value=data["{{arbol.nombre_comun}}"];
 
   
       // Madurez

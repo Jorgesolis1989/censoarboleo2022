@@ -175,15 +175,15 @@
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="">Nombre científico</label>
-                                      <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" readonly value="{{arbol.nombre_cientifico}}">
+                                      <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="">Familia</label>
-                                      <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" readonly value="{{arbol.familia}}">
+                                      <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="">Genero</label>
-                                      <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly value="{{arbol.genero}}">
+                                      <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly >
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="">Estado de Madurez</label>
@@ -1480,7 +1480,7 @@
     
     
     
-        var my_url = "/static/js/lista_genero_arboles.json"
+        var my_url = "../../static/js/lista_genero_arboles.json"
         var jason = (function () { var json = null; $.ajax({ 'async': false, 'global': false, 'url': my_url, 'dataType': "json", 'success': function (data) { json = data; } }); return json; })();
     
     
@@ -1505,7 +1505,7 @@
       document.getElementById("nombre_comun").value=data["{{arbol.nombre_comun}}"];
       document.getElementById("familia").value=jason["{{arbol.nombre_comun}}"][0];
       document.getElementById("genero").value=jason["{{arbol.nombre_comun}}"][1];
-      document.getElementById("nombre_cientifico").value==jason["{{arbol.nombre_comun}}"][2];
+      document.getElementById("nombre_cientifico").value=jason["{{arbol.nombre_comun}}"][1];
 
 
       }); // close getJSON()

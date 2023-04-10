@@ -57,7 +57,7 @@ def listar_formularios_censista(request):
     base_template = ""
     if usuario.rol == "Censista":
         base_template = "base-censista.html"
-        arboles = Arbol.objects.filter(creado_por=usuario.username, habilitado= True).order_by('-id')
+        arboles = Arbol.objects.filter(creado_por=usuario.username, habilitado= True).order_by('-creado')
         
         
     
@@ -69,8 +69,6 @@ def listar_formularios_censista(request):
 
 
     return render(request, 'listar_formularios_censista.html',{'usuario': usuario, 'arboles': arboles, "base_template":base_template, 'mensaje': mensaje, 'llamarMensaje': llamarMensaje})
-
-
 
 
 
@@ -95,7 +93,7 @@ def listar_formularios(request):
         #arboles = Arbol.objects.filter().order_by('-id')
         censistas = Usuario.objects.filter(Grupo=usuario.Grupo).values("cedula_usuario")
 
-        arboles = Arbol.objects.filter(creado_por__cedula_usuario__in=censistas , habilitado= True)
+        arboles = Arbol.objects.filter(creado_por__cedula_usuario__in=censistas , habilitado= True).order_by('-id')
     
         # programar cuando sea supervisor
 
@@ -280,6 +278,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     if  actualizar:
         arbol.modificado_por =  request.user.username
         arbol.actualizado =  timezone.now()
+        arbol.requiere_revision = False
     else:
         usuario_creador_arbol = Usuario.objects.get(username = request.user.username)
         arbol.creado_por = usuario_creador_arbol
