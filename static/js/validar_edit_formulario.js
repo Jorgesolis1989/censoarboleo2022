@@ -185,7 +185,7 @@ function formFusteFolicurcado(){
             }
           
         }
-
+        /* validacion */
         if( qr.value < 1 ){
             qr.className+=' is-invalid ';
             swal('Digite el código QR','Debe ingresar un dígito de QR válido','error')
