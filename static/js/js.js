@@ -250,6 +250,15 @@ function deleteInValid(){
     ejemenor.classList.remove('is-invalid');
     copa_viva.classList.remove('is-invalid');
     copa_ausente.classList.remove('is-invalid');
+    placaAntigua.classList.remove('is-valid');
+    qr.classList.remove('is-valid');
+    Confinamiento.classList.remove('is-valid');
+    comercial.classList.remove('is-valid');
+    totalarbol.classList.remove('is-valid');
+    ejemayor.classList.remove('is-valid');
+    ejemenor.classList.remove('is-valid');
+    copa_viva.classList.remove('is-valid');
+    copa_ausente.classList.remove('is-valid');
 }
 
 function capa_invalid(){
@@ -257,26 +266,32 @@ function capa_invalid(){
     const Cap1 = document.getElementById('capa1');
     Cap.classList.remove('is-invalid');
     Cap1.classList.remove('is-invalid');
+    Cap.classList.remove('is-valid');
+    Cap1.classList.remove('is-valid');
 }
 function capa_invalid1(){
     const Cap2 = document.getElementById('capa2');
     Cap2.classList.remove('is-invalid');
+    Cap2.classList.remove('is-valid');
 }
 
 
 function capa_invalid2(){
     const Cap3 = document.getElementById('capa3');
     Cap3.classList.remove('is-invalid');
+    Cap3.classList.remove('is-valid');
 }
 
 function capa_invalid3(){
     const Cap4 = document.getElementById('capa4');
     Cap4.classList.remove('is-invalid');
+    Cap4.classList.remove('is-valid');
 }
 
 function capa_invalid4(){
     const Cap5 = document.getElementById('capa5');
     Cap5.classList.remove('is-invalid');
+    Cap5.classList.remove('is-valid');
 }
 
 

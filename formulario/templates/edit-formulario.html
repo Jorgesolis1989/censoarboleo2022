@@ -109,7 +109,7 @@
                               
                                                                                       <!-- FORMULARIO-->
 
-                          <form method="post" enctype="multipart/form-data" class="needs-validation">
+                            <form id="Myform" method="post" enctype="multipart/form-data" class="needs-validation" onsubmit="return formshidde();">
                             {% csrf_token %}
                             <!--FORMULARIO 1-->
                             <div  id="form1" style="display: block;" needs-validation>
@@ -119,7 +119,7 @@
                                   <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Estado del registro" data-bs-content="Estado en que se encuentra el registro del individuo">
                                     <i class="fa fa-info-circle"></i>
                                   </button> 
-                                  <select type="number" id="estado_registro" name="estado_registro" class="form-control" onchange="estadoRegistro()" >
+                                  <select type="number" id="estado_registro" name="estado_registro" class="form-control" onchange="estadoRegistr()" >
                                     <option value="Nuevo" >Nuevo</option> 
                                     <option value="Antiguo">Antiguo</option>
                                   </select>
@@ -131,7 +131,7 @@
                                     <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Placa Antigua" data-bs-content="Placa metálica censos anteriores"> 
                                       <i class="fa fa-info-circle"></i>
                                     </button>
-                                    <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" class="form-select" value="{{arbol.Placa_ant}}">                                         
+                                    <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" class="form-select" value="{{arbol.Placa_ant}}" required>                                         
                                     <div class="invalid-feedback" id="delet">
                                      * Ingresa como mínimo 1 digito *
                                     </div>
@@ -1299,7 +1299,7 @@
                          
 
 
-                        <!-- BOTON 5-->
+                        <!-- BOTON 5--> 
                         <nav aria-label="Page navigation example" id="boton5" >
                           <ul class="pagination justify-content-center">
                               <li class="page-item disabled px-3">
@@ -1313,7 +1313,8 @@
                               <span class="badge bg-white text-primary"></span> 
                             </button> </a>
                             &nbsp;            &nbsp;
-                          <button name="btnActualizar" type="submit" class="finish btn btn-warning" onclick="bloquearEnvio(event)">Actualizar</button>
+                            <button id="btnEnviar" name="btnActualizar" type="submit" class="finish btn btn-warning">Actualizar</button>
+
                               </li>
                           </ul>
                       </nav>
@@ -1447,7 +1448,6 @@
       <!-- Sweetalerts 2-->
 
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      <script src="{% static '/js/js.js' %}"></script>
       <script src="{% static '/js/validar_edit_formulario.js' %}"></script>
       <!-- Core plugin JavaScript-->
       <!-- Custom scripts for all pages-->
@@ -1599,16 +1599,7 @@
         document.getElementById("formView").style.display = "none";
       }
 
-      // otros
-      function otros() {
-        /* Hola mundo*/
-        var checkbox = document.getElementById("otros_control_fitosanitario");
-        if (checkbox.checked) {
-            document.getElementById("otros_coment").style.display = "block";
-        } else {
-            document.getElementById("otros_coment").style.display = "none";
-        }
-    }
+      
 
       // Fuste
       if ("{{dasometria.fuste}}" ==  "Fuste Único")
