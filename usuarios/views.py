@@ -4,7 +4,8 @@
 # Args: N/A
 # Creation/Update: 2022/12/15 
 # Author: Jorge Leonardo Solis - Yordan Moncayo                                                
-# Email: jorgesolis1989@gmail.com                                 
+# Email: jorgesolis1989@gmail.com       
+
 ##################################################################
 
 
@@ -21,8 +22,15 @@ from usuarios.forms import FormularioLogin, FormularioRegistroUsuario
 from formulario.views import crear_formulario_view
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
+from json import dumps
+from datetime import timedelta
+from datetime import datetime
 
 from formulario.models import Arbol
+
+import random
+ 
+
 
 # Pagina principal para usuario Administrador
 @permission_required("usuarios.Administrador" , login_url="/")
@@ -43,14 +51,41 @@ def censista_home(request , usuario):
 @permission_required("usuarios.Supervisor" , login_url="/")
 def supervisor_home(request , usuario):
     
-    censistas = Usuario.objects.filter(Grupo = usuario.Grupo)
+    censistas = Usuario.objects.filter(Grupo = usuario.Grupo, rol = "Censista")
 
-    
     numero_formularios = Arbol.objects.filter(creado_por__cedula_usuario__in=censistas , habilitado= True).count()
 
 
+    # Fechas apartir de hoy
+    d = datetime.now() # current date and time
+    
+    list_dates = []
+    for x in range(0, 7):
+        d1 = d.strftime("%d/%m/%Y")
+        list_dates.append(d1)
+        d = d - timedelta(days=1)
+    
+    list_dates.sort()
+    list_dates = dumps(list_dates)
+    
+    print(list_dates)
+
+    data = []
+
+
+    for censista in censistas:
+        dictionary =  dict()
+        dictionary["name"] = censista.get_full_name()
+
+        # Por ahora está con números aleatorios entre 20 y 80
+        dictionary["data"] = [random.randint(20,100) for _ in range(7)]
+        data.append(dictionary)
+
+
+    data = dumps(data)
+
     return render(request, 'supervisor.html', {'usuario': usuario, 'numero_censistas':censistas.count(),
-                                               'numero_formularios': numero_formularios, "censistas": censistas})
+                                               'numero_formularios': numero_formularios, "censistas": censistas, 'data':data , 'list_dates': list_dates})
 
 
 # Pagina principal para usuario Supervisor Forestal

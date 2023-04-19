@@ -83,7 +83,7 @@
                       <i class="bi bi-file-earmark-person"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>{{numero_formularios}}</h6>
+                      <h6>{{numero_censistas}}</h6>
 
 
                     </div>
@@ -118,22 +118,11 @@
                   <div id="reportsChart"></div>
 
                   <script>
- 
-
+                    
+    
                   
-                    series_dict = [{
-                     
-                          name: 'Sales',
-                          data: [31, 40, 28, 51, 42, 82, 56],
-                          }, {
-                          name: 'Revenue',
-                          data: [11, 32, 45, 32, 34, 52, 41]
-                          }, {
-                          name: 'Customers',
-                          data: [15, 11, 32, 18, 9, 24, 11]
-                          }
+                  var series_dict =  JSON.parse('{{data|escapejs}}');
 
-                          ]
 
                     document.addEventListener("DOMContentLoaded", () => {
                      
@@ -168,7 +157,8 @@
                         },
                         xaxis: {
                           type: 'date',
-                          categories: ["2023-03-06", "2023-03-07", "2023-03-08", "2023-03-09", "2023-03-10", "2023-03-11", "2023-03-12"]
+                        //  categories: ["12/04/2023","13/04/2023", "14/04/2023", "15/04/2023", "16/04/2023", "17/04/2023", "18/04/2023" ]
+                         categories: JSON.parse('{{list_dates|escapejs}}')
                         },
                         tooltip: {
                           x: {
