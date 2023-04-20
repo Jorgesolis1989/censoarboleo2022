@@ -29,7 +29,9 @@
   
 }
 
-
+.pcolor{
+  color: red;
+}
 
 
 .preview-container > img {
@@ -441,3 +443,5 @@
 .btn-toggle.btn-secondary.active {
   background-color: #ff8300;
 }
+
+
