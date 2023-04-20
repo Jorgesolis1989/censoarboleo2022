@@ -159,7 +159,7 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = 'censoarboleo2022/media/'
-MEDIA_URL = 'https://34.205.178.14/censoarboleo2022/media/'
+MEDIA_URL = 'http://34.205.178.14/censoarboleo2022/media/'
 
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
