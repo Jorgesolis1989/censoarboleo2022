@@ -215,7 +215,7 @@ function formFusteFolicurcado(){
             }
             
         }
-       
+         /*
         if( avatar.value === '' ){
             swal('IMAGEN 1','Seleccione de ingresar una imagen del árbol','error')
             avatar.className+=' is-invalid ';
@@ -225,7 +225,7 @@ function formFusteFolicurcado(){
           avatar.classList.remove('is-invalid');
           avatar.className+=' is-valid ';
         }
-    
+  
         if( avatar2.value === '' ){
             swal('IMAGEN 2','Seleccione de ingresar una imagen del árbol','error')
             avatar2.className+=' is-invalid ';
@@ -235,7 +235,7 @@ function formFusteFolicurcado(){
           avatar2.classList.remove('is-invalid');
           avatar2.className+=' is-valid ';
         }
-
+*/
 
         fusteUnico.addEventListener('change', () => {
             if (fusteUnico.checked) {

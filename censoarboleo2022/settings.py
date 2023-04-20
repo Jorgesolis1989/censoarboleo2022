@@ -161,7 +161,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = 'censoarboleo2022/media/'
 MEDIA_URL = 'http://localhost:80/censoarboleo2022/media/'
 
-LOGIN_URL = '/1'
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL  = '/'
 
