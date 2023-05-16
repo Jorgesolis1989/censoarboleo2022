@@ -1354,3 +1354,9 @@ input:checked + .slider:after {
   content: "Si";
   left: 80%;
 }
+
+@media screen and (min-width: 987px) {
+  .toggle-sidebar-btn {
+    display: none !important;
+  }
+}

@@ -441,3 +441,11 @@
 .btn-toggle.btn-secondary.active {
   background-color: #ff8300;
 }
+
+
+@media screen and (min-width: 768px) {
+  .toggle-sidebar-btn {
+    display: none !important;
+  }
+}
+
