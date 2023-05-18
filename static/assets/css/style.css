@@ -14,7 +14,7 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
+  background: #ffffff;
   color: #444444;
 }
 
@@ -1353,4 +1353,10 @@ label.switch .slider:after {
 input:checked + .slider:after {
   content: "Si";
   left: 80%;
+}
+
+@media screen and (min-width: 987px) {
+  .toggle-sidebar-btn {
+    display: none !important;
+  }
 }
