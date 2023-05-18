@@ -328,7 +328,7 @@ function formshidde2(){
 
     if (ValueConfinamiento == "si") {
         console.log("Entró a la validación");
-        if( parseFloat(dist_confinamiento.value) < 1 ){
+        if( parseFloat(dist_confinamiento.value) < 1 || dist_confinamiento.value==""){
             console.log("* Confinamiento es inválida *");
             dist_confinamiento.className+=' is-invalid ';
             swal('Digite Confinamiento','Debe ingresar un dígito válido','error')
@@ -431,7 +431,7 @@ function formshidde3(){
     if (fusteUnico.checked){
         
 
-            if(parseFloat(Cap.value) < 1){
+            if(Cap.value < 1){
                 Cap.className += 'is-invalid';
                 swal('Ingresa un número valido en CAP ','','error')
                 return false
@@ -446,7 +446,7 @@ function formshidde3(){
         if(poliPolifurcado.checked){
             if (numeroTallos.value === "1"){
 
-                if(parseFloat(Cap1.value) < 1  ){
+                if(Cap1.value < 1  ){
                     Cap1.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 1','','error')
                     return false
@@ -457,7 +457,7 @@ function formshidde3(){
                 }
             }
             else if (numeroTallos.value === "2"){
-                if(parseFloat(Cap1.value) < 1){
+                if(Cap1.value < 1){
                     Cap1.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 1','','error')
                     return false
@@ -466,7 +466,7 @@ function formshidde3(){
                     Cap1.classList.remove('is-invalid');
                     Cap1.className+=' is-valid ';  
                 }
-                if(parseFloat(Cap2.value) < 1 ){
+                if(Cap2.value < 1 ){
                     Cap2.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 2','','error')
                     return false
@@ -486,7 +486,7 @@ function formshidde3(){
                     Cap1.classList.remove('is-invalid');
                     Cap1.className+=' is-valid ';  
                 }
-                if(parseFloat(Cap2.value) < 1 ){
+                if(Cap2.value < 1 ){
                     Cap2.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 2','','error')
                     return false
@@ -495,7 +495,7 @@ function formshidde3(){
                     Cap2.classList.remove('is-invalid');
                     Cap2.className+=' is-valid ';  
                 }
-                if(parseFloat(Cap3.value) < 1 ){
+                if(Cap3.value < 1 ){
                     Cap3.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 3','','error')
                     return false
@@ -506,7 +506,7 @@ function formshidde3(){
                 }
             }
             else if(numeroTallos.value === "4"){    
-                if(parseFloat(Cap1.value) < 1  ){
+                if(Cap1.value < 1  ){
                     Cap1.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 1','','error')
                     return false
@@ -515,7 +515,7 @@ function formshidde3(){
                     Cap1.classList.remove('is-invalid');
                     Cap1.className+=' is-valid ';  
                 }
-                if(parseFloat(Cap2.value) < 1){
+                if(Cap2.value < 1){
                     Cap2.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 2','','error')
                     return false
@@ -524,7 +524,7 @@ function formshidde3(){
                     Cap2.classList.remove('is-invalid');
                     Cap2.className+=' is-valid ';  
                 }
-                if(parseFloat(Cap3.value) < 1 ){
+                if(Cap3.value < 1 ){
                     Cap3.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 3','','error')
                     return false
@@ -533,7 +533,7 @@ function formshidde3(){
                     Cap3.classList.remove('is-invalid');
                     Cap3.className+=' is-valid ';  
                 }
-                if(parseFloat(Cap4.value) < 1 ){
+                if(Cap4.value < 1 ){
                     Cap4.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 4','','error')
                     return false
@@ -545,7 +545,7 @@ function formshidde3(){
             }
 
             else if (numeroTallos.value === '5'){
-                if(parseFloat(Cap1.value) < 1  ){
+                if(Cap1.value < 1  ){
                     Cap1.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 1','','error')
                     return false
@@ -554,7 +554,7 @@ function formshidde3(){
                     Cap1.classList.remove('is-invalid');
                     Cap1.className+=' is-valid ';  
                 }
-                if(parseFloat(Cap2.value) < 1 ){
+                if(Cap2.value < 1 ){
                     Cap2.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 2','','error')
                     return false
@@ -563,7 +563,7 @@ function formshidde3(){
                     Cap2.classList.remove('is-invalid');
                     Cap2.className+=' is-valid ';  
                 }
-                if(parseFloat(Cap3.value) < 1 ){
+                if(Cap3.value < 1 ){
                     Cap3.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 3','','error')
                     return false
@@ -572,7 +572,7 @@ function formshidde3(){
                     Cap3.classList.remove('is-invalid');
                     Cap3.className+=' is-valid ';  
                 }
-                if(parseFloat(Cap4.value) < 1){
+                if(Cap4.value < 1){
                     Cap4.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 4','','error')
                     return false
@@ -581,7 +581,7 @@ function formshidde3(){
                     Cap4.classList.remove('is-invalid');
                     Cap4.className+=' is-valid ';  
                 }
-                if(parseFloat(Cap5.value) < 1){
+                if(Cap5.value < 1){
                     Cap5.className += 'is-invalid';
                     swal('Ingresa un número valido en CAP 5','','error')
                     return false
@@ -603,8 +603,8 @@ function formshidde3(){
     /* --------------------------------Validaciones de formulario 3 --------------------------- */
 
 
-    if( parseFloat(comercial.value) < 1 || parseFloat(comercial.value) > 50 ){
-        swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
+    if( parseFloat(comercial.value) < 1 || parseFloat(comercial.value) > 50 || comercial.value=="" ){
+        swal('Comercial','comercial debe ser mayor a 1 y menor a 50','error')
         comercial.className+=' is-invalid ';
         return false;
     }else{
@@ -615,8 +615,8 @@ function formshidde3(){
      
     }
 
-    if( parseFloat(totalarbol.value) < 1 || parseFloat(totalarbol.value > 50 )){
-        swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
+    if( parseFloat(totalarbol.value) < 1 || parseFloat(totalarbol.value) > 50 || totalarbol.value=="" ){
+        swal('Total Arbol','Total Arbol debe ser mayor a 1 y menor a 50','error')
         totalarbol.className+=' is-invalid ';
         return false;
     }else{
@@ -647,7 +647,7 @@ function formshidde3(){
     // Validacion de ejemenor y ejemayor
     
     /********************************************************************************************************** */
-    if( parseFloat(ejemayor.value) < 1 || parseFloat(ejemayor.value) > 50){
+    if( parseFloat(ejemayor.value) < 1 || parseFloat(ejemayor.value) > 50 || ejemayor.value==""){
         swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
         ejemayor.className+=' is-invalid ';
         return false;
@@ -659,7 +659,7 @@ function formshidde3(){
      
     }
 
-    if( parseFloat(ejemenor.value) < 1 || parseFloat(ejemenor.value) > 50 ){
+    if( parseFloat(ejemenor.value) < 1 || parseFloat(ejemenor.value) > 50 || ejemenor.value==""){
         swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
         ejemenor.className+=' is-invalid ';
         return false;
@@ -688,23 +688,27 @@ function formshidde3(){
     
     /********************************************************************************************************** */
 
-    if( parseFloat(copa_viva.value) < 1 ){
-        swal('Ingresa un numero valido','','error')
+    if( parseFloat(copa_viva.value) < 1 || copa_viva.value==""){
+        swal('Copa Viva','Copa Viva debe ser mayor a 1 y menor a 50','error')
         copa_viva.className+=' is-invalid ';
         return false;
     }else{
-        copa_viva.classList.remove('is-invalid');
-        copa_viva.className+=' is-valid ';
+    
+      delet.classList.remove('delet');
+      copa_viva.classList.remove('is-invalid');
+      copa_viva.className+=' is-valid ';
      
     }
 
-    if( parseFloat(copa_ausente.value) < 1 || parseFloat(copa_ausente.value) >= 100 || copa_ausente.value % 1 !== 0){
-        swal('Ingresa un numero valido','','error')
+    if( parseInt(copa_ausente.value) < 1 || parseInt(copa_ausente.value) >= 101 || copa_ausente.value==""){
+        swal('Copa Ausente','Copa Ausente debe ser mayor a 1 y menor a 101','error')
         copa_ausente.className+=' is-invalid ';
         return false;
     }else{
-        copa_ausente.classList.remove('is-invalid');
-        copa_ausente.className+=' is-valid ';
+    
+      delet.classList.remove('delet');
+      copa_ausente.classList.remove('is-invalid');
+      copa_ausente.className+=' is-valid ';
      
     }
     
