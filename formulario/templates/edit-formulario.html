@@ -109,7 +109,7 @@
                               
                                                                                       <!-- FORMULARIO-->
 
-                            <form id="Myform" method="post" enctype="multipart/form-data" class="needs-validation" onsubmit="return formshidde();">
+                            <form id="Myform" method="post" enctype="multipart/form-data" class="needs-validation" onsubmit="return formshidde();">
                             {% csrf_token %}
                             <!--FORMULARIO 1-->
                             <div  id="form1" style="display: block;" needs-validation>
@@ -119,7 +119,7 @@
                                   <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Estado del registro" data-bs-content="Estado en que se encuentra el registro del individuo">
                                     <i class="fa fa-info-circle"></i>
                                   </button> 
-                                  <select type="number" id="estado_registro" name="estado_registro" class="form-control" onchange="estadoRegistr()" >
+                                  <select type="number" id="estado_registro" name="estado_registro" class="form-select" onchange="estadoRegistr()" >
                                     <option value="Nuevo" >Nuevo</option> 
                                     <option value="Antiguo">Antiguo</option>
                                   </select>
@@ -131,7 +131,7 @@
                                     <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Placa Antigua" data-bs-content="Placa metálica censos anteriores"> 
                                       <i class="fa fa-info-circle"></i>
                                     </button>
-                                    <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" class="form-select" value="{{arbol.Placa_ant}}" required>                                         
+                                    <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" onkeyup="deleteInValid()" class="form-select" value="{{arbol.Placa_ant}}">                                         
                                     <div class="invalid-feedback" id="delet">
                                      * Ingresa como mínimo 1 digito *
                                     </div>
@@ -155,7 +155,7 @@
                                           <div class="col-md-6 text-center">
                                               <label for="" class="text-center">Longitud (GD)</label>
                                               <input readonly type="text" id="textLongitude" name="textLongitude" class="form-control text-center " value="{{arbol.longitud}}" style="background-color: #e9ecef;">
-                                          </div
+                                          </div>
                                       </div>
                                   </div>
                                
@@ -170,24 +170,24 @@
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="">Nombre común</label>
-                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-control" >
+                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-select" >
                                       </select>
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="">Nombre científico</label>
-                                      <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
+                                      <input id="nombre_cientifico", name="nombre_cientifico" type="text" class="form-control" placeholder="" aria-label="Genero" readonly style="background-color: #e9ecef;">
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="">Familia</label>
-                                      <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" readonly>
+                                      <input id="familia", name="familia" type="text" class="form-control" placeholder="" aria-label="Genero" readonly style="background-color: #e9ecef;">
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
-                                      <label for="">Genero</label>
-                                      <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly >
+                                      <label for="">Género</label>
+                                      <input id="genero", name="genero" type="text" class="form-control" placeholder="" aria-label="Genero" readonly style="background-color: #e9ecef;">
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="">Estado de Madurez</label>
-                                      <select name="estado_madurez" id="estado_madurez" class="form-control">
+                                      <select name="estado_madurez" id="estado_madurez" class="form-select">
                                           <option value="Plantón">Plantón</option>
                                           <option value="Juvenil">Juvenil</option>
                                           <option value="Adulto">Adulto</option>
@@ -203,7 +203,7 @@
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Codigo QR">Digite el codigo QR:</label>
-                                      <input type="number" id="qr" name="qr" class="form-control" value="{{arbol.qrcode}}">
+                                      <input type="number" id="qr" name="qr" class="form-control" onkeyup="deleteInValid()" value="{{arbol.qrcode}}">
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número
                                       </div>
@@ -212,7 +212,7 @@
 
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="P">Cobertura</label>
-                                      <select type="text" id="cobertura" name="cobertura" class="form-control">
+                                      <select type="text" id="cobertura" name="cobertura" class="form-select">
                                           <option selected value="Césped">Césped </option>
                                           <option value="Jardín">Jardín</option>
                                           <option value="Piso Duro">Piso Duro</option>
@@ -222,7 +222,7 @@
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="emplazamiento">Emplazamiento</label>
-                                      <select type="text" id="emplazamiento" name="emplazamiento" class="form-control">
+                                      <select type="text" id="emplazamiento" name="emplazamiento" class="form-select">
                                         <option value="Andén">Andén</option>
                                         <option value="Bahía de estacionamiento">Bahía de estacionamiento</option>
                                           <option value="Bulevares">Bulevares</option>
@@ -262,7 +262,7 @@
                                         <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Distancia Confinamiento:" data-bs-content="Debe indicar la distancia del confinamiento">
                                           <i class="fa fa-info-circle"></i>
                                         </button>
-                                        <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control" value="{{arbol.dist_confinamiento}}">     
+                                        <input placeholder="Distancia de Confinamiento (m)" onkeyup="deleteInValid()" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control" value="{{arbol.dist_confinamiento}}">     
                                   </div>
                                   
                                   <div class="col-md-12 col-lg-12 mt-3">
@@ -398,7 +398,7 @@
 
                                       <div id="formViewUnico" style="display: none;" class="col-md-12 col-lg-12 mb-2" >
                                         <label for="CAP 1">CAP (cm)</label>
-                                        <input placeholder="capa (m)" name="cap " id="cap" type="number" class="form-control" value="{{dasometria.cap}}">
+                                        <input placeholder="capa (m)" name="cap " id="cap" type="number" class="form-control " onkeyup="capa_invalid()" value="{{dasometria.cap}}">
                                         <div class="invalid-feedback" id="delet" >
                                           Ingresa un número
                                         </div>
@@ -412,7 +412,7 @@
     
                                         <label for="Tallos">No de Tallos</label>
                                         <select  id="numero_tallos" name="numero_tallos" class="form-select " onchange="fuste_polifurcado();">
-                                          <option value="1">1</option>
+                                          <option value="1">1</option>                                 
                                           <option value="2">2</option>
                                           <option value="3">3</option>
                                           <option value="4">4</option>
@@ -472,7 +472,7 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Comercial (Fuste)</label>
-                                          <input type="number" name="comercial_fuste" id="comercial_fuste"  step="any" class="form-control"
+                                          <input type="number" name="comercial_fuste" id="comercial_fuste" onkeyup="deleteInValid()" step="any" class="form-control"
                                               placeholder="Hc (m)">
                                               <div class="invalid-feedback" id="delet">
                                                 Ingresa un número
@@ -480,7 +480,7 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Total del árbol</label>
-                                          <input type="number" name="totalarbol" id="totalarbol"  step="any" class="form-control"
+                                          <input type="number" name="totalarbol" id="totalarbol"  onkeyup="deleteInValid()" step="any" class="form-control"
                                               placeholder="Ht (m)" >
                                               <div class="invalid-feedback" id="delet">
                                                 Ingresa un número
@@ -492,14 +492,14 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Eje mayor</label>
-                                          <input type="number" name="ejemayor" id="ejemayor" class="form-control" step="any" >
+                                          <input type="number" name="ejemayor" id="ejemayor" onkeyup="deleteInValid()" class="form-control" step="any" >
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Eje menor</label>
-                                          <input type="number" id="ejemenor" name="ejemenor"  class="form-control" step="any">
+                                          <input type="number" id="ejemenor" name="ejemenor"  onkeyup="deleteInValid()" class="form-control" step="any">
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
@@ -507,7 +507,7 @@
 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Orientación">Orientación</label>
-                                        <select type="text" id="orientacion" name="orientacion" class="form-control">
+                                        <select type="text" id="orientacion" name="orientacion" class="form-select">
                                           <option value="Hacia la construcción">Hacia la construcción</option>
                                           <option value="Hacia la vía">Hacia la vía</option>
                                           <option value="En dirección de la vía">En dirección de la vía</option>
@@ -517,7 +517,7 @@
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Placa Antigua">Inclinación</label>
-                                      <select type="text" id="inclinacion" name="inclinacion" class="form-control">
+                                      <select type="text" id="inclinacion" name="inclinacion" class="form-select">
                                         <option value="&lt;30">&lt;30</option>
                                         <option value="&gt;30">&gt;30</option>
                                       </select>
@@ -525,7 +525,7 @@
 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                           <label>Exposición de la copa a la luz</label>
-                                          <select type="number" id="exposicionluz" name="exposicionluz" class="form-control"
+                                          <select type="number" id="exposicionluz" name="exposicionluz" class="form-select"
                                               placeholder="CAP (m)">
                                               <option value="No recibe luz">No recibe luz</option>
                                               <option value="Una cara">Una cara</option>
@@ -540,28 +540,28 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">Altura (m)</label>
-                                          <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero" id="copa_viva" name="copa_viva" >
+                                          <input type="number" class="form-control" step="any" onkeyup="deleteInValid()" placeholder="ACV (m)" aria-label="Genero" id="copa_viva" name="copa_viva" >
                                           <div class="invalid-feedback" id="delet">
                                             Ingresa un número
                                           </div>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">% copa ausente</label>
-                                          <input type="number" class="form-control" placeholder="(%)" aria-label="Genero" id="copa_ausente" name="copa_ausente">
+                                          <input type="number" class="form-control" placeholder="(%)" onkeyup="deleteInValid()" aria-label="Genero" id="copa_ausente" name="copa_ausente">
                                           <div class="invalid-feedback" id="delet">
-                                            Ingresa un número
-                                          </div>
+                                            * Ingresa como mínimo 1 digito *
+                                           </div>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2 ">
                                           <label for="Placa Antigua">Diámetro medio de ramas</label>
-                                          <select type="text" id="diametro" name="diametro" class="form-control" placeholder="CAP (m)">
+                                          <select type="text" id="diametro" name="diametro" class="form-select" placeholder="CAP (m)">
                                             <option value="&lt;0.05m"> &lt;0.05m </option>
                                             <option value=">=0.05m"> &gt;=0.05m </option>
                                           </select> 
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2 ">
                                           <label for="Sistema ">Sistema Radicular</label>
-                                          <select type="text" id="sistemaradicular" name="sistemaradicular" class="form-control">
+                                          <select type="text" id="sistemaradicular" name="sistemaradicular" class="form-select">
                                             <option value="Subtetrráneo">Subterráneo</option>
                                             <option value="Aéreo">Aéreo</option>
                                             <option value="Superficial">Superficial</option>
@@ -576,7 +576,7 @@
                               <div class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="vitalidad" class="form-label">Vitalidad</label>
-                                      <select  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-control">
+                                      <select  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-select">
                                         <option value="Buena">Buena (Sano)</option>
                                         <option value="Regular">Regular (Enfermo)</option>
                                         <option value="Mala">Mala (Seco/Muerto)</option>
@@ -1077,6 +1077,9 @@
                                
                                   <h4>Otra intervención fitosanitaria</h4>
                                   <textarea class="form-control" placeholder="Ingrese un comentario" id="comentarios_otros" name="comentarios_otros"  style="height: 100px">{{recomendacion_e_intervencion.comentarios_control_fitosanitario}}</textarea>
+                                  <div class="invalid-feedback" id="delet">
+                                    * debes ingresar caracteres validos  *
+                                   </div>
                                 </div>
                                 </div>
 
@@ -1313,7 +1316,7 @@
                               <span class="badge bg-white text-primary"></span> 
                             </button> </a>
                             &nbsp;            &nbsp;
-                            <button id="btnEnviar" name="btnActualizar" type="submit" class="finish btn btn-warning">Actualizar</button>
+                            <button id="btnEnviar" name="btnActualizar" type="submit" class="finish btn btn-warning" >Actualizar</button>
 
                               </li>
                           </ul>

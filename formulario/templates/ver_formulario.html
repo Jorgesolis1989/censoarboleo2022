@@ -120,7 +120,7 @@
 
                                 <div class="col-md-12 col-lg-12 mb-2">
                                   <label for="">Estado del registro</label>
-                                  <select disabled name="estado_registro" id="estado_registro" class="form-control">
+                                  <select disabled name="estado_registro" id="estado_registro" class="form-select">
                                       <option value="Nuevo" >Nuevo</option>
                                       <option value="Antiguo">Antiguo</option>
                                   </select>
@@ -178,7 +178,7 @@
 
                                   <div class="col-md-6 col-lg-6 mb-2">
                                     <label for="">Estado de Madurez</label>
-                                    <select disabled name="estado_madurez" id="estado_madurez" class="form-control">
+                                    <select disabled name="estado_madurez" id="estado_madurez" class="form-select">
                                         <option value="Plantón">Plantón</option>
                                         <option value="Juvenil">Juvenil</option>
                                         <option value="Adulto">Adulto</option>
@@ -188,7 +188,7 @@
 
                                   <div class="col-md-6 col-lg-6 mb-2">
                                       <label for="">Nombre común</label>
-                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-control" disabled value="{{arbol.nombre_comun}}">
+                                      <select name="nombre_comun"  onchange="asignar_nombre_comun()"  id="nombre_comun" class="form-select" disabled value="{{arbol.nombre_comun}}">
                                       </select>
                                   </div>
                                   <div class="col-md-6 col-lg-6 mb-2">
@@ -222,7 +222,7 @@
 
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="P">Cobertura</label>
-                                      <select disabled type="text" id="cobertura" name="cobertura" class="form-control">
+                                      <select disabled type="text" id="cobertura" name="cobertura" class="form-select">
                                           <option selected value="Césped">Césped </option>
                                           <option value="Jardín">Jardín</option>
                                           <option value="Piso Duro">Piso Duro</option>
@@ -232,7 +232,7 @@
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="emplazamiento">Emplazamiento</label>
-                                      <select disabled type="text" id="emplazamiento" name="emplazamiento" class="form-control">
+                                      <select disabled type="text" id="emplazamiento" name="emplazamiento" class="form-select">
                                         <option value="Andén">Andén</option>
                                         <option value="Bahía de estacionamiento">Bahía de estacionamiento</option>
                                           <option value="Bulevares">Bulevares</option>
@@ -493,7 +493,7 @@
 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                         <label for="Orientación">Orientación</label>
-                                        <select disabled type="text" id="orientacion" name="orientacion" class="form-control">
+                                        <select disabled type="text" id="orientacion" name="orientacion" class="form-select">
                                           <option value="Hacia la construcción">Hacia la construcción</option>
                                           <option value="Hacia la vía">Hacia la vía</option>
                                           <option value="En dirección de la vía">En dirección de la vía</option>
@@ -503,7 +503,7 @@
                                     </div>
                                     <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Placa Antigua">Inclinación</label>
-                                      <select disabled type="text" id="inclinacion" name="inclinacion" class="form-control">
+                                      <select disabled type="text" id="inclinacion" name="inclinacion" class="form-select">
                                         <option value="&lt;30">&lt;30</option>
                                         <option value="&gt;30">&gt;30</option>
                                       </select>
@@ -511,7 +511,7 @@
 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                           <label>Exposición de la copa a la luz</label>
-                                          <select disabled type="number" id="exposicionluz" name="exposicionluz" class="form-control"
+                                          <select disabled type="number" id="exposicionluz" name="exposicionluz" class="form-select"
                                               placeholder="CAP (m)">
                                               <option value="No recibe luz">No recibe luz</option>
                                               <option value="Una cara">Una cara</option>
@@ -540,14 +540,14 @@
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2 ">
                                           <label for="Placa Antigua">Diámetro medio de ramas</label>
-                                          <select disabled type="text" id="diametro" name="diametro" class="form-control" placeholder="CAP (m)">
+                                          <select disabled type="text" id="diametro" name="diametro" class="form-select" placeholder="CAP (m)">
                                             <option value="&lt;0.05m"> &lt;0.05m </option>
                                             <option value=">=0.05m"> &gt;=0.05m </option>
                                           </select> 
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2 ">
                                           <label for="Sistema ">Sistema Radicular</label>
-                                          <select disabled type="text" id="sistemaradicular" name="sistemaradicular" class="form-control">
+                                          <select disabled type="text" id="sistemaradicular" name="sistemaradicular" class="form-select">
                                             <option value="Subtetrráneo">Subterráneo</option>
                                             <option value="Aéreo">Aéreo</option>
                                             <option value="Superficial">Superficial</option>
@@ -562,7 +562,7 @@
                               <div class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="vitalidad" class="form-label">Vitalidad</label>
-                                      <select disabled  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-control">
+                                      <select disabled  name="vitalidad" id="vitalidad" onchange="ocultar();" class="form-select">
                                         <option value="Buena">Buena (Sano)</option>
                                         <option value="Regular">Regular (Enfermo)</option>
                                         <option value="Mala">Mala (Seco/Muerto)</option>
