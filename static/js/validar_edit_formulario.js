@@ -597,7 +597,7 @@ function formFusteFolicurcado(){
           copa_ausente.className+=' is-valid ';
          
         }
-        var letrasRegex = /^[A-Za-z]+$/;
+       
         
         if(checkbox.checked){
             if(otros.value === ''){
@@ -619,7 +619,7 @@ function formFusteFolicurcado(){
 
         if (vitalidadValue == "Mala") {
             
-            console.log("Entró a la validación");
+            alert("Entró a la validación");
             if( porqueTala.value === ''){
                 porqueTala.value .className += ' is-invalid';
                 swal('Ingresa caracteres validos en ¿Por que Tala?  ','','error')
@@ -630,7 +630,7 @@ function formFusteFolicurcado(){
                 return false;
               }
             else{       
-              console.log("Placa antigua es válida");
+              aler("Placa antigua es válida");
               porqueTala.classList.remove('is-invalid');
               porqueTala.className+=' is-valid ';
               
