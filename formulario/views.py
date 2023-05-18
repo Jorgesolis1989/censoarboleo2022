@@ -260,8 +260,6 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
         requiere_revision = True
     
         
-
-
     direccion = request.POST["direccion"]
     
     nombre_comun = request.POST["nombre_comun"]
@@ -303,6 +301,13 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     #requiere revision 
     arbol.requiere_revision = requiere_revision
 
+    # No aparece registro en la base de datos
+    arbol.estado = estado_registro
+
+    # Si está actualizando y el registro es nuevo por antiguo
+    if actualizar and estado_registro == "Nuevo":
+        placaAntigua = 0    
+
     # Placa antigua                 
     arbol.Placa_ant = placaAntigua
 
@@ -330,8 +335,10 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
 
     arbol.madurez = estado_madurez
 
-    # No aparece registro en la base de datos
-    arbol.estado = estado_registro
+
+
+
+
 
     # Cobertura
     arbol.cobertura = cobertura
@@ -342,6 +349,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
         dist_confinamiento = request.POST["dist_confinamiento"]
     else:
         arbol.confinamiento = False
+        dist_confinamiento = 0
         
     arbol.dist_confinamiento = dist_confinamiento
 

@@ -321,7 +321,7 @@
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
-                                          <input type="file" class="form-control" placeholder="Segunda name"    aria-label="First name" id="avatar2" name="avatar2"  accept="image/*">
+                                          <input type="file" class="form-control" placeholder="Segunda name"    aria-label="Second name" id="avatar2" name="avatar2"  accept="image/*" onclick="getData()" value="{{ MEDIA_URL }}{{arbol.foto2.url}}" >
                                           <div class="invalid-feedback" id="delet">
                                             Debes ingresar una imagen
                                           </div>
@@ -345,8 +345,15 @@
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
-                                          <input type="file" class="form-control" placeholder="Segunda Foto"
-                                          aria-label="Tercera Foto" id="avatar3" name="avatar3" accept="image/*">
+
+                                        {% if arbol.foto3 %}
+
+                                        <input type="file" class="form-control" placeholder="Tercera foto" aria-label="Tercer name" id="avatar3" name="avatar3" accept="image/*"  onclick="getData()" value="{{ MEDIA_URL }}{{arbol.foto3.url}}" >
+
+                                        {% else %}
+                                        <input type="file" class="form-control" placeholder="Tercera foto" aria-label="Tercer name" id="avatar3" name="avatar3" accept="image/*"  onclick="getData()" value="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" >
+                                        {%endif%}
+                                        
                                       </div>
 
                                       
@@ -368,10 +375,16 @@
                                       </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
-                                          <input type="file" class="form-control" placeholder="Foto 4"
-                                          aria-label="Cuarta name" id="avatar4" name="avatar4" accept="image/*">
+                                        {% if arbol.foto4 %}
+
+                                        <input type="file" class="form-control" placeholder="Cuarta foto" aria-label="Cuarta name" id="avatar4" name="avatar4" accept="image/*"  onclick="getData()" value="{{ MEDIA_URL }}{{arbol.foto4.url}}" >                                      </div>
+                                        {% else %}
+                                        <input type="file" class="form-control" placeholder="Tercera foto" aria-label="Cuarta name" id="avatar3" name="avatar4" accept="image/*"  onclick="getData()" value="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" >
+
+                                        
+                                        {%endif%}
+                                
                                       </div>
-                                  </div>
                               </div>
                             </div>
 

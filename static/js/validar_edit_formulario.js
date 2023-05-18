@@ -606,10 +606,7 @@ function formFusteFolicurcado(){
                 swal('Ingresa caracteres validos en Otra intervención fitosanitaria  ','','error')
                 return false
             }
-            if (!letrasRegex.test(otros.value)) {
-                swal('SOLO LETRAS','El campo del textarea solo puede contener letras. Por favor, corrige el valor.','error');
-                return false;
-              }
+            
             else{
                 delet.classList.remove('delet');
                 otros.value .classList.remove('is-invalid');
@@ -626,10 +623,7 @@ function formFusteFolicurcado(){
                 swal('Ingresa caracteres validos en ¿Por que Tala?  ','','error')
                 return false
             }
-            if (!letrasRegex.test(porqueTala.value)) {
-                swal('SOLO LETRAS','El campo del textarea solo puede contener letras. Por favor, corrige el valor.','error');
-                return false;
-              }
+            
             else{       
               console.log("Placa antigua es válida");
               porqueTala.classList.remove('is-invalid');
@@ -638,6 +632,110 @@ function formFusteFolicurcado(){
             }      
         }
     }
+
+
+
+
+/*--------------------------------------------------------------
+# Funcion para atraer las imagenes
+--------------------------------------------------------------*/
+
+function getData(){
+    let avatarInput = document.getElementById('avatar');
+    let img = document.querySelector('label[for=avatar] img');
+
+    avatarInput.onchange = async (e) => {
+      
+      img.classList.add('preview');
+      img.src = URL.createObjectURL(e.target.files[0]);  
+      
+      console.log(img.offsetHeight, img.offsetWidth)
+      
+    }
+
+    let avatarInput2 = document.getElementById('avatar2');
+    let img2 = document.querySelector('label[for=avatar2] img');
+
+    avatarInput2.onchange = async (e) => {
+      
+        img2.classList.add('preview');
+        img2.src = URL.createObjectURL(e.target.files[0]);  
+      
+      console.log(img2.offsetHeight, img2.offsetWidth)
+      
+    }
+
+    let avatarInput3 = document.getElementById('avatar3');
+    let img3 = document.querySelector('label[for=avatar3] img');
+
+    avatarInput3.onchange = async (e) => {
+      
+        img3.classList.add('preview');
+        img3.src = URL.createObjectURL(e.target.files[0]);  
+      
+       console.log(img3.offsetHeight, img3.offsetWidth)
+      
+    }
+
+    let avatarInput4 = document.getElementById('avatar4');
+    let img4 = document.querySelector('label[for=avatar4] img');
+
+    avatarInput4.onchange = async (e) => {
+      
+        img4.classList.add('preview');
+        img4.src = URL.createObjectURL(e.target.files[0]);  
+      
+      console.log(img4.offsetHeight, img4.offsetWidth)
+      
+    }
+}
+
+document.getElementById("showImageButton").addEventListener("click", function() {
+    // Obtén la URL de la imagen subida
+    var imageUrl = document.querySelector('label[for=avatar] img').src;
+    // Establece la URL de la imagen en el elemento de la imagen en el modal
+    document.getElementById("modalImage").src = imageUrl;
+    // Muestra el modal utilizando jQuery
+    $("#imageModal").modal("show");
+  });
+
+  document.getElementById("showImageButton2").addEventListener("click", function() {
+    // Obtén la URL de la imagen subida
+    var imageUrl = document.querySelector('label[for=avatar2] img').src;
+    // Establece la URL de la imagen en el elemento de la imagen en el modal
+    document.getElementById("modalImage").src = imageUrl;
+    // Muestra el modal utilizando jQuery
+    $("#imageModal").modal("show");
+  });
+
+  document.getElementById("showImageButton3").addEventListener("click", function() {
+    // Obtén la URL de la imagen subida
+    var imageUrl = document.querySelector('label[for=avatar3] img').src;
+    // Establece la URL de la imagen en el elemento de la imagen en el modal
+    document.getElementById("modalImage").src = imageUrl;
+    // Muestra el modal utilizando jQuery
+    $("#imageModal").modal("show");
+  });
+
+  document.getElementById("showImageButton4").addEventListener("click", function() {
+    // Obtén la URL de la imagen subida
+    var imageUrl = document.querySelector('label[for=avatar4] img').src;
+    // Establece la URL de la imagen en el elemento de la imagen en el modal
+    document.getElementById("modalImage").src = imageUrl;
+    // Muestra el modal utilizando jQuery
+    $("#imageModal").modal("show");
+  });
+
+
+  $("#image-modal").on("show.bs.modal", function () {
+    document.getElementById("modal-image").classList.add("zoom");
+  });
+  
+  // quita la clase "zoom" del elemento de la imagen en la ventana modal cuando se cierra el modal
+  $("#image-modal").on("hide.bs.modal", function () {
+    document.getElementById("modal-image").classList.remove("zoom");
+  });
+
 
     
 
