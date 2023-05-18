@@ -177,7 +177,7 @@
                                                                     FORMULARIO 1 
                             -------------------------------------------------------------------------------------------------------------------------- ---
                             /------------------------------------------------------------------------------------------------------------------------ -->
-                            <form method="post" enctype="multipart/form-data" class="needs-validation">
+                            <form method="post" enctype="multipart/form-data" class="needs-validation" onsubmit="return validselect();">
                               {% csrf_token %}
                             <!-- FORMULARIO 1 -->
                             <div  id="form1" style="display: block;" needs-validation>
@@ -452,7 +452,7 @@
                                         <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="CAP (cm)" data-bs-content="Circunferencia a la altura de pecho, individuo con fuste único.">
                                           <i class="fa fa-info-circle"></i>
                                         </button>
-                                        <input placeholder="CAP (cm)" name="cap" id="cap" type="number" step="0.000000000001" class="form-control " onkeyup="capa_invalid()" value="">                                        
+                                        <input placeholder="CAP (cm)" name="cap" id="cap" type="number" class="form-control " onkeyup="capa_invalid()" value="">                                        
                                         <div class="invalid-feedback" id="delet">
                                          * Ingresa un número de CAP válido mayor o igual a 1 *
                                         </div>
@@ -467,7 +467,6 @@
                                         <i class="fa fa-info-circle"></i>
                                       </button>
                                       <select  id="numero_tallos" name="numero_tallos" class="form-select " onchange="fuste_polifurcado();">
-                                        <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
@@ -489,7 +488,7 @@
                                       </div>  
                                   </div>
 
-                                      <div class="col-md-12 col-lg-12 mb-2" id="fuste2" style="display: none;">
+                                      <div class="col-md-12 col-lg-12 mb-2" id="fuste2" style="display: block;">
                                         <label for="Capa 2">CAP 2(cm)</label>
                                         <input type="number" step="0.000000000001" id="capa2" name="capa2" placeholder="CAP 2(cm)" class="form-control "  onkeyup="capa_invalid1()">
                                         <div class="invalid-feedback" id="delet">

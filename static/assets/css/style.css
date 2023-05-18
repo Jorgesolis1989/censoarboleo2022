@@ -1355,7 +1355,7 @@ input:checked + .slider:after {
   left: 80%;
 }
 
-@media screen and (min-width: 987px) {
+@media screen and (min-width: 1200px) {
   .toggle-sidebar-btn {
     display: none !important;
   }

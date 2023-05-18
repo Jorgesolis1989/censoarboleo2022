@@ -143,14 +143,83 @@ function formFusteFolicurcado(){
     }
 
 
+    function deleteInValid(){
+        
 
+        const placaAntigua = document.getElementById("placa_antigua");
+        const qr = document.getElementById('qr');
+        const Confinamiento = document.getElementById("dist_confinamiento");
+        var comercial = document.getElementById('comercial_fuste');
+        var totalarbol = document.getElementById('totalarbol');
+        const ejemayor = document.getElementById('ejemayor');
+        const ejemenor = document.getElementById('ejemenor');
+        const copa_viva = document.getElementById('copa_viva');
+        const copa_ausente = document.getElementById('copa_ausente');
+        placaAntigua.classList.remove('is-invalid');
+        qr.classList.remove('is-invalid');
+        Confinamiento.classList.remove('is-invalid');
+        comercial.classList.remove('is-invalid');
+        totalarbol.classList.remove('is-invalid');
+        ejemayor.classList.remove('is-invalid');
+        ejemenor.classList.remove('is-invalid');
+        copa_viva.classList.remove('is-invalid');
+        copa_ausente.classList.remove('is-invalid');
+        placaAntigua.classList.remove('is-valid');
+        qr.classList.remove('is-valid');
+        Confinamiento.classList.remove('is-valid');
+        comercial.classList.remove('is-valid');
+        totalarbol.classList.remove('is-valid');
+        ejemayor.classList.remove('is-valid');
+        ejemenor.classList.remove('is-valid');
+        copa_viva.classList.remove('is-valid');
+        copa_ausente.classList.remove('is-valid');
+    }
+    
+    function capa_invalid(){
+        const Cap = document.getElementById('cap');
+        const Cap1 = document.getElementById('capa1');
+        Cap.classList.remove('is-invalid');
+        Cap1.classList.remove('is-invalid');
+        Cap.classList.remove('is-valid');
+        Cap1.classList.remove('is-valid');
+    }
+    function capa_invalid1(){
+        const Cap2 = document.getElementById('capa2');
+        Cap2.classList.remove('is-invalid');
+        Cap2.classList.remove('is-valid');
+    }
+    
+    
+    function capa_invalid2(){
+        const Cap3 = document.getElementById('capa3');
+        Cap3.classList.remove('is-invalid');
+        Cap3.classList.remove('is-valid');
+    }
+    
+    function capa_invalid3(){
+        const Cap4 = document.getElementById('capa4');
+        Cap4.classList.remove('is-invalid');
+        Cap4.classList.remove('is-valid');
+    }
+    
+    function capa_invalid4(){
+        const Cap5 = document.getElementById('capa5');
+        Cap5.classList.remove('is-invalid');
+        Cap5.classList.remove('is-valid');
+    }
 
     function formshidde(){
+        const vitalidad = document.getElementById("vitalidad");
+        const selectVitalidad = vitalidad.options[vitalidad.selectedIndex];
+        const vitalidadValue = selectVitalidad.value;
+        const porqueTala = document.getElementById("porquetala");
 
-        const placaAntigua = document.getElementById("placa_antigua")
-        const estadoRegistro = document.getElementById("estado_registro")
-        const selectRegistro = estadoRegistro.options[estadoRegistro.selectedIndex]
-        const selectValue = selectRegistro.value
+        var otros = document.getElementById("comentarios_otros");
+        var checkbox = document.getElementById("otros_control_fitosanitario");
+        const placaAntigua = document.getElementById("placa_antigua");
+        const estadoRegistro = document.getElementById("estado_registro");
+        const selectRegistro = estadoRegistro.options[estadoRegistro.selectedIndex];
+        const selectValue = selectRegistro.value;
         const qr = document.getElementById('qr');
         const avatar = document.getElementById('avatar');
         const avatar2 = document.getElementById('avatar2');
@@ -250,7 +319,7 @@ function formFusteFolicurcado(){
             
     
                 if(Cap.value < 1 || Cap.value==""){
-                    Cap.className += 'is-invalid';
+                    Cap.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP ','','error')
                     return false
                 }else{
@@ -518,7 +587,7 @@ function formFusteFolicurcado(){
         }
 
         if( parseInt(copa_ausente.value) < 1 || parseInt(copa_ausente.value) >= 101 || copa_ausente.value==""){
-            swal('Copa Ausente','Copa Ausente debe ser mayor a 1 y menor a 101','error')
+            swal('Copa Ausente','Copa Ausente debe ser mayor a 1 y menor a 100','error')
             copa_ausente.className+=' is-invalid ';
             return false;
         }else{
@@ -528,9 +597,45 @@ function formFusteFolicurcado(){
           copa_ausente.className+=' is-valid ';
          
         }
-
+        var letrasRegex = /^[A-Za-z]+$/;
         
+        if(checkbox.checked){
+            if(otros.value === ''){
+                otros.value .className += ' is-invalid';
+                swal('Ingresa caracteres validos en Otra intervención fitosanitaria  ','','error')
+                return false
+            }
+            if (!letrasRegex.test(otros.value)) {
+                swal('SOLO LETRAS','El campo del textarea solo puede contener letras. Por favor, corrige el valor.','error');
+                return false;
+              }
+            else{
+                delet.classList.remove('delet');
+                otros.value .classList.remove('is-invalid');
+                otros.value .className+=' is-valid '; 
+            }
+        }
 
+
+        if (vitalidadValue == "Mala") {
+            
+            console.log("Entró a la validación");
+            if( porqueTala.value === ''){
+                porqueTala.value .className += ' is-invalid';
+                swal('Ingresa caracteres validos en ¿Por que Tala?  ','','error')
+                return false
+            }
+            if (!letrasRegex.test(porqueTala.value)) {
+                swal('SOLO LETRAS','El campo del textarea solo puede contener letras. Por favor, corrige el valor.','error');
+                return false;
+              }
+            else{       
+              console.log("Placa antigua es válida");
+              porqueTala.classList.remove('is-invalid');
+              porqueTala.className+=' is-valid ';
+              
+            }      
+        }
     }
 
     
