@@ -105,7 +105,7 @@ DATABASES = {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'NAME': 'CENSOARBOREO2022_1',
     'USER': 'postgres',
-    'PASSWORD': 'Admin123',
+    'PASSWORD': 'admin123',
     'HOST': '127.0.0.1',
     'PORT': '5432',
     'CONN_MAX_AGE': 500,
