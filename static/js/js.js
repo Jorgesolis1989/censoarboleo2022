@@ -193,10 +193,10 @@ function formshidde(){
   
     if (selectValue == "Antiguo") {
         console.log("Entró a la validación");
-        if( placaAntigua.value < 1 ){
+        if( placaAntigua.value < 1 || placaAntigua.value % 1 !== 0){
             console.log("Placa antigua es inválida");
             placaAntigua.className+=' is-invalid ';
-            swal('Digite la Placa Antigua','Debe ingresar un dígito válido','error')
+            swal('Digite la Placa Antigua','Debe ingresar un dígito de QR válido debe ser mayor a 1 y entero','error')
             return false;
         }else{       
           console.log("Placa antigua es válida");
@@ -298,7 +298,7 @@ function capa_invalid4(){
 //Formulario 2
 function formshidde2(){
 
-    const qr = document.getElementById('qr');
+    let qr = document.getElementById('qr');
     //const confinamiento-radio = document.getElementById('radio2');
     const avatar = document.getElementById('avatar');
     const avatar2 = document.getElementById('avatar2');
@@ -313,9 +313,9 @@ function formshidde2(){
     /* -------- VALIDACION DE RADIO BUTTONS ---------------------- */
   
 
-    if( qr.value < 1 ){
+    if( qr.value < 1 || qr.value % 1 !== 0){
         qr.className+=' is-invalid ';
-        swal('Digite el código QR','Debe ingresar un dígito de QR válido','error')
+        swal('Digite el código QR','Debe ingresar un dígito de QR válido debe ser mayor a 1 y entero','error')
         return false;
     }else{
     
@@ -328,7 +328,7 @@ function formshidde2(){
 
     if (ValueConfinamiento == "si") {
         console.log("Entró a la validación");
-        if( dist_confinamiento.value < 1 ){
+        if( parseFloat(dist_confinamiento.value) < 1 || dist_confinamiento.value==""){
             console.log("* Confinamiento es inválida *");
             dist_confinamiento.className+=' is-invalid ';
             swal('Digite Confinamiento','Debe ingresar un dígito válido','error')
@@ -432,7 +432,8 @@ function formshidde3(){
         
 
             if(Cap.value < 1){
-                Cap.className += 'is-invalid';
+
+                Cap.className += ' is-invalid';
                 swal('Ingresa un número valido en CAP ','','error')
                 return false
             }else{
@@ -444,21 +445,11 @@ function formshidde3(){
     }else{
 
         if(poliPolifurcado.checked){
-            if (numeroTallos.value === "1"){
-
-                if(Cap1.value < 1  ){
-                    Cap1.className += 'is-invalid';
-                    swal('Ingresa un número valido en CAP 1','','error')
-                    return false
-                }else{
-                    delet.classList.remove('delet');
-                    Cap1.classList.remove('is-invalid');
-                    Cap1.className+=' is-valid ';  
-                }
-            }
-            else if (numeroTallos.value === "2"){
+         
+            if (numeroTallos.value === "2"){
                 if(Cap1.value < 1){
-                    Cap1.className += 'is-invalid';
+
+                    Cap1.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 1','','error')
                     return false
                 }else{
@@ -467,7 +458,7 @@ function formshidde3(){
                     Cap1.className+=' is-valid ';  
                 }
                 if(Cap2.value < 1 ){
-                    Cap2.className += 'is-invalid';
+                    Cap2.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 2','','error')
                     return false
                 }else{
@@ -478,7 +469,7 @@ function formshidde3(){
             }
             else if(numeroTallos.value === "3"){
                 if(Cap1.value < 1  ){
-                    Cap1.className += 'is-invalid';
+                    Cap1.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 1','','error')
                     return false
                 }else{
@@ -487,7 +478,7 @@ function formshidde3(){
                     Cap1.className+=' is-valid ';  
                 }
                 if(Cap2.value < 1 ){
-                    Cap2.className += 'is-invalid';
+                    Cap2.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 2','','error')
                     return false
                 }else{
@@ -496,7 +487,7 @@ function formshidde3(){
                     Cap2.className+=' is-valid ';  
                 }
                 if(Cap3.value < 1 ){
-                    Cap3.className += 'is-invalid';
+                    Cap3.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 3','','error')
                     return false
                 }else{
@@ -507,7 +498,7 @@ function formshidde3(){
             }
             else if(numeroTallos.value === "4"){    
                 if(Cap1.value < 1  ){
-                    Cap1.className += 'is-invalid';
+                    Cap1.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 1','','error')
                     return false
                 }else{
@@ -516,7 +507,7 @@ function formshidde3(){
                     Cap1.className+=' is-valid ';  
                 }
                 if(Cap2.value < 1){
-                    Cap2.className += 'is-invalid';
+                    Cap2.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 2','','error')
                     return false
                 }else{
@@ -525,7 +516,7 @@ function formshidde3(){
                     Cap2.className+=' is-valid ';  
                 }
                 if(Cap3.value < 1 ){
-                    Cap3.className += 'is-invalid';
+                    Cap3.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 3','','error')
                     return false
                 }else{
@@ -534,7 +525,7 @@ function formshidde3(){
                     Cap3.className+=' is-valid ';  
                 }
                 if(Cap4.value < 1 ){
-                    Cap4.className += 'is-invalid';
+                    Cap4.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 4','','error')
                     return false
                 }else{
@@ -546,7 +537,7 @@ function formshidde3(){
 
             else if (numeroTallos.value === '5'){
                 if(Cap1.value < 1  ){
-                    Cap1.className += 'is-invalid';
+                    Cap1.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 1','','error')
                     return false
                 }else{
@@ -555,7 +546,7 @@ function formshidde3(){
                     Cap1.className+=' is-valid ';  
                 }
                 if(Cap2.value < 1 ){
-                    Cap2.className += 'is-invalid';
+                    Cap2.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 2','','error')
                     return false
                 }else{
@@ -564,7 +555,7 @@ function formshidde3(){
                     Cap2.className+=' is-valid ';  
                 }
                 if(Cap3.value < 1 ){
-                    Cap3.className += 'is-invalid';
+                    Cap3.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 3','','error')
                     return false
                 }else{
@@ -573,7 +564,7 @@ function formshidde3(){
                     Cap3.className+=' is-valid ';  
                 }
                 if(Cap4.value < 1){
-                    Cap4.className += 'is-invalid';
+                    Cap4.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 4','','error')
                     return false
                 }else{
@@ -582,7 +573,7 @@ function formshidde3(){
                     Cap4.className+=' is-valid ';  
                 }
                 if(Cap5.value < 1){
-                    Cap5.className += 'is-invalid';
+                    Cap5.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP 5','','error')
                     return false
                 }else{
@@ -603,8 +594,8 @@ function formshidde3(){
     /* --------------------------------Validaciones de formulario 3 --------------------------- */
 
 
-    if( comercial.value < 1 || comercial.value > 50 ){
-        swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
+    if( parseFloat(comercial.value) < 1 || parseFloat(comercial.value) > 50 || comercial.value=="" ){
+        swal('Comercial','comercial debe ser mayor a 1 y menor a 50','error')
         comercial.className+=' is-invalid ';
         return false;
     }else{
@@ -615,8 +606,8 @@ function formshidde3(){
      
     }
 
-    if( totalarbol.value < 1 || totalarbol.value > 50 ){
-        swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
+    if( parseFloat(totalarbol.value) < 1 || parseFloat(totalarbol.value) > 50 || totalarbol.value=="" ){
+        swal('Total Arbol','Total Arbol debe ser mayor a 1 y menor a 50','error')
         totalarbol.className+=' is-invalid ';
         return false;
     }else{
@@ -627,7 +618,7 @@ function formshidde3(){
      
     }
 
-    if( parseInt(comercial.value) >= parseInt(totalarbol.value) ){
+    if( parseFloat(comercial.value) >= parseFloat(totalarbol.value) ){
         swal('TOTAL ARBOL','TOTAL ARBOL debe ser mayor a Comercial','error')
         comercial.className+=' is-invalid ';
         totalarbol.className+=' is-invalid ';
@@ -647,7 +638,7 @@ function formshidde3(){
     // Validacion de ejemenor y ejemayor
     
     /********************************************************************************************************** */
-    if( ejemayor.value < 1 || ejemayor.value > 50){
+    if( parseFloat(ejemayor.value) < 1 || parseFloat(ejemayor.value) > 50 || ejemayor.value==""){
         swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
         ejemayor.className+=' is-invalid ';
         return false;
@@ -659,7 +650,7 @@ function formshidde3(){
      
     }
 
-    if( ejemenor.value < 1 || ejemenor.value > 50 ){
+    if( parseFloat(ejemenor.value) < 1 || parseFloat(ejemenor.value) > 50 || ejemenor.value==""){
         swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
         ejemenor.className+=' is-invalid ';
         return false;
@@ -671,7 +662,7 @@ function formshidde3(){
      
     }
 
-    if(  parseInt(ejemenor.value) >= parseInt(ejemayor.value) ){
+    if(  parseFloat(ejemenor.value) >= parseFloat(ejemayor.value) ){
         swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
         ejemayor.className+=' is-invalid ';
         ejemenor.className+=' is-invalid ';
@@ -688,23 +679,27 @@ function formshidde3(){
     
     /********************************************************************************************************** */
 
-    if( copa_viva.value < 1 ){
-        swal('Ingresa un numero valido','','error')
+    if( parseFloat(copa_viva.value) < 1 || copa_viva.value==""){
+        swal('Copa Viva','Copa Viva debe ser mayor a 1 y menor a 50','error')
         copa_viva.className+=' is-invalid ';
         return false;
     }else{
-        copa_viva.classList.remove('is-invalid');
-        copa_viva.className+=' is-valid ';
+    
+      delet.classList.remove('delet');
+      copa_viva.classList.remove('is-invalid');
+      copa_viva.className+=' is-valid ';
      
     }
 
-    if( copa_ausente.value < 1 || copa_ausente.value >= 100){
-        swal('Ingresa un numero valido','','error')
+    if( parseInt(copa_ausente.value) < 1 || parseInt(copa_ausente.value) >= 101 || copa_ausente.value==""){
+        swal('Copa Ausente','Copa Ausente debe ser mayor a 1 y menor a 101','error')
         copa_ausente.className+=' is-invalid ';
         return false;
     }else{
-        copa_ausente.classList.remove('is-invalid');
-        copa_ausente.className+=' is-valid ';
+    
+      delet.classList.remove('delet');
+      copa_ausente.classList.remove('is-invalid');
+      copa_ausente.className+=' is-valid ';
      
     }
     

@@ -3,7 +3,9 @@
 <html lang="es">
 
 <head>
-
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -175,17 +177,17 @@
                                                                     FORMULARIO 1 
                             -------------------------------------------------------------------------------------------------------------------------- ---
                             /------------------------------------------------------------------------------------------------------------------------ -->
-                            <form method="post" enctype="multipart/form-data" class="needs-validation">
+                            <form method="post" enctype="multipart/form-data" class="needs-validation" onsubmit="return validselect();">
                               {% csrf_token %}
                             <!-- FORMULARIO 1 -->
                             <div  id="form1" style="display: block;" needs-validation>
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
-                                    <label for="validationCustom01" class="cdd">* Estado del Registro </label>
+                                    <label for="validationCustom01" class="cdd"><span style="color: red;">*</span> Estado del Registro </label>
                                     <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Estado del registro" data-bs-content="Estado en que se encuentra el registro del individuo">
                                       <i class="fa fa-info-circle"></i>
                                     </button>
-                                    <select type="number" id="estado_registro" name="estado_registro" class="form-select" onchange="estadoRegistro()" >
+                                    <select  id="estado_registro" name="estado_registro" class="form-select" onchange="estadoRegistro()" >
                                       <option value="Nuevo" >Nuevo</option>
                                       <option value="Antiguo">Antiguo</option>
                                      
@@ -193,11 +195,11 @@
                                     
 
                                     <div id="antigua_placa" style="display: none;" class="col-md-12 col-lg-12 my-3">
-                                      <label for="validationCustom01" class="cdd">* Placa    </label>
+                                      <label for="validationCustom01" class="cdd">Placa    </label>
                                       <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Placa Antigua" data-bs-content="Placa metálica censos anteriores">
                                         <i class="fa fa-info-circle"></i>
                                       </button>
-                                      <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" class="form-control" onkeyup="deleteInValid()">                                         
+                                      <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" step="0.000000000001" class="form-control" onkeyup="deleteInValid()">                                         
                                       <div class="invalid-feedback" id="delet">
                                        * Ingresa como mínimo 1 digito *
                                       </div>
@@ -285,17 +287,17 @@
                             <div id="form2" style="display: none;">
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
-                                      <label for="Codigo QR">* Digite el codigo QR</label>
+                                      <label for="Codigo QR"><span style="color: red;">*</span> Digite el codigo QR</label>
                                       <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Código QR" data-bs-content="Ingresa un número de QR">
                                         <i class="fa fa-info-circle"></i>
                                       </button>
-                                      <input type="number" id="qr" name="qr" class="form-control" onkeyup="deleteInValid()" placeholder="Codigo QR">
+                                      <input type="number" step="0.000000000001" id="qr" name="qr" class="form-control" onkeyup="deleteInValid()" placeholder="Codigo QR" >
                                       <div class="invalid-feedback" id="delet">
-                                       * Ingresa un número de QR Válido *
+                                       * Ingresa un número de QR Válido - Debe ser Entero y positivo *
                                       </div>
                                   </div>
 
-
+                                
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="P">Cobertura</label>
                                       <select type="text" id="cobertura" name="cobertura" class="form-select">
@@ -327,7 +329,7 @@
                                   </div>
                                                                     
                                   <div class="col-md-12 col-lg-12 mb-3">
-                                    <label for="confinamiento">* Confinamiento</label>
+                                    <label for="confinamiento"><span style="color: red;">*</span> Confinamiento</label>
                                     <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Confinamiento" data-bs-content="Si el individuo se encuentra confinado o no">
                                       <i class="fa fa-info-circle"></i>
                                     </button>
@@ -343,7 +345,7 @@
                                         <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Distancia Confinamiento:" data-bs-content="Debe indicar la distancia del confinamiento">
                                           <i class="fa fa-info-circle"></i>
                                         </button>
-                                        <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" onkeyup="deleteInValid()" id="dist_confinamiento" type="number" class="form-control">     
+                                        <input placeholder="Distancia de Confinamiento (m)" name="dist_confinamiento" onkeyup="deleteInValid()" id="dist_confinamiento" type="number" step="0.000000000001" class="form-control">     
                                   </div>   
                                   <div class="col-md-12 col-lg-12 mt-3">
                                   <table class="table table-hover shadow ">
@@ -362,7 +364,7 @@
                                                   <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96">
                                                   
                                               </div>
-                                              <button type="button" class="btn btn-primary " id="showImageButton">* Ver Imagen</button>                                          
+                                              <button type="button" class="btn btn-primary " id="showImageButton"><span style="color: red;">*</span> Ver Imagen</button>                                          
                                           </label>
                                           
                                       </div>
@@ -381,7 +383,7 @@
                                               <div class="w-full h-48 rounded bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
                                                   <img class="w-full object-cover" src="https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png" height="96" id="img"/>
                                               </div>
-                                              <button type="button" class="btn btn-primary " id="showImageButton2">* Ver Imagen</button>                                             
+                                              <button type="button" class="btn btn-primary " id="showImageButton2"><span style="color: red;">*</span>Ver Imagen</button>                                             
                                           </label>
                                       </div>
                                       <div class="col-md-12 col-lg-12 mb-2">
@@ -431,7 +433,7 @@
                                   <div class="row" id="form2">
 
                                         <div class="col-md-12 col-lg-12 mb-2">
-                                          <label for="Placa Antigua">* Forma del Tronco:</label>
+                                          <label for="Placa Antigua"><span style="color: red;">*</span> Forma del Tronco:</label>
                                           <div class="form-check form-check-inline">
                                             
                                             <input class="form-check-input" type="radio" name="tipofuste" id="fuste_unico" value="Fuste Único" onclick="formFusteUnico() ">
@@ -465,7 +467,6 @@
                                         <i class="fa fa-info-circle"></i>
                                       </button>
                                       <select  id="numero_tallos" name="numero_tallos" class="form-select " onchange="fuste_polifurcado();">
-                                        <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
@@ -481,15 +482,15 @@
                                       <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="CAP (cm)" data-bs-content="Circunferencia a la altura de pecho, para individuo polifurcado ">
                                         <i class="fa fa-info-circle"></i>
                                       </button>
-                                      <input type="number" id="capa1" name="capa1" placeholder="CAP 1(cm)" class="form-control "  onkeyup="capa_invalid()">
+                                      <input type="number" step="0.000000000001" id="capa1" name="capa1" placeholder="CAP 1(cm)" class="form-control "  onkeyup="capa_invalid()">
                                       <div class="invalid-feedback" id="delet">
                                        * Ingresa un número de CAP1 válido mayor o igual a 1 *
                                       </div>  
                                   </div>
 
-                                      <div class="col-md-12 col-lg-12 mb-2" id="fuste2" style="display: none;">
+                                      <div class="col-md-12 col-lg-12 mb-2" id="fuste2" style="display: block;">
                                         <label for="Capa 2">CAP 2(cm)</label>
-                                        <input type="number" id="capa2" name="capa2" placeholder="CAP 2(cm)" class="form-control "  onkeyup="capa_invalid1()">
+                                        <input type="number" step="0.000000000001" id="capa2" name="capa2" placeholder="CAP 2(cm)" class="form-control "  onkeyup="capa_invalid1()">
                                         <div class="invalid-feedback" id="delet">
                                          * Ingresa un número de CAP2 válido mayor o igual a 1 *
                                         </div>  
@@ -520,22 +521,22 @@
                                           <h6 style="color: black;">Alturas (metros) :</h6>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
-                                          <label for="">* Comercial (Fuste)</label>
+                                          <label for=""><span style="color: red;">*</span> Comercial (Fuste)</label>
                                           <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Comercial (Fuste)" data-bs-content="Altura del Comercial o de Fuste (Hc).">
                                             <i class="fa fa-info-circle"></i>
                                           </button>
-                                          <input type="number" name="comercial_fuste" id="comercial_fuste" class="form-control"
+                                          <input type="number" step="0.000000000001" name="comercial_fuste" id="comercial_fuste" class="form-control"
                                               placeholder="Hc (m)" onkeyup="deleteInValid()">
                                               <div class="invalid-feedback" id="delet">
                                                * Ingresa un número válido de comercial fuste -
                                               </div>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
-                                          <label for="">* Total del árbol</label>
+                                          <label for=""><span style="color: red;">*</span> Total del árbol</label>
                                           <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Total del árbol" data-bs-content="Altura total del individuo (Ht).">
                                             <i class="fa fa-info-circle"></i>
                                           </button>
-                                          <input type="number" name="totalarbol" id="totalarbol" class="form-control " placeholder="Ht (m)" onkeyup="deleteInValid()"> 
+                                          <input type="number" step="0.000000000001" name="totalarbol" id="totalarbol" class="form-control " placeholder="Ht (m)" onkeyup="deleteInValid()"> 
                                               <div class="invalid-feedback" id="delet">
                                                * Ingresa un número válido de total del arbol y mayor a comercial fuste *                                           
                                               </div>
@@ -545,22 +546,22 @@
                                           <h6 style="color: black;">Diámetro copa (metros) :</h6>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
-                                        <label for="">* Eje menor</label>
+                                        <label for=""><span style="color: red;">*</span> Eje menor</label>
                                         <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Eje menor" data-bs-content="Diámetro de copa, eje menor.">
                                           <i class="fa fa-info-circle"></i>
                                         </button>
-                                        <input type="number" id="ejemenor" name="ejemenor"  class="form-control" onkeyup="deleteInValid()" placeholder="Ingrese el Eje Menor">
+                                        <input  type="number" step="0.000000000001" id="ejemenor" name="ejemenor"  class="form-control" onkeyup="deleteInValid()" placeholder="Ingrese el Eje Menor (m)">
                                         <div class="invalid-feedback" id="delet">
                                          * Ingresa un número *
                                         </div>
                                     </div>
 
                                       <div class="col-md-6 col-lg-6 mb-2">
-                                          <label for="">* Eje mayor</label>
+                                          <label for=""><span style="color: red;">*</span> Eje mayor</label>
                                           <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Eje mayor: " data-bs-content="Diámetro de copa, eje mayor.">
                                               <i class="fa fa-info-circle"></i>
                                           </button> 
-                                          <input type="number" name="ejemayor" id="ejemayor" class="form-control" onkeyup="deleteInValid()" placeholder="Ingrese el Eje Mayor">
+                                          <input  type="number" step="0.000000000001" name="ejemayor" id="ejemayor" class="form-control" onkeyup="deleteInValid()" placeholder="Ingrese el Eje Mayor (m)">
                                           <div class="invalid-feedback" id="delet">
                                            * Ingresa un número *
                                           </div>
@@ -587,7 +588,7 @@
 
                                       <div class="col-md-12 col-lg-12 mb-2">
                                           <label>Exposición de la copa a la luz</label>
-                                          <select type="number" id="exposicionluz" name="exposicionluz" class="form-select"
+                                          <select type="number" step="0.000000000001" id="exposicionluz" name="exposicionluz" class="form-select"
                                               placeholder="CAP (m)">
                                               <option value="No recibe luz">No recibe luz</option>
                                               <option value="Una cara">Una cara</option>
@@ -601,21 +602,21 @@
                                           <h6>Copa viva</h6>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
-                                          <label for="">* Altura (m)</label>
-                                          <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Altura" data-bs-content="Altura de copa viva dada en metros  ">
+                                          <label for=""><span style="color: red;">*</span> Altura (m)</label>
+                                          <button  class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Altura" data-bs-content="Altura de copa viva dada en metros  ">
                                             <i class="fa fa-info-circle"></i>
                                           </button>
-                                          <input type="number" class="form-control" placeholder="ACV (m)" aria-label="Genero" id="copa_viva" name="copa_viva">
+                                          <input  class="form-control" placeholder="ACV (m)" onkeyup="deleteInValid()" aria-label="Genero" id="copa_viva" name="copa_viva">
                                           <div class="invalid-feedback" id="delet">
                                            * Ingresa un número *
                                           </div>
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
-                                          <label for="">* Copa Ausente %</label>
+                                          <label for=""><span style="color: red;">*</span> Copa Ausente %</label>
                                           <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Copa Ausente: " data-bs-content="Porcentaje de copa ausente    ">
                                             <i class="fa fa-info-circle"></i>
                                           </button>
-                                          <input type="number" class="form-control" placeholder="Ingrese el porcentaje (%)" aria-label="Genero" id="copa_ausente" name="copa_ausente">
+                                          <input class="form-control" placeholder="Ingrese el porcentaje (%)" onkeyup="deleteInValid()" aria-label="Genero" id="copa_ausente" name="copa_ausente">
                                           <div class="invalid-feedback" id="delet">
                                            * Ingresa un número *
                                           </div>
@@ -1318,7 +1319,7 @@
 
                                       </li>
                                       <li class="page-item">
-                                        <button id="btnEnviar" name="btnActualizar" type="submit" class="finish btn btn-warning" onclick="formshidde()">Actualizar</button>
+                                        <button type="button" class="btn btn-outline-primary" onclick="formshidde()" >Siguiente</button>
                                           
                                       </li>
                                   </ul>

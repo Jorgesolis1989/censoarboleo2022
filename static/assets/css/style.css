@@ -14,7 +14,7 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
+  background: #ffffff;
   color: #444444;
 }
 
@@ -1355,7 +1355,7 @@ input:checked + .slider:after {
   left: 80%;
 }
 
-@media screen and (min-width: 987px) {
+@media screen and (min-width: 1200px) {
   .toggle-sidebar-btn {
     display: none !important;
   }

@@ -110,6 +110,9 @@ def listar_formularios(request):
         mensaje = request.session["mensaje"]
         del request.session['funcion_llamada']
 
+    print(funcion_llamada)
+    print(llamarMensaje)
+    print(mensaje)
 
     return render(request, 'listar_formularios.html',{'usuario': usuario, 'arboles': arboles, "base_template":base_template, 'mensaje': mensaje, 'llamarMensaje': llamarMensaje})
 
@@ -137,6 +140,8 @@ def ver_formulario(request , id_arbol=None):
         arbol.modificado_por = usuario.username
         crear_actualizar_arbol(request, arbol, dasometria,estado_fitosanitario , recomendacion_e_intervencion , vulnerabilidad, True)
 
+   
+        
         return redirect("listar_formularios")
         
     
@@ -183,7 +188,14 @@ def editar_formulario(request , id_arbol=None):
         
         arbol.actualizado = timezone.now()
         arbol.modificado_por = usuario.username
+
         crear_actualizar_arbol(request, arbol, dasometria,estado_fitosanitario , recomendacion_e_intervencion , vulnerabilidad, True)
+
+        llamarMensaje = "exito_usuario"
+        mensaje = "El registro de formulario No "+ str(arbol.id)+" se actualizó correctamente"
+        request.session["llamarMensaje"]  = llamarMensaje
+        request.session["mensaje"]  = mensaje
+        request.session["funcion_llamada"]  = "editar_usuario"
 
         return redirect("listar_formularios")
         
@@ -248,8 +260,6 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
         requiere_revision = True
     
         
-
-
     direccion = request.POST["direccion"]
     
     nombre_comun = request.POST["nombre_comun"]
@@ -291,6 +301,13 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
     #requiere revision 
     arbol.requiere_revision = requiere_revision
 
+    # No aparece registro en la base de datos
+    arbol.estado = estado_registro
+
+    # Si está actualizando y el registro es nuevo por antiguo
+    if actualizar and estado_registro == "Nuevo":
+        placaAntigua = 0    
+
     # Placa antigua                 
     arbol.Placa_ant = placaAntigua
 
@@ -318,8 +335,10 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
 
     arbol.madurez = estado_madurez
 
-    # No aparece registro en la base de datos
-    arbol.estado = estado_registro
+
+
+
+
 
     # Cobertura
     arbol.cobertura = cobertura
@@ -330,6 +349,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
         dist_confinamiento = request.POST["dist_confinamiento"]
     else:
         arbol.confinamiento = False
+        dist_confinamiento = 0
         
     arbol.dist_confinamiento = dist_confinamiento
 
