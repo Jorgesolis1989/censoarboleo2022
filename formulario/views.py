@@ -110,6 +110,9 @@ def listar_formularios(request):
         mensaje = request.session["mensaje"]
         del request.session['funcion_llamada']
 
+    print(funcion_llamada)
+    print(llamarMensaje)
+    print(mensaje)
 
     return render(request, 'listar_formularios.html',{'usuario': usuario, 'arboles': arboles, "base_template":base_template, 'mensaje': mensaje, 'llamarMensaje': llamarMensaje})
 
@@ -137,6 +140,8 @@ def ver_formulario(request , id_arbol=None):
         arbol.modificado_por = usuario.username
         crear_actualizar_arbol(request, arbol, dasometria,estado_fitosanitario , recomendacion_e_intervencion , vulnerabilidad, True)
 
+   
+        
         return redirect("listar_formularios")
         
     
@@ -183,7 +188,14 @@ def editar_formulario(request , id_arbol=None):
         
         arbol.actualizado = timezone.now()
         arbol.modificado_por = usuario.username
+
         crear_actualizar_arbol(request, arbol, dasometria,estado_fitosanitario , recomendacion_e_intervencion , vulnerabilidad, True)
+
+        llamarMensaje = "exito_usuario"
+        mensaje = "El registro de formulario No "+ str(arbol.id)+" se actualizó correctamente"
+        request.session["llamarMensaje"]  = llamarMensaje
+        request.session["mensaje"]  = mensaje
+        request.session["funcion_llamada"]  = "editar_usuario"
 
         return redirect("listar_formularios")
         
