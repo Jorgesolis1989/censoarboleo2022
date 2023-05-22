@@ -108,7 +108,7 @@
                               style="max-width: 150px; max-height: 150px;">
                               
                                                                                       <!-- FORMULARIO-->
-
+                <div class="scroll-for">
                             <form id="Myform" method="post" enctype="multipart/form-data" class="needs-validation" onsubmit="return formshidde();">
                             {% csrf_token %}
                             <!--FORMULARIO 1-->
@@ -131,7 +131,7 @@
                                     <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Placa Antigua" data-bs-content="Placa metálica censos anteriores"> 
                                       <i class="fa fa-info-circle"></i>
                                     </button>
-                                    <input placeholder="Digite la placa" name="placa_antigua" id="placa_antigua" type="number" onkeyup="deleteInValid()" class="form-select" value="{{arbol.Placa_ant}}">                                         
+                                    <input placeholder="Digite la placa" name="placa_antigua" step="any" id="placa_antigua" type="number" onkeyup="deleteInValid()" class="form-select" value="{{arbol.Placa_ant}}">                                         
                                     <div class="invalid-feedback" id="delet">
                                      * Ingresa como mínimo 1 digito *
                                     </div>
@@ -203,7 +203,7 @@
                               <div  class="row">
                                   <div class="col-md-12 col-lg-12 mb-2">
                                       <label for="Codigo QR">Digite el codigo QR:</label>
-                                      <input type="number" id="qr" name="qr" class="form-control" onkeyup="deleteInValid()" value="{{arbol.qrcode}}">
+                                      <input type="number" step="any" id="qr" name="qr" class="form-control" onkeyup="deleteInValid()" value="{{arbol.qrcode}}">
                                       <div class="invalid-feedback" id="delet">
                                         Ingresa un número
                                       </div>
@@ -262,7 +262,10 @@
                                         <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="Distancia Confinamiento:" data-bs-content="Debe indicar la distancia del confinamiento">
                                           <i class="fa fa-info-circle"></i>
                                         </button>
-                                        <input placeholder="Distancia de Confinamiento (m)" onkeyup="deleteInValid()" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control" value="{{arbol.dist_confinamiento}}">     
+                                        <input placeholder="Distancia de Confinamiento (m)" onkeyup="deleteInValid()" name="dist_confinamiento" id="dist_confinamiento" type="number" class="form-control" value="{{arbol.dist_confinamiento}}">
+                                        <div class="invalid-feedback" id="delet">
+                                          * Ingresa como mínimo 1 digito *
+                                         </div>     
                                   </div>
                                   
                                   <div class="col-md-12 col-lg-12 mt-3">
@@ -411,7 +414,7 @@
 
                                       <div id="formViewUnico" style="display: none;" class="col-md-12 col-lg-12 mb-2" >
                                         <label for="CAP 1">CAP (cm)</label>
-                                        <input placeholder="capa (m)" name="cap " id="cap" type="number" class="form-control " onkeyup="capa_invalid()" value="{{dasometria.cap}}">
+                                        <input placeholder="CAP (cm)" name="cap " id="cap" type="number" step="any" class="form-control " onkeyup="capa_invalid()" value="{{dasometria.cap}}">
                                         <div class="invalid-feedback" id="delet" >
                                           Ingresa un número
                                         </div>
@@ -424,15 +427,12 @@
                                       
     
                                         <label for="Tallos">No de Tallos</label>
-                                        <select  id="numero_tallos" name="numero_tallos" class="form-select " onchange="fuste_polifurcado();">
-                                          <option value="1">1</option>                                 
+                                        <select  id="numero_tallos" name="numero_tallos" class="form-select " onchange="fuste_polifurcado();">                                
                                           <option value="2">2</option>
                                           <option value="3">3</option>
                                           <option value="4">4</option>
                                           <option value="5">5</option>
-                                        </select>
-                                        
-                                  
+                                        </select>       
                                         <div class="invalid-feedback" id="delet">
                                           Ingresa un número
                                         </div>  
@@ -443,36 +443,36 @@
                                       <button typpe="button" class="info-button" data-bs-toggle="popover" data-bs-trigger="focus" title="CAP (cm)" data-bs-content="Circunferencia a la altura de pecho, para individuo polifurcado ">
                                         <i class="fa fa-info-circle"></i>
                                       </button>
-                                      <input type="number" id="capa1" name="capa1" placeholder="CAP 1(cm)" class="form-control "  onkeyup="capa_invalid()" value="{{dasometria.cap1}}">
+                                      <input type="number" id="capa1" name="capa1" placeholder="CAP 1(cm)" class="form-control " step="any" onkeyup="capa_invalid()" value="{{dasometria.cap1}}">
                                       <div class="invalid-feedback" id="delet">
                                        * Ingresa un número de CAP1 válido mayor o igual a 1 *
                                       </div>  
                                     </div>
 
-                                    <div class="col-md-12 col-lg-12 mb-2" id="fuste2" style="display: none;">
+                                    <div class="col-md-12 col-lg-12 mb-2" id="fuste2" style="display: block;">
                                       <label for="Capa 2">CAP 2(cm)</label>
-                                      <input type="number" id="capa2" name="capa2" placeholder="CAP 2(cm)" class="form-control "  onkeyup="capa_invalid1()" value="{{dasometria.cap2}}">
+                                      <input type="number" id="capa2" name="capa2" placeholder="CAP 2(cm)" class="form-control " step="any" onkeyup="capa_invalid1()" value="{{dasometria.cap2}}">
                                       <div class="invalid-feedback" id="delet">
                                        * Ingresa un número de CAP2 válido mayor o igual a 1 *
                                       </div>  
                                   </div>
                                   <div class="col-md-12 col-lg-12 mb-2" id="fuste3" style="display: none;">
                                     <label for="Capa 3">CAP 3(cm)</label>
-                                    <input type="text" id="capa3" name="capa3" placeholder="CAP 3(cm)"  class="form-control "  onkeyup="capa_invalid2()" value="{{dasometria.cap3}}"> 
+                                    <input type="text" id="capa3" name="capa3" placeholder="CAP 3(cm)"  class="form-control " step="any" onkeyup="capa_invalid2()" value="{{dasometria.cap3}}"> 
                                     <div class="invalid-feedback" id="delet">
                                      * Ingresa un número de CAP3 válido mayor o igual a 1 *
                                     </div> 
                                 </div>
                                 <div class="col-md-12 col-lg-12 mb-2" id="fuste4" style="display: none;">
                                   <label for="Placa Antigua">CAP 4(cm)</label>
-                                  <input type="text" id="capa4" name="capa4" placeholder="CAP 4(cm)" class="form-control "  onkeyup="capa_invalid3()" value="{{dasometria.cap4}}">
+                                  <input type="text" id="capa4" name="capa4" placeholder="CAP 4(cm)" class="form-control " step="any" onkeyup="capa_invalid3()" value="{{dasometria.cap4}}">
                                   <div class="invalid-feedback" id="delet">
                                    * Ingresa un número de CAP4 válido mayor o igual a 1 *
                                   </div>  
                               </div>
                                 <div class="col-md-12 col-lg-12 mb-2" id="fuste5" style="display: none;">
                                   <label for="Placa Antigua">CAP 5(cm)</label>
-                                  <input type="text" id="capa5" name="capa5" placeholder="CAP 5(cm)" class="form-control "  onkeyup="capa_invalid4()"value="{{dasometria.cap5}}">
+                                  <input type="text" id="capa5" name="capa5" placeholder="CAP 5(cm)" class="form-control " step="any" onkeyup="capa_invalid4()"value="{{dasometria.cap5}}">
                                   <div class="invalid-feedback" id="delet">
                                   * Ingresa un número de CAP5 válido mayor o igual a 1 *
                                   </div>  
@@ -560,7 +560,7 @@
                                       </div>
                                       <div class="col-md-6 col-lg-6 mb-2">
                                           <label for="">% copa ausente</label>
-                                          <input type="number" class="form-control" placeholder="(%)" onkeyup="deleteInValid()" aria-label="Genero" id="copa_ausente" name="copa_ausente">
+                                          <input type="number" class="form-control" placeholder="(%)" onkeyup="deleteInValid()" aria-label="Genero" step="any" id="copa_ausente" name="copa_ausente">
                                           <div class="invalid-feedback" id="delet">
                                             * Ingresa como mínimo 1 digito *
                                            </div>
@@ -1089,7 +1089,7 @@
                                  {% endif %}
                                
                                   <h4>Otra intervención fitosanitaria</h4>
-                                  <textarea class="form-control" placeholder="Ingrese un comentario" id="comentarios_otros" name="comentarios_otros"  style="height: 100px">{{recomendacion_e_intervencion.comentarios_control_fitosanitario}}</textarea>
+                                  <textarea class="form-control" placeholder="Ingrese un comentario" id="comentarios_otros" onkeyup="text_invalid()" name="comentarios_otros"  style="height: 100px">{{recomendacion_e_intervencion.comentarios_control_fitosanitario}}</textarea>
                                   <div class="invalid-feedback" id="delet">
                                     * debes ingresar caracteres validos  *
                                    </div>
@@ -1297,15 +1297,20 @@
                                 
                                 <div class="form-floating">
                                   <h6>¿Porqué tala?</h6>
-                                <textarea class="form-control"  placeholder="Leave a comment here" id="porquetala" name="porquetala" style="height: 100px">{{recomendacion_e_intervencion.porque_tala}}</textarea>
+                                <textarea class="form-control"  placeholder="Leave a comment here" id="porquetala" onkeyup="text_invalid()" name="porquetala" style="height: 100px">{{recomendacion_e_intervencion.porque_tala}}</textarea>
+                                <div class="invalid-feedback">
+                                  * debes ingresar caracteres validos  *
+                                </div>
                               </div>
                             </div>
 
 
                                 <div class="form-floating">
                                   <h4>Comentarios en general</h4>
-                                  <textarea class="form-control" placeholder="Leave a comment here" id="comentarios_en_general" name="comentarios_en_general"  style="height: 100px" >{{recomendacion_e_intervencion.comentarios}}</textarea>
-                                  
+                                  <textarea class="form-control " placeholder="Leave a comment here" id="comentarios_en_general" name="comentarios_en_general"  style="height: 100px" >{{recomendacion_e_intervencion.comentarios}}</textarea>
+                                  <div class="invalid-feedback">
+                                    Please enter a message in the textarea.
+                                  </div>
                                 </div>
                                 <br>
                                 <br>
@@ -1322,7 +1327,7 @@
                               
                               </li>
                               <li class="page-item">
-                  <!--               <button class="btn btn-outline-warning"type="submit">Finalizar</button>--> 
+                            <!-- <button class="btn btn-outline-warning"type="submit">Finalizar</button>--> 
                             
                             <a href="{% url 'listar_formularios' %}" > <button type="button" class="btn btn-danger">Cancelar
 
@@ -1338,8 +1343,8 @@
                           </form>
 
 
-                      </div>
-
+              </div>
+                      
 
 
               </main>
@@ -1357,6 +1362,8 @@
 
       </div>
       <!-- End of Page Wrapper -->
+
+    </div>
 
       <!-- Scroll to Top Button-->
       <a class="scroll-to-top rounded" href="#page-top">
@@ -1376,6 +1383,9 @@
               </div>
           </div>
       </footer>
+
+
+
       <!-- Logout Modal-->
       <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
@@ -1630,12 +1640,11 @@
         
       
       let num_tallos_dict= new Map(); 
-      
-      num_tallos_dict.set("1", 0)
-      num_tallos_dict.set("2",1);
-      num_tallos_dict.set("3",2);
-      num_tallos_dict.set("4",3);
-      num_tallos_dict.set("5",4);
+    
+      num_tallos_dict.set("2",0);
+      num_tallos_dict.set("3",1);
+      num_tallos_dict.set("4",2);
+      num_tallos_dict.set("5",3);
 
      document.getElementById("numero_tallos").selectedIndex = num_tallos_dict.get("{{dasometria.numtallos}}");
   

@@ -59,14 +59,8 @@ function formFusteFolicurcado(){
         
         var ocultarfuste = document.getElementById("numero_tallos");
         ocultarfuste = ocultarfuste.options[ocultarfuste.selectedIndex].value;
-        if (ocultarfuste == "1") {
-            document.getElementById("fuste1").style.display = "block";
-            document.getElementById("fuste2").style.display = "none";
-            document.getElementById("fuste3").style.display = "none";
-            document.getElementById("fuste4").style.display = "none";
-            document.getElementById("fuste5").style.display = "none";            
-        }
-        else if (ocultarfuste == "2") {
+       
+        if (ocultarfuste == "2") {
             document.getElementById("fuste1").style.display = "block";
             document.getElementById("fuste2").style.display = "block";
             document.getElementById("fuste3").style.display = "none";
@@ -176,6 +170,16 @@ function formFusteFolicurcado(){
         copa_ausente.classList.remove('is-valid');
     }
     
+    function text_invalid(){
+        const area_Invalid = document.getElementById("comentarios_otros");
+        const porqueTala = document.getElementById("porquetala");
+
+        area_Invalid.classList.remove('is-invalid');
+        area_Invalid.classList.remove('is-valid');
+        porqueTala.classList.remove('is-invalid');
+        porqueTala.classList.remove('is-valid');
+    }
+
     function capa_invalid(){
         const Cap = document.getElementById('cap');
         const Cap1 = document.getElementById('capa1');
@@ -254,6 +258,7 @@ function formFusteFolicurcado(){
                 console.log("Placa antigua es inválida");
                 placaAntigua.className+=' is-invalid ';
                 swal('Digite la Placa Antigua','Debe ingresar un dígito de Placa antigua válido debe ser mayor a 1 y entero','error')
+                placaAntigua.focus();
                 return false;
             }else{       
               console.log("Placa antigua es válida");
@@ -264,10 +269,11 @@ function formFusteFolicurcado(){
         }
 
         /* validacion */
-        if( qr.value < 1 ){
+        if( qr.value < 1 || qr.value % 1 !== 0){
             console.log("Entro en mala validacion")
             qr.className+=' is-invalid ';
             swal('Digite el código QR','Debe ingresar un dígito de QR válido debe ser mayor a 1 y entero','error')
+            qr.focus();
             return false;
         }else{
           delet.classList.remove('delet');
@@ -278,10 +284,11 @@ function formFusteFolicurcado(){
 
         if (ValueConfinamiento == "si") {
             console.log("Entró a la validación");
-            if( dist_confinamiento.value < 1 ){
+            if( parseFloat(dist_confinamiento.value) < 1 || dist_confinamiento.value==""){
                 console.log("* Confinamiento es inválida *");
                 dist_confinamiento.className+=' is-invalid ';
                 swal('Digite Confinamiento','Debe ingresar un dígito válido','error')
+                dist_confinamiento.focus();
                 return false;
             }else{       
               console.log("dist_confinamiento es válida");
@@ -298,7 +305,6 @@ function formFusteFolicurcado(){
 
         fusteUnico.addEventListener('change', () => {
             if (fusteUnico.checked) {
-                Cap1.value = '';
                 Cap2.value = '';
                 Cap3.value = '';
                 Cap4.value = '';
@@ -319,9 +325,10 @@ function formFusteFolicurcado(){
         if (fusteUnico.checked){
             
     
-                if(Cap.value < 1 || Cap.value==""){
+                if(Cap.value < 1 || Cap.value=="" || Cap.value % 1 !== 0){
                     Cap.className += ' is-invalid';
                     swal('Ingresa un número valido en CAP ','','error')
+                    Cap.focus();
                     return false
                 }else{
                     delet.classList.remove('delet');
@@ -332,31 +339,22 @@ function formFusteFolicurcado(){
         }else{
     
             if(poliPolifurcado.checked){
-                if (numeroTallos.value === "1"){
-    
-                    if(Cap1.value < 1  ){
-                        Cap1.className += 'is-invalid';
+               
+                if (numeroTallos.value === "2"){
+                    if(Cap1.value < 1 || Cap1.value % 1 !== 0){
+                        Cap1.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 1','','error')
+                        Cap1.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
                         Cap1.classList.remove('is-invalid');
                         Cap1.className+=' is-valid ';  
                     }
-                }
-                else if (numeroTallos.value === "2"){
-                    if(Cap1.value < 1){
-                        Cap1.className += 'is-invalid';
-                        swal('Ingresa un número valido en CAP 1','','error')
-                        return false
-                    }else{
-                        delet.classList.remove('delet');
-                        Cap1.classList.remove('is-invalid');
-                        Cap1.className+=' is-valid ';  
-                    }
-                    if(Cap2.value < 1 ){
-                        Cap2.className += 'is-invalid';
+                    if(Cap2.value < 1 || Cap2.value % 1 !== 0){
+                        Cap2.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 2','','error')
+                        Cap2.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
@@ -365,27 +363,30 @@ function formFusteFolicurcado(){
                     }        
                 }
                 else if(numeroTallos.value === "3"){
-                    if(Cap1.value < 1  ){
-                        Cap1.className += 'is-invalid';
+                    if(Cap1.value < 1  || Cap1.value % 1 !== 0){
+                        Cap1.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 1','','error')
+                        Cap1.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
                         Cap1.classList.remove('is-invalid');
                         Cap1.className+=' is-valid ';  
                     }
-                    if(Cap2.value < 1 ){
-                        Cap2.className += 'is-invalid';
+                    if(Cap2.value < 1 || Cap2.value % 1 !== 0){
+                        Cap2.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 2','','error')
+                        Cap2.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
                         Cap2.classList.remove('is-invalid');
                         Cap2.className+=' is-valid ';  
                     }
-                    if(Cap3.value < 1 ){
-                        Cap3.className += 'is-invalid';
+                    if(Cap3.value < 1 || Cap3.value % 1 !== 0){
+                        Cap3.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 3','','error')
+                        Cap3.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
@@ -394,36 +395,40 @@ function formFusteFolicurcado(){
                     }
                 }
                 else if(numeroTallos.value === "4"){    
-                    if(Cap1.value < 1  ){
-                        Cap1.className += 'is-invalid';
+                    if(Cap1.value < 1  || Cap1.value % 1 !== 0){
+                        Cap1.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 1','','error')
+                        Cap1.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
                         Cap1.classList.remove('is-invalid');
                         Cap1.className+=' is-valid ';  
                     }
-                    if(Cap2.value < 1){
-                        Cap2.className += 'is-invalid';
+                    if(Cap2.value < 1 || Cap2.value % 1 !== 0){
+                        Cap2.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 2','','error')
+                        Cap2.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
                         Cap2.classList.remove('is-invalid');
                         Cap2.className+=' is-valid ';  
                     }
-                    if(Cap3.value < 1 ){
-                        Cap3.className += 'is-invalid';
+                    if(Cap3.value < 1 || Cap3.value % 1 !== 0){
+                        Cap3.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 3','','error')
+                        Cap3.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
                         Cap3.classList.remove('is-invalid');
                         Cap3.className+=' is-valid ';  
                     }
-                    if(Cap4.value < 1 ){
-                        Cap4.className += 'is-invalid';
+                    if(Cap4.value < 1 || Cap4.value % 1 !== 0){
+                        Cap4.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 4','','error')
+                        Cap4.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
@@ -433,45 +438,50 @@ function formFusteFolicurcado(){
                 }
     
                 else if (numeroTallos.value === '5'){
-                    if(Cap1.value < 1  ){
-                        Cap1.className += 'is-invalid';
+                    if(Cap1.value < 1 || Cap1.value % 1 !== 0){
+                        Cap1.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 1','','error')
+                        Cap1.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
                         Cap1.classList.remove('is-invalid');
                         Cap1.className+=' is-valid ';  
                     }
-                    if(Cap2.value < 1 ){
-                        Cap2.className += 'is-invalid';
+                    if(Cap2.value < 1 || Cap2.value % 1 !== 0){
+                        Cap2.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 2','','error')
+                        Cap2.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
                         Cap2.classList.remove('is-invalid');
                         Cap2.className+=' is-valid ';  
                     }
-                    if(Cap3.value < 1 ){
-                        Cap3.className += 'is-invalid';
+                    if(Cap3.value < 1 || Cap3.value % 1 !== 0){
+                        Cap3.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 3','','error')
+                        Cap3.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
                         Cap3.classList.remove('is-invalid');
                         Cap3.className+=' is-valid ';  
                     }
-                    if(Cap4.value < 1){
-                        Cap4.className += 'is-invalid';
+                    if(Cap4.value < 1 || Cap4.value % 1 !== 0){
+                        Cap4.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 4','','error')
+                        Cap4.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
                         Cap4.classList.remove('is-invalid');
                         Cap4.className+=' is-valid ';  
                     }
-                    if(Cap5.value < 1){
-                        Cap5.className += 'is-invalid';
+                    if(Cap5.value < 1 || Cap5.value % 1 !== 0){
+                        Cap5.className += ' is-invalid';
                         swal('Ingresa un número valido en CAP 5','','error')
+                        Cap5.focus();
                         return false
                     }else{
                         delet.classList.remove('delet');
@@ -494,6 +504,7 @@ function formFusteFolicurcado(){
         if( parseFloat(comercial.value) < 1 || parseFloat(comercial.value) > 50 || comercial.value==""){
             swal('Comercial','Comercial debe ser mayor a 1 y menor a 50','error')
             comercial.className+=' is-invalid ';
+            comercial.focus();
             return false;
         }else{
         
@@ -506,6 +517,7 @@ function formFusteFolicurcado(){
         if( parseFloat(totalarbol.value) < 1 || parseFloat(totalarbol.value) > 50 || totalarbol.value==""){
             swal('Total Arbol','Total Arbol debe ser mayor a 1 y menor a 50','error')
             totalarbol.className+=' is-invalid ';
+            totalarbol.focus();
             return false;
         }else{
         
@@ -519,6 +531,7 @@ function formFusteFolicurcado(){
             swal('TOTAL ARBOL','TOTAL ARBOL debe ser mayor a Comercial','error')
             comercial.className+=' is-invalid ';
             totalarbol.className+=' is-invalid ';
+            comercial.focus();
             return false;
         }else{
         
@@ -538,7 +551,9 @@ function formFusteFolicurcado(){
         if( ejemayor.value < 1 || ejemayor.value > 50 || ejemayor.value==""){
             swal('EJE MAYOR','Eje mayor debe ser mayor a 1 y menor a 50','error')
             ejemayor.className+=' is-invalid ';
+            ejemayor.focus();
             return false;
+            
         }else{
         
           delet.classList.remove('delet');
@@ -550,7 +565,9 @@ function formFusteFolicurcado(){
         if( ejemenor.value < 1 || ejemenor.value > 50 || ejemenor.value==""){
             swal('EJE MENOR','Eje menor debe ser mayor a 1 y menor a 50','error')
             ejemenor.className+=' is-invalid ';
+            ejemenor.focus();
             return false;
+           
         }else{
         
           delet.classList.remove('delet');
@@ -562,7 +579,9 @@ function formFusteFolicurcado(){
         if(  parseFloat(ejemenor.value) >= parseFloat(ejemayor.value) ){
             swal('EJE MAYOR','Eje mayor debe ser mayor a eje menor','error')
             ejemayor.className+=' is-invalid ';
+            ejemayor.focus();
             return false;
+            
         }else{
         
           delet.classList.remove('delet');
@@ -578,7 +597,9 @@ function formFusteFolicurcado(){
         if( parseFloat(copa_viva.value) < 1 || copa_viva.value==""){
             swal('Copa Viva','Copa Viva debe ser mayor a 1 y menor a 50','error')
             copa_viva.className+=' is-invalid ';
+            copa_viva.focus();
             return false;
+          
         }else{
         
           delet.classList.remove('delet');
@@ -587,10 +608,12 @@ function formFusteFolicurcado(){
          
         }
 
-        if( parseInt(copa_ausente.value) < 1 || parseInt(copa_ausente.value) >= 101 || copa_ausente.value==""){
+        if( copa_ausente.value < 1 || copa_ausente.value >= 101 || copa_ausente.value=="" || copa_ausente.value % 1 !== 0){
             swal('Copa Ausente','Copa Ausente debe ser mayor a 1 y menor a 100','error')
             copa_ausente.className+=' is-invalid ';
+            copa_ausente.focus();
             return false;
+           
         }else{
         
           delet.classList.remove('delet');
@@ -600,28 +623,14 @@ function formFusteFolicurcado(){
         }
        
         
-        if(checkbox.checked){
-            if(otros.value === ''){
-                otros.value .className += ' is-invalid';
-                swal('Ingresa caracteres validos en Otra intervención fitosanitaria  ','','error')
-                return false
-            }
-            
-            else{
-                delet.classList.remove('delet');
-                otros.value .classList.remove('is-invalid');
-                otros.value .className+=' is-valid '; 
-            }
-        }
-
-
         if (vitalidadValue == "Mala") {
-            
-            alert("Entró a la validación");
+            swal('hola')
             if( porqueTala.value === ''){
-                porqueTala.value .className += ' is-invalid';
-                swal('Ingresa caracteres validos en ¿Por que Tala?  ','','error')
+                console.log("Parametro")
+                porqueTala.className += ' is-invalid';
+                swal('Ingresa caracteres validos en ¿Porqué Tala?','','error')
                 return false
+               
             }
             
             else{       
@@ -630,11 +639,32 @@ function formFusteFolicurcado(){
               porqueTala.className+=' is-valid ';
               
             }      
+        }else{
+            console.log("valor")
         }
+
+        if(checkbox.checked){
+            if(otros.value === ''){
+                otros.className += ' is-invalid';
+                swal('Ingresa caracteres validos en Otra intervención fitosanitaria  ','','error')
+                return false
+               
+            }
+            
+            else{
+                delet.classList.remove('delet');
+                otros.value .classList.remove('is-invalid');
+                otros.value .className+=' is-valid '; 
+            }
+        }else{
+            console.log("valor")
+        }
+
+
+       
+
+    
     }
-
-
-
 
 /*--------------------------------------------------------------
 # Funcion para atraer las imagenes
