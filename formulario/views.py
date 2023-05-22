@@ -84,7 +84,7 @@ def listar_formularios(request):
 
     if usuario.rol == "Administrador":
         base_template = "base-admin.html"
-        arboles = Arbol.objects.filter()
+        arboles = Arbol.objects.filter(habilitado = True).order_by('-id')
             
     elif usuario.rol == "Supervisor":
         base_template = "base-supervisor.html"
@@ -110,9 +110,6 @@ def listar_formularios(request):
         mensaje = request.session["mensaje"]
         del request.session['funcion_llamada']
 
-    print(funcion_llamada)
-    print(llamarMensaje)
-    print(mensaje)
 
     return render(request, 'listar_formularios.html',{'usuario': usuario, 'arboles': arboles, "base_template":base_template, 'mensaje': mensaje, 'llamarMensaje': llamarMensaje})
 

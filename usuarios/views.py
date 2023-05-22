@@ -35,7 +35,54 @@ import random
 # Pagina principal para usuario Administrador
 @permission_required("usuarios.Administrador" , login_url="/")
 def administrador_home(request , usuario):
-    return render(request, 'administrador.html', {'usuario': usuario})
+    
+    censistas = Usuario.objects.filter(rol = "Censista")
+    supervisores = Usuario.objects.filter(rol = "Supervisor")
+
+    numero_formularios = Arbol.objects.filter(habilitado= True).count()
+
+  # Fechas apartir de hoy
+    d = datetime.now() # current date and time
+    
+    list_dates = []
+    list_dates_1 = []
+     
+    for x in range(0, 7):
+        d1 = d.strftime("%d/%m/%Y")
+        list_dates.append(d1)
+        list_dates_1.append(d)
+        d = d - timedelta(days=1)
+    
+    list_dates.sort()
+
+    data = []
+
+    grupos = Usuario.objects.values('Grupo').distinct()
+
+
+    for grupo in grupos:
+        dictionary =  dict()
+        dictionary["name"] = str(grupo)
+
+        # Por ahora está con números aleatorios entre 20 y 80
+        lista_arboles_por_grupo = []
+        for fecha in list_dates_1:
+            
+            cantidad_arboles = Arbol.objects.filter(habilitado = True, creado__date = fecha, creado_por__Grupo = grupo).count()
+            #print("fecha ", fecha,  Arbol.objects.filter(habilitado = True, creado__date = fecha, creado_por__Grupo = usuario.Grupo).count())
+            lista_arboles_por_grupo.append(cantidad_arboles)
+
+        dictionary["data"] = lista_arboles_por_grupo
+
+        data.append(dictionary)
+
+    list_dates = dumps(list_dates)
+    data = dumps(data)
+
+    return render(request, 'administrador.html', {'usuario': usuario, 'numero_censistas':censistas.count(),
+                                                  'numero_supervisores':supervisores.count(),
+                                               'numero_formularios': numero_formularios, "censistas": censistas, 'data':data , 'list_dates': list_dates})
+
 
 
 
@@ -60,28 +107,36 @@ def supervisor_home(request , usuario):
     d = datetime.now() # current date and time
     
     list_dates = []
+    list_dates_1 = []
     for x in range(0, 7):
         d1 = d.strftime("%d/%m/%Y")
         list_dates.append(d1)
+        list_dates_1.append(d)
         d = d - timedelta(days=1)
     
     list_dates.sort()
-    list_dates = dumps(list_dates)
-    
-    print(list_dates)
-
     data = []
 
 
     for censista in censistas:
         dictionary =  dict()
+
         dictionary["name"] = censista.get_full_name()
 
+        lista_arboles_por_censistas = []
+        for fecha in list_dates_1:
+            
+            cantidad_arboles = Arbol.objects.filter(habilitado = True, creado__date = fecha, creado_por__cedula_usuario = censista.username).count()
+            #print("fecha ", fecha,  Arbol.objects.filter(habilitado = True, creado__date = fecha, creado_por__Grupo = usuario.Grupo).count())
+            lista_arboles_por_censistas.append(cantidad_arboles)
+
         # Por ahora está con números aleatorios entre 20 y 80
-        dictionary["data"] = [random.randint(20,100) for _ in range(7)]
+        #dictionary["data"] = [random.randint(20,100) for _ in range(7)]
+        dictionary["data"] = lista_arboles_por_censistas
+
         data.append(dictionary)
 
-
+    list_dates = dumps(list_dates)
     data = dumps(data)
 
     return render(request, 'supervisor.html', {'usuario': usuario, 'numero_censistas':censistas.count(),
@@ -274,7 +329,6 @@ def login_view(request):
 
     # Cuando se presiona el Botón autenticar desde la ventana login
     elif request.method == 'POST' and 'btnlogin' in request.POST:
-        print("btn in post")
         form = FormularioLogin(request.POST)
         if form.is_valid():
 
