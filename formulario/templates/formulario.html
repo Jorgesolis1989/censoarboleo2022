@@ -1092,7 +1092,10 @@
                                   </table>
                                   <div class="form-floating" style="display: none;" id="otros_coment">
                                     <h4>Otra intervención fitosanitaria</h4>
-                                    <textarea class="form-control" placeholder="Ingrese un comentario" id="comentarios_otros" name="comentarios_otros"  style="height: 100px"></textarea>
+                                    <textarea class="form-control" onkeyup="text_invalid()" placeholder="Ingrese un comentario" id="comentarios_otros" name="comentarios_otros"  style="height: 100px"></textarea>
+                                    <div class="invalid-feedback">
+                                      * debes ingresar caracteres validos  *
+                                    </div>
                                   </div>
                                   </div>
                                 <div class="col-md-12 col-lg-12 mb-2 " id="intervencion" style="display: block;">
@@ -1297,7 +1300,10 @@
 
 
                                     </h6>
-                                  <textarea class="form-control"  placeholder="Leave a comment here" id="porquetala" name="porquetala" style="height: 100px"></textarea>
+                                  <textarea class="form-control"  onkeyup="text_invalid()" placeholder="Leave a comment here" id="porquetala" name="porquetala" style="height: 100px"></textarea>
+                                  <div class="invalid-feedback">
+                                    * debes ingresar caracteres validos  *
+                                  </div>
                                 </div>
                                     
                             </div>     

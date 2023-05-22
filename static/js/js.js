@@ -261,6 +261,16 @@ function deleteInValid(){
     copa_ausente.classList.remove('is-valid');
 }
 
+function text_invalid(){
+    const area_Invalid = document.getElementById("comentarios_otros");
+    const porqueTala = document.getElementById("porquetala");
+
+    area_Invalid.classList.remove('is-invalid');
+    area_Invalid.classList.remove('is-valid');
+    porqueTala.classList.remove('is-invalid');
+    porqueTala.classList.remove('is-valid');
+}
+
 function capa_invalid(){
     const Cap = document.getElementById('cap');
     const Cap1 = document.getElementById('capa1');

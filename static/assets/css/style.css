@@ -1360,3 +1360,8 @@ input:checked + .slider:after {
     display: none !important;
   }
 }
+
+
+.scroll-for {
+  overflow: auto; /* Habilita la barra de desplazamiento */
+}

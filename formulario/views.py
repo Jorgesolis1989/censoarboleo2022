@@ -462,6 +462,7 @@ def crear_actualizar_arbol(request, arbol, dasometria_nuevo, estadofitosanitario
             cap5 = 0
         
         numtallos = request.POST["numero_tallos"]
+        print(numtallos)
 
 
 
